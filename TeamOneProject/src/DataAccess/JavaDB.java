@@ -11,6 +11,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Random;
 
 /**
  *
@@ -26,22 +27,6 @@ public final class JavaDB
     
     private JavaDB()
     {        
-    }
-    
-    public static ResultSet executeSelect(String command)
-    {        
-        ResultSet resultSet = null;
-        
-        try
-        {
-            resultSet = _statement.executeQuery(command);
-        }
-        catch(Exception e)
-        {
-            ExceptionHandler.HandleException(e);
-        }
-                
-        return resultSet;
     }
     
     public static void openConnection()
@@ -64,6 +49,58 @@ public final class JavaDB
         {
             _statement.close();
             _connection.close();
+        }
+        catch(Exception e)
+        {
+            ExceptionHandler.HandleException(e);
+        }
+    }
+    
+    public static ResultSet executeSelect(String command)
+    {        
+        ResultSet resultSet = null;
+        
+        try
+        {
+            resultSet = _statement.executeQuery(command);
+        }
+        catch(Exception e)
+        {
+            ExceptionHandler.HandleException(e);
+        }
+                
+        return resultSet;
+    }
+    
+    public static void executeInsert(String command)
+    {
+        try
+        {
+            _statement.execute(command);
+        }
+        catch(Exception e)
+        {
+            ExceptionHandler.HandleException(e);
+        }
+    }
+    
+    public static void executeUpdate(String command)
+    {
+        try
+        {
+            _statement.executeUpdate(command);
+        }
+        catch(Exception e)
+        {
+            ExceptionHandler.HandleException(e);
+        }
+    }
+    
+    public static void executeDelete(String command)
+    {
+        try
+        {
+            _statement.executeUpdate(command);
         }
         catch(Exception e)
         {

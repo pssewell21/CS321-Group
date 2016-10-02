@@ -9,6 +9,7 @@ import DataAccess.JavaDB;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.Random;
 
 /**
  *
@@ -18,6 +19,13 @@ public class TestDataController
 {        
     public void Run() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException 
     {
+        Random rand = new Random();
+        JavaDB.executeInsert("INSERT INTO APP.TESTDATA\nVALUES (" + rand.nextInt() + ", 'key!', 'value!')");
+        
+        JavaDB.executeUpdate("UPDATE APP.TESTDATA\nSET VALUE = 'UpdatedValue!!!'\nWHERE ID = 1500395088");
+        
+        JavaDB.executeDelete("DELETE FROM APP.TESTDATA WHERE ID = 1739863343");
+        
         ResultSet resultSet = JavaDB.executeSelect("SELECT * FROM TESTDATA");
         
         try
