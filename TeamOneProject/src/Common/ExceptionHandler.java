@@ -3,19 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package teamoneproject;
+package Common;
 
 /**
  *
  * @author pssew
  */
-public class TeamOneProject {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+public final class ExceptionHandler 
+{
+    public static void HandleException(Exception e)
+    {
+        System.out.println(e.toString());
     }
-    
 }
