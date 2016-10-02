@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.ResultSetMetaData;
+import java.util.Random;
 
 /**
  *
@@ -27,7 +28,10 @@ public class DatabaseTester {
     public static void main(String[] args) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
         Class.forName(DRIVER).newInstance();
         Connection connection = DriverManager.getConnection(JDBC_URL);
-        connection.createStatement().execute("INSERT INTO TESTDATA VALUES (4, 'key4', 'value4')");
+        
+        Random rand = new Random();
+        
+        connection.createStatement().execute("INSERT INTO TESTDATA VALUES (" + String.valueOf(rand.nextInt()) + ", 'key', 'value')");
         System.out.println("test data inserted");
         
         ResultSet data = connection.createStatement().executeQuery("SELECT * FROM TESTDATA");
