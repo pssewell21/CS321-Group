@@ -26,7 +26,7 @@ public class TestDataController
         
         DataAccessJavaDb.executeDelete("DELETE FROM APP.TESTDATA WHERE ID = 1739863343");
         
-        ResultSet resultSet = DataAccessJavaDb.executeSelect("SELECT * FROM TESTDATA");
+        ResultSet resultSet = DataAccessJavaDb.executeSelect("SELECT * FROM APP.TESTDATA");
         
         try
         {
