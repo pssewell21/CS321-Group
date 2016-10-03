@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Common;
+package UI.Common;
 
 import Controllers.TestDataController;
-import DataAccess.JavaDB;
+import DataAccess.DataAccessJavaDb;
 import java.sql.SQLException;
 
 /**
@@ -21,7 +21,7 @@ public class Application
     public static void main(String[] args) 
     {
         // Open the connection to the database when the application is launched
-        JavaDB.openConnection();
+        DataAccessJavaDb.openConnection();
         
         TestDataController c = new TestDataController();
         
@@ -36,7 +36,7 @@ public class Application
         finally
         {
             // Close the connection to the database when closing the application
-            JavaDB.closeConnection();
+            DataAccessJavaDb.closeConnection();
         }
     }   
 }

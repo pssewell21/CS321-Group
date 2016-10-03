@@ -5,7 +5,7 @@
  */
 package DataAccess;
 
-import Common.ExceptionHandler;
+import UI.Common.ExceptionHandler;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -17,7 +17,7 @@ import java.util.Random;
  *
  * @author pssew
  */
-public final class JavaDB 
+public final class DataAccessJavaDb 
 {
     private static final String DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
     private static final String JDBC_URL = "jdbc:derby://localhost:1527/database";
@@ -25,8 +25,8 @@ public final class JavaDB
     private static Connection _connection;
     private static Statement _statement;
     
-    private JavaDB()
-    {        
+    private DataAccessJavaDb()
+    {
     }
     
     public static void openConnection()

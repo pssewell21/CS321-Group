@@ -5,7 +5,7 @@
  */
 package Controllers;
 
-import DataAccess.JavaDB;
+import DataAccess.DataAccessJavaDb;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -20,13 +20,13 @@ public class TestDataController
     public void Run() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException 
     {
         Random rand = new Random();
-        JavaDB.executeInsert("INSERT INTO APP.TESTDATA\nVALUES (" + rand.nextInt() + ", 'key!', 'value!')");
+        DataAccessJavaDb.executeInsert("INSERT INTO APP.TESTDATA\nVALUES (" + rand.nextInt() + ", 'key!', 'value!')");
         
-        JavaDB.executeUpdate("UPDATE APP.TESTDATA\nSET VALUE = 'UpdatedValue!!!'\nWHERE ID = 1500395088");
+        DataAccessJavaDb.executeUpdate("UPDATE APP.TESTDATA\nSET VALUE = 'UpdatedValue!!!'\nWHERE ID = 1500395088");
         
-        JavaDB.executeDelete("DELETE FROM APP.TESTDATA WHERE ID = 1739863343");
+        DataAccessJavaDb.executeDelete("DELETE FROM APP.TESTDATA WHERE ID = 1739863343");
         
-        ResultSet resultSet = JavaDB.executeSelect("SELECT * FROM TESTDATA");
+        ResultSet resultSet = DataAccessJavaDb.executeSelect("SELECT * FROM TESTDATA");
         
         try
         {
