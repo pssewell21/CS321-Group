@@ -3,25 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Library.TestDataSeries;
+package Library;
 
+import UI.Common.IdGenerator;
 import java.math.BigInteger;
 
 /**
  *
  * @author Owner
  */
-public class TestData 
+public abstract class LibraryFactoryBase implements ISqlGenerator
 {
-    private String SCHEMA = "APP";
-    private String TABLE_NAME = "TESTDATA";
+    public String SCHEMA = "APP";
+    public String TABLE_NAME = "TESTDATA";
     
-    public BigInteger Id;
-    public String Key;
-    public String Value;
-    
-    public TestData()
+    protected LibraryFactoryBase()
     {
-        
     }
 }

@@ -3,12 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Library.TestDataSeries;
+package Library;
+
+import UI.Common.IdGenerator;
+import java.math.BigInteger;
 
 /**
  *
  * @author Owner
  */
-public class TestDataFactory {
+public abstract class LibraryBase 
+{
+    protected BigInteger Id;
     
+    protected LibraryBase()
+    {
+        Id = IdGenerator.NewId();
+    }
 }
