@@ -5,17 +5,19 @@
  */
 package Library;
 
+import java.util.HashMap;
+
 /**
  *
  * @author Owner
  */
 public interface ISqlGenerator 
 {
-    public String GenerateSelect();
+    public String generateSelect(HashMap<String, String> criteria);
     
-    public String GenerateInsert();
+    public String generateInsert(HashMap<String, String> criteria);
     
-    public String GenerateUpdate();
+    public String generateUpdate(HashMap<String, String> criteria);
     
-    public String GenerateDelete();
+    public String generateDelete(HashMap<String, String> criteria);
 }

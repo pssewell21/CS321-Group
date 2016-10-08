@@ -9,14 +9,15 @@ package UI.Common;
  *
  * @author pssew
  */
-public final class ExceptionHandler 
+public final class Utility 
 {
-    private ExceptionHandler()
-    {        
-    }
-    
-    public static void handleException(Exception e)
+    public static boolean isNullOrEmpty(String string)
     {
-        System.out.println(e.toString());
+        if (string == null)
+        {
+            return true;
+        }
+        
+        return string.isEmpty();
     }
 }

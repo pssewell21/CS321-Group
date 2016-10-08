@@ -21,8 +21,6 @@ public class Application
     public static void main(String[] args) 
     {
         // Open the connection to the database when the application is launched
-        DataAccessJavaDb.openConnection();
-        
         TestDataController c = new TestDataController();
         
         try
@@ -31,12 +29,7 @@ public class Application
         }
         catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException e)
         {
-            ExceptionHandler.HandleException(e);
-        }
-        finally
-        {
-            // Close the connection to the database when closing the application
-            DataAccessJavaDb.closeConnection();
+            ExceptionHandler.handleException(e);
         }
     }   
 }

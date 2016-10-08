@@ -11,7 +11,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Random;
 
 /**
  *
@@ -39,7 +38,7 @@ public final class DataAccessJavaDb
         }
         catch(ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e)
         {
-            ExceptionHandler.HandleException(e);
+            ExceptionHandler.handleException(e);
         }
     }
     
@@ -52,7 +51,7 @@ public final class DataAccessJavaDb
         }
         catch(Exception e)
         {
-            ExceptionHandler.HandleException(e);
+            ExceptionHandler.handleException(e);
         }
     }
     
@@ -66,7 +65,7 @@ public final class DataAccessJavaDb
         }
         catch(Exception e)
         {
-            ExceptionHandler.HandleException(e);
+            ExceptionHandler.handleException(e);
         }
                 
         return resultSet;
@@ -80,7 +79,7 @@ public final class DataAccessJavaDb
         }
         catch(Exception e)
         {
-            ExceptionHandler.HandleException(e);
+            ExceptionHandler.handleException(e);
         }
     }
     
@@ -92,7 +91,7 @@ public final class DataAccessJavaDb
         }
         catch(Exception e)
         {
-            ExceptionHandler.HandleException(e);
+            ExceptionHandler.handleException(e);
         }
     }
     
@@ -104,7 +103,7 @@ public final class DataAccessJavaDb
         }
         catch(Exception e)
         {
-            ExceptionHandler.HandleException(e);
+            ExceptionHandler.handleException(e);
         }
     }
 }
