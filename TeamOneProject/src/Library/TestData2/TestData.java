@@ -3,11 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Library.TestData;
+package Library.TestData2;
 
 import Library.LibraryBase;
-import UI.Common.IdGenerator;
-import java.math.BigInteger;
 
 /**
  *
@@ -15,13 +13,18 @@ import java.math.BigInteger;
  */
 public class TestData extends LibraryBase
 {
-    public BigInteger Id;
+    public Long Id;
     public String Key;
     public String Value;
+    
+    public TestData()
+    {
+        super();
+    }
         
     public TestData(String key)
     {
-        super();
+        this();
         Key = key;
     }
     
@@ -31,11 +34,19 @@ public class TestData extends LibraryBase
         Value = value;
     }
     
+    public TestData(Long id, String key, String value)
+    {
+        Id = id;
+        Key = key;
+        Value = value;
+    }
+    
     public void setValue(String value)
     {
         Value = value;
     }
     
+    @Override
     public String toString()
     {
         return "ID: " + Id.toString() + ", Key: " + Key + ", Value: " + Value;

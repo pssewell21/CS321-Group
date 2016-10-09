@@ -6,7 +6,6 @@
 package UI.Common;
 
 import Controllers.TestDataController;
-import DataAccess.DataAccessJavaDb;
 import java.sql.SQLException;
 
 /**

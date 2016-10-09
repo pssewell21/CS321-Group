@@ -3,33 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UI.Common;
+package Library;
 
-import java.math.BigInteger;
 import java.util.Random;
 
 /**
  *
  * @author Owner
  */
-public final class IdGenerator 
+public final class ID 
 {
-    private static final int MAX_BIT_LENGTH = 16;
-    
-    private IdGenerator()
+    private ID()
     {        
     }
     
-    public static BigInteger NewId()
+    public static Long newId()
     {
         Random random = new Random();
-        BigInteger zero = new BigInteger("0");
         
         do
         {
-            BigInteger id = new BigInteger(MAX_BIT_LENGTH, random);
+            Long id = random.nextLong();
                         
-            if (id.compareTo(zero) > 0)
+            if (id > 0)
             {
                 return id;
             }                     

@@ -13,11 +13,11 @@ import java.util.HashMap;
  */
 public interface ISqlGenerator 
 {
-    public String generateSelect(HashMap<String, String> criteria);
+    public String generateSelectCommand(HashMap<String, String> criteria);
     
-    public String generateInsert(HashMap<String, String> criteria);
+    public String generateInsertCommand(HashMap<String, String> criteria);
     
-    public String generateUpdate(HashMap<String, String> criteria);
+    public String generateUpdateCommand(HashMap<String, String> criteria);
     
-    public String generateDelete(HashMap<String, String> criteria);
+    public String generateDeleteCommand(HashMap<String, String> criteria);
 }

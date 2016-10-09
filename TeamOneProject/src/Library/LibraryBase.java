@@ -5,19 +5,16 @@
  */
 package Library;
 
-import UI.Common.IdGenerator;
-import java.math.BigInteger;
-
 /**
  *
  * @author Owner
  */
 public abstract class LibraryBase 
 {
-    protected BigInteger Id;
+    protected Long Id;
     
     protected LibraryBase()
     {
-        Id = IdGenerator.NewId();
+        Id = ID.newId();
     }
 }

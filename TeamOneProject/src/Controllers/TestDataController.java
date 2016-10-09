@@ -5,12 +5,12 @@
  */
 package Controllers;
 
-import DataAccess.DataAccessJavaDb;
-import Library.TestData.TestDataFactory;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
+import Library.Constants.DalFields;
+import Library.TestData2.TestData;
+import Library.TestData2.TestDataFactory;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -29,40 +29,34 @@ public class TestDataController
         //DataAccessJavaDb.executeDelete("DELETE FROM APP.TESTDATA WHERE ID = 1739863343");
         
         TestDataFactory factory = new TestDataFactory(); 
-        HashMap hm = new HashMap();
         
-        ResultSet resultSet = DataAccessJavaDb.executeSelect(factory.generateSelect(hm));
+        HashMap criteria = new HashMap<>();
+        List testDataList = factory.executeSelect(criteria);
+        displayResults(testDataList);
         
-        DataAccessJavaDb.executeInsert("INSERT INTO APP.TESTDATA\nVALUES (" + rand.nextInt() + ", 'key!', 'value!')");
-        try
-        {
-            displayResults(resultSet);
-        }
-        catch(Exception e)
-        {
-            System.out.println("No TestData results to display");
-        }
+        criteria = new HashMap<>();
+        //criteria.put(DalFields.LOOKUPKEY, "testKey");
+        //criteria.put(DalFields.VALUE, "val");
+        
+        factory.executeInsert(criteria);
+        
+        criteria = new HashMap<>();
+        testDataList = factory.executeSelect(criteria);
+        displayResults(testDataList);
     }
     
-    private void displayResults(ResultSet resultSet) throws SQLException
+    private void displayResults(List<TestData> testDataList)
     {
-        ResultSetMetaData metaData = resultSet.getMetaData();
-        
-        for (int i = 1; i <= metaData.getColumnCount(); i++)
+        if (!testDataList.isEmpty())
         {
-            System.out.printf("%-10s\t", metaData.getColumnName(i));
-        }
-            
-        System.out.println();
-           
-        while (resultSet.next())
-        {
-            for (int i = 1; i <= metaData.getColumnCount(); i++)
+            for (TestData testData : testDataList)
             {
-                System.out.printf("%-10s\t", resultSet.getObject(i));
+                System.out.println(testData.toString());
             }
-                
-            System.out.println();
+        }
+        else
+        {
+            System.out.println("No results returned");
         }
     }
 }

@@ -11,7 +11,7 @@ package Library.Constants;
  */
 public final class DalFields 
 {
-    public static final String ID = "Id";
-    public static final String KEY = "Key";
-    public static final String VALUE = "Value";
+    public static final String ID = "ID";
+    public static final String LOOKUPKEY = "LOOKUPKEY";
+    public static final String VALUE = "VALUE";
 }
