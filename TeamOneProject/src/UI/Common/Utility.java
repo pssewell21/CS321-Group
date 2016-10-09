@@ -11,13 +11,13 @@ package UI.Common;
  */
 public final class Utility 
 {
-    public static boolean isNullOrEmpty(String string)
+    public static boolean hasValue(String string)
     {
         if (string == null)
         {
-            return true;
+            return false;
         }
         
-        return string.isEmpty();
+        return !string.isEmpty();
     }
 }

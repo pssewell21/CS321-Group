@@ -33,9 +33,9 @@ public abstract class LibraryFactoryBase implements ISqlGenerator
     
     public abstract void executeDelete(HashMap<String, String> hashMap);
     
-    protected boolean isNullOrEmpty(String string)
+    protected boolean hasValue(String string)
     {
-        return Utility.isNullOrEmpty(string);
+        return Utility.hasValue(string);
     }
     
     protected void handleException(Exception e)

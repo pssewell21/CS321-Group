@@ -6,8 +6,8 @@
 package Controllers;
 
 import Library.Constants.DalFields;
-import Library.TestData2.TestData;
-import Library.TestData2.TestDataFactory;
+import Library.TestData.TestData;
+import Library.TestData.TestDataFactory;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
@@ -35,14 +35,35 @@ public class TestDataController
         displayResults(testDataList);
         
         criteria = new HashMap<>();
-        //criteria.put(DalFields.LOOKUPKEY, "testKey");
-        //criteria.put(DalFields.VALUE, "val");
+        criteria.put(DalFields.LOOKUPKEY, "testKeyNew");
+        criteria.put(DalFields.VALUE, "valNew");
         
         factory.executeInsert(criteria);
         
         criteria = new HashMap<>();
         testDataList = factory.executeSelect(criteria);
         displayResults(testDataList);
+        
+        criteria = new HashMap<>();
+        criteria.put(DalFields.ID, "7530223542991451589");
+        criteria.put(DalFields.LOOKUPKEY, "testKeyNewFromUpdate!");
+        criteria.put(DalFields.VALUE, "valNewFromUpdate!");
+        
+        factory.executeUpdate(criteria);
+        
+        criteria = new HashMap<>();
+        testDataList = factory.executeSelect(criteria);
+        displayResults(testDataList);
+        
+        criteria = new HashMap<>();
+        criteria.put(DalFields.ID, "4");
+        
+        factory.executeDelete(criteria);
+        
+        criteria = new HashMap<>();
+        testDataList = factory.executeSelect(criteria);
+        displayResults(testDataList);
+        
     }
     
     private void displayResults(List<TestData> testDataList)

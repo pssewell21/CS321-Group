@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Library.TestData2;
+package Library.TestData;
 
 import DataAccess.DataAccessJavaDb;
 import Library.Constants.DalFields;
@@ -36,7 +36,7 @@ public class TestDataFactory extends LibraryFactoryBase
         try
         {
             String command = generateSelectCommand(criteria);
-            if (!isNullOrEmpty(command))
+            if (hasValue(command))
             {
                 ResultSet resultSet = DataAccessJavaDb.executeSelect(command);
                 System.out.println("Select command being executed:\n" + command);
@@ -77,7 +77,7 @@ public class TestDataFactory extends LibraryFactoryBase
         {
             String command = generateInsertCommand(criteria);
             
-            if (!isNullOrEmpty(command))
+            if (hasValue(command))
             {
                 DataAccessJavaDb.executeInsert(command);
                 System.out.println("Insert command being executed:\n" + command);
@@ -100,11 +100,59 @@ public class TestDataFactory extends LibraryFactoryBase
     @Override
     public void executeUpdate(HashMap<String, String> criteria)
     {
+        DataAccessJavaDb.openConnection();
+        
+        try
+        {
+            String command = generateUpdateCommand(criteria);
+            
+            if (hasValue(command))
+            {
+                DataAccessJavaDb.executeUpdate(command);
+                System.out.println("Update command being executed:\n" + command);
+            }
+            else
+            {
+                System.out.println("No update command was run from the provided criteria");
+            }
+        }
+        catch (Exception e)
+        {
+            handleException(e);
+        }
+        finally
+        {
+            DataAccessJavaDb.closeConnection();
+        }
     }
     
     @Override
     public void executeDelete(HashMap<String, String> criteria)
     {
+        DataAccessJavaDb.openConnection();
+        
+        try
+        {
+            String command = generateDeleteCommand(criteria);
+            
+            if (hasValue(command))
+            {
+                DataAccessJavaDb.executeDelete(command);
+                System.out.println("Delete command being executed:\n" + command);
+            }
+            else
+            {
+                System.out.println("No delete command was run from the provided criteria");
+            }
+        }
+        catch (Exception e)
+        {
+            handleException(e);
+        }
+        finally
+        {
+            DataAccessJavaDb.closeConnection();
+        }
     }
     
     @Override
@@ -121,17 +169,17 @@ public class TestDataFactory extends LibraryFactoryBase
             String key = criteria.get(DalFields.LOOKUPKEY); 
             String value = criteria.get(DalFields.VALUE);
             
-            if (!(isNullOrEmpty(id) && isNullOrEmpty(key) && isNullOrEmpty(value)))
+            if (hasValue(id) || hasValue(key) || hasValue(value))
             {
                 command += "\nWHERE ";
                 
-                if (!isNullOrEmpty(id))
+                if (hasValue(id))
                 {
                     command += DalFields.ID + " = " + id + " "; 
                     insertAnd = true;
                 }
                 
-                if (!isNullOrEmpty(key))
+                if (hasValue(key))
                 {
                     if (insertAnd)
                     {
@@ -142,7 +190,7 @@ public class TestDataFactory extends LibraryFactoryBase
                     insertAnd = true;
                 }
                 
-                if (!isNullOrEmpty(value))
+                if (hasValue(value))
                 {
                     if (insertAnd)
                     {
@@ -172,13 +220,13 @@ public class TestDataFactory extends LibraryFactoryBase
             String key = criteria.get(DalFields.LOOKUPKEY); 
             String value = criteria.get(DalFields.VALUE);
             
-            if (!isNullOrEmpty(key))
+            if (hasValue(key))
             {                
                 command += "INSERT INTO " + SCHEMA + "." + TABLE_NAME + " VALUES (" + ID.newId() + ", '" + key + "', ";
                 
-                if (!isNullOrEmpty(value))
+                if (hasValue(value))
                 {
-                    command += "'" + DalFields.VALUE + "')"; 
+                    command += "'" + value + "')"; 
                 }
                 else
                 {
@@ -187,7 +235,7 @@ public class TestDataFactory extends LibraryFactoryBase
             }
             else
             {
-                System.out.println("Required field LOOKUPKEY not set.  Insert  failed.");
+                System.out.println("Required field LOOKUPKEY not set.  Insert failed.");
             }
         }
         
@@ -202,7 +250,42 @@ public class TestDataFactory extends LibraryFactoryBase
     @Override
     public String generateUpdateCommand(HashMap<String, String> criteria)
     {
-        return "";
+        String command = "";
+        
+        if (!criteria.isEmpty())
+        {
+            boolean insertComma = false;
+            String comma = ", ";
+            
+            String id = criteria.get(DalFields.ID); 
+            String key = criteria.get(DalFields.LOOKUPKEY); 
+            String value = criteria.get(DalFields.VALUE);
+            
+            if (hasValue(id) && (hasValue(key) || hasValue(value)))
+            {                
+                command += "UPDATE " + SCHEMA + "." + TABLE_NAME + " SET ";
+                
+                if (hasValue(key))
+                {
+                    command += DalFields.LOOKUPKEY + " = '" + key + "' "; 
+                    insertComma = true;
+                }
+                
+                if (hasValue(value))
+                {
+                    if (insertComma)
+                    {
+                        command += comma;
+                    }
+                    
+                    command += DalFields.VALUE + " = '" + value + "' "; 
+                }
+                
+                command += "WHERE " + DalFields.ID + " = " + id;
+            }
+        }
+        
+        return command;
     }
     
     /**
@@ -213,6 +296,18 @@ public class TestDataFactory extends LibraryFactoryBase
     @Override
     public String generateDeleteCommand(HashMap<String, String> criteria)
     {
-        return "";
+        String command = "";
+        
+        if (!criteria.isEmpty())
+        {            
+            String id = criteria.get(DalFields.ID); 
+            
+            if (hasValue(id))
+            {                
+                command += "DELETE FROM " + SCHEMA + "." + TABLE_NAME + " WHERE ID = " + id;    
+            }
+        }
+        
+        return command;
     }
 }
