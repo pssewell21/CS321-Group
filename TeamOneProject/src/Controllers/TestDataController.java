@@ -6,6 +6,7 @@
 package Controllers;
 
 import Library.Constants.DalFields;
+import Library.LibraryBase;
 import Library.TestData.TestData;
 import Library.TestData.TestDataFactory;
 import java.sql.SQLException;
@@ -21,17 +22,11 @@ public class TestDataController
 {        
     public void Run() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException 
     {
-        Random rand = new Random();
-        //DataAccessJavaDb.executeInsert("INSERT INTO APP.TESTDATA\nVALUES (" + rand.nextInt() + ", 'key!', 'value!')");
-        
-        //DataAccessJavaDb.executeUpdate("UPDATE APP.TESTDATA\nSET VALUE = 'UpdatedValue!!!'\nWHERE ID = 1500395088");
-        
-        //DataAccessJavaDb.executeDelete("DELETE FROM APP.TESTDATA WHERE ID = 1739863343");
-        
+        Random rand = new Random();        
         TestDataFactory factory = new TestDataFactory(); 
         
-        HashMap criteria = new HashMap<>();
-        List testDataList = factory.executeSelect(criteria);
+        HashMap<String, String> criteria = new HashMap<>();
+        List<LibraryBase> testDataList = factory.executeSelect(criteria);
         displayResults(testDataList);
         
         criteria = new HashMap<>();
@@ -62,15 +57,14 @@ public class TestDataController
         
         criteria = new HashMap<>();
         testDataList = factory.executeSelect(criteria);
-        displayResults(testDataList);
-        
+        displayResults(testDataList);        
     }
     
-    private void displayResults(List<TestData> testDataList)
+    private void displayResults(List<LibraryBase> testDataList)
     {
         if (!testDataList.isEmpty())
         {
-            for (TestData testData : testDataList)
+            for (LibraryBase testData : testDataList)
             {
                 System.out.println(testData.toString());
             }
