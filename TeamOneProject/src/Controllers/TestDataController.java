@@ -40,7 +40,7 @@ public class TestDataController
         
         criteria = new HashMap<>();
         criteria.put(DalFields.LOOKUPKEY, "testKeyNew");
-        criteria.put(DalFields.VALUE, "valNew");
+        criteria.put(DalFields.VALUE, "valNew"); 
         
         factory.executeInsert(criteria);
         
