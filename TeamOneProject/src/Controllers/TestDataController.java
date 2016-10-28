@@ -5,11 +5,13 @@
  */
 package Controllers;
 
-import Library.Constants.DalFields;
+import Library.DalFields;
 import Library.LibraryBase;
-import Library.TestData.TestData;
-import Library.TestData.TestDataFactory;
+import Library.TestData;
+import Library.TestDataFactory;
+import Views.TestDataListView;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
@@ -20,13 +22,20 @@ import java.util.Random;
  */
 public class TestDataController 
 {        
+    public List<TestData> model;
+    
+    public TestDataController()
+    {
+        model = new ArrayList<>();
+    }
+    
     public void Run() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException 
     {
         Random rand = new Random();        
         TestDataFactory factory = new TestDataFactory(); 
         
         HashMap<String, String> criteria = new HashMap<>();
-        List<LibraryBase> testDataList = factory.executeSelect(criteria);
+        List<TestData> testDataList = factory.executeSelect(criteria);
         displayResults(testDataList);
         
         criteria = new HashMap<>();
@@ -56,11 +65,21 @@ public class TestDataController
         factory.executeDelete(criteria);
         
         criteria = new HashMap<>();
-        testDataList = factory.executeSelect(criteria);
-        displayResults(testDataList);        
+        model = factory.executeSelect(criteria);
+        displayResults(model);   
+        
+        TestData[] array = new TestData[0];
+        TestData[] resultArray = model.toArray(array);
+                
+        TestDataListView view = new TestDataListView(resultArray);
+        
+        
+        
+        view.pack();
+        view.setVisible(true);
     }
     
-    private void displayResults(List<LibraryBase> testDataList)
+    private void displayResults(List<TestData> testDataList)
     {
         if (!testDataList.isEmpty())
         {

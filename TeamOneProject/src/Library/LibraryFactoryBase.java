@@ -5,8 +5,8 @@
  */
 package Library;
 
-import UI.Common.ExceptionHandler;
-import UI.Common.Utility;
+import UI.ExceptionHandler;
+import UI.Utility;
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,7 +25,7 @@ public abstract class LibraryFactoryBase implements ISqlGenerator
         TABLE_NAME = tableName;
     }
     
-    public abstract List<LibraryBase> executeSelect(HashMap<String, String> hashMap);
+    public abstract List<? extends LibraryBase> executeSelect(HashMap<String, String> hashMap);
     
     public abstract void executeInsert(HashMap<String, String> hashMap);
     

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Library.TestData;
+package Library;
 
 import Library.LibraryBase;
 
@@ -13,7 +13,6 @@ import Library.LibraryBase;
  */
 public class TestData extends LibraryBase
 {
-    public Long Id;
     public String Key;
     public String Value;
     

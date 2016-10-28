@@ -11,7 +11,7 @@ package Library;
  */
 public abstract class LibraryBase 
 {
-    protected Long Id;
+    public Long Id;
     
     protected LibraryBase()
     {

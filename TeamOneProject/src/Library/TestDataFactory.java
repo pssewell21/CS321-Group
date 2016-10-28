@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Library.TestData;
+package Library;
 
+import Library.TestData;
 import DataAccess.DataAccessJavaDb;
-import Library.Constants.DalFields;
+import Library.DalFields;
 import Library.ID;
 import Library.LibraryBase;
 import Library.LibraryFactoryBase;
@@ -26,10 +27,29 @@ public class TestDataFactory extends LibraryFactoryBase
         super("APP", "TESTDATA");
     }
     
-    @Override
-    public List<LibraryBase> executeSelect(HashMap<String, String> criteria)
+    public TestData getById(long id)
     {
-        List<LibraryBase> list = new ArrayList<>();
+        HashMap<String, String> criteria = new HashMap<>();
+                
+        criteria.put(DalFields.ID, Long.toString(id));
+        
+        List<TestData> result = executeSelect(criteria);
+        
+        if (result.size() > 0)
+        {
+            return (TestData) result.get(0);
+        }
+        else
+        {
+            return null;
+        }
+    }
+    
+    
+    @Override
+    public List<TestData> executeSelect(HashMap<String, String> criteria)
+    {
+        List<TestData> list = new ArrayList<>();
         
         DataAccessJavaDb.openConnection();
         

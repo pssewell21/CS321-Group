@@ -3,20 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UI.Common;
+package Library;
 
 /**
  *
  * @author pssew
  */
-public final class ExceptionHandler 
+public final class DalFields 
 {
-    private ExceptionHandler()
-    {        
-    }
-    
-    public static void handleException(Exception e)
-    {
-        System.out.println(e.toString());
-    }
+    public static final String ID = "ID";
+    public static final String LOOKUPKEY = "LOOKUPKEY";
+    public static final String VALUE = "VALUE";
 }
