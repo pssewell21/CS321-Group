@@ -5,65 +5,39 @@
  */
 package Views;
 
+import Controllers.TestDataEditViewController;
+import Controllers.TestDataListViewController;
 import Library.TestData;
-import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JList;
-import javax.swing.JScrollPane;
+import javax.swing.DefaultListModel;
 
 /**
  *
  * @author pssew
  */
-public class TestDataListView extends javax.swing.JFrame {
-
-    
+public class TestDataListView extends javax.swing.JFrame 
+{
+    TestDataListViewController controller;    
     
     /**
      * Creates new form TestDataListView
-     * @param model
+     * @param controller
      */
-    public TestDataListView(TestData[] model) 
+    public TestDataListView(TestDataListViewController controller) 
     {
+        this.controller = controller;
+        
         initComponents();
         
-        load(model);
+        load();
     }
     
-    private void load(TestData[] model) 
-    {
-        JList list = new JList(model);
-        list.setCellRenderer(new BookCellRenderer());
-        JScrollPane pane = new JScrollPane(list);
-        list.setVisibleRowCount(4);
+    private void load() 
+    {        
+        jList1.setModel(controller.listModel);
         
-        class BookCellRenderer extends JLabel implements ListCellRenderer {
-  private static final Color HIGHLIGHT_COLOR = new Color(0, 0, 128);
-
-  public BookCellRenderer() {
-    setOpaque(true);
-    setIconTextGap(12);
-  }
-
-  public Component getListCellRendererComponent(JList list, Object value,
-      int index, boolean isSelected, boolean cellHasFocus) {
-    BookEntry entry = (BookEntry) value;
-    setText(entry.getTitle());
-    setIcon(entry.getImage());
-    if (isSelected) {
-      setBackground(HIGHLIGHT_COLOR);
-      setForeground(Color.white);
-    } else {
-      setBackground(Color.white);
-      setForeground(Color.black);
-    }
-    return this;
-  }
-}
-        
-          //  public int getSize() { return strings.length; }
-         //   public Object getElementAt(int i) { return strings[i]; }
-        //list.setModel(new javax.swing.AbstractListModel<TestData>() {
+        pack();
+        setVisible(true);
     }
     
 
@@ -77,33 +51,69 @@ public class TestDataListView extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        newButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("I'm a listView!");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setText("TestData Objects!");
+
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList1);
+
+        newButton.setText("New");
+        newButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(108, 108, 108)
-                .addComponent(jLabel1)
-                .addContainerGap(214, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(newButton)
+                        .addGap(67, 67, 67)
+                        .addComponent(jLabel1)
+                        .addGap(0, 106, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addComponent(jLabel1)
-                .addContainerGap(209, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(newButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
+        // TODO add your handling code here:
+        controller.executeAdd();
+    }//GEN-LAST:event_newButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton newButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -90,7 +90,7 @@ public class TestDataFactory extends LibraryFactoryBase
     
     @Override
     public void executeInsert(HashMap<String, String> criteria)
-    {    
+    {
         DataAccessJavaDb.openConnection();
         
         try

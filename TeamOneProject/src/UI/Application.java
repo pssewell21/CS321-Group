@@ -5,7 +5,7 @@
  */
 package UI;
 
-import Controllers.TestDataController;
+import Controllers.TestDataListViewController;
 import java.sql.SQLException;
 
 /**
@@ -20,11 +20,11 @@ public class Application
     public static void main(String[] args) 
     {
         // Open the connection to the database when the application is launched
-        TestDataController c = new TestDataController();
+        TestDataListViewController c = new TestDataListViewController();
         
         try
         {
-            c.Run();
+            c.load();
         }
         catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException e)
         {

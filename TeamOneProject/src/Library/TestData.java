@@ -5,7 +5,7 @@
  */
 package Library;
 
-import Library.LibraryBase;
+import java.util.HashMap;
 
 /**
  *
@@ -13,7 +13,7 @@ import Library.LibraryBase;
  */
 public class TestData extends LibraryBase
 {
-    public String Key;
+    public String LookupKey;
     public String Value;
     
     public TestData()
@@ -21,22 +21,22 @@ public class TestData extends LibraryBase
         super();
     }
         
-    public TestData(String key)
+    public TestData(String lookupKey)
     {
         this();
-        Key = key;
+        LookupKey = lookupKey;
     }
     
-    public TestData(String key, String value)
+    public TestData(String lookupKey, String value)
     {
-        this(key);
+        this(lookupKey);
         Value = value;
     }
     
-    public TestData(Long id, String key, String value)
+    public TestData(Long id, String lookupKey, String value)
     {
         Id = id;
-        Key = key;
+        LookupKey = lookupKey;
         Value = value;
     }
     
@@ -48,6 +48,16 @@ public class TestData extends LibraryBase
     @Override
     public String toString()
     {
-        return "ID: " + Id.toString() + ", Key: " + Key + ", Value: " + Value;
+        return "ID: " + Id.toString() + ", LookupKey: " + LookupKey + ", Value: " + Value;
+    }
+    
+    public HashMap<String, String> toHashMap()
+    {
+        HashMap<String, String> map = new HashMap<>();
+        map.put(DalFields.ID, Id.toString());
+        map.put(DalFields.LOOKUPKEY, LookupKey);
+        map.put(DalFields.VALUE, Value);
+        
+        return map;
     }
 }
