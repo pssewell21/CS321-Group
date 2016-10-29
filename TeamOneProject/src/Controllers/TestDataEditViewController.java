@@ -18,7 +18,7 @@ public class TestDataEditViewController
     public TestData model;
     public TestDataEditView view;
         
-    public String action;
+    public boolean isNew;
     
     TestDataFactory factory;
     
@@ -31,23 +31,54 @@ public class TestDataEditViewController
     {
         if (model != null)
         {
-            // load the existing model
-            action = "Update";
+            this.model = model;
+            isNew = false;
         }
         else
         {
             this.model = new TestData();
-            action = "Insert";
+            isNew = true;
         }
         
         view = new TestDataEditView(this);
+        
+        view.setDeleteEnabled(!isNew);
     }
     
     public void executeSave()
     {
-        if ("Insert".equals(action))
+        doSave();
+        view.dispose();
+    }
+    
+    public void executeApply()
+    {
+        doSave();
+        isNew = false;
+        view.setDeleteEnabled(true);
+    }
+    
+    public void executeCancel()
+    {
+        view.dispose();
+    }
+    
+    public void executeDelete()
+    {
+        //TODO: Add confirmation prompt
+        factory.executeDelete(model.toHashMap());
+        view.dispose();
+    }
+    
+    private void doSave()
+    {
+        if (isNew)
         {
             factory.executeInsert(model.toHashMap());
+        }
+        else
+        {
+            factory.executeUpdate(model.toHashMap());
         }
     }
 }

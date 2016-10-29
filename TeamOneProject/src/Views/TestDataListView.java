@@ -5,11 +5,9 @@
  */
 package Views;
 
-import Controllers.TestDataEditViewController;
 import Controllers.TestDataListViewController;
 import Library.TestData;
-import java.util.List;
-import javax.swing.DefaultListModel;
+import javax.swing.JList;
 
 /**
  *
@@ -34,13 +32,9 @@ public class TestDataListView extends javax.swing.JFrame
     
     private void load() 
     {        
-        jList1.setModel(controller.listModel);
-        
-        pack();
         setVisible(true);
     }
     
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,10 +54,11 @@ public class TestDataListView extends javax.swing.JFrame
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("TestData Objects!");
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        jList1.setModel(controller.listModel);
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList1MouseClicked(evt);
+            }
         });
         jScrollPane1.setViewportView(jList1);
 
@@ -109,10 +104,19 @@ public class TestDataListView extends javax.swing.JFrame
         controller.executeAdd();
     }//GEN-LAST:event_newButtonActionPerformed
 
+    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+        JList<TestData> list = (JList<TestData>)evt.getSource();
+        if (evt.getClickCount() == 2) 
+        {
+            TestData item = list.getSelectedValue();
+            controller.executeEdit(item);
+        }
+    }//GEN-LAST:event_jList1MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JList<TestData> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton newButton;
     // End of variables declaration//GEN-END:variables

@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.ListModel;
 //import java.util.Random;
 
 /**
@@ -26,7 +27,7 @@ public class TestDataListViewController
     public List<TestData> model;
     public TestDataListView view;
     
-    public DefaultListModel<String> listModel;
+    public DefaultListModel<TestData> listModel;
     
     public TestDataListViewController()
     {
@@ -74,7 +75,7 @@ public class TestDataListViewController
         listModel = new DefaultListModel<>();
         for (TestData item : model)
         {
-            listModel.addElement(item.toString());
+            listModel.addElement(item);
         }
         
 //        displayResults(model);
@@ -86,6 +87,12 @@ public class TestDataListViewController
     {
         TestDataEditViewController controller = new TestDataEditViewController();
         controller.load(null);
+    }
+    
+    public void executeEdit(TestData item)
+    {
+        TestDataEditViewController controller = new TestDataEditViewController();
+        controller.load(item);
     }
     
 //    private void displayResults(List<TestData> testDataList)

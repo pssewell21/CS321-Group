@@ -31,6 +31,20 @@ public class TestDataEditView extends javax.swing.JFrame
         pack();
         setVisible(true);
     }
+    
+    public void setDeleteEnabled(boolean isEnabled)
+    {
+        deleteButton.setEnabled(isEnabled);
+    }
+    
+    private void setModelFields()
+    {
+        Long id = Long.parseLong(IdField.getText());
+        
+        controller.model.Id = id;
+        controller.model.LookupKey = KeyField.getText();
+        controller.model.Value = ValueField.getText();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,9 +56,9 @@ public class TestDataEditView extends javax.swing.JFrame
     private void initComponents() {
 
         saveButton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
+        deleteButton = new javax.swing.JButton();
+        applyButton = new javax.swing.JButton();
         ValueField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -62,14 +76,26 @@ public class TestDataEditView extends javax.swing.JFrame
             }
         });
 
-        jButton1.setText("Cancel");
-        jButton1.setEnabled(false);
+        cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Delete");
-        jButton2.setEnabled(false);
+        deleteButton.setText("Delete");
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Apply");
-        jButton3.setEnabled(false);
+        applyButton.setText("Apply");
+        applyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                applyButtonActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Key");
 
@@ -79,7 +105,7 @@ public class TestDataEditView extends javax.swing.JFrame
 
         IdField.setEditable(false);
 
-        jLabel4.setText("Note: Close and reload the application to see changes in the list view");
+        jLabel4.setText("Note: Close and reload the application to see adds or deletes in the list view");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -99,18 +125,18 @@ public class TestDataEditView extends javax.swing.JFrame
                             .addComponent(KeyField)
                             .addComponent(IdField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton3)
+                        .addComponent(applyButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(saveButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
+                        .addComponent(cancelButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)))
+                        .addComponent(deleteButton)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addContainerGap()
                 .addComponent(jLabel4)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,9 +158,9 @@ public class TestDataEditView extends javax.swing.JFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveButton)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(cancelButton)
+                    .addComponent(deleteButton)
+                    .addComponent(applyButton))
                 .addContainerGap())
         );
 
@@ -142,22 +168,30 @@ public class TestDataEditView extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        Long id = Long.parseLong(IdField.getText());
-        
-        controller.model.Id = id;
-        controller.model.LookupKey = KeyField.getText();
-        controller.model.Value = ValueField.getText();
-        
+        setModelFields();
         controller.executeSave();
     }//GEN-LAST:event_saveButtonActionPerformed
+
+    private void applyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applyButtonActionPerformed
+        setModelFields();
+        controller.executeApply();
+    }//GEN-LAST:event_applyButtonActionPerformed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        controller.executeCancel();
+    }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        controller.executeDelete();
+    }//GEN-LAST:event_deleteButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField IdField;
     private javax.swing.JTextField KeyField;
     private javax.swing.JTextField ValueField;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton applyButton;
+    private javax.swing.JButton cancelButton;
+    private javax.swing.JButton deleteButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
