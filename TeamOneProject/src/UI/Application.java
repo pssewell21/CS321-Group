@@ -7,6 +7,8 @@ package UI;
 
 import Controllers.TestDataListViewController;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,14 +21,17 @@ public class Application
      */
     public static void main(String[] args) 
     {
+        AesEncryptionSandbox s = new AesEncryptionSandbox();
+
         // Open the connection to the database when the application is launched
         TestDataListViewController c = new TestDataListViewController();
         
         try
         {
+            s.run();
             c.load();
         }
-        catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException e)
+        catch (Exception e)
         {
             ExceptionHandler.handleException(e);
         }

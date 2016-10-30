@@ -1,7 +1,7 @@
-Thu Oct 27 20:10:57 CDT 2016 : Apache Derby Network Server - 10.11.1.2 - (1629631) started and ready to accept connections on port 1527
+Sat Oct 29 22:33:40 CDT 2016 : Apache Derby Network Server - 10.11.1.2 - (1629631) started and ready to accept connections on port 1527
 ----------------------------------------------------------------
-Thu Oct 27 20:10:58 CDT 2016:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): instance a816c00e-0158-08d7-000d-ffffdc267071 
+Sat Oct 29 22:33:40 CDT 2016:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): instance a816c00e-0158-13a6-5f98-ffffdc267071 
 on database directory C:\Users\Owner\Documents\GitHub\CS321-Group\TeamOneProject\netbeans.derby\database with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
 Loaded from file:/C:/Program%20Files/Java/jdk1.8.0_102/db/lib/derby.jar
 java.vendor=Oracle Corporation
@@ -12,9 +12,3 @@ os.arch=amd64
 os.version=10.0
 derby.system.home=C:\Users\Owner\Documents\GitHub\CS321-Group\TeamOneProject\netbeans.derby
 Database Class Loader started - derby.database.classpath=''
-----------------------------------------------------------------
-Sat Oct 29 08:50:53 CDT 2016: Shutting down Derby engine
-----------------------------------------------------------------
-Sat Oct 29 08:50:53 CDT 2016:
-Shutting down instance a816c00e-0158-08d7-000d-ffffdc267071 on database directory C:\Users\Owner\Documents\GitHub\CS321-Group\TeamOneProject\netbeans.derby\database with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
-----------------------------------------------------------------
