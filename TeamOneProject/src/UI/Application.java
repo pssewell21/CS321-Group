@@ -6,34 +6,27 @@
 package UI;
 
 import Controllers.TestDataListViewController;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author pssew
  */
-public class Application 
-{
+public class Application {
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) 
-    {
+    public static void main(String[] args) {
         AesEncryptionSandbox s = new AesEncryptionSandbox();
 
         // Open the connection to the database when the application is launched
         TestDataListViewController c = new TestDataListViewController();
-        
-        try
-        {
+
+        try {
             s.run();
             c.load();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             ExceptionHandler.handleException(e);
         }
-    }   
+    }
 }

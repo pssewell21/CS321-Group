@@ -9,7 +9,6 @@ package Controllers;
  *
  * @author pssew
  */
-public class PersonController 
-{
-    
+public class PersonController {
+
 }

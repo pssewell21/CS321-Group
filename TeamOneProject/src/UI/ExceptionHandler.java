@@ -9,14 +9,12 @@ package UI;
  *
  * @author pssew
  */
-public final class ExceptionHandler 
-{
-    private ExceptionHandler()
-    {        
+public final class ExceptionHandler {
+
+    private ExceptionHandler() {
     }
-    
-    public static void handleException(Exception e)
-    {
+
+    public static void handleException(Exception e) {
         System.out.println(e.toString());
     }
 }

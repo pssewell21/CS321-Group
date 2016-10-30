@@ -14,32 +14,29 @@ import java.util.List;
  *
  * @author Owner
  */
-public abstract class LibraryFactoryBase implements ISqlGenerator
-{
+public abstract class LibraryFactoryBase implements ISqlGenerator {
+
     public String SCHEMA;
     public String TABLE_NAME;
-    
-    protected LibraryFactoryBase(String schema, String tableName)
-    {
+
+    protected LibraryFactoryBase(String schema, String tableName) {
         SCHEMA = schema;
         TABLE_NAME = tableName;
     }
-    
+
     public abstract List<? extends LibraryBase> executeSelect(HashMap<String, String> hashMap);
-    
+
     public abstract void executeInsert(HashMap<String, String> hashMap);
-    
+
     public abstract void executeUpdate(HashMap<String, String> hashMap);
-    
+
     public abstract void executeDelete(HashMap<String, String> hashMap);
-    
-    protected boolean hasValue(String string)
-    {
+
+    protected boolean hasValue(String string) {
         return Utility.hasValue(string);
     }
-    
-    protected void handleException(Exception e)
-    {
+
+    protected void handleException(Exception e) {
         ExceptionHandler.handleException(e);
     }
 }

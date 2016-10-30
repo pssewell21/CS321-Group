@@ -9,12 +9,11 @@ package Library;
  *
  * @author Owner
  */
-public abstract class LibraryBase 
-{
+public abstract class LibraryBase {
+
     public Long Id;
-    
-    protected LibraryBase()
-    {
+
+    protected LibraryBase() {
         Id = ID.newId();
     }
 }

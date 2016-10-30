@@ -13,28 +13,27 @@ import javax.swing.JList;
  *
  * @author pssew
  */
-public class TestDataListView extends javax.swing.JFrame 
-{
-    TestDataListViewController controller;    
-    
+public class TestDataListView extends javax.swing.JFrame {
+
+    TestDataListViewController controller;
+
     /**
      * Creates new form TestDataListView
+     *
      * @param controller
      */
-    public TestDataListView(TestDataListViewController controller) 
-    {
+    public TestDataListView(TestDataListViewController controller) {
         this.controller = controller;
-        
+
         initComponents();
-        
+
         load();
     }
-    
-    private void load() 
-    {        
+
+    private void load() {
         setVisible(true);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -105,14 +104,12 @@ public class TestDataListView extends javax.swing.JFrame
     }//GEN-LAST:event_newButtonActionPerformed
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
-        JList<TestData> list = (JList<TestData>)evt.getSource();
-        if (evt.getClickCount() == 2) 
-        {
+        JList<TestData> list = (JList<TestData>) evt.getSource();
+        if (evt.getClickCount() == 2) {
             TestData item = list.getSelectedValue();
             controller.executeEdit(item);
         }
     }//GEN-LAST:event_jList1MouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

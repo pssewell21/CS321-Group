@@ -9,15 +9,13 @@ package UI;
  *
  * @author pssew
  */
-public final class Utility 
-{
-    public static boolean hasValue(String string)
-    {
-        if (string == null)
-        {
+public final class Utility {
+
+    public static boolean hasValue(String string) {
+        if (string == null) {
             return false;
         }
-        
+
         return !string.isEmpty();
     }
 }

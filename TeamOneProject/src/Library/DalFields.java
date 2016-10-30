@@ -9,8 +9,8 @@ package Library;
  *
  * @author pssew
  */
-public final class DalFields 
-{
+public final class DalFields {
+
     public static final String ID = "ID";
     public static final String LOOKUPKEY = "LOOKUPKEY";
     public static final String VALUE = "VALUE";

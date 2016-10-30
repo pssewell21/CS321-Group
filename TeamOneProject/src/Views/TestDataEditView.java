@@ -11,36 +11,32 @@ import Controllers.TestDataEditViewController;
  *
  * @author pssew
  */
-public class TestDataEditView extends javax.swing.JFrame 
-{    
+public class TestDataEditView extends javax.swing.JFrame {
+
     TestDataEditViewController controller;
-    
-    public TestDataEditView(TestDataEditViewController controller) 
-    {
+
+    public TestDataEditView(TestDataEditViewController controller) {
         this.controller = controller;
         initComponents();
         load();
     }
-    
-    private void load()
-    {                
+
+    private void load() {
         IdField.setText(controller.model.Id.toString());
         KeyField.setText(controller.model.LookupKey);
         ValueField.setText(controller.model.Value);
-        
+
         pack();
         setVisible(true);
     }
-    
-    public void setDeleteEnabled(boolean isEnabled)
-    {
+
+    public void setDeleteEnabled(boolean isEnabled) {
         deleteButton.setEnabled(isEnabled);
     }
-    
-    private void setModelFields()
-    {
+
+    private void setModelFields() {
         Long id = Long.parseLong(IdField.getText());
-        
+
         controller.model.Id = id;
         controller.model.LookupKey = KeyField.getText();
         controller.model.Value = ValueField.getText();

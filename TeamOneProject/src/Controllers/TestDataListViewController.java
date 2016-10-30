@@ -15,30 +15,66 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import javax.swing.DefaultListModel;
-import javax.swing.ListModel;
 //import java.util.Random;
 
 /**
  *
  * @author pssew
  */
-public class TestDataListViewController 
-{        
+public class TestDataListViewController {
+
+    // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
+    
     public List<TestData> model;
     public TestDataListView view;
-    
+
     public DefaultListModel<TestData> listModel;
     
-    public TestDataListViewController()
-    {
+    // </editor-fold> 
+    
+    // <editor-fold defaultstate="collapsed" desc="Constructors"> 
+
+    public TestDataListViewController() {
         model = new ArrayList<>();
     }
     
-    public void load() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException 
-    {       
-        TestDataFactory factory = new TestDataFactory(); 
+    // </editor-fold>
+    
+    // <editor-fold defaultstate="collapsed" desc="Methods"> 
+
+    public void load() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+        TestDataFactory factory = new TestDataFactory();
         HashMap<String, String> criteria = new HashMap<>();
-            
+        
+        model = factory.executeSelect(criteria);
+
+        listModel = new DefaultListModel<>();
+        for (TestData item : model) {
+            listModel.addElement(item);
+        }
+        
+        view = new TestDataListView(this);
+    }
+
+    public void executeAdd() {
+        TestDataEditViewController controller = new TestDataEditViewController();
+        controller.load(null);
+    }
+
+    public void executeEdit(TestData item) {
+        TestDataEditViewController controller = new TestDataEditViewController();
+        controller.load(item);
+    }
+    
+    // </editor-fold> 
+    
+    // <editor-fold defaultstate="collapsed" desc="Reference Code from Prototyping (Need to eventually remove)"> 
+    
+//    TODO: Remove this reference code before final turn in for project
+//    public void load() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+//        TestDataFactory factory = new TestDataFactory();
+//        HashMap<String, String> criteria = new HashMap<>();
+
 //        List<TestData> testDataList = factory.executeSelect(criteria);
 //        displayResults(testDataList);
 //        
@@ -69,32 +105,13 @@ public class TestDataListViewController
 //        factory.executeDelete(criteria);
 //        
 //        criteria = new HashMap<>();
+//        model = factory.executeSelect(criteria);
+//
+//        listModel = new DefaultListModel<>();
+//        for (TestData item : model) {
+//            listModel.addElement(item);
+//        }
 
-        model = factory.executeSelect(criteria);
-        
-        listModel = new DefaultListModel<>();
-        for (TestData item : model)
-        {
-            listModel.addElement(item);
-        }
-        
-//        displayResults(model);
-                      
-        view = new TestDataListView(this);
-    }
-    
-    public void executeAdd()
-    {
-        TestDataEditViewController controller = new TestDataEditViewController();
-        controller.load(null);
-    }
-    
-    public void executeEdit(TestData item)
-    {
-        TestDataEditViewController controller = new TestDataEditViewController();
-        controller.load(item);
-    }
-    
 //    private void displayResults(List<TestData> testDataList)
 //    {
 //        if (!testDataList.isEmpty())
@@ -109,4 +126,6 @@ public class TestDataListViewController
 //            System.out.println("No results returned");
 //        }
 //    }
+    
+    // </editor-fold> 
 }

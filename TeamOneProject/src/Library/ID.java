@@ -11,24 +11,20 @@ import java.util.Random;
  *
  * @author Owner
  */
-public final class ID 
-{
-    private ID()
-    {        
+public final class ID {
+
+    private ID() {
     }
-    
-    public static Long newId()
-    {
+
+    public static Long newId() {
         Random random = new Random();
-        
-        do
-        {
+
+        do {
             Long id = random.nextLong();
-                        
-            if (id > 0)
-            {
+
+            if (id > 0) {
                 return id;
-            }                     
+            }
         } while (true);
     }
 }
