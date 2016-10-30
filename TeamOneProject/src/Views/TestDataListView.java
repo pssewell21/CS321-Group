@@ -104,10 +104,15 @@ public class TestDataListView extends javax.swing.JFrame {
     }//GEN-LAST:event_newButtonActionPerformed
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
-        JList<TestData> list = (JList<TestData>) evt.getSource();
-        if (evt.getClickCount() == 2) {
+        Object source = evt.getSource();
+        
+        if (source instanceof JList) {
+            JList<TestData> list = (JList<TestData>) source;
+            
+            if (evt.getClickCount() == 2) {
             TestData item = list.getSelectedValue();
             controller.executeEdit(item);
+            }
         }
     }//GEN-LAST:event_jList1MouseClicked
 
