@@ -5,6 +5,8 @@
  */
 package Library;
 
+import java.util.HashMap;
+
 /**
  *
  * @author Owner
@@ -15,5 +17,17 @@ public abstract class LibraryBase {
 
     protected LibraryBase() {
         Id = ID.newId();
+    }
+    
+    protected LibraryBase(Long id){
+        Id = id;
+    }
+    
+    public abstract HashMap<String, String> toHashMap();
+    
+    @Override
+    public String toString()
+    {
+        return "ID: " + Id.toString();
     }
 }

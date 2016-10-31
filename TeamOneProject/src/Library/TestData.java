@@ -21,23 +21,23 @@ public class TestData extends LibraryBase {
     // </editor-fold> 
     
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
+
+    /**
+     * This constructor is used for creating new objects
+     */
     
     public TestData() {
         super();
     }
 
-    public TestData(String lookupKey) {
-        this();
-        LookupKey = lookupKey;
-    }
-
-    public TestData(String lookupKey, String value) {
-        this(lookupKey);
-        Value = value;
-    }
-
+    /**
+     * This constructor is used for mapping existing objects
+     * @param id
+     * @param lookupKey
+     * @param value
+     */
     public TestData(Long id, String lookupKey, String value) {
-        Id = id;
+        super(id);
         LookupKey = lookupKey;
         Value = value;
     }
@@ -46,15 +46,16 @@ public class TestData extends LibraryBase {
     
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
 
-    public void setValue(String value) {
-        Value = value;
-    }
-
     @Override
     public String toString() {
-        return "ID: " + Id.toString() + ", LookupKey: " + LookupKey + ", Value: " + Value;
+        return super.toString() + ", LookupKey: " + LookupKey + ", Value: " + Value;
     }
 
+    /**
+     *
+     * @return
+     */
+    @Override
     public HashMap<String, String> toHashMap() {
         HashMap<String, String> map = new HashMap<>();
         map.put(DalFields.ID, Id.toString());

@@ -21,13 +21,13 @@ import javax.swing.DefaultListModel;
  *
  * @author pssew
  */
-public class TestDataListViewController {
+public class TestDataListViewController extends ListViewControllerBase{
 
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
     
     public List<TestData> model;
     public TestDataListView view;
-
+    
     public DefaultListModel<TestData> listModel;
     
     // </editor-fold> 

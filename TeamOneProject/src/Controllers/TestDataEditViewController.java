@@ -13,16 +13,14 @@ import Views.TestDataEditView;
  *
  * @author Owner
  */
-public class TestDataEditViewController {
+public class TestDataEditViewController extends EditViewControllerBase{
    
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
-    
+        
     public TestData model;
     public TestDataEditView view;
 
-    public boolean isNew;
-
-    TestDataFactory factory;
+    public TestDataFactory factory;
     
     // </editor-fold> 
     
@@ -36,7 +34,7 @@ public class TestDataEditViewController {
 
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
     
-    public void load(TestData model) {
+    public void load (TestData model) {
         if (model != null) {
             this.model = model;
             isNew = false;
@@ -50,21 +48,25 @@ public class TestDataEditViewController {
         view.setDeleteEnabled(!isNew);
     }
 
+    @Override
     public void executeSave() {
         doSave();
         view.dispose();
     }
 
+    @Override
     public void executeApply() {
         doSave();
         isNew = false;
         view.setDeleteEnabled(true);
     }
 
+    @Override
     public void executeCancel() {
         view.dispose();
     }
 
+    @Override
     public void executeDelete() {
         //TODO: Add confirmation prompt
         factory.executeDelete(model.toHashMap());

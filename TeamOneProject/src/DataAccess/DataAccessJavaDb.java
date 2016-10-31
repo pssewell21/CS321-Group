@@ -32,15 +32,19 @@ public final class DataAccessJavaDb {
             Class.forName(DRIVER).newInstance();
             _connection = DriverManager.getConnection(JDBC_URL);
             _statement = _connection.createStatement();
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
+        } catch (Exception e) {
             ExceptionHandler.handleException(e);
         }
     }
 
     public static void closeConnection() {
         try {
-            _statement.close();
-            _connection.close();
+            if (_statement != null) {
+                _statement.close();
+            }
+            if (_connection != null) {
+                _connection.close();
+            }
         } catch (Exception e) {
             ExceptionHandler.handleException(e);
         }
@@ -50,7 +54,11 @@ public final class DataAccessJavaDb {
         ResultSet resultSet = null;
 
         try {
-            resultSet = _statement.executeQuery(command);
+            if (_statement != null) {
+                resultSet = _statement.executeQuery(command);
+            } else {
+                System.out.println("Select failed.  Make sure a connection to the database exists.");
+            }            
         } catch (Exception e) {
             ExceptionHandler.handleException(e);
         }
@@ -60,7 +68,11 @@ public final class DataAccessJavaDb {
 
     public static void executeInsert(String command) {
         try {
-            _statement.execute(command);
+            if (_statement != null) {
+                _statement.execute(command);
+            } else {
+                System.out.println("Insert failed.  Make sure a connection to the database exists.");
+            }
         } catch (Exception e) {
             ExceptionHandler.handleException(e);
         }
