@@ -14,8 +14,16 @@ import java.util.HashMap;
 public class TestData extends LibraryBase {
 
     // <editor-fold defaultstate="collapsed" desc="Member Variables">   
+
+    /**
+     *
+     */
     
     public String LookupKey;
+
+    /**
+     *
+     */
     public String Value;
 
     // </editor-fold> 

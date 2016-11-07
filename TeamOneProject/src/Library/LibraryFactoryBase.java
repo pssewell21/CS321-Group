@@ -24,18 +24,44 @@ public abstract class LibraryFactoryBase implements ISqlGenerator {
         TABLE_NAME = tableName;
     }
 
+    /**
+     *
+     * @param hashMap
+     * @return
+     */
     public abstract List<? extends LibraryBase> executeSelect(HashMap<String, String> hashMap);
 
+    /**
+     *
+     * @param hashMap
+     */
     public abstract void executeInsert(HashMap<String, String> hashMap);
 
+    /**
+     *
+     * @param hashMap
+     */
     public abstract void executeUpdate(HashMap<String, String> hashMap);
 
+    /**
+     *
+     * @param hashMap
+     */
     public abstract void executeDelete(HashMap<String, String> hashMap);
 
+    /**
+     *
+     * @param string
+     * @return
+     */
     protected boolean hasValue(String string) {
         return Utility.hasValue(string);
     }
 
+    /**
+     *
+     * @param e
+     */
     protected void handleException(Exception e) {
         ExceptionHandler.handleException(e);
     }

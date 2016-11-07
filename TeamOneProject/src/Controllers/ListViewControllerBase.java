@@ -19,10 +19,10 @@ public abstract class ListViewControllerBase {
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
     
     //TODO: Add this in is possible
-    //public List<? extends LibraryBase> model;
+    //public List<? super LibraryBase> model;
 
     //TODO: Add this in is possible
-    //public DefaultListModel<? extends LibraryBase> listModel;
+    //public DefaultListModel<? super LibraryBase> listModel;
     
     // </editor-fold> 
 }

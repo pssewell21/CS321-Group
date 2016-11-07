@@ -16,15 +16,30 @@ import Views.TestDataEditView;
 public class TestDataEditViewController extends EditViewControllerBase{
    
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
+
+    /**
+     *
+     */
         
     public TestData model;
+
+    /**
+     *
+     */
     public TestDataEditView view;
 
+    /**
+     *
+     */
     public TestDataFactory factory;
     
     // </editor-fold> 
     
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
+
+    /**
+     *
+     */
 
     public TestDataEditViewController() {
         factory = new TestDataFactory();
@@ -33,6 +48,11 @@ public class TestDataEditViewController extends EditViewControllerBase{
     // </editor-fold> 
 
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
+
+    /**
+     *
+     * @param model
+     */
     
     public void load (TestData model) {
         if (model != null) {
@@ -48,12 +68,18 @@ public class TestDataEditViewController extends EditViewControllerBase{
         view.setDeleteEnabled(!isNew);
     }
 
+    /**
+     *
+     */
     @Override
     public void executeSave() {
         doSave();
         view.dispose();
     }
 
+    /**
+     *
+     */
     @Override
     public void executeApply() {
         doSave();
@@ -61,11 +87,17 @@ public class TestDataEditViewController extends EditViewControllerBase{
         view.setDeleteEnabled(true);
     }
 
+    /**
+     *
+     */
     @Override
     public void executeCancel() {
         view.dispose();
     }
 
+    /**
+     *
+     */
     @Override
     public void executeDelete() {
         //TODO: Add confirmation prompt

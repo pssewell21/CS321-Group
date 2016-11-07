@@ -13,16 +13,30 @@ import java.util.HashMap;
  */
 public abstract class LibraryBase {
 
+    /**
+     *
+     */
     public Long Id;
 
+    /**
+     *
+     */
     protected LibraryBase() {
         Id = ID.newId();
     }
     
+    /**
+     *
+     * @param id
+     */
     protected LibraryBase(Long id){
         Id = id;
     }
     
+    /**
+     *
+     * @return
+     */
     public abstract HashMap<String, String> toHashMap();
     
     @Override

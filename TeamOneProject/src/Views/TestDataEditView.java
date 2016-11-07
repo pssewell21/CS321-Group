@@ -13,8 +13,12 @@ import Controllers.TestDataEditViewController;
  */
 public class TestDataEditView extends javax.swing.JFrame {
 
-    TestDataEditViewController controller;
+    private TestDataEditViewController controller;
 
+    /**
+     *
+     * @param controller
+     */
     public TestDataEditView(TestDataEditViewController controller) {
         this.controller = controller;
         initComponents();
@@ -30,6 +34,10 @@ public class TestDataEditView extends javax.swing.JFrame {
         setVisible(true);
     }
 
+    /**
+     *
+     * @param isEnabled
+     */
     public void setDeleteEnabled(boolean isEnabled) {
         deleteButton.setEnabled(isEnabled);
     }

@@ -7,6 +7,7 @@ package Controllers;
 
 //import Library.DalFields;
 //import Library.LibraryBase;
+import Library.LibraryBase;
 import Library.TestData;
 import Library.TestDataFactory;
 import Views.TestDataListView;
@@ -42,15 +43,15 @@ public class TestDataListViewController extends ListViewControllerBase{
     
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
 
-    public void load() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+    public <T> void load() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         TestDataFactory factory = new TestDataFactory();
         HashMap<String, String> criteria = new HashMap<>();
         
         model = factory.executeSelect(criteria);
 
         listModel = new DefaultListModel<>();
-        for (TestData item : model) {
-            listModel.addElement(item);
+        for (Object item : model) {
+            listModel.addElement((TestData) item);
         }
         
         view = new TestDataListView(this);

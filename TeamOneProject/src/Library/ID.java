@@ -16,6 +16,10 @@ public final class ID {
     private ID() {
     }
 
+    /**
+     *
+     * @return
+     */
     public static Long newId() {
         Random random = new Random();
 

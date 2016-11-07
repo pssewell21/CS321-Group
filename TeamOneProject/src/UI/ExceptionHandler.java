@@ -14,6 +14,10 @@ public final class ExceptionHandler {
     private ExceptionHandler() {
     }
 
+    /**
+     *
+     * @param e
+     */
     public static void handleException(Exception e) {
         System.out.println(e.toString());
     }
