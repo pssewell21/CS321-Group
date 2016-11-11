@@ -5,11 +5,10 @@
  */
 package DataAccess;
 
-import UI.ExceptionHandler;
+import Common.ExceptionHandler;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
@@ -19,7 +18,7 @@ import java.sql.Statement;
 public final class DataAccessJavaDb {
 
     private static final String DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
-    private static final String JDBC_URL = "jdbc:derby://localhost:1527/database";
+    private static final String JDBC_URL = "jdbc:derby://localhost:1527/atmdb";
 
     private static Connection _connection;
     private static Statement _statement;

@@ -26,7 +26,7 @@ public class TestData extends LibraryBase {
      */
     public String Value;
 
-    // </editor-fold> 
+    // </editor-fold> 1
     
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
 
@@ -67,7 +67,7 @@ public class TestData extends LibraryBase {
     public HashMap<String, String> toHashMap() {
         HashMap<String, String> map = new HashMap<>();
         map.put(DalFields.ID, Id.toString());
-        map.put(DalFields.LOOKUPKEY, LookupKey);
+        map.put(DalFields.LOOKUP_KEY, LookupKey);
         map.put(DalFields.VALUE, Value);
 
         return map;

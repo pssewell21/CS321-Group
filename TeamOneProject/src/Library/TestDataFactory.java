@@ -24,7 +24,7 @@ public class TestDataFactory extends LibraryFactoryBase {
      */
     
     public TestDataFactory() {
-        super("APP", "TESTDATA");
+        super("APP", "TEST_DATA");
     }
     
     // </editor-fold> 
@@ -65,7 +65,7 @@ public class TestDataFactory extends LibraryFactoryBase {
 
                 while (resultSet != null && resultSet.next()) {
                     Long id = resultSet.getLong(DalFields.ID);
-                    String key = resultSet.getString(DalFields.LOOKUPKEY);
+                    String key = resultSet.getString(DalFields.LOOKUP_KEY);
                     String value = resultSet.getString(DalFields.VALUE);
 
                     list.add(new TestData(id, key, value));
@@ -156,7 +156,7 @@ public class TestDataFactory extends LibraryFactoryBase {
             boolean insertAnd = false;
 
             String id = criteria.get(DalFields.ID);
-            String key = criteria.get(DalFields.LOOKUPKEY);
+            String key = criteria.get(DalFields.LOOKUP_KEY);
             String value = criteria.get(DalFields.VALUE);
 
             if (hasValue(id) || hasValue(key) || hasValue(value)) {
@@ -172,7 +172,7 @@ public class TestDataFactory extends LibraryFactoryBase {
                         command += and;
                     }
 
-                    command += DalFields.LOOKUPKEY + " = '" + key + "' ";
+                    command += DalFields.LOOKUP_KEY + " = '" + key + "' ";
                     insertAnd = true;
                 }
 
@@ -199,7 +199,7 @@ public class TestDataFactory extends LibraryFactoryBase {
         String command = "";
 
         if (!criteria.isEmpty()) {
-            String key = criteria.get(DalFields.LOOKUPKEY);
+            String key = criteria.get(DalFields.LOOKUP_KEY);
             String value = criteria.get(DalFields.VALUE);
 
             if (hasValue(key)) {
@@ -234,14 +234,14 @@ public class TestDataFactory extends LibraryFactoryBase {
             String comma = ", ";
 
             String id = criteria.get(DalFields.ID);
-            String key = criteria.get(DalFields.LOOKUPKEY);
+            String key = criteria.get(DalFields.LOOKUP_KEY);
             String value = criteria.get(DalFields.VALUE);
 
             if (hasValue(id) && (hasValue(key) || hasValue(value))) {
                 command += "UPDATE " + SCHEMA + "." + TABLE_NAME + " SET ";
 
                 if (hasValue(key)) {
-                    command += DalFields.LOOKUPKEY + " = '" + key + "' ";
+                    command += DalFields.LOOKUP_KEY + " = '" + key + "' ";
                     insertComma = true;
                 }
 
