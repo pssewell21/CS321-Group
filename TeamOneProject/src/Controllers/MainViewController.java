@@ -7,8 +7,8 @@ package Controllers;
 
 /**
  *
- * @author pssew
+ * @author Owner
  */
-public class PersonController {
-
+public class MainViewController {
+    
 }

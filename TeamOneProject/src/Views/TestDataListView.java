@@ -7,9 +7,7 @@ package Views;
 
 import Controllers.TestDataListViewController;
 import Library.TestData;
-import javax.swing.DefaultListModel;
 import javax.swing.JList;
-import javax.swing.ListModel;
 
 /**
  *
@@ -17,7 +15,13 @@ import javax.swing.ListModel;
  */
 public class TestDataListView extends javax.swing.JFrame {
 
-    TestDataListViewController controller;
+    // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
+    
+    private final TestDataListViewController controller;
+    
+    // </editor-fold> 
+    
+    // <editor-fold defaultstate="collapsed" desc="Constructors"> 
 
     /**
      * Creates new form TestDataListView
@@ -26,9 +30,12 @@ public class TestDataListView extends javax.swing.JFrame {
      */
     public TestDataListView(TestDataListViewController controller) {
         this.controller = controller;
-
         load();
     }
+    
+    // </editor-fold> 
+    
+    // <editor-fold defaultstate="collapsed" desc="Methods"> 
 
     private void load() {
         initComponents();
@@ -116,11 +123,16 @@ public class TestDataListView extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jList1MouseClicked
-
+    
+    // </editor-fold> 
+    
+    // <editor-fold defaultstate="collapsed" desc="Generated UI Variables">  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList<TestData> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton newButton;
     // End of variables declaration//GEN-END:variables
+
+    // </editor-fold> 
 }

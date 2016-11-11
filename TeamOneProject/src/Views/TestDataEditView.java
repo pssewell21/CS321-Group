@@ -13,7 +13,13 @@ import Controllers.TestDataEditViewController;
  */
 public class TestDataEditView extends javax.swing.JFrame {
 
-    private TestDataEditViewController controller;
+    // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
+    
+    private final TestDataEditViewController controller;
+    
+    // </editor-fold> 
+    
+    // <editor-fold defaultstate="collapsed" desc="Constructors"> 
 
     /**
      *
@@ -21,11 +27,16 @@ public class TestDataEditView extends javax.swing.JFrame {
      */
     public TestDataEditView(TestDataEditViewController controller) {
         this.controller = controller;
-        initComponents();
         load();
     }
+    
+    // </editor-fold> 
+    
+    // <editor-fold defaultstate="collapsed" desc="Methods"> 
 
     private void load() {
+        initComponents();
+        
         IdField.setText(controller.model.Id.toString());
         KeyField.setText(controller.model.LookupKey);
         ValueField.setText(controller.model.Value);
@@ -180,6 +191,9 @@ public class TestDataEditView extends javax.swing.JFrame {
         controller.executeDelete();
     }//GEN-LAST:event_deleteButtonActionPerformed
 
+    // </editor-fold> 
+    
+    // <editor-fold defaultstate="collapsed" desc="Generated UI Variables">   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField IdField;
     private javax.swing.JTextField KeyField;
@@ -192,4 +206,6 @@ public class TestDataEditView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JButton saveButton;
     // End of variables declaration//GEN-END:variables
+
+    // </editor-fold> 
 }

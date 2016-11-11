@@ -13,10 +13,16 @@ import java.util.HashMap;
  */
 public abstract class LibraryBase {
 
+    // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
+    
     /**
      *
      */
     public Long Id;
+    
+    // </editor-fold> 
+    
+    // <editor-fold defaultstate="collapsed" desc="Constructors"> 
 
     /**
      *
@@ -33,6 +39,10 @@ public abstract class LibraryBase {
         Id = id;
     }
     
+    // </editor-fold> 
+    
+    // <editor-fold defaultstate="collapsed" desc="Methods"> 
+    
     /**
      *
      * @return
@@ -44,4 +54,6 @@ public abstract class LibraryBase {
     {
         return "ID: " + Id.toString();
     }
+    
+    // </editor-fold> 
 }

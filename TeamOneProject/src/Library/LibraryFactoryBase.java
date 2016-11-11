@@ -16,14 +16,24 @@ import java.util.List;
  */
 public abstract class LibraryFactoryBase implements ISqlGenerator {
 
+    // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
+    
     protected final String SCHEMA;
     protected final String TABLE_NAME;
+    
+    // </editor-fold> 
 
+    // <editor-fold defaultstate="collapsed" desc="Constructors"> 
+    
     protected LibraryFactoryBase(String schema, String tableName) {
         SCHEMA = schema;
         TABLE_NAME = tableName;
     }
-
+    
+    // </editor-fold> 
+    
+    // <editor-fold defaultstate="collapsed" desc="Methods"> 
+    
     /**
      *
      * @param hashMap
@@ -65,4 +75,6 @@ public abstract class LibraryFactoryBase implements ISqlGenerator {
     protected void handleException(Exception e) {
         ExceptionHandler.handleException(e);
     }
+    
+    // </editor-fold> 
 }

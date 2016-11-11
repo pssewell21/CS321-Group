@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controllers;
+package Views;
 
 /**
  *
  * @author Owner
  */
-public abstract class ListViewControllerBase {
+public class MainView {
+    
 }

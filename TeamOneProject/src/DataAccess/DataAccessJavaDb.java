@@ -18,14 +18,24 @@ import java.sql.Statement;
  */
 public final class DataAccessJavaDb {
 
+    // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
+    
     private static final String DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
     private static final String JDBC_URL = "jdbc:derby://localhost:1527/atmdb";
 
     private static Connection _connection;
     private static Statement _statement;
+    
+    // </editor-fold> 
+    
+    // <editor-fold defaultstate="collapsed" desc="Constructors"> 
 
     private DataAccessJavaDb() {
     }
+    
+    // </editor-fold> 
+    
+    // <editor-fold defaultstate="collapsed" desc="Connection Management Methods"> 
 
     /**
      *
@@ -55,6 +65,10 @@ public final class DataAccessJavaDb {
             ExceptionHandler.handleException(e);
         }
     }
+    
+    // </editor-fold> 
+    
+    // <editor-fold defaultstate="collapsed" desc="SQL Execution Methods"> 
 
     /**
      *
@@ -134,4 +148,6 @@ public final class DataAccessJavaDb {
             ExceptionHandler.handleException(e);
         }
     }
+    
+    // </editor-fold> 
 }

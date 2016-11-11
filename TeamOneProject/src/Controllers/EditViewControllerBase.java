@@ -5,10 +5,6 @@
  */
 package Controllers;
 
-import Library.LibraryBase;
-import Library.TestData;
-import Views.TestDataEditView;
-
 /**
  *
  * @author Owner
@@ -22,9 +18,6 @@ public abstract class EditViewControllerBase {
     // </editor-fold> 
     
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
-    
-    //TODO: Add this in if possible
-    //public abstract <T extends LibraryBase> void load(T model);
 
     public abstract void executeSave();
 
