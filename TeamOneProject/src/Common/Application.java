@@ -5,8 +5,6 @@
  */
 package Common;
 
-import Common.AesEncryptionSandbox;
-import Common.ExceptionHandler;
 import Controllers.TestDataListViewController;
 import Database.DatabaseProvisioner;
 
@@ -27,8 +25,9 @@ public class Application {
 
         try {
             //DatabaseProvisioner.provisionDatabase();
-            c.load();
+            
             s.run();
+            c.load();
         } catch (Exception e) {
             ExceptionHandler.handleException(e);
         }
