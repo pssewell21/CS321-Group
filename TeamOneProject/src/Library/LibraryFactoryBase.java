@@ -16,8 +16,8 @@ import java.util.List;
  */
 public abstract class LibraryFactoryBase implements ISqlGenerator {
 
-    public String SCHEMA;
-    public String TABLE_NAME;
+    protected final String SCHEMA;
+    protected final String TABLE_NAME;
 
     protected LibraryFactoryBase(String schema, String tableName) {
         SCHEMA = schema;
