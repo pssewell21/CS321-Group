@@ -7,6 +7,7 @@ package Library;
 
 import Common.ExceptionHandler;
 import Common.Utility;
+import DataAccess.DataAccessJavaDb;
 import java.util.HashMap;
 import java.util.List;
 
@@ -39,25 +40,64 @@ public abstract class LibraryFactoryBase implements ISqlGenerator {
      * @param hashMap
      * @return
      */
-    public abstract List<? extends LibraryBase> executeSelect(HashMap<String, String> hashMap);
+    public abstract List<? extends LibraryBase> executeSelect(HashMap<String, String> hashMap);   
 
-    /**
-     *
-     * @param hashMap
-     */
-    public abstract void executeInsert(HashMap<String, String> hashMap);
+    public void executeInsert(HashMap<String, String> criteria) {
+        DataAccessJavaDb.openConnection();
 
-    /**
-     *
-     * @param hashMap
-     */
-    public abstract void executeUpdate(HashMap<String, String> hashMap);
+        try {
+            String command = generateInsertCommand(criteria);
 
-    /**
-     *
-     * @param hashMap
-     */
-    public abstract void executeDelete(HashMap<String, String> hashMap);
+            if (hasValue(command)) {
+                DataAccessJavaDb.executeInsert(command);
+                System.out.println("Insert command being executed:\n" + command);
+            } else {
+                System.out.println("No insert command was run from the provided criteria");
+            }
+        } catch (Exception e) {
+            handleException(e);
+        } finally {
+            DataAccessJavaDb.closeConnection();
+        }
+    }
+
+    public void executeUpdate(HashMap<String, String> criteria) {
+        DataAccessJavaDb.openConnection();
+
+        try {
+            String command = generateUpdateCommand(criteria);
+
+            if (hasValue(command)) {
+                DataAccessJavaDb.executeUpdate(command);
+                System.out.println("Update command being executed:\n" + command);
+            } else {
+                System.out.println("No update command was run from the provided criteria");
+            }
+        } catch (Exception e) {
+            handleException(e);
+        } finally {
+            DataAccessJavaDb.closeConnection();
+        }
+    }
+
+    public void executeDelete(HashMap<String, String> criteria) {
+        DataAccessJavaDb.openConnection();
+
+        try {
+            String command = generateDeleteCommand(criteria);
+
+            if (hasValue(command)) {
+                DataAccessJavaDb.executeDelete(command);
+                System.out.println("Delete command being executed:\n" + command);
+            } else {
+                System.out.println("No delete command was run from the provided criteria");
+            }
+        } catch (Exception e) {
+            handleException(e);
+        } finally {
+            DataAccessJavaDb.closeConnection();
+        }
+    }
 
     /**
      *
@@ -74,6 +114,38 @@ public abstract class LibraryFactoryBase implements ISqlGenerator {
      */
     protected void handleException(Exception e) {
         ExceptionHandler.handleException(e);
+    }
+    
+    // </editor-fold> 
+    
+    // <editor-fold defaultstate="collapsed" desc="Implementation of ISqlGenerator Methods"> 
+    
+    @Override
+    public abstract String generateSelectCommand(HashMap<String, String> criteria);
+            
+    @Override
+    public abstract String generateInsertCommand(HashMap<String, String> criteria);
+    
+    @Override
+    public abstract String generateUpdateCommand(HashMap<String, String> criteria);
+    
+    @Override
+    public String generateDeleteCommand(HashMap<String, String> criteria) {
+        String command = "";
+
+        if (!criteria.isEmpty()) {
+            String id = criteria.get(DalFields.ID);
+
+            if (hasValue(id)) {
+                command += "DELETE FROM " + SCHEMA + "." + TABLE_NAME + " WHERE ID = " + id;
+            } else {
+                System.out.println("Required field ID not set.  Delete failed.");
+            }
+        } else {
+            System.out.println("No criteria have been set.  Delete failed.");
+        }
+
+        return command;
     }
     
     // </editor-fold> 

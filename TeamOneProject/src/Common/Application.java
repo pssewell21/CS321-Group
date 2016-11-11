@@ -5,8 +5,10 @@
  */
 package Common;
 
+import Controllers.MainViewController;
 import Controllers.TestDataListViewController;
 import Database.DatabaseProvisioner;
+import Views.MainView;
 
 /**
  *
@@ -21,13 +23,16 @@ public class Application {
         AesEncryptionSandbox s = new AesEncryptionSandbox();
 
         // Open the connection to the database when the application is launched
-        TestDataListViewController c = new TestDataListViewController();
+        //TestDataListViewController c = new TestDataListViewController();
+        
+        MainViewController m = new MainViewController();
 
         try {
             //DatabaseProvisioner.provisionDatabase();
             
             s.run();
-            c.load();
+            //c.load();
+            m.load();
         } catch (Exception e) {
             ExceptionHandler.handleException(e);
         }

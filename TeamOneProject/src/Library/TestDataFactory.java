@@ -16,21 +16,17 @@ import java.util.List;
  * @author Owner
  */
 public class TestDataFactory extends LibraryFactoryBase {
-    
-    // <editor-fold defaultstate="collapsed" desc="Constructors"> 
 
+    // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     /**
      *
      */
-    
     public TestDataFactory() {
         super("APP", "TEST_DATA");
     }
-    
-    // </editor-fold> 
 
+    // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
-    
     //TODO: May not be necessary since we are selecting a real object in the list view, it may be better to not select a real object though in which case this method would be useful
 //    public TestData getById(long id) {
 //        HashMap<String, String> criteria = new HashMap<>();
@@ -45,11 +41,8 @@ public class TestDataFactory extends LibraryFactoryBase {
 //            return null;
 //        }
 //    }
-    
     // </editor-fold>
-
     // <editor-fold defaultstate="collapsed" desc="Implementation of LibraryFactoryBase Methods"> 
-    
     @Override
     public List<TestData> executeSelect(HashMap<String, String> criteria) {
         List<TestData> list = new ArrayList<>();
@@ -58,7 +51,7 @@ public class TestDataFactory extends LibraryFactoryBase {
 
         try {
             String command = generateSelectCommand(criteria);
-            
+
             if (hasValue(command)) {
                 ResultSet resultSet = DataAccessJavaDb.executeSelect(command);
                 System.out.println("Select command being executed:\n" + command);
@@ -83,72 +76,11 @@ public class TestDataFactory extends LibraryFactoryBase {
         return list;
     }
 
-    @Override
-    public void executeInsert(HashMap<String, String> criteria) {
-        DataAccessJavaDb.openConnection();
-
-        try {
-            String command = generateInsertCommand(criteria);
-
-            if (hasValue(command)) {
-                DataAccessJavaDb.executeInsert(command);
-                System.out.println("Insert command being executed:\n" + command);
-            } else {
-                System.out.println("No insert command was run from the provided criteria");
-            }
-        } catch (Exception e) {
-            handleException(e);
-        } finally {
-            DataAccessJavaDb.closeConnection();
-        }
-    }
-
-    @Override
-    public void executeUpdate(HashMap<String, String> criteria) {
-        DataAccessJavaDb.openConnection();
-
-        try {
-            String command = generateUpdateCommand(criteria);
-
-            if (hasValue(command)) {
-                DataAccessJavaDb.executeUpdate(command);
-                System.out.println("Update command being executed:\n" + command);
-            } else {
-                System.out.println("No update command was run from the provided criteria");
-            }
-        } catch (Exception e) {
-            handleException(e);
-        } finally {
-            DataAccessJavaDb.closeConnection();
-        }
-    }
-
-    @Override
-    public void executeDelete(HashMap<String, String> criteria) {
-        DataAccessJavaDb.openConnection();
-
-        try {
-            String command = generateDeleteCommand(criteria);
-
-            if (hasValue(command)) {
-                DataAccessJavaDb.executeDelete(command);
-                System.out.println("Delete command being executed:\n" + command);
-            } else {
-                System.out.println("No delete command was run from the provided criteria");
-            }
-        } catch (Exception e) {
-            handleException(e);
-        } finally {
-            DataAccessJavaDb.closeConnection();
-        }
-    }
-    
     // </editor-fold>
-
     // <editor-fold defaultstate="collapsed" desc="Implementation of ISqlGenerator Methods"> 
-
     @Override
     public String generateSelectCommand(HashMap<String, String> criteria) {
+        // Can filter by ID, LOOKUP_KEY, or VALUE
         String command = "SELECT * FROM " + SCHEMA + "." + TABLE_NAME;
 
         if (criteria != null && !criteria.isEmpty()) {
@@ -203,15 +135,19 @@ public class TestDataFactory extends LibraryFactoryBase {
             String value = criteria.get(DalFields.VALUE);
 
             if (hasValue(key)) {
-                command += "INSERT INTO " + SCHEMA + "." + TABLE_NAME + " VALUES (" + ID.newId() + ", '" + key + "', ";
+                command += "INSERT INTO " + SCHEMA + "." + TABLE_NAME + " VALUES ("
+                        + DalFields.ID + " = " + ID.newId() + ", "
+                        + DalFields.LOOKUP_KEY + " = '" + key + "' ";
 
                 if (hasValue(value)) {
-                    command += "'" + value + "')";
+                    command += DalFields.VALUE + " = '" + value + "'"
+                            + ")";
                 } else {
-                    command += "NULL)";
+                    command += DalFields.VALUE + " = NULL"
+                            + ")";
                 }
             } else {
-                System.out.println("Required field LOOKUPKEY not set.  Insert failed.");
+                System.out.println("Required field LOOKUP_KEY not set.  Insert failed.");
             }
         } else {
             System.out.println("No criteria have been set.  Insert failed.");
@@ -230,7 +166,6 @@ public class TestDataFactory extends LibraryFactoryBase {
         String command = "";
 
         if (!criteria.isEmpty()) {
-            boolean insertComma = false;
             String comma = ", ";
 
             String id = criteria.get(DalFields.ID);
@@ -238,19 +173,11 @@ public class TestDataFactory extends LibraryFactoryBase {
             String value = criteria.get(DalFields.VALUE);
 
             if (hasValue(id) && (hasValue(key) || hasValue(value))) {
-                command += "UPDATE " + SCHEMA + "." + TABLE_NAME + " SET ";
-
-                if (hasValue(key)) {
-                    command += DalFields.LOOKUP_KEY + " = '" + key + "' ";
-                    insertComma = true;
-                }
+                command += "UPDATE " + SCHEMA + "." + TABLE_NAME + " SET "
+                        + DalFields.LOOKUP_KEY + " = '" + key + "' ";
 
                 if (hasValue(value)) {
-                    if (insertComma) {
-                        command += comma;
-                    }
-
-                    command += DalFields.VALUE + " = '" + value + "' ";
+                    command += comma + DalFields.VALUE + " = '" + value + "' ";
                 }
 
                 command += "WHERE " + DalFields.ID + " = " + id;
@@ -264,30 +191,5 @@ public class TestDataFactory extends LibraryFactoryBase {
         return command;
     }
 
-    /**
-     *
-     * @param criteria
-     * @return
-     */
-    @Override
-    public String generateDeleteCommand(HashMap<String, String> criteria) {
-        String command = "";
-
-        if (!criteria.isEmpty()) {
-            String id = criteria.get(DalFields.ID);
-
-            if (hasValue(id)) {
-                command += "DELETE FROM " + SCHEMA + "." + TABLE_NAME + " WHERE ID = " + id;
-            } else {
-                System.out.println("Required field ID not set.  Delete failed.");
-            }
-        } else {
-            System.out.println("No criteria have been set.  Delete failed.");
-        }
-
-
-        return command;
-    }
-    
     // </editor-fold>
 }

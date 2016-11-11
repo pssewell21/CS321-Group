@@ -26,7 +26,7 @@ public class TestData extends LibraryBase {
      */
     public String Value;
 
-    // </editor-fold> 1
+    // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
 
@@ -56,7 +56,9 @@ public class TestData extends LibraryBase {
 
     @Override
     public String toString() {
-        return super.toString() + ", LookupKey: " + LookupKey + ", Value: " + Value;
+        return super.toString() + ", " 
+                + DalFields.LOOKUP_KEY + ": " + LookupKey 
+                + ", " + DalFields.VALUE + ": " + Value;
     }
 
     /**
@@ -66,6 +68,7 @@ public class TestData extends LibraryBase {
     @Override
     public HashMap<String, String> toHashMap() {
         HashMap<String, String> map = new HashMap<>();
+        
         map.put(DalFields.ID, Id.toString());
         map.put(DalFields.LOOKUP_KEY, LookupKey);
         map.put(DalFields.VALUE, Value);

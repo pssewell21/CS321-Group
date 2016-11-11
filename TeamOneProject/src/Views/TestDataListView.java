@@ -7,6 +7,7 @@ package Views;
 
 import Controllers.TestDataListViewController;
 import Library.TestData;
+import java.awt.event.KeyEvent;
 import javax.swing.JList;
 
 /**
@@ -67,6 +68,11 @@ public class TestDataListView extends javax.swing.JFrame {
                 jList1MouseClicked(evt);
             }
         });
+        jList1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jList1KeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(jList1);
 
         newButton.setText("New");
@@ -107,22 +113,36 @@ public class TestDataListView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
-        // TODO add your handling code here:
         controller.executeAdd();
     }//GEN-LAST:event_newButtonActionPerformed
 
+    @SuppressWarnings("unchecked")
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
-        Object source = evt.getSource();
+        if (evt.getClickCount() == 2) {
+            Object source = evt.getSource();
         
-        if (source instanceof JList) {
-            JList<TestData> list = (JList<TestData>) source;
-            
-            if (evt.getClickCount() == 2) {
-            TestData item = list.getSelectedValue();
-            controller.executeEdit(item);
+            if (source instanceof JList) {
+                JList<TestData> list = (JList<TestData>) source;
+                        
+                TestData item = list.getSelectedValue();
+                controller.executeEdit(item);
             }
         }
     }//GEN-LAST:event_jList1MouseClicked
+
+    @SuppressWarnings("unchecked")
+    private void jList1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jList1KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Object source = evt.getSource();
+        
+            if (source instanceof JList) {
+                JList<TestData> list = (JList<TestData>) source;
+                        
+                TestData item = list.getSelectedValue();
+                controller.executeEdit(item);
+            }
+        }
+    }//GEN-LAST:event_jList1KeyPressed
     
     // </editor-fold> 
     
