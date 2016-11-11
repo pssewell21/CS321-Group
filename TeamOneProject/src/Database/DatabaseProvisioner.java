@@ -7,10 +7,7 @@ package Database;
 
 import DataAccess.DataAccessJavaDb;
 import Common.ExceptionHandler;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -19,22 +16,13 @@ import java.util.List;
 public final class DatabaseProvisioner {
 
     // <editor-fold defaultstate="collapsed" desc="SQL Scripts"> 
-    private static final String GET_DROP_COMMANDS_SCRIPT = "SELECT 'ALTER TABLE '||S.SCHEMANAME||'.'||T.TABLENAME||' DROP CONSTRAINT '||C.CONSTRAINTNAME||';'\n"
-            + "FROM\n"
-            + "    SYS.SYSCONSTRAINTS C,\n"
-            + "    SYS.SYSSCHEMAS S,\n"
-            + "    SYS.SYSTABLES T\n"
-            + "WHERE\n"
-            + "    C.SCHEMAID = S.SCHEMAID\n"
-            + "AND\n"
-            + "    C.TABLEID = T.TABLEID\n"
-            + "AND\n"
-            + "    S.SCHEMANAME = 'APP'\n"
-            + "UNION\n"
-            + "SELECT 'DROP TABLE ' || schemaname || '.' || tablename || ';'\n"
-            + "FROM SYS.SYSTABLES\n"
-            + "INNER JOIN SYS.SYSSCHEMAS ON SYS.SYSTABLES.SCHEMAID = SYS.SYSSCHEMAS.SCHEMAID\n"
-            + "where schemaname='APP'";
+    private static final String DROP_TABLES_SCRIPT = "DROP TABLE APP.ACCOUNT_ACCOUNT_MAP;\n"
+            + "DROP TABLE APP.ACCOUNT_PERSON_MAP;\n"
+            + "DROP TABLE APP.ACCOUNT_TRANSACTION;\n"
+            + "DROP TABLE APP.ACCOUNT;\n"
+            + "DROP TABLE APP.ATM_USER;\n"
+            + "DROP TABLE APP.PERSON;\n"
+            + "DROP TABLE APP.TEST_DATA";
 
     private static final String ADD_PERSON_TABLE_SCRIPT = "CREATE TABLE PERSON\n"
             + "(\n"
@@ -120,8 +108,32 @@ public final class DatabaseProvisioner {
             + "    CONSTRAINT TEST_DATA_LOOKUP_KEY_UC UNIQUE (LOOKUP_KEY)\n"
             + ")";
 
+    private static final String INSERT_DEFAULT_PERSON_SCRIPT = "INSERT INTO APP.PERSON VALUES \n"
+            + "(\n"
+            + "    112233445566778899, \n"
+            + "    'Default User', \n"
+            + "    '01/01/1900', \n"
+            + "    NULL, \n"
+            + "    NULL, \n"
+            + "    '000000000'\n"
+            + ")";
+
+    private static final String INSERT_DEFAULT_ATM_USER_SCRIPT = "INSERT INTO APP.ATM_USER VALUES \n"
+            + "(\n"
+            + "    998877665544332211, \n"
+            + "    112233445566778899, \n"
+            + "    'dafault', \n"
+            + "    'password', \n"
+            + "    'question1?', \n"
+            + "    'answer', \n"
+            + "    'question2?', \n"
+            + "    'answer', \n"
+            + "    true, \n"
+            + "    false, \n"
+            + "    'default' \n"
+            + ")";
+
     // </editor-fold>
-    
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     private DatabaseProvisioner() {
     }
@@ -137,6 +149,8 @@ public final class DatabaseProvisioner {
         try {
             dropDatabaseTables();
             addDatabaseTables();
+
+            addDefaultData();
         } catch (Exception e) {
             ExceptionHandler.handleException(e);
         } finally {
@@ -146,22 +160,10 @@ public final class DatabaseProvisioner {
 
     //This method must be called after the database connection has been opened
     private static void dropDatabaseTables() throws SQLException {
-        List<String> commands = new ArrayList<>();
-
-        ResultSet resultSet = DataAccessJavaDb.executeSelect(GET_DROP_COMMANDS_SCRIPT);
-
-        while (resultSet != null && resultSet.next()) {
-            String line = resultSet.getString("1");
-            line = line.substring(0, line.length() - 1);
-
-            commands.add(line);
-        }
-
-        System.out.println("Update commands being executed:");
-        for (String command : commands) {
-            System.out.println(command);
-            DataAccessJavaDb.executeUpdate(command);
-        }
+        System.out.println("Update command being executed:");
+        
+        System.out.println(DROP_TABLES_SCRIPT);
+        DataAccessJavaDb.execute(DROP_TABLES_SCRIPT);
     }
 
     //This method must be called after the database connection has been opened
@@ -186,11 +188,18 @@ public final class DatabaseProvisioner {
         System.out.println(ADD_ACCOUNT_PERSON_MAP_TABLE_SCRIPT);
         DataAccessJavaDb.executeUpdate(ADD_ACCOUNT_PERSON_MAP_TABLE_SCRIPT);
 
-        System.out.println(ADD_ACCOUNT_PERSON_MAP_TABLE_SCRIPT);
-        DataAccessJavaDb.executeUpdate(ADD_ACCOUNT_PERSON_MAP_TABLE_SCRIPT);
-
         System.out.println(ADD_TEST_DATA_TABLE_SCRIPT);
         DataAccessJavaDb.executeUpdate(ADD_TEST_DATA_TABLE_SCRIPT);
+    }
+
+    private static void addDefaultData() {
+        System.out.println("Insert commands being executed:");
+
+        System.out.println(INSERT_DEFAULT_PERSON_SCRIPT);
+        DataAccessJavaDb.executeInsert(INSERT_DEFAULT_PERSON_SCRIPT);
+
+        System.out.println(INSERT_DEFAULT_ATM_USER_SCRIPT);
+        DataAccessJavaDb.executeInsert(INSERT_DEFAULT_ATM_USER_SCRIPT);
     }
 
     // </editor-fold>

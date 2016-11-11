@@ -6,9 +6,10 @@
 package Views;
 
 import Controllers.TestDataListViewController;
-import Library.LibraryBase;
 import Library.TestData;
+import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.ListModel;
 
 /**
  *
@@ -26,12 +27,11 @@ public class TestDataListView extends javax.swing.JFrame {
     public TestDataListView(TestDataListViewController controller) {
         this.controller = controller;
 
-        initComponents();
-
         load();
     }
 
     private void load() {
+        initComponents();
         setVisible(true);
     }
 

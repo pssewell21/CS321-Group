@@ -9,6 +9,7 @@ import Common.ExceptionHandler;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
@@ -26,16 +27,22 @@ public final class DataAccessJavaDb {
     private DataAccessJavaDb() {
     }
 
+    /**
+     *
+     */
     public static void openConnection() {
         try {
             Class.forName(DRIVER).newInstance();
             _connection = DriverManager.getConnection(JDBC_URL);
             _statement = _connection.createStatement();
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
             ExceptionHandler.handleException(e);
         }
     }
 
+    /**
+     *
+     */
     public static void closeConnection() {
         try {
             if (_statement != null) {
@@ -49,6 +56,11 @@ public final class DataAccessJavaDb {
         }
     }
 
+    /**
+     *
+     * @param command
+     * @return
+     */
     public static ResultSet executeSelect(String command) {
         ResultSet resultSet = null;
 
@@ -57,7 +69,7 @@ public final class DataAccessJavaDb {
                 resultSet = _statement.executeQuery(command);
             } else {
                 System.out.println("Select failed.  Make sure a connection to the database exists.");
-            }            
+            }
         } catch (Exception e) {
             ExceptionHandler.handleException(e);
         }
@@ -65,6 +77,10 @@ public final class DataAccessJavaDb {
         return resultSet;
     }
 
+    /**
+     *
+     * @param command
+     */
     public static void executeInsert(String command) {
         try {
             if (_statement != null) {
@@ -77,6 +93,10 @@ public final class DataAccessJavaDb {
         }
     }
 
+    /**
+     *
+     * @param command
+     */
     public static void executeUpdate(String command) {
         try {
             _statement.executeUpdate(command);
@@ -85,9 +105,31 @@ public final class DataAccessJavaDb {
         }
     }
 
+    /**
+     *
+     * @param command
+     */
     public static void executeDelete(String command) {
         try {
             _statement.executeUpdate(command);
+        } catch (Exception e) {
+            ExceptionHandler.handleException(e);
+        }
+    }
+
+    /**
+     *
+     * @param batchCommand
+     */
+    public static void execute(String batchCommand) {
+        String[] commands = batchCommand.split(";\n");
+
+        try {
+            for (String command : commands) {
+                _statement.addBatch(command);
+            }
+            
+            _statement.executeBatch();
         } catch (Exception e) {
             ExceptionHandler.handleException(e);
         }

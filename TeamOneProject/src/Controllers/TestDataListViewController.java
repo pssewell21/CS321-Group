@@ -7,12 +7,10 @@ package Controllers;
 
 //import Library.DalFields;
 //import Library.LibraryBase;
-import Library.LibraryBase;
 import Library.TestData;
 import Library.TestDataFactory;
 import Views.TestDataListView;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -26,49 +24,44 @@ public class TestDataListViewController extends ListViewControllerBase{
 
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
     
-    public List<TestData> model;
     public TestDataListView view;
     
     public DefaultListModel<TestData> listModel;
     
     // </editor-fold> 
     
-    // <editor-fold defaultstate="collapsed" desc="Constructors"> 
-
-    public TestDataListViewController() {
-        model = new ArrayList<>();
-    }
-    
-    // </editor-fold>
-    
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
 
-    public <T> void load() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+    public void load() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+        loadModel();
+        
+        view = new TestDataListView(this);
+    }
+    
+    private void loadModel() {
         TestDataFactory factory = new TestDataFactory();
         HashMap<String, String> criteria = new HashMap<>();
         
-        model = factory.executeSelect(criteria);
+        List<TestData> model = factory.executeSelect(criteria);
 
         listModel = new DefaultListModel<>();
         for (Object item : model) {
             listModel.addElement((TestData) item);
         }
-        
-        view = new TestDataListView(this);
     }
-
+    
     public void executeAdd() {
         TestDataEditViewController controller = new TestDataEditViewController();
-        controller.load(null);
+        controller.load(null, listModel);
     }
 
     public void executeEdit(TestData item) {
         TestDataEditViewController controller = new TestDataEditViewController();
-        controller.load(item);
+        controller.load(item, listModel);
     }
     
     // </editor-fold> 
-    
+  
     // <editor-fold defaultstate="collapsed" desc="Reference Code from Prototyping (Need to eventually remove)"> 
     
 //    TODO: Remove this reference code before final turn in for project

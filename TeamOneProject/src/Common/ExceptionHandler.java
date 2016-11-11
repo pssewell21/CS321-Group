@@ -5,6 +5,8 @@
  */
 package Common;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author pssew
@@ -20,5 +22,6 @@ public final class ExceptionHandler {
      */
     public static void handleException(Exception e) {
         System.out.println(e.toString());
+        JOptionPane.showMessageDialog(null, e.toString(), "Exception Message", JOptionPane.INFORMATION_MESSAGE);
     }
 }

@@ -8,6 +8,7 @@ package Controllers;
 import Library.TestData;
 import Library.TestDataFactory;
 import Views.TestDataEditView;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -33,6 +34,8 @@ public class TestDataEditViewController extends EditViewControllerBase{
      */
     public TestDataFactory factory;
     
+    private DefaultListModel<TestData> listModel;
+    
     // </editor-fold> 
     
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
@@ -52,9 +55,10 @@ public class TestDataEditViewController extends EditViewControllerBase{
     /**
      *
      * @param model
+     * @param listViewController
      */
     
-    public void load (TestData model) {
+    public void load (TestData model, DefaultListModel<TestData> listModel) {
         if (model != null) {
             this.model = model;
             isNew = false;
@@ -62,6 +66,8 @@ public class TestDataEditViewController extends EditViewControllerBase{
             this.model = new TestData();
             isNew = true;
         }
+        
+        this.listModel = listModel;
 
         view = new TestDataEditView(this);
 
@@ -102,15 +108,18 @@ public class TestDataEditViewController extends EditViewControllerBase{
     public void executeDelete() {
         //TODO: Add confirmation prompt
         factory.executeDelete(model.toHashMap());
+        listModel.removeElement(model);
         view.dispose();
     }
 
     private void doSave() {
         if (isNew) {
             factory.executeInsert(model.toHashMap());
+            listModel.addElement(model);
         } else {
             factory.executeUpdate(model.toHashMap());
         }
+        
     }
     
     // </editor-fold> 
