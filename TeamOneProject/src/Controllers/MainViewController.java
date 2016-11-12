@@ -5,6 +5,7 @@
  */
 package Controllers;
 
+import Database.DatabaseProvisioner;
 import Library.DalFields;
 import Library.TestData;
 import Library.User;
@@ -65,6 +66,11 @@ public class MainViewController {
         User user = result.get(0);
         
         return user.Password.equals(password);
+    }
+    
+    public void executeProvisionDatabase() {
+        //TODO: Add confirmation box with warning
+        DatabaseProvisioner.provisionDatabase();
     }
     
     // </editor-fold> 

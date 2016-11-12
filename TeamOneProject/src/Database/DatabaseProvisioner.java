@@ -51,7 +51,7 @@ public final class DatabaseProvisioner {
             + "    SELECTED_THEME          VARCHAR(25)     NOT NULL,\n"
             + "    CONSTRAINT ATM_USER_PK PRIMARY KEY (ID),\n"
             + "    CONSTRAINT ATM_USER_PERSON_ID_FK FOREIGN KEY (PERSON_ID) REFERENCES PERSON (ID),\n"
-            + "    CONSTRAINT ATM_USER_PERSON_ID_UC UNIQUE (PERSON_ID)\n"
+            + "    CONSTRAINT ATM_USER_PERSON_ID_UC UNIQUE (PERSON_ID),\n"
             + "    CONSTRAINT ATM_USER_USER_NAME_UC UNIQUE (USER_NAME)\n"
             + ")";
 

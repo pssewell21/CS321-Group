@@ -28,8 +28,6 @@ public class Application {
         MainViewController m = new MainViewController();
 
         try {
-            //DatabaseProvisioner.provisionDatabase();
-            
             s.run();
             //c.load();
             m.load();

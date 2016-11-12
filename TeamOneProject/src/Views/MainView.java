@@ -47,6 +47,7 @@ public class MainView extends javax.swing.JFrame {
         passwordField = new javax.swing.JTextField();
         logOnButton = new javax.swing.JButton();
         logOnFailureLabel = new javax.swing.JLabel();
+        provisionDatabaseButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -78,6 +79,14 @@ public class MainView extends javax.swing.JFrame {
         logOnFailureLabel.setForeground(new java.awt.Color(255, 0, 0));
         logOnFailureLabel.setText("The entered credentials could not be validated.");
 
+        provisionDatabaseButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        provisionDatabaseButton.setText("Provision Database");
+        provisionDatabaseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                provisionDatabaseButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -97,6 +106,10 @@ public class MainView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(logOnButton)))
                 .addContainerGap(359, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(provisionDatabaseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,7 +129,9 @@ public class MainView extends javax.swing.JFrame {
                         .addComponent(logOnButton)))
                 .addGap(18, 18, 18)
                 .addComponent(logOnFailureLabel)
-                .addContainerGap(222, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 186, Short.MAX_VALUE)
+                .addComponent(provisionDatabaseButton)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -146,6 +161,10 @@ public class MainView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_logOnButtonActionPerformed
 
+    private void provisionDatabaseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_provisionDatabaseButtonActionPerformed
+        controller.executeProvisionDatabase();
+    }//GEN-LAST:event_provisionDatabaseButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -153,6 +172,7 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JButton logOnButton;
     private javax.swing.JLabel logOnFailureLabel;
     private javax.swing.JTextField passwordField;
+    private javax.swing.JButton provisionDatabaseButton;
     private javax.swing.JTextField userNameField;
     // End of variables declaration//GEN-END:variables
 }
