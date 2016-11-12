@@ -5,10 +5,10 @@
  */
 package Common;
 
-import Controllers.MainViewController;
+import Controllers.LogOnViewController;
 import Controllers.TestDataListViewController;
 import Database.DatabaseProvisioner;
-import Views.MainView;
+import Views.LogOnView;
 
 /**
  *
@@ -25,7 +25,7 @@ public class Application {
         // Open the connection to the database when the application is launched
         //TestDataListViewController c = new TestDataListViewController();
         
-        MainViewController m = new MainViewController();
+        LogOnViewController m = new LogOnViewController();
 
         try {
             s.run();
