@@ -55,7 +55,7 @@ public class TestDataEditViewController extends EditViewControllerBase{
     /**
      *
      * @param model
-     * @param listViewController
+     * @param listModel
      */
     
     public void load (TestData model, DefaultListModel<TestData> listModel) {

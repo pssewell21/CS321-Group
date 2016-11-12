@@ -5,9 +5,13 @@
  */
 package Controllers;
 
+import Library.DalFields;
+import Library.TestData;
+import Library.User;
+import Library.UserFactory;
 import Views.MainView;
-import Views.TestDataListView;
-import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  *
@@ -19,12 +23,48 @@ public class MainViewController {
     
     public MainView view;
     
+    /**
+     *
+     */
+    public UserFactory factory;
+    
+    // </editor-fold> 
+    
+    // <editor-fold defaultstate="collapsed" desc="Constructors"> 
+    
+    public MainViewController() {
+        factory = new UserFactory();
+    }
+    
     // </editor-fold> 
        
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
 
     public void load() {        
         view = new MainView(this);
+    }
+    
+    /**
+     *
+     * @param userName
+     * @param password
+     * @return
+     */
+    public boolean executeLogOn(String userName, String password) {
+        HashMap<String, String> criteria = new HashMap<>();
+        criteria.put(DalFields.USER_NAME, userName);
+        
+        // Will return a list of 0 or 1 items
+        List<User> result = factory.executeSelect(criteria);
+        
+        if (result.isEmpty())
+        {
+            return false;
+        }
+        
+        User user = result.get(0);
+        
+        return user.Password.equals(password);
     }
     
     // </editor-fold> 

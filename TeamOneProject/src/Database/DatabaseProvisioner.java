@@ -52,6 +52,7 @@ public final class DatabaseProvisioner {
             + "    CONSTRAINT ATM_USER_PK PRIMARY KEY (ID),\n"
             + "    CONSTRAINT ATM_USER_PERSON_ID_FK FOREIGN KEY (PERSON_ID) REFERENCES PERSON (ID),\n"
             + "    CONSTRAINT ATM_USER_PERSON_ID_UC UNIQUE (PERSON_ID)\n"
+            + "    CONSTRAINT ATM_USER_USER_NAME_UC UNIQUE (USER_NAME)\n"
             + ")";
 
     private static final String ADD_ACCOUNT_TABLE_SCRIPT = "CREATE TABLE ACCOUNT\n"
@@ -122,7 +123,7 @@ public final class DatabaseProvisioner {
             + "(\n"
             + "    998877665544332211, \n"
             + "    112233445566778899, \n"
-            + "    'dafault', \n"
+            + "    'default', \n"
             + "    'password', \n"
             + "    'question1?', \n"
             + "    'answer', \n"

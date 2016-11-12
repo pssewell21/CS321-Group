@@ -23,10 +23,30 @@ import javax.swing.DefaultListModel;
 public class TestDataListViewController extends ListViewControllerBase{
 
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
+
+    /**
+     *
+     */
     
     public TestDataListView view;
     
+    /**
+     *
+     */
     public DefaultListModel<TestData> listModel;
+    
+    /**
+     *
+     */
+    public TestDataFactory factory;
+    
+    // </editor-fold> 
+    
+    // <editor-fold defaultstate="collapsed" desc="Constructors"> 
+    
+    public TestDataListViewController() {
+        factory = new TestDataFactory();
+    }
     
     // </editor-fold> 
     
@@ -39,13 +59,12 @@ public class TestDataListViewController extends ListViewControllerBase{
     }
     
     private void loadModel() {
-        TestDataFactory factory = new TestDataFactory();
         HashMap<String, String> criteria = new HashMap<>();
         
-        List<TestData> model = factory.executeSelect(criteria);
+        List<TestData> result = factory.executeSelect(criteria);
 
         listModel = new DefaultListModel<>();
-        for (Object item : model) {
+        for (Object item : result) {
             listModel.addElement((TestData) item);
         }
     }
