@@ -7,10 +7,9 @@ package Controllers;
 
 import Database.DatabaseProvisioner;
 import Library.DalFields;
-import Library.TestData;
 import Library.User;
 import Library.UserFactory;
-import Views.MainView;
+import Views.LogOnView;
 import java.util.HashMap;
 import java.util.List;
 
@@ -18,11 +17,11 @@ import java.util.List;
  *
  * @author Owner
  */
-public class MainViewController {
+public class LogOnViewController {
     
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
     
-    public MainView view;
+    public LogOnView view;
     
     /**
      *
@@ -33,7 +32,7 @@ public class MainViewController {
     
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     
-    public MainViewController() {
+    public LogOnViewController() {
         factory = new UserFactory();
     }
     
@@ -42,7 +41,7 @@ public class MainViewController {
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
 
     public void load() {        
-        view = new MainView(this);
+        view = new LogOnView(this);
     }
     
     /**
@@ -65,7 +64,15 @@ public class MainViewController {
         
         User user = result.get(0);
         
-        return user.Password.equals(password);
+        if (user.Password.equals(password)) {
+            NavigationViewController c = new NavigationViewController();
+            c.load();
+            view.dispose();
+            
+            return true;
+        }
+        
+        return false;
     }
     
     public void executeProvisionDatabase() {
