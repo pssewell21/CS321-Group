@@ -44,7 +44,9 @@ public class TestData extends LibraryBase {
      * @param lookupKey
      * @param value
      */
-    public TestData(Long id, String lookupKey, String value) {
+    public TestData(Long id, 
+            String lookupKey, 
+            String value) {
         super(id);
         LookupKey = lookupKey;
         Value = value;
@@ -57,8 +59,8 @@ public class TestData extends LibraryBase {
     @Override
     public String toString() {
         return super.toString() + ", " 
-                + DalFields.LOOKUP_KEY + ": " + LookupKey 
-                + ", " + DalFields.VALUE + ": " + Value;
+                + DalFields.LOOKUP_KEY + ": " + LookupKey  + ", "
+                + DalFields.VALUE + ": " + Value;
     }
 
     /**

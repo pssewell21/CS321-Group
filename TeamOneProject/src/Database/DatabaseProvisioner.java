@@ -29,7 +29,7 @@ public final class DatabaseProvisioner {
             + "    ID                      BIGINT          NOT NULL,\n"
             + "    NAME                    VARCHAR(100)    NOT NULL,\n"
             + "    DATE_OF_BIRTH           DATE            NOT NULL,\n"
-            + "    ADDRESS                 VARCHAR(200),\n"
+            + "    ADDRESS                 VARCHAR(200)    NOT NULL,\n"
             + "    PHONE_NUMBER            VARCHAR(20),\n"
             + "    SOCIAL_SECURITY_NUMBER  VARCHAR(9)      NOT NULL,\n"
             + "    CONSTRAINT PERSON_PK PRIMARY KEY (ID),\n"

@@ -14,72 +14,68 @@ import java.util.HashMap;
 public class User extends LibraryBase {
 
     // <editor-fold defaultstate="collapsed" desc="Member Variables">   
-
     /**
      *
      */
-    
     public Long PersonId;
 
     /**
      *
      */
     public String UserName;
-    
+
     /**
      *
      */
     public String Password;
-    
+
     /**
      *
      */
     public String SecurityQuestion1;
-    
+
     /**
      *
      */
     public String SecurityAnswer1;
-    
+
     /**
      *
      */
     public String SecurityQuestion2;
-    
+
     /**
      *
      */
     public String SecurityAnswer2;
-    
+
     /**
      *
      */
     public Boolean IsAdministrator;
-    
+
     /**
      *
      */
     public Boolean IsAccountLocked;
-    
+
     /**
      *
      */
     public String SelectedTheme;
 
     // </editor-fold>
-    
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
-
     /**
      * This constructor is used for creating new objects
      */
-    
     public User() {
         super();
     }
 
     /**
      * This constructor is used for mapping existing objects
+     *
      * @param id
      * @param personId
      * @param userName
@@ -92,7 +88,17 @@ public class User extends LibraryBase {
      * @param isAccountLocked
      * @param selectedTheme
      */
-    public User(Long id, Long personId, String userName, String password, String securityQuestion1, String securityAnswer1, String securityQuestion2, String securityAnswer2, Boolean isAdministrator, Boolean isAccountLocked, String selectedTheme) {
+    public User(Long id,
+            Long personId,
+            String userName,
+            String password,
+            String securityQuestion1,
+            String securityAnswer1,
+            String securityQuestion2,
+            String securityAnswer2,
+            Boolean isAdministrator,
+            Boolean isAccountLocked,
+            String selectedTheme) {
         super(id);
         PersonId = personId;
         UserName = userName;
@@ -105,23 +111,21 @@ public class User extends LibraryBase {
         IsAccountLocked = isAccountLocked;
         SelectedTheme = selectedTheme;
     }
-    
-    // </editor-fold>
-    
-    // <editor-fold defaultstate="collapsed" desc="Methods"> 
 
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="Methods"> 
     @Override
     public String toString() {
-        return super.toString() + ", " 
-                + DalFields.PERSON_ID + ": " + PersonId + ", " 
-                + DalFields.USER_NAME + ": " + UserName
-                + DalFields.PASSWORD + ": " + Password
-                + DalFields.SECURITY_QUESTION_1 + ": " + SecurityQuestion1
-                + DalFields.SECURITY_ANSWER_1 + ": " + SecurityAnswer1
-                + DalFields.SECURITY_QUESTION_2 + ": " + SecurityQuestion2
-                + DalFields.SECURITY_ANSWER_2 + ": " + SecurityAnswer2
-                + DalFields.IS_ADMINISTRATOR + ": " + IsAdministrator
-                + DalFields.IS_ACCOUNT_LOCKED + ": " + IsAccountLocked
+        return super.toString() + ", "
+                + DalFields.PERSON_ID + ": " + PersonId + ", "
+                + DalFields.USER_NAME + ": " + UserName + ", "
+                + DalFields.PASSWORD + ": " + Password + ", "
+                + DalFields.SECURITY_QUESTION_1 + ": " + SecurityQuestion1 + ", "
+                + DalFields.SECURITY_ANSWER_1 + ": " + SecurityAnswer1 + ", "
+                + DalFields.SECURITY_QUESTION_2 + ": " + SecurityQuestion2 + ", "
+                + DalFields.SECURITY_ANSWER_2 + ": " + SecurityAnswer2 + ", "
+                + DalFields.IS_ADMINISTRATOR + ": " + IsAdministrator + ", "
+                + DalFields.IS_ACCOUNT_LOCKED + ": " + IsAccountLocked + ", "
                 + DalFields.SELECTED_THEME + ": " + SelectedTheme;
     }
 
@@ -132,7 +136,7 @@ public class User extends LibraryBase {
     @Override
     public HashMap<String, String> toHashMap() {
         HashMap<String, String> map = new HashMap<>();
-        
+
         map.put(DalFields.ID, Id.toString());
         map.put(DalFields.PERSON_ID, PersonId.toString());
         map.put(DalFields.USER_NAME, UserName);
@@ -147,6 +151,6 @@ public class User extends LibraryBase {
 
         return map;
     }
-    
+
     // </editor-fold>   
 }
