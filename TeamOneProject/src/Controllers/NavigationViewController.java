@@ -52,12 +52,12 @@ public class NavigationViewController {
     }
     
     public void executeNavigateUserList() {
-        //try {
-        //    TestDataListViewController t = new TestDataListViewController();
-        //    t.load();
-        //} catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
-        //    ExceptionHandler.handleException(e);
-        //}
+        try {
+            UserListViewController t = new UserListViewController();
+            t.load();
+        } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+            ExceptionHandler.handleException(e);
+        }
     }
     
     // </editor-fold> 

@@ -5,8 +5,8 @@
  */
 package Views;
 
-import Controllers.PersonListViewController;
-import Library.Person;
+import Controllers.UserListViewController;
+import Library.User;
 import java.awt.event.KeyEvent;
 import javax.swing.JList;
 
@@ -14,11 +14,11 @@ import javax.swing.JList;
  *
  * @author Owner
  */
-public class PersonListView extends javax.swing.JFrame {
+public class UserListView extends javax.swing.JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
     
-    private final PersonListViewController controller;
+    private final UserListViewController controller;
     
     // </editor-fold> 
     
@@ -29,7 +29,7 @@ public class PersonListView extends javax.swing.JFrame {
      *
      * @param controller
      */
-    public PersonListView(PersonListViewController controller) {
+    public UserListView(UserListViewController controller) {
         this.controller = controller;
         load();
     }
@@ -60,7 +60,7 @@ public class PersonListView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Person Manager");
+        jLabel1.setText("User Manager");
 
         jList1.setModel(controller.listModel);
         jList1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -118,9 +118,9 @@ public class PersonListView extends javax.swing.JFrame {
             Object source = evt.getSource();
 
             if (source instanceof JList) {
-                JList<Person> list = (JList<Person>) source;
+                JList<User> list = (JList<User>) source;
 
-                Person item = list.getSelectedValue();
+                User item = list.getSelectedValue();
                 controller.executeEdit(item);
             }
         }
@@ -132,9 +132,9 @@ public class PersonListView extends javax.swing.JFrame {
             Object source = evt.getSource();
 
             if (source instanceof JList) {
-                JList<Person> list = (JList<Person>) source;
+                JList<User> list = (JList<User>) source;
 
-                Person item = list.getSelectedValue();
+                User item = list.getSelectedValue();
                 controller.executeEdit(item);
             }
         }
@@ -149,7 +149,7 @@ public class PersonListView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated UI Variables">  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<Person> jList1;
+    private javax.swing.JList<User> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton newButton;
     // End of variables declaration//GEN-END:variables

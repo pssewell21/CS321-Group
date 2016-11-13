@@ -172,17 +172,17 @@ public class UserFactory extends LibraryFactoryBase {
                     && hasValue(isAccountLocked) 
                     && hasValue(selectedTheme)) {
                 command += "INSERT INTO " + SCHEMA + "." + TABLE_NAME + " VALUES ("  
-                        + DalFields.ID + " = " + ID.newId() + ", "
-                        + DalFields.PERSON_ID + " = " + personId + ", "
-                        + DalFields.USER_NAME + " = '" + userName + "', "
-                        + DalFields.PASSWORD + " = '" + password + "', "
-                        + DalFields.SECURITY_QUESTION_1 + " = '" + securityQuestion1 + "', "
-                        + DalFields.SECURITY_ANSWER_1 + " = '" + securityAnswer1 + "', "
-                        + DalFields.SECURITY_QUESTION_2 + " = '" + securityQuestion2 + "', "
-                        + DalFields.SECURITY_ANSWER_2 + " = '" + securityAnswer2 + "', "
-                        + DalFields.IS_ADMINISTRATOR + " = " + isAdministrator + ", "
-                        + DalFields.IS_ACCOUNT_LOCKED + " = " + isAccountLocked + ", "
-                        + DalFields.SELECTED_THEME + " = '" + selectedTheme + "'"
+                        + ID.newId() + ", "
+                        + "" + personId + ", "
+                        + "'" + userName + "', "
+                        + "'" + password + "', "
+                        + "'" + securityQuestion1 + "', "
+                        + "'" + securityAnswer1 + "', "
+                        + "'" + securityQuestion2 + "', "
+                        + "'" + securityAnswer2 + "', "
+                        + "" + isAdministrator + ", "
+                        + "" + isAccountLocked + ", "
+                        + "'" + selectedTheme + "'"
                         + ")";
             } else {
                 //TODO: Make the logic for printing this message logic better
