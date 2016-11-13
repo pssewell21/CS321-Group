@@ -61,8 +61,8 @@ public final class DatabaseProvisioner {
             + "    ACCOUNT_NUMBER          BIGINT          NOT NULL,\n"
             + "    ACCOUNT_TYPE            VARCHAR(100)    NOT NULL,\n"
             + "    DESCRIPTION             VARCHAR(300),\n"
-            + "    BALANCE                 NUMERIC(12,2)   NOT NULL,\n"
-            + "    INTEREST_RATE           NUMERIC(2,2),\n"
+            + "    BALANCE                 NUMERIC(14,2)   NOT NULL,\n"
+            + "    INTEREST_RATE           NUMERIC(4,2),\n"
             + "    CONSTRAINT ACCOUNT_PK PRIMARY KEY (ID),\n"
             + "    CONSTRAINT ACCOUNT_ACCOUNT_NUMBER_UC UNIQUE (ACCOUNT_NUMBER)\n"
             + ")";
@@ -104,7 +104,7 @@ public final class DatabaseProvisioner {
             + "    112233445566778899, \n"
             + "    'Default User', \n"
             + "    '01/01/1900', \n"
-            + "    NULL, \n"
+            + "    '1 Infinite Loop, Cupertino, CA 95014', \n"
             + "    NULL, \n"
             + "    '000000000'\n"
             + ")";

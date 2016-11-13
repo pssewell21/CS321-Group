@@ -103,7 +103,12 @@ public class Account extends LibraryBase  {
         map.put(DalFields.ACCOUNT_TYPE, AccountType);
         map.put(DalFields.DESCRIPTION, Description);
         map.put(DalFields.BALANCE, Balance.toString());
-        map.put(DalFields.INTEREST_RATE, InterestRate.toString());
+        if (InterestRate != null) {
+            map.put(DalFields.INTEREST_RATE, InterestRate.toString());
+        }
+        else {
+            map.put(DalFields.INTEREST_RATE, null);
+        }
 
         return map;
     }
