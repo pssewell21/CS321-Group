@@ -80,16 +80,6 @@ public final class DatabaseProvisioner {
             + "    CONSTRAINT ACCOUNT_TRANSACTION_PERSON_ID_FK FOREIGN KEY (PERSON_ID) REFERENCES PERSON (ID)\n"
             + ")";
 
-    private static final String ADD_ACCOUNT_ACCOUNT_MAP_TABLE_SCRIPT = "CREATE TABLE ACCOUNT_ACCOUNT_MAP\n"
-            + "(\n"
-            + "    ID                      BIGINT          NOT NULL,\n"
-            + "    ACCOUNT_ID              BIGINT          NOT NULL,\n"
-            + "    PERSON_ID               BIGINT          NOT NULL,\n"
-            + "    CONSTRAINT ACCOUNT_ACCOUNT_MAP_PK PRIMARY KEY (ID),\n"
-            + "    CONSTRAINT ACCOUNT_ACCOUNT_MAP_ACCOUNT_ID_FK FOREIGN KEY (ACCOUNT_ID) REFERENCES ACCOUNT (ID),\n"
-            + "    CONSTRAINT ACCOUNT_ACCOUNT_MAP_PERSON_ID_FK FOREIGN KEY (PERSON_ID) REFERENCES PERSON (ID)\n"
-            + ")";
-
     private static final String ADD_ACCOUNT_PERSON_MAP_TABLE_SCRIPT = "CREATE TABLE ACCOUNT_PERSON_MAP\n"
             + "(\n"
             + "    ID                      BIGINT          NOT NULL,\n"
@@ -183,9 +173,6 @@ public final class DatabaseProvisioner {
 
         System.out.println(ADD_ACCOUNT_TRANSACTION_TABLE_SCRIPT);
         DataAccessJavaDb.executeUpdate(ADD_ACCOUNT_TRANSACTION_TABLE_SCRIPT);
-
-        System.out.println(ADD_ACCOUNT_ACCOUNT_MAP_TABLE_SCRIPT);
-        DataAccessJavaDb.executeUpdate(ADD_ACCOUNT_ACCOUNT_MAP_TABLE_SCRIPT);
 
         System.out.println(ADD_ACCOUNT_PERSON_MAP_TABLE_SCRIPT);
         DataAccessJavaDb.executeUpdate(ADD_ACCOUNT_PERSON_MAP_TABLE_SCRIPT);

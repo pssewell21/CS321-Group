@@ -60,5 +60,14 @@ public class NavigationViewController {
         }
     }
     
+    public void executeNavigateAccountList() {
+//        try {
+//            AccountListViewController t = new AccountListViewController();
+//            t.load();
+//        } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+//            ExceptionHandler.handleException(e);
+//        }
+    }
+    
     // </editor-fold> 
 }

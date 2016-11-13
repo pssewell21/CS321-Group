@@ -20,7 +20,7 @@ public final class ID {
      *
      * @return
      */
-    public static Long newId() {
+    public static final Long newId() {
         Random random = new Random();
 
         do {

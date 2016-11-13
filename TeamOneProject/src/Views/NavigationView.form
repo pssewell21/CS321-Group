@@ -47,6 +47,7 @@
                       <Component id="testDataButton" alignment="0" pref="213" max="32767" attributes="0"/>
                       <Component id="personManagerButton" alignment="0" pref="213" max="32767" attributes="0"/>
                       <Component id="userManagerButton" alignment="0" pref="213" max="32767" attributes="0"/>
+                      <Component id="accountManagerButton" alignment="0" pref="213" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -61,7 +62,9 @@
                   <Component id="personManagerButton" min="-2" pref="32" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="userManagerButton" min="-2" pref="32" max="-2" attributes="0"/>
-                  <EmptySpace pref="431" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="accountManagerButton" min="-2" pref="32" max="-2" attributes="0"/>
+                  <EmptySpace pref="388" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -89,6 +92,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="userManagerButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="accountManagerButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Account Manager"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="accountManagerButtonActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

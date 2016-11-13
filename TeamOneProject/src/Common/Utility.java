@@ -14,7 +14,7 @@ public final class Utility {
     private Utility() {
     }
 
-    public static boolean hasValue(String string) {
+    public static final boolean hasValue(String string) {
         if (string == null) {
             return false;
         }

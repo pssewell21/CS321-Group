@@ -20,7 +20,7 @@ public final class ExceptionHandler {
      *
      * @param e
      */
-    public static void handleException(Exception e) {
+    public static final void handleException(Exception e) {
         System.out.println(e.toString());
         JOptionPane.showMessageDialog(null, e.toString(), "Exception Message", JOptionPane.INFORMATION_MESSAGE);
     }
