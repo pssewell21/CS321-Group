@@ -21,10 +21,11 @@ public class Person extends LibraryBase  {
      */
     public String Name;
 
+    //TODO: Change this to a Date data type
     /**
      *
      */
-    public Date DateOfBirth;
+    public String DateOfBirth;
     
     /**
      *
@@ -64,7 +65,7 @@ public class Person extends LibraryBase  {
      */
     public Person(Long id, 
             String name, 
-            Date dateOfBirth, 
+            String dateOfBirth, 
             String address, 
             String phoneNumber, 
             String socialSecurityNumber) {
@@ -100,7 +101,7 @@ public class Person extends LibraryBase  {
         
         map.put(DalFields.ID, Id.toString());
         map.put(DalFields.NAME, Name);
-        map.put(DalFields.DATE_OF_BIRTH, DateOfBirth.toString());
+        map.put(DalFields.DATE_OF_BIRTH, DateOfBirth);
         map.put(DalFields.ADDRESS, Address);
         map.put(DalFields.PHONE_NUMBER, PhoneNumber);
         map.put(DalFields.SOCIAL_SECURITY_NUMBER, SocialSecurityNumber);

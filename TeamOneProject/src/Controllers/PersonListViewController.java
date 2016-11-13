@@ -5,9 +5,9 @@
  */
 package Controllers;
 
-import Library.TestData;
-import Library.TestDataFactory;
-import Views.TestDataListView;
+import Library.Person;
+import Library.PersonFactory;
+import Views.PersonListView;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
@@ -15,33 +15,33 @@ import javax.swing.DefaultListModel;
 
 /**
  *
- * @author pssew
+ * @author Owner
  */
-public class TestDataListViewController extends ListViewControllerBase{
-
+public class PersonListViewController extends ListViewControllerBase {
+    
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
 
     /**
      *
      */
-    public TestDataListView view;
+    public PersonListView view;
     
     /**
      *
      */
-    public DefaultListModel<TestData> listModel;
+    public DefaultListModel<Person> listModel;
     
     /**
      *
      */
-    public TestDataFactory factory;
+    public PersonFactory factory;
     
     // </editor-fold> 
     
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     
-    public TestDataListViewController() {
-        factory = new TestDataFactory();
+    public PersonListViewController() {
+        factory = new PersonFactory();
     }
     
     // </editor-fold> 
@@ -51,29 +51,29 @@ public class TestDataListViewController extends ListViewControllerBase{
     public void load() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         loadModel();
         
-        view = new TestDataListView(this);
+        view = new PersonListView(this);
     }
     
     private void loadModel() {
         HashMap<String, String> criteria = new HashMap<>();
         
-        List<TestData> result = factory.executeSelect(criteria);
+        List<Person> result = factory.executeSelect(criteria);
 
         listModel = new DefaultListModel<>();
         for (Object item : result) {
-            listModel.addElement((TestData) item);
+            listModel.addElement((Person) item);
         }
     }
     
     public void executeAdd() {
-        TestDataEditViewController controller = new TestDataEditViewController();
+        PersonEditViewController controller = new PersonEditViewController();
         controller.load(null, listModel);
     }
 
-    public void executeEdit(TestData item) {
-        TestDataEditViewController controller = new TestDataEditViewController();
+    public void executeEdit(Person item) {
+        PersonEditViewController controller = new PersonEditViewController();
         controller.load(item, listModel);
     }
     
-    // </editor-fold> 
+    // </editor-fold>
 }

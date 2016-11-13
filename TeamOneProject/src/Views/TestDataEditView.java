@@ -54,9 +54,6 @@ public class TestDataEditView extends javax.swing.JFrame {
     }
 
     private void setModelFields() {
-        Long id = Long.parseLong(IdField.getText());
-
-        controller.model.Id = id;
         controller.model.LookupKey = KeyField.getText();
         controller.model.Value = ValueField.getText();
     }

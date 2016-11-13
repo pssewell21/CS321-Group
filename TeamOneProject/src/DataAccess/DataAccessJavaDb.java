@@ -94,17 +94,24 @@ public final class DataAccessJavaDb {
     /**
      *
      * @param command
+     * @return 
      */
-    public static void executeInsert(String command) {
+    public static boolean executeInsert(String command) {
+        boolean successful = true;
+        
         try {
             if (_statement != null) {
                 _statement.execute(command);
             } else {
                 System.out.println("Insert failed.  Make sure a connection to the database exists.");
+                successful = false;
             }
         } catch (Exception e) {
             ExceptionHandler.handleException(e);
+            successful = false;
         }
+        
+        return successful;
     }
 
     /**

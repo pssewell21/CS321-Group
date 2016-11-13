@@ -5,6 +5,7 @@
  */
 package Library;
 
+import Common.ID;
 import DataAccess.DataAccessJavaDb;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -90,7 +91,6 @@ public class UserFactory extends LibraryFactoryBase {
     // <editor-fold defaultstate="collapsed" desc="Implementation of ISqlGenerator Methods"> 
     @Override
     public String generateSelectCommand(HashMap<String, String> criteria) {
-        //TODOL: Update this comment to be accurate
         // Can filter by ID, PERSON_ID, or USER_NAME
         String command = "SELECT * FROM " + SCHEMA + "." + TABLE_NAME;
 
@@ -239,7 +239,7 @@ public class UserFactory extends LibraryFactoryBase {
                         + DalFields.SECURITY_ANSWER_2 + " = '" + securityAnswer2 + "', "
                         + DalFields.IS_ADMINISTRATOR + " = " + isAdministrator + ", "
                         + DalFields.IS_ACCOUNT_LOCKED + " = " + isAccountLocked + ", "
-                        + DalFields.SELECTED_THEME + " = '" + selectedTheme + "'";
+                        + DalFields.SELECTED_THEME + " = '" + selectedTheme + "' ";
 
                 command += "WHERE " + DalFields.ID + " = " + id;
             }

@@ -5,36 +5,35 @@
  */
 package Controllers;
 
-import Library.TestData;
-import Library.TestDataFactory;
-import Views.TestDataEditView;
+import Library.Person;
+import Library.PersonFactory;
+import Views.PersonEditView;
 import javax.swing.DefaultListModel;
 
 /**
  *
  * @author Owner
  */
-public class TestDataEditViewController extends EditViewControllerBase {
+public class PersonEditViewController extends EditViewControllerBase {
    
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
 
     /**
      *
-     */
-        
-    public TestData model;
+     */    
+    public Person model;
 
     /**
      *
      */
-    public TestDataEditView view;
+    public PersonEditView view;
 
     /**
      *
      */
-    public TestDataFactory factory;
+    public PersonFactory factory;
     
-    private DefaultListModel<TestData> listModel;
+    private DefaultListModel<Person> listModel;
     
     // </editor-fold> 
     
@@ -44,8 +43,8 @@ public class TestDataEditViewController extends EditViewControllerBase {
      *
      */
 
-    public TestDataEditViewController() {
-        factory = new TestDataFactory();
+    public PersonEditViewController() {
+        factory = new PersonFactory();
     }
     
     // </editor-fold> 
@@ -58,18 +57,18 @@ public class TestDataEditViewController extends EditViewControllerBase {
      * @param listModel
      */
     
-    public void load (TestData model, DefaultListModel<TestData> listModel) {
+    public void load (Person model, DefaultListModel<Person> listModel) {
         if (model != null) {
             this.model = model;
             isNew = false;
         } else {
-            this.model = new TestData();
+            this.model = new Person();
             isNew = true;
         }
         
         this.listModel = listModel;
 
-        view = new TestDataEditView(this);
+        view = new PersonEditView(this);
 
         view.setDeleteEnabled(!isNew);
     }
@@ -128,8 +127,8 @@ public class TestDataEditViewController extends EditViewControllerBase {
             if (!successful) {
                 //TODO: rollback changes in some way
             }
-        }
+        }      
     }
     
-    // </editor-fold> 
+    // </editor-fold>    
 }

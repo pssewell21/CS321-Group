@@ -9,6 +9,7 @@ import Common.ID;
 import DataAccess.DataAccessJavaDb;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -16,14 +17,14 @@ import java.util.List;
  *
  * @author Owner
  */
-public class TestDataFactory extends LibraryFactoryBase {
+public class PersonFactory extends LibraryFactoryBase {
 
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     /**
      *
      */
-    public TestDataFactory() {
-        super("APP", "TEST_DATA");
+    public PersonFactory() {
+        super("APP", "PERSON");
     }
 
     // </editor-fold> 
@@ -34,7 +35,7 @@ public class TestDataFactory extends LibraryFactoryBase {
 //
 //        criteria.put(DalFields.ID, Long.toString(id));
 //
-//        List<TestData> result = executeSelect(criteria);
+//        List<User> result = executeSelect(criteria);
 //
 //        if (result.size() > 0) {
 //            return result.get(0);
@@ -45,8 +46,8 @@ public class TestDataFactory extends LibraryFactoryBase {
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Implementation of LibraryFactoryBase Methods"> 
     @Override
-    public List<TestData> executeSelect(HashMap<String, String> criteria) {
-        List<TestData> list = new ArrayList<>();
+    public List<Person> executeSelect(HashMap<String, String> criteria) {
+        List<Person> list = new ArrayList<>();
 
         DataAccessJavaDb.openConnection();
 
@@ -59,10 +60,14 @@ public class TestDataFactory extends LibraryFactoryBase {
 
                 while (resultSet != null && resultSet.next()) {
                     Long id = resultSet.getLong(DalFields.ID);
-                    String key = resultSet.getString(DalFields.LOOKUP_KEY);
-                    String value = resultSet.getString(DalFields.VALUE);
+                    String name = resultSet.getString(DalFields.NAME);
+                    String dateOfBirth = resultSet.getString(DalFields.DATE_OF_BIRTH);
+                    String address = resultSet.getString(DalFields.ADDRESS);
+                    String phoneNumber = resultSet.getString(DalFields.PHONE_NUMBER);
+                    String socialSecurityNumber = resultSet.getString(DalFields.SOCIAL_SECURITY_NUMBER);
 
-                    list.add(new TestData(id, key, value));
+                    list.add(new Person(id, name, dateOfBirth, address,
+                            phoneNumber, socialSecurityNumber));
                 }
             } else {
                 System.out.println("No select command was run from the provided criteria");
@@ -81,7 +86,8 @@ public class TestDataFactory extends LibraryFactoryBase {
     // <editor-fold defaultstate="collapsed" desc="Implementation of ISqlGenerator Methods"> 
     @Override
     public String generateSelectCommand(HashMap<String, String> criteria) {
-        // Can filter by ID, LOOKUP_KEY, or VALUE
+        //TODOL: Update this comment to be accurate
+        // Can filter by ID, NAME, or SOCIAL_SECURITY_NUMBER
         String command = "SELECT * FROM " + SCHEMA + "." + TABLE_NAME;
 
         if (criteria != null && !criteria.isEmpty()) {
@@ -89,10 +95,13 @@ public class TestDataFactory extends LibraryFactoryBase {
             boolean insertAnd = false;
 
             String id = criteria.get(DalFields.ID);
-            String key = criteria.get(DalFields.LOOKUP_KEY);
-            String value = criteria.get(DalFields.VALUE);
+            String name = criteria.get(DalFields.NAME);
+            //String dateOfBirth = criteria.get(DalFields.DATE_OF_BIRTH);
+            //String address = criteria.get(DalFields.ADDRESS);
+            //String phoneNumber = criteria.get(DalFields.PHONE_NUMBER);
+            String socialSecurityNumber = criteria.get(DalFields.SOCIAL_SECURITY_NUMBER);
 
-            if (hasValue(id) || hasValue(key) || hasValue(value)) {
+            if (hasValue(id) || hasValue(name) || hasValue(socialSecurityNumber)) {
                 command += "\nWHERE ";
 
                 if (hasValue(id)) {
@@ -100,21 +109,21 @@ public class TestDataFactory extends LibraryFactoryBase {
                     insertAnd = true;
                 }
 
-                if (hasValue(key)) {
+                if (hasValue(name)) {
                     if (insertAnd) {
                         command += and;
                     }
 
-                    command += DalFields.LOOKUP_KEY + " = '" + key + "' ";
+                    command += DalFields.NAME + " = " + name + " ";
                     insertAnd = true;
                 }
 
-                if (hasValue(value)) {
+                if (hasValue(socialSecurityNumber)) {
                     if (insertAnd) {
                         command += and;
                     }
 
-                    command += DalFields.VALUE + " = '" + value + "' ";
+                    command += DalFields.SOCIAL_SECURITY_NUMBER + " = '" + socialSecurityNumber + "' ";
                 }
             }
         }
@@ -132,23 +141,33 @@ public class TestDataFactory extends LibraryFactoryBase {
         String command = "";
 
         if (!criteria.isEmpty()) {
-            String key = criteria.get(DalFields.LOOKUP_KEY);
-            String value = criteria.get(DalFields.VALUE);
+            String name = criteria.get(DalFields.NAME);
+            String dateOfBirth = criteria.get(DalFields.DATE_OF_BIRTH);
+            String address = criteria.get(DalFields.ADDRESS);
+            String phoneNumber = criteria.get(DalFields.PHONE_NUMBER);
+            String socialSecurityNumber = criteria.get(DalFields.SOCIAL_SECURITY_NUMBER);
 
-            if (hasValue(key)) {
+            if (hasValue(name)
+                    && hasValue(dateOfBirth)
+                    && hasValue(address)
+                    && hasValue(socialSecurityNumber)) {
                 command += "INSERT INTO " + SCHEMA + "." + TABLE_NAME + " VALUES ("
                         + ID.newId() + ", "
-                        + "'" + key + "', ";
-
-                if (hasValue(value)) {
-                    command += "'" + value + "'";
+                        + "'" + name + "', "
+                        + "'" + dateOfBirth + "', "
+                        + "'" + address + "', ";
+                
+                if (hasValue(phoneNumber)) {
+                    command += "'" + phoneNumber + "', ";
                 } else {
-                    command += "NULL";
+                    command += "NULL, ";
                 }
                 
-                command += ")";
+                command += "'" + socialSecurityNumber + "'"
+                        + ")";
             } else {
-                System.out.println("Required field LOOKUP_KEY not set.  Insert failed.");
+                //TODO: Make the logic for printing this message logic better
+                System.out.println("Required field ????? not set.  Insert failed.");
             }
         } else {
             System.out.println("No criteria have been set.  Insert failed.");
@@ -167,26 +186,33 @@ public class TestDataFactory extends LibraryFactoryBase {
         String command = "";
 
         if (!criteria.isEmpty()) {
-            String comma = ", ";
 
             String id = criteria.get(DalFields.ID);
-            String key = criteria.get(DalFields.LOOKUP_KEY);
-            String value = criteria.get(DalFields.VALUE);
+            String name = criteria.get(DalFields.NAME);
+            String dateOfBirth = criteria.get(DalFields.DATE_OF_BIRTH);
+            String address = criteria.get(DalFields.ADDRESS);
+            String phoneNumber = criteria.get(DalFields.PHONE_NUMBER);
+            String socialSecurityNumber = criteria.get(DalFields.SOCIAL_SECURITY_NUMBER);
 
-            if (hasValue(id) 
-                    && (hasValue(key))) {
+            if (hasValue(id)
+                    && hasValue(name)
+                    && hasValue(dateOfBirth)
+                    && hasValue(address)
+                    && hasValue(socialSecurityNumber)) {
                 command += "UPDATE " + SCHEMA + "." + TABLE_NAME + " SET "
-                        + DalFields.LOOKUP_KEY + " = '" + key + "' ";
+                        + DalFields.NAME + " = '" + name + "', "
+                        + DalFields.DATE_OF_BIRTH + " = '" + dateOfBirth + "', "
+                        + DalFields.ADDRESS + " = '" + address + "', ";
 
-                if (hasValue(value)) {
-                    command += comma + DalFields.VALUE + " = '" + value + "' ";
-                }else {
-                    command += comma + DalFields.VALUE + " = NULL ";
-                }                    
-
+                if (hasValue(phoneNumber)) {
+                    command += DalFields.PHONE_NUMBER + " = '" + phoneNumber + "', ";
+                } else {
+                    command += DalFields.PHONE_NUMBER + " = NULL, ";
+                }
+                
+                command += DalFields.SOCIAL_SECURITY_NUMBER + " = '" + socialSecurityNumber + "' ";
+                
                 command += "WHERE " + DalFields.ID + " = " + id;
-            } else {
-                System.out.println("An appropriate combination of values has not been set.  Update failed.");
             }
         } else {
             System.out.println("No criteria have been set.  Update failed.");
@@ -195,5 +221,5 @@ public class TestDataFactory extends LibraryFactoryBase {
         return command;
     }
 
-    // </editor-fold>
+    // </editor-fold>  
 }

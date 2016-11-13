@@ -42,26 +42,39 @@ public abstract class LibraryFactoryBase implements ISqlGenerator {
      */
     public abstract List<? extends LibraryBase> executeSelect(HashMap<String, String> hashMap);   
 
-    public void executeInsert(HashMap<String, String> criteria) {
+    public boolean executeInsert(HashMap<String, String> criteria) {
+        boolean successful = true;
+        
         DataAccessJavaDb.openConnection();
 
         try {
             String command = generateInsertCommand(criteria);
 
             if (hasValue(command)) {
-                DataAccessJavaDb.executeInsert(command);
+                successful = DataAccessJavaDb.executeInsert(command);
                 System.out.println("Insert command being executed:\n" + command);
             } else {
                 System.out.println("No insert command was run from the provided criteria");
+                successful = false;
             }
         } catch (Exception e) {
             handleException(e);
+            successful = false;
         } finally {
             DataAccessJavaDb.closeConnection();
         }
+        
+        return successful;
     }
 
-    public void executeUpdate(HashMap<String, String> criteria) {
+    /**
+     *
+     * @param criteria
+     * @return
+     */
+    public boolean executeUpdate(HashMap<String, String> criteria) {
+        boolean successful = true;
+        
         DataAccessJavaDb.openConnection();
 
         try {
@@ -72,15 +85,26 @@ public abstract class LibraryFactoryBase implements ISqlGenerator {
                 System.out.println("Update command being executed:\n" + command);
             } else {
                 System.out.println("No update command was run from the provided criteria");
+                successful = false;
             }
         } catch (Exception e) {
             handleException(e);
+            successful = false;
         } finally {
             DataAccessJavaDb.closeConnection();
         }
+        
+        return successful;
     }
 
-    public void executeDelete(HashMap<String, String> criteria) {
+    /**
+     *
+     * @param criteria
+     * @return
+     */
+    public boolean executeDelete(HashMap<String, String> criteria) {
+        boolean successful = true;
+        
         DataAccessJavaDb.openConnection();
 
         try {
@@ -91,12 +115,16 @@ public abstract class LibraryFactoryBase implements ISqlGenerator {
                 System.out.println("Delete command being executed:\n" + command);
             } else {
                 System.out.println("No delete command was run from the provided criteria");
+                successful = false;
             }
         } catch (Exception e) {
             handleException(e);
+            successful = false;
         } finally {
             DataAccessJavaDb.closeConnection();
         }
+        
+        return successful;
     }
 
     /**

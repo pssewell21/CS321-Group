@@ -6,6 +6,9 @@
 package Views;
 
 import Controllers.LogOnViewController;
+import Library.TestData;
+import java.awt.event.KeyEvent;
+import javax.swing.JList;
 
 /**
  *
@@ -27,7 +30,33 @@ public class LogOnView extends javax.swing.JFrame {
     private void load() {
         initComponents();
         logOnFailureLabel.setVisible(false);
+        
+        userNameField.setText("default");
+        passwordField.setText("password");
+        
         setVisible(true);
+    }
+    
+    private void doKeyPressed(java.awt.event.KeyEvent evt)
+    {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            doLogOn();
+        }
+    }
+    
+    private void doLogOn() {
+        //TODO: Encrypt here
+        String password = passwordField.getText();
+
+        boolean successful = controller.executeLogOn(userNameField.getText(), password);
+
+        if (successful) {
+            logOnFailureLabel.setVisible(false);
+            logOnPanel.setVisible(false);
+
+        } else {
+            logOnFailureLabel.setVisible(true);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
@@ -66,9 +95,19 @@ public class LogOnView extends javax.swing.JFrame {
 
         userNameField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         userNameField.setNextFocusableComponent(passwordField);
+        userNameField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                userNameFieldKeyPressed(evt);
+            }
+        });
 
         passwordField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         passwordField.setNextFocusableComponent(logOnButton);
+        passwordField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                passwordFieldKeyPressed(evt);
+            }
+        });
 
         logOnButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         logOnButton.setText("Log On");
@@ -76,6 +115,11 @@ public class LogOnView extends javax.swing.JFrame {
         logOnButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logOnButtonActionPerformed(evt);
+            }
+        });
+        logOnButton.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                logOnButtonKeyPressed(evt);
             }
         });
 
@@ -154,19 +198,20 @@ public class LogOnView extends javax.swing.JFrame {
     }//GEN-LAST:event_provisionDatabaseButtonActionPerformed
 
     private void logOnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOnButtonActionPerformed
-        //TODO: Encrypt here
-        String password = passwordField.getText();
-
-        boolean successful = controller.executeLogOn(userNameField.getText(), password);
-
-        if (successful) {
-            logOnFailureLabel.setVisible(false);
-            logOnPanel.setVisible(false);
-
-        } else {
-            logOnFailureLabel.setVisible(true);
-        }
+        doLogOn();
     }//GEN-LAST:event_logOnButtonActionPerformed
+
+    private void passwordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordFieldKeyPressed
+        doKeyPressed(evt);
+    }//GEN-LAST:event_passwordFieldKeyPressed
+
+    private void userNameFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_userNameFieldKeyPressed
+        doKeyPressed(evt);
+    }//GEN-LAST:event_userNameFieldKeyPressed
+
+    private void logOnButtonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_logOnButtonKeyPressed
+        doKeyPressed(evt);
+    }//GEN-LAST:event_logOnButtonKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

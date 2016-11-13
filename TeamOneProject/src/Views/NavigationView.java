@@ -44,6 +44,8 @@ public class NavigationView extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         testDataButton = new javax.swing.JButton();
+        personManagerButton = new javax.swing.JButton();
+        userManagerButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,13 +56,30 @@ public class NavigationView extends javax.swing.JFrame {
             }
         });
 
+        personManagerButton.setText("Person Manager");
+        personManagerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                personManagerButtonActionPerformed(evt);
+            }
+        });
+
+        userManagerButton.setText("User Manager");
+        userManagerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userManagerButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(testDataButton, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(testDataButton, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                    .addComponent(personManagerButton, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                    .addComponent(userManagerButton, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -68,7 +87,11 @@ public class NavigationView extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(testDataButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(517, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(personManagerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(userManagerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(431, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -91,8 +114,18 @@ public class NavigationView extends javax.swing.JFrame {
         controller.executeNavigateTestDataList();
     }//GEN-LAST:event_testDataButtonActionPerformed
 
+    private void personManagerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personManagerButtonActionPerformed
+        controller.executeNavigatePersonList();
+    }//GEN-LAST:event_personManagerButtonActionPerformed
+
+    private void userManagerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userManagerButtonActionPerformed
+        controller.executeNavigateUserList();
+    }//GEN-LAST:event_userManagerButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton personManagerButton;
     private javax.swing.JButton testDataButton;
+    private javax.swing.JButton userManagerButton;
     // End of variables declaration//GEN-END:variables
 }

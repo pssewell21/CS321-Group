@@ -42,5 +42,23 @@ public class NavigationViewController {
         }
     }
     
+    public void executeNavigatePersonList() {
+        try {
+            PersonListViewController p = new PersonListViewController();
+            p.load();
+        } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+            ExceptionHandler.handleException(e);
+        }
+    }
+    
+    public void executeNavigateUserList() {
+        //try {
+        //    TestDataListViewController t = new TestDataListViewController();
+        //    t.load();
+        //} catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+        //    ExceptionHandler.handleException(e);
+        //}
+    }
+    
     // </editor-fold> 
 }

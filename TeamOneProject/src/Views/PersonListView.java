@@ -5,20 +5,20 @@
  */
 package Views;
 
-import Controllers.TestDataListViewController;
-import Library.TestData;
+import Controllers.PersonListViewController;
+import Library.Person;
 import java.awt.event.KeyEvent;
 import javax.swing.JList;
 
 /**
  *
- * @author pssew
+ * @author Owner
  */
-public class TestDataListView extends javax.swing.JFrame {
+public class PersonListView extends javax.swing.JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
     
-    private final TestDataListViewController controller;
+    private final PersonListViewController controller;
     
     // </editor-fold> 
     
@@ -29,7 +29,7 @@ public class TestDataListView extends javax.swing.JFrame {
      *
      * @param controller
      */
-    public TestDataListView(TestDataListViewController controller) {
+    public PersonListView(PersonListViewController controller) {
         this.controller = controller;
         load();
     }
@@ -37,7 +37,7 @@ public class TestDataListView extends javax.swing.JFrame {
     // </editor-fold> 
     
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
-
+    
     private void load() {
         initComponents();
         setVisible(true);
@@ -60,7 +60,7 @@ public class TestDataListView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("TestData Objects!");
+        jLabel1.setText("Person Manager");
 
         jList1.setModel(controller.listModel);
         jList1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -91,40 +91,36 @@ public class TestDataListView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(newButton)
-                        .addGap(67, 67, 67)
+                        .addGap(260, 260, 260)
                         .addComponent(jLabel1)
-                        .addGap(0, 106, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 781, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(newButton))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(newButton)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
-        controller.executeAdd();
-    }//GEN-LAST:event_newButtonActionPerformed
-
     @SuppressWarnings("unchecked")
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
         if (evt.getClickCount() == 2) {
             Object source = evt.getSource();
-        
+
             if (source instanceof JList) {
-                JList<TestData> list = (JList<TestData>) source;
-                        
-                TestData item = list.getSelectedValue();
+                JList<Person> list = (JList<Person>) source;
+
+                Person item = list.getSelectedValue();
                 controller.executeEdit(item);
             }
         }
@@ -134,22 +130,26 @@ public class TestDataListView extends javax.swing.JFrame {
     private void jList1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jList1KeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             Object source = evt.getSource();
-        
+
             if (source instanceof JList) {
-                JList<TestData> list = (JList<TestData>) source;
-                        
-                TestData item = list.getSelectedValue();
+                JList<Person> list = (JList<Person>) source;
+
+                Person item = list.getSelectedValue();
                 controller.executeEdit(item);
             }
         }
     }//GEN-LAST:event_jList1KeyPressed
-    
+
+    private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
+        controller.executeAdd();
+    }//GEN-LAST:event_newButtonActionPerformed
+
     // </editor-fold> 
     
     // <editor-fold defaultstate="collapsed" desc="Generated UI Variables">  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<TestData> jList1;
+    private javax.swing.JList<Person> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton newButton;
     // End of variables declaration//GEN-END:variables
