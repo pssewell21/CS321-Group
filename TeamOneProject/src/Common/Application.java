@@ -6,9 +6,6 @@
 package Common;
 
 import Controllers.LogOnViewController;
-import Controllers.TestDataListViewController;
-import Database.DatabaseProvisioner;
-import Views.LogOnView;
 
 /**
  *
@@ -24,10 +21,16 @@ public class Application {
 
         // Open the connection to the database when the application is launched
         //TestDataListViewController c = new TestDataListViewController();
-        
         LogOnViewController m = new LogOnViewController();
 
         try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+            
             s.run();
             //c.load();
             m.load();

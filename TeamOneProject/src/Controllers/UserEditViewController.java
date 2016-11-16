@@ -5,9 +5,14 @@
  */
 package Controllers;
 
+import Library.Person;
+import Library.PersonFactory;
 import Library.User;
 import Library.UserFactory;
 import Views.UserEditView;
+import java.util.HashMap;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 
 /**
@@ -31,9 +36,18 @@ public class UserEditViewController extends EditViewControllerBase {
     /**
      *
      */
-    public UserFactory factory;
+    public UserFactory userFactory;
+    
+    public DefaultComboBoxModel<Person> personModel;
+    
+    /**
+     *
+     */
+    private final PersonFactory personFactory;
     
     private DefaultListModel<User> listModel;
+    
+    
     
     // </editor-fold> 
     
@@ -44,7 +58,8 @@ public class UserEditViewController extends EditViewControllerBase {
      */
 
     public UserEditViewController() {
-        factory = new UserFactory();
+        userFactory = new UserFactory();
+        personFactory = new PersonFactory();
     }
     
     // </editor-fold> 
@@ -67,8 +82,23 @@ public class UserEditViewController extends EditViewControllerBase {
         }
         
         this.listModel = listModel;
+        
+        HashMap<String, String> criteria = new HashMap<>();
+        List<Person> result = personFactory.executeSelect(criteria);
+        Person[] personArray = result.toArray(new Person[]{});
+        personModel = new DefaultComboBoxModel<>(personArray);
+        Person selectedPerson = null;
+        
+        for (Person item : result)
+        {
+            if (model != null && item.Id.equals(model.PersonId))
+            {
+                selectedPerson = item;
+                break;
+            }
+        }
 
-        view = new UserEditView(this);
+        view = new UserEditView(this, selectedPerson);
 
         view.setDeleteEnabled(!isNew);
     }
@@ -106,7 +136,7 @@ public class UserEditViewController extends EditViewControllerBase {
     @Override
     public void executeDelete() {
         //TODO: Add confirmation prompt
-        boolean successful = factory.executeDelete(model.toHashMap());
+        boolean successful = userFactory.executeDelete(model.toHashMap());
         
         if (successful) {
             listModel.removeElement(model);
@@ -116,13 +146,13 @@ public class UserEditViewController extends EditViewControllerBase {
 
     private void doSave() {
         if (isNew) {
-            boolean successful = factory.executeInsert(model.toHashMap());
+            boolean successful = userFactory.executeInsert(model.toHashMap());
             
             if (successful) {
                 listModel.addElement(model);
             }
         } else {
-            boolean successful = factory.executeUpdate(model.toHashMap());
+            boolean successful = userFactory.executeUpdate(model.toHashMap());
             
             if (!successful) {
                 //TODO: rollback changes in some way

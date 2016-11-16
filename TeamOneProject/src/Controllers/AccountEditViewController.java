@@ -7,7 +7,12 @@ package Controllers;
 
 import Library.Account;
 import Library.AccountFactory;
+import Library.Person;
+import Library.PersonFactory;
 import Views.AccountEditView;
+import java.util.HashMap;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 
 /**
@@ -31,7 +36,14 @@ public class AccountEditViewController extends EditViewControllerBase {
     /**
      *
      */
-    public AccountFactory factory;
+    public AccountFactory accountFactory;
+    
+    public DefaultComboBoxModel<Person> personModel;
+    
+    /**
+     *
+     */
+    private final PersonFactory personFactory;
     
     private DefaultListModel<Account> listModel;
     
@@ -44,7 +56,8 @@ public class AccountEditViewController extends EditViewControllerBase {
      */
 
     public AccountEditViewController() {
-        factory = new AccountFactory();
+        accountFactory = new AccountFactory();
+        personFactory = new PersonFactory();
     }
     
     // </editor-fold> 
@@ -67,6 +80,11 @@ public class AccountEditViewController extends EditViewControllerBase {
         }
         
         this.listModel = listModel;
+        
+        HashMap<String, String> criteria = new HashMap<>();
+        List<Person> result = personFactory.executeSelect(criteria);
+        Person[] personArray = result.toArray(new Person[]{});
+        personModel = new DefaultComboBoxModel<>(personArray);
 
         view = new AccountEditView(this);
 
@@ -106,7 +124,7 @@ public class AccountEditViewController extends EditViewControllerBase {
     @Override
     public void executeDelete() {
         //TODO: Add confirmation prompt
-        boolean successful = factory.executeDelete(model.toHashMap());
+        boolean successful = accountFactory.executeDelete(model.toHashMap());
         
         if (successful) {
             listModel.removeElement(model);
@@ -116,13 +134,13 @@ public class AccountEditViewController extends EditViewControllerBase {
 
     private void doSave() {
         if (isNew) {
-            boolean successful = factory.executeInsert(model.toHashMap());
+            boolean successful = accountFactory.executeInsert(model.toHashMap());
             
             if (successful) {
                 listModel.addElement(model);
             }
         } else {
-            boolean successful = factory.executeUpdate(model.toHashMap());
+            boolean successful = accountFactory.executeUpdate(model.toHashMap());
             
             if (!successful) {
                 //TODO: rollback changes in some way

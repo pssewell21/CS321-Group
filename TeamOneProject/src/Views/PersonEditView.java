@@ -142,7 +142,7 @@ public class PersonEditView extends javax.swing.JFrame {
                 .addComponent(deleteButton)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel6)
                     .addComponent(jLabel5)

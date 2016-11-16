@@ -1,24 +1,7 @@
-Tue Nov 15 19:43:04 CST 2016 : Apache Derby Network Server - 10.11.1.2 - (1629631) started and ready to accept connections on port 1527
+Tue Nov 15 22:21:51 CST 2016 : Apache Derby Network Server - 10.11.1.2 - (1629631) started and ready to accept connections on port 1527
 ----------------------------------------------------------------
-Tue Nov 15 19:43:04 CST 2016:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): instance a816c00e-0158-6acd-38d6-ffffdc267071 
-on database directory C:\Users\Owner\Documents\GitHub\CS321-Group\TeamOneProject\netbeans.derby\atmdb with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
-Loaded from file:/C:/Program%20Files/Java/jdk1.8.0_102/db/lib/derby.jar
-java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_102-b14
-user.dir=C:\Program Files\Java\jdk1.8.0_102\db
-os.name=Windows 10
-os.arch=amd64
-os.version=10.0
-derby.system.home=C:\Users\Owner\Documents\GitHub\CS321-Group\TeamOneProject\netbeans.derby
-Database Class Loader started - derby.database.classpath=''
-----------------------------------------------------------------
-Tue Nov 15 19:47:12 CST 2016:
-Shutting down instance a816c00e-0158-6acd-38d6-ffffdc267071 on database directory C:\Users\Owner\Documents\GitHub\CS321-Group\TeamOneProject\netbeans.derby\atmdb with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
-Tue Nov 15 19:47:12 CST 2016 Thread[DRDAConnThread_3,5,main] (DATABASE = atmdb), (DRDAID = {4}), Database 'atmdb' shutdown.
-----------------------------------------------------------------
-Tue Nov 15 19:47:20 CST 2016:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): instance dcd58064-0158-6acd-38d6-ffffdc267071 
+Tue Nov 15 22:21:51 CST 2016:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): instance a816c00e-0158-6b5e-977f-ffffdc267071 
 on database directory C:\Users\Owner\Documents\GitHub\CS321-Group\TeamOneProject\netbeans.derby\atmdb with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
 Loaded from file:/C:/Program%20Files/Java/jdk1.8.0_102/db/lib/derby.jar
 java.vendor=Oracle Corporation

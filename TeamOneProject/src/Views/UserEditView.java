@@ -6,6 +6,7 @@
 package Views;
 
 import Controllers.UserEditViewController;
+import Library.Person;
 
 /**
  *
@@ -16,6 +17,8 @@ public class UserEditView extends javax.swing.JFrame {
     
     private final UserEditViewController controller;
     
+    private Person selectedPerson;
+    
     // </editor-fold> 
     
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
@@ -23,9 +26,11 @@ public class UserEditView extends javax.swing.JFrame {
     /**
      *
      * @param controller
+     * @param selectedPerson
      */
-    public UserEditView(UserEditViewController controller) {
+    public UserEditView(UserEditViewController controller, Person selectedPerson) {
         this.controller = controller;
+        this.selectedPerson = selectedPerson;
         load();
     }
     
@@ -37,8 +42,12 @@ public class UserEditView extends javax.swing.JFrame {
         initComponents();
         
         if (controller.model.PersonId != null) { 
-            PersonIdField.setText(controller.model.PersonId.toString());
+            PersonComboBox.setSelectedItem(selectedPerson);
         }
+        else {
+            PersonComboBox.setSelectedItem(null);
+        }
+            
         UserNameField.setText(controller.model.UserName);
         PasswordField.setText(controller.model.Password);
         SecurityQuestion1Field.setText(controller.model.SecurityQuestion1);
@@ -46,10 +55,10 @@ public class UserEditView extends javax.swing.JFrame {
         SecurityQuestion2Field.setText(controller.model.SecurityQuestion2);
         SecurityAnswer2Field.setText(controller.model.SecurityAnswer2);
         if (controller.model.IsAdministrator != null) { 
-            PersonIdField.setText(controller.model.IsAdministrator.toString());
+            IsAdministratorCheckBox.setSelected(controller.model.IsAdministrator);
         }
         if (controller.model.IsAccountLocked != null) { 
-            PersonIdField.setText(controller.model.IsAccountLocked.toString());
+            IsAccountLockedCheckBox.setSelected(controller.model.IsAccountLocked);
         }
         SelectedThemeField.setText(controller.model.SelectedTheme);
 
@@ -66,15 +75,20 @@ public class UserEditView extends javax.swing.JFrame {
     }
 
     private void setModelFields() {
-        controller.model.PersonId = Long.parseLong(PersonIdField.getText());
+        selectedPerson = (Person) PersonComboBox.getSelectedItem();
+        
+        controller.model.PersonId = selectedPerson.Id;
+        //controller.model.PersonId = Long.parseLong(PersonIdField.getText());
         controller.model.UserName = UserNameField.getText();
         controller.model.Password = PasswordField.getText();
         controller.model.SecurityQuestion1 = SecurityQuestion1Field.getText();
         controller.model.SecurityAnswer1 = SecurityAnswer1Field.getText();
         controller.model.SecurityQuestion2 = SecurityQuestion2Field.getText();
         controller.model.SecurityAnswer2 = SecurityAnswer2Field.getText();
-        controller.model.IsAdministrator = Boolean.parseBoolean(IsAdministratorField.getText());
-        controller.model.IsAccountLocked = Boolean.parseBoolean(IsAccountLockedField.getText());
+        controller.model.IsAdministrator = IsAdministratorCheckBox.isSelected();
+        controller.model.IsAccountLocked = IsAccountLockedCheckBox.isSelected();
+        //controller.model.IsAdministrator = Boolean.parseBoolean(IsAdministratorField.getText());
+        //controller.model.IsAccountLocked = Boolean.parseBoolean(IsAccountLockedField.getText());
         controller.model.SelectedTheme = SelectedThemeField.getText();
     }
 
@@ -91,7 +105,6 @@ public class UserEditView extends javax.swing.JFrame {
         applyButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
-        PersonIdField = new javax.swing.JTextField();
         UserNameField = new javax.swing.JTextField();
         PasswordField = new javax.swing.JTextField();
         SecurityQuestion1Field = new javax.swing.JTextField();
@@ -106,11 +119,12 @@ public class UserEditView extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         SecurityAnswer2Field = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        IsAdministratorField = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        IsAccountLockedField = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         SelectedThemeField = new javax.swing.JTextField();
+        PersonComboBox = new javax.swing.JComboBox<>();
+        IsAdministratorCheckBox = new javax.swing.JCheckBox();
+        IsAccountLockedCheckBox = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -162,12 +176,26 @@ public class UserEditView extends javax.swing.JFrame {
 
         jLabel11.setText("Selected Theme:");
 
+        PersonComboBox.setModel(controller.personModel);
+
+        IsAdministratorCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IsAdministratorCheckBoxActionPerformed(evt);
+            }
+        });
+
+        IsAccountLockedCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IsAccountLockedCheckBoxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(128, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(applyButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(saveButton)
@@ -177,50 +205,47 @@ public class UserEditView extends javax.swing.JFrame {
                 .addComponent(deleteButton)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addGap(58, 58, 58)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(42, 42, 42)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4)))
+                        .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addGap(4, 4, 4)
-                        .addComponent(SelectedThemeField, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addGap(4, 4, 4)
-                        .addComponent(IsAccountLockedField, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(4, 4, 4)
-                        .addComponent(IsAdministratorField, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(4, 4, 4)
-                        .addComponent(SecurityAnswer2Field, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(4, 4, 4)
-                        .addComponent(SecurityQuestion2Field, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(4, 4, 4)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(PersonIdField)
-                            .addComponent(UserNameField)
-                            .addComponent(PasswordField)
-                            .addComponent(SecurityQuestion1Field)
-                            .addComponent(SecurityAnswer1Field, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(SelectedThemeField, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SecurityQuestion2Field, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(UserNameField)
+                        .addComponent(PasswordField)
+                        .addComponent(SecurityQuestion1Field)
+                        .addComponent(SecurityAnswer1Field)
+                        .addComponent(PersonComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(SecurityAnswer2Field, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(IsAccountLockedCheckBox)
+                                .addComponent(IsAdministratorCheckBox)))))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(PersonIdField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PersonComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -247,18 +272,18 @@ public class UserEditView extends javax.swing.JFrame {
                     .addComponent(SecurityAnswer2Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(IsAdministratorField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(IsAdministratorCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(IsAccountLockedField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(IsAccountLockedCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE))
+                .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SelectedThemeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveButton)
                     .addComponent(cancelButton)
@@ -288,14 +313,22 @@ public class UserEditView extends javax.swing.JFrame {
         controller.executeDelete();
     }//GEN-LAST:event_deleteButtonActionPerformed
 
+    private void IsAccountLockedCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IsAccountLockedCheckBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_IsAccountLockedCheckBoxActionPerformed
+
+    private void IsAdministratorCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IsAdministratorCheckBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_IsAdministratorCheckBoxActionPerformed
+
     // </editor-fold> 
     
     // <editor-fold defaultstate="collapsed" desc="Generated UI Variables"> 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField IsAccountLockedField;
-    private javax.swing.JTextField IsAdministratorField;
+    private javax.swing.JCheckBox IsAccountLockedCheckBox;
+    private javax.swing.JCheckBox IsAdministratorCheckBox;
     private javax.swing.JTextField PasswordField;
-    private javax.swing.JTextField PersonIdField;
+    private javax.swing.JComboBox<Person> PersonComboBox;
     private javax.swing.JTextField SecurityAnswer1Field;
     private javax.swing.JTextField SecurityAnswer2Field;
     private javax.swing.JTextField SecurityQuestion1Field;
