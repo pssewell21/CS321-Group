@@ -20,7 +20,7 @@ public class Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        AesEncryptionSandbox s = new AesEncryptionSandbox();
+        AesEncryption s = new AesEncryption();
 
         // Open the connection to the database when the application is launched
         //TestDataListViewController c = new TestDataListViewController();

@@ -17,7 +17,7 @@ import javax.xml.bind.DatatypeConverter;
  *
  * @author Owner
  */
-public class AesEncryptionSandbox {
+public class AesEncryption {
 
     /**
      * 1. Generate a plain text for encryption 2. Get a secret key (printed in
@@ -27,12 +27,12 @@ public class AesEncryptionSandbox {
     public void run() throws Exception {
         String plainText = "Hello World";
         SecretKey secKey = getSecretEncryptionKey();
-        byte[] cipherText = encryptText(plainText, secKey);
-        String decryptedText = decryptText(cipherText, secKey);
+        String excryptedText = encryptText(plainText);
+        String decryptedText = decryptText(DatatypeConverter.parseHexBinary(excryptedText));
 
         System.out.println("Original Text:" + plainText);
         System.out.println("AES Key (Hex Form):" + bytesToHex(secKey.getEncoded()));
-        System.out.println("Encrypted Text (Hex Form):" + bytesToHex(cipherText));
+        System.out.println("Encrypted Text (Hex Form):" + excryptedText);
         System.out.println("Descrypted Text:" + decryptedText);
     }
 
@@ -44,8 +44,7 @@ public class AesEncryptionSandbox {
      * @throws Exception
      */
     public static SecretKey getSecretEncryptionKey() throws Exception {
-        String key = "1918CE2C428773705B9B43688E4B4FB2";
-        byte[] raw = DatatypeConverter.parseHexBinary(key);
+        byte[] raw = DatatypeConverter.parseHexBinary("1918CE2C428773705B9B43688E4B4FB2");
         SecretKeySpec skeySpec = new SecretKeySpec(raw, "AES");
 
         return skeySpec;
@@ -55,30 +54,28 @@ public class AesEncryptionSandbox {
      * Encrypts plainText in AES using the secret key
      *
      * @param plainText
-     * @param secKey
      * @return
      * @throws Exception
      */
-    public static byte[] encryptText(String plainText, SecretKey secKey) throws Exception {
+    public static final String encryptText(String plainText) throws Exception {   
         // AES defaults to AES/ECB/PKCS5Padding in Java 7
         Cipher aesCipher = Cipher.getInstance("AES");
-        aesCipher.init(Cipher.ENCRYPT_MODE, secKey);
+        aesCipher.init(Cipher.ENCRYPT_MODE, getSecretEncryptionKey());
         byte[] byteCipherText = aesCipher.doFinal(plainText.getBytes());
-        return byteCipherText;
+        return bytesToHex(byteCipherText);
     }
 
     /**
      * Decrypts encrypted byte array using the key used for encryption.
      *
      * @param byteCipherText
-     * @param secKey
      * @return
      * @throws Exception
      */
-    public static String decryptText(byte[] byteCipherText, SecretKey secKey) throws Exception {
+    public static final String decryptText(byte[] byteCipherText) throws Exception {
         // AES defaults to AES/ECB/PKCS5Padding in Java 7
         Cipher aesCipher = Cipher.getInstance("AES");
-        aesCipher.init(Cipher.DECRYPT_MODE, secKey);
+        aesCipher.init(Cipher.DECRYPT_MODE, getSecretEncryptionKey());
         byte[] bytePlainText = aesCipher.doFinal(byteCipherText);
         return new String(bytePlainText);
     }
