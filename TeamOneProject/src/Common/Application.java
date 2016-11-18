@@ -6,6 +6,7 @@
 package Common;
 
 import Controllers.LogOnViewController;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -17,11 +18,7 @@ public class Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        AesEncryption s = new AesEncryption();
-
-        // Open the connection to the database when the application is launched
-        //TestDataListViewController c = new TestDataListViewController();
-        LogOnViewController m = new LogOnViewController();
+        LogOnViewController c = new LogOnViewController();
 
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -31,10 +28,8 @@ public class Application {
                 }
             }
             
-            s.run();
-            //c.load();
-            m.load();
-        } catch (Exception e) {
+            c.load();
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
             ExceptionHandler.handleException(e);
         }
     }

@@ -23,6 +23,7 @@ public class AesEncryption {
      * 1. Generate a plain text for encryption 2. Get a secret key (printed in
      * hexadecimal form). In actual use this must by encrypted and kept safe.
      * The same key is required for decryption. 3.
+     * @throws java.lang.Exception
      */
     public void run() throws Exception {
         String plainText = "Hello World";
@@ -34,20 +35,6 @@ public class AesEncryption {
         System.out.println("AES Key (Hex Form):" + bytesToHex(secKey.getEncoded()));
         System.out.println("Encrypted Text (Hex Form):" + excryptedText);
         System.out.println("Descrypted Text:" + decryptedText);
-    }
-
-    /**
-     * gets the AES encryption key. In your actual programs, this should be
-     * safely stored.
-     *
-     * @return
-     * @throws Exception
-     */
-    public static SecretKey getSecretEncryptionKey() throws Exception {
-        byte[] raw = DatatypeConverter.parseHexBinary("1918CE2C428773705B9B43688E4B4FB2");
-        SecretKeySpec skeySpec = new SecretKeySpec(raw, "AES");
-
-        return skeySpec;
     }
 
     /**
@@ -78,6 +65,20 @@ public class AesEncryption {
         aesCipher.init(Cipher.DECRYPT_MODE, getSecretEncryptionKey());
         byte[] bytePlainText = aesCipher.doFinal(byteCipherText);
         return new String(bytePlainText);
+    }
+    
+    /**
+     * gets the AES encryption key. In your actual programs, this should be
+     * safely stored.
+     *
+     * @return
+     * @throws Exception
+     */
+    private static SecretKey getSecretEncryptionKey() throws Exception {
+        byte[] raw = DatatypeConverter.parseHexBinary("1918CE2C428773705B9B43688E4B4FB2");
+        SecretKeySpec skeySpec = new SecretKeySpec(raw, "AES");
+
+        return skeySpec;
     }
 
     /**
