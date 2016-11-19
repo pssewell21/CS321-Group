@@ -35,7 +35,6 @@ public final class DalFields {
     public static final String SOCIAL_SECURITY_NUMBER = "SOCIAL_SECURITY_NUMBER";
     public static final String TIMESTAMP = "TIMESTAMP";
     public static final String TRANSACTION_TIMESTAMP = "TRANSACTION_TIMESTAMP";
-    public static final String USER_ID = "USER_ID";
     public static final String USER_NAME = "USER_NAME";
     public static final String VALUE = "VALUE";
 }

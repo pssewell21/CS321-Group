@@ -7,7 +7,6 @@ package Library;
 
 import Common.ID;
 import DataAccess.DataAccessJavaDb;
-import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,14 +16,14 @@ import java.util.List;
  *
  * @author Owner
  */
-public class AccountTransactionFactory extends LibraryFactoryBase {
+public class AccountPersonMapFactory extends LibraryFactoryBase {
 
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     /**
      *
      */
-    public AccountTransactionFactory() {
-        super("APP", "ACCOUNT_TRANSACTION");
+    public AccountPersonMapFactory() {
+        super("APP", "ACCOUNT_PERSON_MAP");
     }
 
     // </editor-fold> 
@@ -35,7 +34,7 @@ public class AccountTransactionFactory extends LibraryFactoryBase {
 //
 //        criteria.put(DalFields.ID, Long.toString(id));
 //
-//        List<User> result = executeSelect(criteria);
+//        List<Person> result = executeSelect(criteria);
 //
 //        if (result.size() > 0) {
 //            return result.get(0);
@@ -46,8 +45,8 @@ public class AccountTransactionFactory extends LibraryFactoryBase {
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Implementation of LibraryFactoryBase Methods"> 
     @Override
-    public List<Account> executeSelect(HashMap<String, String> criteria) {
-        List<Account> list = new ArrayList<>();
+    public List<AccountPersonMap> executeSelect(HashMap<String, String> criteria) {
+        List<AccountPersonMap> list = new ArrayList<>();
 
         DataAccessJavaDb.openConnection();
 
@@ -60,14 +59,10 @@ public class AccountTransactionFactory extends LibraryFactoryBase {
 
                 while (resultSet != null && resultSet.next()) {
                     Long id = resultSet.getLong(DalFields.ID);
-                    Long accountNumber = resultSet.getLong(DalFields.ACCOUNT_NUMBER);
-                    String accountType = resultSet.getString(DalFields.ACCOUNT_TYPE);
-                    String description = resultSet.getString(DalFields.DESCRIPTION);
-                    BigDecimal balance = resultSet.getBigDecimal(DalFields.BALANCE);
-                    BigDecimal interestRate = resultSet.getBigDecimal(DalFields.INTEREST_RATE);
+                    Long accountId = resultSet.getLong(DalFields.ACCOUNT_ID);
+                    Long personId = resultSet.getLong(DalFields.PERSON_ID);
 
-                    list.add(new Account(id, accountNumber, accountType, description,
-                            balance, interestRate));
+                    list.add(new AccountPersonMap(id, accountId, personId));
                 }
             } else {
                 System.out.println("No select command was run from the provided criteria");
@@ -87,7 +82,7 @@ public class AccountTransactionFactory extends LibraryFactoryBase {
     @Override
     public String generateSelectCommand(HashMap<String, String> criteria) {
         //TODOL: Update this comment to be accurate
-        // Can filter by ID, ACCOUNT_NUMBER, or ACCOUNT_TYPE
+        // Can filter by ID, ACCOUNT_ID, or PERSON_ID
         String command = "SELECT * FROM " + SCHEMA + "." + TABLE_NAME;
 
         if (criteria != null && !criteria.isEmpty()) {
@@ -95,13 +90,10 @@ public class AccountTransactionFactory extends LibraryFactoryBase {
             boolean insertAnd = false;
 
             String id = criteria.get(DalFields.ID);
-            String accountNumber = criteria.get(DalFields.ACCOUNT_NUMBER);
-            String accountType = criteria.get(DalFields.ACCOUNT_TYPE);
-            //String description = criteria.get(DalFields.DESCRIPTION);
-            //String balance = criteria.get(DalFields.BALANCE);
-            //String interestRate = criteria.get(DalFields.INTEREST_RATE);
+            String accountId = criteria.get(DalFields.ACCOUNT_ID);
+            String personId = criteria.get(DalFields.PERSON_ID);
 
-            if (hasValue(id) || hasValue(accountNumber) || hasValue(accountType)) {
+            if (hasValue(id) || hasValue(accountId) || hasValue(personId)) {
                 command += "\nWHERE ";
 
                 if (hasValue(id)) {
@@ -109,21 +101,21 @@ public class AccountTransactionFactory extends LibraryFactoryBase {
                     insertAnd = true;
                 }
 
-                if (hasValue(accountNumber)) {
+                if (hasValue(accountId)) {
                     if (insertAnd) {
                         command += and;
                     }
 
-                    command += DalFields.ACCOUNT_NUMBER + " = " + accountNumber + " ";
+                    command += DalFields.ACCOUNT_ID + " = " + accountId + " ";
                     insertAnd = true;
                 }
 
-                if (hasValue(accountType)) {
+                if (hasValue(personId)) {
                     if (insertAnd) {
                         command += and;
                     }
 
-                    command += DalFields.ACCOUNT_TYPE + " = '" + accountType + "' ";
+                    command += DalFields.PERSON_ID + " = '" + personId + "' ";
                 }
             }
         }
@@ -141,37 +133,16 @@ public class AccountTransactionFactory extends LibraryFactoryBase {
         String command = "";
 
         if (!criteria.isEmpty()) {
-            String accountNumber = criteria.get(DalFields.ACCOUNT_NUMBER);
-            String accountType = criteria.get(DalFields.ACCOUNT_TYPE);
-            String description = criteria.get(DalFields.DESCRIPTION);
-            String balance = criteria.get(DalFields.BALANCE);
-            String interestRate = criteria.get(DalFields.INTEREST_RATE);
+            String accountId = criteria.get(DalFields.ACCOUNT_ID);
+            String personId = criteria.get(DalFields.PERSON_ID);
 
-            if (hasValue(accountNumber)
-                    && hasValue(accountType)
-                    && hasValue(balance)) {
+            if (hasValue(accountId)
+                    && hasValue(personId)) {
                 command += "INSERT INTO " + SCHEMA + "." + TABLE_NAME + " VALUES ("
                         + ID.newId() + ", "
-                        + "" + accountNumber + ", "
-                        + "'" + accountType + "', ";
-                
-                if (hasValue(description)) {
-                    command += "'" + description + "', ";
-                } else {
-                    command += "NULL, ";
-                }
-                
-                command += "" + balance + ", ";
-                
-                
-                
-                if (hasValue(interestRate)) {
-                    command += "" + interestRate + "";
-                } else {
-                    command += "NULL";
-                }
-                
-                command += ")";
+                        + "" + accountId + ", "
+                        + "" + personId + ""
+                        + ")";
             } else {
                 //TODO: Make the logic for printing this message logic better
                 System.out.println("Required field ????? not set.  Insert failed.");
@@ -195,33 +166,15 @@ public class AccountTransactionFactory extends LibraryFactoryBase {
         if (!criteria.isEmpty()) {
 
             String id = criteria.get(DalFields.ID);
-            String accountNumber = criteria.get(DalFields.ACCOUNT_NUMBER);
-            String accountType = criteria.get(DalFields.ACCOUNT_TYPE);
-            String description = criteria.get(DalFields.DESCRIPTION);
-            String balance = criteria.get(DalFields.BALANCE);
-            String interestRate = criteria.get(DalFields.INTEREST_RATE);
+            String accountId = criteria.get(DalFields.ACCOUNT_ID);
+            String personId = criteria.get(DalFields.PERSON_ID);
 
             if (hasValue(id)
-                    && hasValue(accountNumber)
-                    && hasValue(accountType)
-                    && hasValue(balance)) {
+                    && hasValue(accountId)
+                    && hasValue(personId)) {
                 command += "UPDATE " + SCHEMA + "." + TABLE_NAME + " SET "
-                        + DalFields.ACCOUNT_NUMBER + " = " + accountNumber + ", "
-                        + DalFields.ACCOUNT_TYPE + " = '" + accountType + "', ";
-
-                if (hasValue(description)) {
-                    command += DalFields.DESCRIPTION + " = '" + description + "', ";
-                } else {
-                    command += DalFields.DESCRIPTION + " = NULL, ";
-                }
-                
-                command += DalFields.BALANCE + " = " + balance + ", ";
-
-                if (hasValue(interestRate)) {
-                    command += DalFields.INTEREST_RATE + " = " + interestRate + " ";
-                } else {
-                    command += DalFields.INTEREST_RATE + " = NULL ";
-                }
+                        + DalFields.ACCOUNT_ID + " = " + accountId + ", "
+                        + DalFields.PERSON_ID + " = " + personId + " ";
                 
                 command += "WHERE " + DalFields.ID + " = " + id;
             }

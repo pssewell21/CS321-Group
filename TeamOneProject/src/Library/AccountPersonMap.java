@@ -5,15 +5,13 @@
  */
 package Library;
 
-import java.math.BigDecimal;
-import java.sql.Timestamp;
 import java.util.HashMap;
 
 /**
  *
  * @author Owner
  */
-public class AccountTransaction extends LibraryBase  {
+public class AccountPersonMap extends LibraryBase  {
     
     // <editor-fold defaultstate="collapsed" desc="Member Variables">   
 
@@ -27,30 +25,13 @@ public class AccountTransaction extends LibraryBase  {
      */
     public Long PersonId;
     
-    /**
-     *
-     */
-    public Timestamp Timestamp;
-    
-    /**
-     *
-     */
-    public String Description;
-    
-    /**
-     *
-     */
-    public BigDecimal Amount;
-
-    // </editor-fold>
-    
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
 
     /**
      * This constructor is used for creating new objects
      */
     
-    public AccountTransaction() {
+    public AccountPersonMap() {
         super();
     }
 
@@ -59,22 +40,13 @@ public class AccountTransaction extends LibraryBase  {
      * @param id
      * @param accountId
      * @param personId
-     * @param timestamp
-     * @param description
-     * @param amount
      */
-    public AccountTransaction(Long id, 
+    public AccountPersonMap(Long id, 
             Long accountId, 
-            Long personId, 
-            Timestamp timestamp, 
-            String description, 
-            BigDecimal amount) {
+            Long personId) {
         super(id);
         AccountId = accountId;
-        PersonId = personId;
-        Timestamp = timestamp;
-        Description = description;
-        Amount = amount;                  
+        PersonId = personId;               
     }
     
     // </editor-fold>
@@ -85,10 +57,7 @@ public class AccountTransaction extends LibraryBase  {
     public String toString() {
         return super.toString() + ", " 
                 + DalFields.ACCOUNT_ID + ": " + AccountId + ", "
-                + DalFields.PERSON_ID + ": " + PersonId + ", "
-                + DalFields.TIMESTAMP + ": " + Timestamp + ", "
-                + DalFields.DESCRIPTION + ": " + Description + ", "
-                + DalFields.AMOUNT + ": " + Amount;
+                + DalFields.PERSON_ID + ": " + PersonId;
     }
 
     /**
@@ -102,17 +71,7 @@ public class AccountTransaction extends LibraryBase  {
         map.put(DalFields.ID, Id.toString());
         map.put(DalFields.ACCOUNT_ID, AccountId.toString());
         map.put(DalFields.PERSON_ID, PersonId.toString());
-        map.put(DalFields.TIMESTAMP, Timestamp.toString());
-        if (Description != null) {
-            map.put(DalFields.DESCRIPTION, Description);
-        }
-        else {
-            map.put(DalFields.DESCRIPTION, null);
-        }
-        map.put(DalFields.AMOUNT, Amount.toString());
 
         return map;
-    }  
-    
-    // </editor-fold>
+    }
 }
