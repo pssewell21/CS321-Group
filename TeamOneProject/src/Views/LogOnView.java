@@ -31,7 +31,7 @@ public class LogOnView extends javax.swing.JFrame {
         initComponents();
         logOnFailureLabel.setVisible(false);
         
-        userNameField.setText("default");
+        userNameField.setText("admin");
         passwordField.setText("password");
         
         setVisible(true);

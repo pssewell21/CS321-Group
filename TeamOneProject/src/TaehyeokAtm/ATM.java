@@ -7,7 +7,7 @@ package TaehyeokAtm;
 
 import java.util.*;
 
-class ATM {
+public class ATM {
 
     Trade td[];
     private ATMUI atmui;

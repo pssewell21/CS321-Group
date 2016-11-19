@@ -9,6 +9,7 @@ import Database.DatabaseProvisioner;
 import Library.DalFields;
 import Library.User;
 import Library.UserFactory;
+import TaehyeokAtm.ATM;
 import Views.LogOnView;
 import java.util.HashMap;
 import java.util.List;
@@ -65,8 +66,21 @@ public class LogOnViewController {
         User user = result.get(0);
         
         if (user.Password.equals(password)) {
-            NavigationViewController c = new NavigationViewController();
-            c.load();
+            if (user.IsAdministrator)
+            {
+                NavigationViewController c = new NavigationViewController();
+                c.load();
+            }
+            else if (!user.IsAdministrator)
+            {
+                ATM atm = new ATM();
+                atm.uirun();
+            }
+            else
+            {
+                System.out.println("IsAdministrator is NULL.");
+            }
+                        
             view.dispose();
             
             return true;

@@ -99,27 +99,52 @@ public final class DatabaseProvisioner {
             + "    CONSTRAINT TEST_DATA_LOOKUP_KEY_UC UNIQUE (LOOKUP_KEY)\n"
             + ")";
 
-    private static final String INSERT_DEFAULT_PERSON_SCRIPT = "INSERT INTO APP.PERSON VALUES \n"
+    private static final String INSERT_ADMIN_PERSON_SCRIPT = "INSERT INTO APP.PERSON VALUES \n"
             + "(\n"
             + "    112233445566778899, \n"
-            + "    'Default User', \n"
+            + "    'Admin User', \n"
             + "    '01/01/1900', \n"
             + "    '1 Infinite Loop, Cupertino, CA 95014', \n"
             + "    NULL, \n"
             + "    '000000000'\n"
             + ")";
+    
+    private static final String INSERT_STANDARD_PERSON_SCRIPT = "INSERT INTO APP.PERSON VALUES \n"
+            + "(\n"
+            + "    223344556677889911, \n"
+            + "    'Standard User', \n"
+            + "    '01/01/1900', \n"
+            + "    '1 Infinite Loop, Cupertino, CA 95014', \n"
+            + "    NULL, \n"
+            + "    '111111111'\n"
+            + ")";
 
-    private static final String INSERT_DEFAULT_ATM_USER_SCRIPT = "INSERT INTO APP.ATM_USER VALUES \n"
+    private static final String INSERT_ADMIN_ATM_USER_SCRIPT = "INSERT INTO APP.ATM_USER VALUES \n"
             + "(\n"
             + "    998877665544332211, \n"
             + "    112233445566778899, \n"
-            + "    'default', \n"
+            + "    'admin', \n"
             + "    'password', \n"
             + "    'question1?', \n"
             + "    'answer', \n"
             + "    'question2?', \n"
             + "    'answer', \n"
             + "    true, \n"
+            + "    false, \n"
+            + "    'default' \n"
+            + ")";
+    
+    private static final String INSERT_STANDARD_ATM_USER_SCRIPT = "INSERT INTO APP.ATM_USER VALUES \n"
+            + "(\n"
+            + "    887766554433221199, \n"
+            + "    223344556677889911, \n"
+            + "    'standard', \n"
+            + "    'password', \n"
+            + "    'question1?', \n"
+            + "    'answer', \n"
+            + "    'question2?', \n"
+            + "    'answer', \n"
+            + "    false, \n"
             + "    false, \n"
             + "    'default' \n"
             + ")";
@@ -184,11 +209,17 @@ public final class DatabaseProvisioner {
     private static void addDefaultData() {
         System.out.println("Insert commands being executed:");
 
-        System.out.println(INSERT_DEFAULT_PERSON_SCRIPT);
-        DataAccessJavaDb.executeInsert(INSERT_DEFAULT_PERSON_SCRIPT);
+        System.out.println(INSERT_ADMIN_PERSON_SCRIPT);
+        DataAccessJavaDb.executeInsert(INSERT_ADMIN_PERSON_SCRIPT);
+        
+        System.out.println(INSERT_STANDARD_PERSON_SCRIPT);
+        DataAccessJavaDb.executeInsert(INSERT_STANDARD_PERSON_SCRIPT);
 
-        System.out.println(INSERT_DEFAULT_ATM_USER_SCRIPT);
-        DataAccessJavaDb.executeInsert(INSERT_DEFAULT_ATM_USER_SCRIPT);
+        System.out.println(INSERT_ADMIN_ATM_USER_SCRIPT);
+        DataAccessJavaDb.executeInsert(INSERT_ADMIN_ATM_USER_SCRIPT);
+
+        System.out.println(INSERT_STANDARD_ATM_USER_SCRIPT);
+        DataAccessJavaDb.executeInsert(INSERT_STANDARD_ATM_USER_SCRIPT);
     }
 
     // </editor-fold>
