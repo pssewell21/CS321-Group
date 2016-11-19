@@ -7,46 +7,71 @@ package TaehyeokAtm;
 
 import java.io.*;
 
-public class Trade implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private long accountnumber;//계좌번호;
-	private long tradedate;//날짜;
-	private boolean tradetype;//거래유형;
-	private long trademoney;//거래액;
-	private long balance;//잔고;
+public class Trade implements Serializable {
 
-	Trade(Trade td)
-	{
-		this.accountnumber = td.getAccountnumber();
-		this.tradedate = td.getTradedate();
-		this.balance = td.getBalance();
-		this.tradetype = td.getTradetype();
-		this.trademoney = td.getTrademoney();
-	}
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    private long accountnumber;//계좌번호;
+    private long tradedate;//날짜;
+    private boolean tradetype;//거래유형;
+    private long trademoney;//거래액;
+    private long balance;//잔고;
 
-	Trade(long accountnumber,long tradedate,long balance,boolean tradetype,long trademoney)
-	{
-		this.accountnumber = accountnumber;
-		this.tradedate = tradedate;
-		this.balance = balance;
-		this.tradetype = tradetype;
-		this.trademoney = trademoney;
-	}
+    Trade(Trade td) {
+        this.accountnumber = td.getAccountnumber();
+        this.tradedate = td.getTradedate();
+        this.balance = td.getBalance();
+        this.tradetype = td.getTradetype();
+        this.trademoney = td.getTrademoney();
+    }
 
-	public long getAccountnumber(){return accountnumber;}
-	public long getTradedate(){return tradedate;}
-	public long getBalance(){return balance;}
-	public boolean getTradetype(){return tradetype;}
-	public long getTrademoney(){return trademoney;}
+    Trade(long accountnumber, long tradedate, long balance, boolean tradetype, long trademoney) {
+        this.accountnumber = accountnumber;
+        this.tradedate = tradedate;
+        this.balance = balance;
+        this.tradetype = tradetype;
+        this.trademoney = trademoney;
+    }
 
+    public long getAccountnumber() {
+        return accountnumber;
+    }
 
-	public void setAccountnumber(long accountnumber){this.accountnumber = accountnumber;}
-	public void setTradedate(long tradedate){this.tradedate = tradedate;}
-	public void setBalance(long balance){this.balance = balance;}
-	public void setTradetype(boolean tradetype){this.tradetype = tradetype;}
-	public void setTrademoney(long trademoney){this.trademoney = trademoney;}
+    public long getTradedate() {
+        return tradedate;
+    }
+
+    public long getBalance() {
+        return balance;
+    }
+
+    public boolean getTradetype() {
+        return tradetype;
+    }
+
+    public long getTrademoney() {
+        return trademoney;
+    }
+
+    public void setAccountnumber(long accountnumber) {
+        this.accountnumber = accountnumber;
+    }
+
+    public void setTradedate(long tradedate) {
+        this.tradedate = tradedate;
+    }
+
+    public void setBalance(long balance) {
+        this.balance = balance;
+    }
+
+    public void setTradetype(boolean tradetype) {
+        this.tradetype = tradetype;
+    }
+
+    public void setTrademoney(long trademoney) {
+        this.trademoney = trademoney;
+    }
 }
-
