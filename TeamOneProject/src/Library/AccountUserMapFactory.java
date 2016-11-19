@@ -16,14 +16,14 @@ import java.util.List;
  *
  * @author Owner
  */
-public class AccountPersonMapFactory extends LibraryFactoryBase {
+public class AccountUserMapFactory extends LibraryFactoryBase {
 
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     /**
      *
      */
-    public AccountPersonMapFactory() {
-        super("APP", "ACCOUNT_PERSON_MAP");
+    public AccountUserMapFactory() {
+        super("APP", "ACCOUNT_ATM_USER_MAP");
     }
 
     // </editor-fold> 
@@ -45,8 +45,8 @@ public class AccountPersonMapFactory extends LibraryFactoryBase {
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Implementation of LibraryFactoryBase Methods"> 
     @Override
-    public List<AccountPersonMap> executeSelect(HashMap<String, String> criteria) {
-        List<AccountPersonMap> list = new ArrayList<>();
+    public List<AccountUserMap> executeSelect(HashMap<String, String> criteria) {
+        List<AccountUserMap> list = new ArrayList<>();
 
         DataAccessJavaDb.openConnection();
 
@@ -60,9 +60,9 @@ public class AccountPersonMapFactory extends LibraryFactoryBase {
                 while (resultSet != null && resultSet.next()) {
                     Long id = resultSet.getLong(DalFields.ID);
                     Long accountId = resultSet.getLong(DalFields.ACCOUNT_ID);
-                    Long personId = resultSet.getLong(DalFields.PERSON_ID);
+                    Long userId = resultSet.getLong(DalFields.USER_ID);
 
-                    list.add(new AccountPersonMap(id, accountId, personId));
+                    list.add(new AccountUserMap(id, accountId, userId));
                 }
             } else {
                 System.out.println("No select command was run from the provided criteria");
@@ -82,7 +82,7 @@ public class AccountPersonMapFactory extends LibraryFactoryBase {
     @Override
     public String generateSelectCommand(HashMap<String, String> criteria) {
         //TODOL: Update this comment to be accurate
-        // Can filter by ID, ACCOUNT_ID, or PERSON_ID
+        // Can filter by ID, ACCOUNT_ID, or USER_ID
         String command = "SELECT * FROM " + SCHEMA + "." + TABLE_NAME;
 
         if (criteria != null && !criteria.isEmpty()) {
@@ -91,9 +91,9 @@ public class AccountPersonMapFactory extends LibraryFactoryBase {
 
             String id = criteria.get(DalFields.ID);
             String accountId = criteria.get(DalFields.ACCOUNT_ID);
-            String personId = criteria.get(DalFields.PERSON_ID);
+            String userId = criteria.get(DalFields.USER_ID);
 
-            if (hasValue(id) || hasValue(accountId) || hasValue(personId)) {
+            if (hasValue(id) || hasValue(accountId) || hasValue(userId)) {
                 command += "\nWHERE ";
 
                 if (hasValue(id)) {
@@ -110,12 +110,12 @@ public class AccountPersonMapFactory extends LibraryFactoryBase {
                     insertAnd = true;
                 }
 
-                if (hasValue(personId)) {
+                if (hasValue(userId)) {
                     if (insertAnd) {
                         command += and;
                     }
 
-                    command += DalFields.PERSON_ID + " = '" + personId + "' ";
+                    command += DalFields.USER_ID + " = '" + userId + "' ";
                 }
             }
         }
@@ -134,14 +134,14 @@ public class AccountPersonMapFactory extends LibraryFactoryBase {
 
         if (!criteria.isEmpty()) {
             String accountId = criteria.get(DalFields.ACCOUNT_ID);
-            String personId = criteria.get(DalFields.PERSON_ID);
+            String userId = criteria.get(DalFields.USER_ID);
 
             if (hasValue(accountId)
-                    && hasValue(personId)) {
+                    && hasValue(userId)) {
                 command += "INSERT INTO " + SCHEMA + "." + TABLE_NAME + " VALUES ("
                         + ID.newId() + ", "
                         + "" + accountId + ", "
-                        + "" + personId + ""
+                        + "" + userId + ""
                         + ")";
             } else {
                 //TODO: Make the logic for printing this message logic better
@@ -167,14 +167,14 @@ public class AccountPersonMapFactory extends LibraryFactoryBase {
 
             String id = criteria.get(DalFields.ID);
             String accountId = criteria.get(DalFields.ACCOUNT_ID);
-            String personId = criteria.get(DalFields.PERSON_ID);
+            String userId = criteria.get(DalFields.USER_ID);
 
             if (hasValue(id)
                     && hasValue(accountId)
-                    && hasValue(personId)) {
+                    && hasValue(userId)) {
                 command += "UPDATE " + SCHEMA + "." + TABLE_NAME + " SET "
                         + DalFields.ACCOUNT_ID + " = " + accountId + ", "
-                        + DalFields.PERSON_ID + " = " + personId + " ";
+                        + DalFields.USER_ID + " = " + userId + " ";
                 
                 command += "WHERE " + DalFields.ID + " = " + id;
             }

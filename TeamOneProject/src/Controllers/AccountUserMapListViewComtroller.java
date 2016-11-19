@@ -5,9 +5,9 @@
  */
 package Controllers;
 
-import Library.AccountPersonMap;
-import Library.AccountPersonMapFactory;
-import Views.AccountPersonMapListView;
+import Library.AccountUserMap;
+import Library.AccountUserMapFactory;
+import Views.AccountUserMapListView;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
@@ -17,14 +17,14 @@ import javax.swing.DefaultListModel;
  *
  * @author pssew
  */
-public class AccountPersonMapListViewComtroller extends ListViewControllerBase {
+public class AccountUserMapListViewComtroller extends ListViewControllerBase {
 //    
 //    // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
 //
 //    /**
 //     *
 //     */
-//    public AccountPersonMapListView view;
+//    public AccountUserMapListView view;
 //    
 //    /**
 //     *
@@ -34,14 +34,14 @@ public class AccountPersonMapListViewComtroller extends ListViewControllerBase {
 //    /**
 //     *
 //     */
-//    public AccountPersonMapFactory factory;
+//    public AccountUserMapFactory factory;
 //    
 //    // </editor-fold> 
 //    
 //    // <editor-fold defaultstate="collapsed" desc="Constructors"> 
 //    
-//    public AccountPersonMapListViewComtroller() {
-//        factory = new AccountPersonMapFactory();
+//    public AccountUserMapListViewComtroller() {
+//        factory = new AccountUserMapFactory();
 //    }
 //    
 //    // </editor-fold> 
@@ -51,7 +51,7 @@ public class AccountPersonMapListViewComtroller extends ListViewControllerBase {
 //    public void load() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
 //        loadModel();
 //        
-//        view = new AccountPersonMapListView(this);
+//        view = new AccountUserMapListView(this);
 //    }
 //    
 //    private void loadModel() {
@@ -61,7 +61,7 @@ public class AccountPersonMapListViewComtroller extends ListViewControllerBase {
 //
 //        listModel = new DefaultListModel<>();
 //        for (Object item : result) {
-//            listModel.addElement((AccountPersonMap) item);
+//            listModel.addElement((AccountUserMap) item);
 //        }
 //    }
 //    
@@ -70,7 +70,7 @@ public class AccountPersonMapListViewComtroller extends ListViewControllerBase {
 //        controller.load(null, listModel);
 //    }
 //
-//    public void executeEdit(AccountPersonMap item) {
+//    public void executeEdit(AccountUserMap item) {
 //        PersonEditViewController controller = new PersonEditViewController();
 //        controller.load(item, listModel);
 //    }

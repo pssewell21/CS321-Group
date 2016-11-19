@@ -11,7 +11,7 @@ import java.util.HashMap;
  *
  * @author Owner
  */
-public class AccountPersonMap extends LibraryBase  {
+public class AccountUserMap extends LibraryBase  {
     
     // <editor-fold defaultstate="collapsed" desc="Member Variables">   
 
@@ -23,7 +23,7 @@ public class AccountPersonMap extends LibraryBase  {
     /**
      *
      */
-    public Long PersonId;
+    public Long UserId;
     
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
 
@@ -31,7 +31,7 @@ public class AccountPersonMap extends LibraryBase  {
      * This constructor is used for creating new objects
      */
     
-    public AccountPersonMap() {
+    public AccountUserMap() {
         super();
     }
 
@@ -39,14 +39,14 @@ public class AccountPersonMap extends LibraryBase  {
      * This constructor is used for mapping existing objects
      * @param id
      * @param accountId
-     * @param personId
+     * @param userId
      */
-    public AccountPersonMap(Long id, 
+    public AccountUserMap(Long id, 
             Long accountId, 
-            Long personId) {
+            Long userId) {
         super(id);
         AccountId = accountId;
-        PersonId = personId;               
+        UserId = userId;               
     }
     
     // </editor-fold>
@@ -57,7 +57,7 @@ public class AccountPersonMap extends LibraryBase  {
     public String toString() {
         return super.toString() + ", " 
                 + DalFields.ACCOUNT_ID + ": " + AccountId + ", "
-                + DalFields.PERSON_ID + ": " + PersonId;
+                + DalFields.USER_ID + ": " + UserId;
     }
 
     /**
@@ -70,7 +70,7 @@ public class AccountPersonMap extends LibraryBase  {
         
         map.put(DalFields.ID, Id.toString());
         map.put(DalFields.ACCOUNT_ID, AccountId.toString());
-        map.put(DalFields.PERSON_ID, PersonId.toString());
+        map.put(DalFields.USER_ID, UserId.toString());
 
         return map;
     }

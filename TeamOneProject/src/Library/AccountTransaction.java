@@ -6,25 +6,31 @@
 package Library;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.HashMap;
 
 /**
  *
  * @author Owner
  */
-public class Account extends LibraryBase  {
+public class AccountTransaction extends LibraryBase  {
     
     // <editor-fold defaultstate="collapsed" desc="Member Variables">   
 
     /**
      *
      */
-    public Long AccountNumber;
+    public Long AccountId;
 
     /**
      *
      */
-    public String AccountType;
+    public Long UserId;
+    
+    /**
+     *
+     */
+    public Timestamp Timestamp;
     
     /**
      *
@@ -34,12 +40,7 @@ public class Account extends LibraryBase  {
     /**
      *
      */
-    public BigDecimal Balance;
-    
-    /**
-     *
-     */
-    public BigDecimal InterestRate;
+    public BigDecimal Amount;
 
     // </editor-fold>
     
@@ -49,31 +50,31 @@ public class Account extends LibraryBase  {
      * This constructor is used for creating new objects
      */
     
-    public Account() {
+    public AccountTransaction() {
         super();
     }
 
     /**
      * This constructor is used for mapping existing objects
      * @param id
-     * @param accountNumber
-     * @param accountType
+     * @param accountId
+     * @param userId
+     * @param timestamp
      * @param description
-     * @param balance
-     * @param interestRate
+     * @param amount
      */
-    public Account(Long id, 
-            Long accountNumber, 
-            String accountType, 
+    public AccountTransaction(Long id, 
+            Long accountId, 
+            Long userId, 
+            Timestamp timestamp, 
             String description, 
-            BigDecimal balance, 
-            BigDecimal interestRate) {
+            BigDecimal amount) {
         super(id);
-        AccountNumber = accountNumber;
-        AccountType = accountType;
+        AccountId = accountId;
+        UserId = userId;
+        Timestamp = timestamp;
         Description = description;
-        Balance = balance;
-        InterestRate = interestRate;                  
+        Amount = amount;                  
     }
     
     // </editor-fold>
@@ -83,11 +84,11 @@ public class Account extends LibraryBase  {
     @Override
     public String toString() {
         return super.toString() + ", " 
-                + DalFields.ACCOUNT_NUMBER + ": " + AccountNumber + ", "
-                + DalFields.ACCOUNT_TYPE + ": " + AccountType + ", "
+                + DalFields.ACCOUNT_ID + ": " + AccountId + ", "
+                + DalFields.USER_ID + ": " + UserId + ", "
+                + DalFields.TIMESTAMP + ": " + Timestamp + ", "
                 + DalFields.DESCRIPTION + ": " + Description + ", "
-                + DalFields.BALANCE + ": " + Balance + ", "
-                + DalFields.INTEREST_RATE + ": " + InterestRate;
+                + DalFields.AMOUNT + ": " + Amount;
     }
 
     /**
@@ -99,16 +100,16 @@ public class Account extends LibraryBase  {
         HashMap<String, String> map = new HashMap<>();
         
         map.put(DalFields.ID, Id.toString());
-        map.put(DalFields.ACCOUNT_NUMBER, AccountNumber.toString());
-        map.put(DalFields.ACCOUNT_TYPE, AccountType);
-        map.put(DalFields.DESCRIPTION, Description);
-        map.put(DalFields.BALANCE, Balance.toString());
-        if (InterestRate != null) {
-            map.put(DalFields.INTEREST_RATE, InterestRate.toString());
+        map.put(DalFields.ACCOUNT_ID, AccountId.toString());
+        map.put(DalFields.USER_ID, UserId.toString());
+        map.put(DalFields.TIMESTAMP, Timestamp.toString());
+        if (Description != null) {
+            map.put(DalFields.DESCRIPTION, Description);
         }
         else {
-            map.put(DalFields.INTEREST_RATE, null);
+            map.put(DalFields.DESCRIPTION, null);
         }
+        map.put(DalFields.AMOUNT, Amount.toString());
 
         return map;
     }  

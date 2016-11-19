@@ -9,6 +9,6 @@ package Controllers;
  *
  * @author pssew
  */
-public class AccountPersonMapEditViewController {
+public class AccountUserMapEditViewController {
     
 }

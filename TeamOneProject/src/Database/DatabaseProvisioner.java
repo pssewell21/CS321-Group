@@ -17,7 +17,7 @@ public final class DatabaseProvisioner {
 
     // <editor-fold defaultstate="collapsed" desc="SQL Scripts"> 
     private static final String DROP_TABLES_SCRIPT = "DROP TABLE APP.ACCOUNT_ACCOUNT_MAP;\n"
-            + "DROP TABLE APP.ACCOUNT_PERSON_MAP;\n"
+            + "DROP TABLE APP.ACCOUNT_ATM_USER_MAP;\n"
             + "DROP TABLE APP.ACCOUNT_TRANSACTION;\n"
             + "DROP TABLE APP.ACCOUNT;\n"
             + "DROP TABLE APP.ATM_USER;\n"
@@ -71,23 +71,23 @@ public final class DatabaseProvisioner {
             + "(\n"
             + "    ID                      BIGINT          NOT NULL,\n"
             + "    ACCOUNT_ID              BIGINT          NOT NULL,\n"
-            + "    PERSON_ID               BIGINT          NOT NULL,\n"
+            + "    ATM_USER_ID             BIGINT          NOT NULL,\n"
             + "    TRANSACTION_TIMESTAMP   TIMESTAMP       NOT NULL,\n"
             + "    DESCRIPTION             VARCHAR(300),\n"
             + "    AMOUNT                  NUMERIC(12,2)   NOT NULL,\n"
             + "    CONSTRAINT ACCOUNT_TRANSACTION_PK PRIMARY KEY (ID),\n"
             + "    CONSTRAINT ACCOUNT_TRANSACTION_ACCOUNT_ID_FK FOREIGN KEY (ACCOUNT_ID) REFERENCES ACCOUNT (ID),\n"
-            + "    CONSTRAINT ACCOUNT_TRANSACTION_PERSON_ID_FK FOREIGN KEY (PERSON_ID) REFERENCES PERSON (ID)\n"
+            + "    CONSTRAINT ACCOUNT_TRANSACTION_PERSON_ID_FK FOREIGN KEY (ATM_USER_ID) REFERENCES ATM_USER (ID)\n"
             + ")";
 
-    private static final String ADD_ACCOUNT_PERSON_MAP_TABLE_SCRIPT = "CREATE TABLE ACCOUNT_PERSON_MAP\n"
+    private static final String ADD_ACCOUNT_ATM_USER_MAP_TABLE_SCRIPT = "CREATE TABLE ACCOUNT_ATM_USER_MAP\n"
             + "(\n"
             + "    ID                      BIGINT          NOT NULL,\n"
             + "    ACCOUNT_ID              BIGINT          NOT NULL,\n"
-            + "    PERSON_ID               BIGINT          NOT NULL,\n"
+            + "    ATM_USER_ID             BIGINT          NOT NULL,\n"
             + "    CONSTRAINT ACCOUNT_PERSON_MAP_PK PRIMARY KEY (ID),\n"
             + "    CONSTRAINT ACCOUNT_PERSON_MAP_ACCOUNT_ID_FK FOREIGN KEY (ACCOUNT_ID) REFERENCES ACCOUNT (ID),\n"
-            + "    CONSTRAINT ACCOUNT_PERSON_MAP_PERSON_ID_FK FOREIGN KEY (PERSON_ID) REFERENCES PERSON (ID)\n"
+            + "    CONSTRAINT ACCOUNT_PERSON_MAP_PERSON_ID_FK FOREIGN KEY (ATM_USER_ID) REFERENCES ATM_USER (ID)\n"
             + ")";
 
     private static final String ADD_TEST_DATA_TABLE_SCRIPT = "CREATE TABLE TEST_DATA\n"
@@ -174,8 +174,8 @@ public final class DatabaseProvisioner {
         System.out.println(ADD_ACCOUNT_TRANSACTION_TABLE_SCRIPT);
         DataAccessJavaDb.executeUpdate(ADD_ACCOUNT_TRANSACTION_TABLE_SCRIPT);
 
-        System.out.println(ADD_ACCOUNT_PERSON_MAP_TABLE_SCRIPT);
-        DataAccessJavaDb.executeUpdate(ADD_ACCOUNT_PERSON_MAP_TABLE_SCRIPT);
+        System.out.println(ADD_ACCOUNT_ATM_USER_MAP_TABLE_SCRIPT);
+        DataAccessJavaDb.executeUpdate(ADD_ACCOUNT_ATM_USER_MAP_TABLE_SCRIPT);
 
         System.out.println(ADD_TEST_DATA_TABLE_SCRIPT);
         DataAccessJavaDb.executeUpdate(ADD_TEST_DATA_TABLE_SCRIPT);
