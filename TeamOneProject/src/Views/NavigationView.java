@@ -47,6 +47,7 @@ public class NavigationView extends javax.swing.JFrame {
         personManagerButton = new javax.swing.JButton();
         userManagerButton = new javax.swing.JButton();
         accountManagerButton = new javax.swing.JButton();
+        accountPersonLinkManagerButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -78,6 +79,13 @@ public class NavigationView extends javax.swing.JFrame {
             }
         });
 
+        accountPersonLinkManagerButton.setText("Account Person Link Manager");
+        accountPersonLinkManagerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accountPersonLinkManagerButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -88,7 +96,8 @@ public class NavigationView extends javax.swing.JFrame {
                     .addComponent(testDataButton, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
                     .addComponent(personManagerButton, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
                     .addComponent(userManagerButton, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
-                    .addComponent(accountManagerButton, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE))
+                    .addComponent(accountManagerButton, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                    .addComponent(accountPersonLinkManagerButton, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -102,7 +111,9 @@ public class NavigationView extends javax.swing.JFrame {
                 .addComponent(userManagerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(accountManagerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(388, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(accountPersonLinkManagerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(344, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -137,8 +148,13 @@ public class NavigationView extends javax.swing.JFrame {
         controller.executeNavigateAccountList();
     }//GEN-LAST:event_accountManagerButtonActionPerformed
 
+    private void accountPersonLinkManagerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountPersonLinkManagerButtonActionPerformed
+        controller.executeNavigateAccountPersonMapList();
+    }//GEN-LAST:event_accountPersonLinkManagerButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton accountManagerButton;
+    private javax.swing.JButton accountPersonLinkManagerButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton personManagerButton;
     private javax.swing.JButton testDataButton;

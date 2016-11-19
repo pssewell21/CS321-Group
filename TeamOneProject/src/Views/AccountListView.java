@@ -7,7 +7,6 @@ package Views;
 
 import Controllers.AccountListViewController;
 import Library.Account;
-import Library.Person;
 import java.awt.event.KeyEvent;
 import javax.swing.JList;
 

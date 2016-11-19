@@ -69,5 +69,14 @@ public class NavigationViewController {
         }
     }
     
+    public void executeNavigateAccountPersonMapList() {
+        try {
+            AccountPersonMapListViewController t = new AccountPersonMapListViewController();
+            t.load();
+        } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+            ExceptionHandler.handleException(e);
+        }
+    }
+    
     // </editor-fold> 
 }
