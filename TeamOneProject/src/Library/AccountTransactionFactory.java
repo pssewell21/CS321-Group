@@ -35,6 +35,13 @@ public class AccountTransactionFactory extends LibraryFactoryBase {
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
+
+    /**
+     *
+     * @param personId
+     * @param accountId
+     * @param amount
+     */
     public void addDeposit(Long personId, Long accountId, BigDecimal amount) {
         Account account = accountFactory.executeSelectById(accountId);
 
@@ -46,6 +53,29 @@ public class AccountTransactionFactory extends LibraryFactoryBase {
             executeInsert(transaction.toHashMap());
             
             BigDecimal balance = account.Balance.add(amount);
+
+            account.Balance = balance;
+            accountFactory.executeUpdate(account.toHashMap());
+        }
+    }
+    
+    /**
+     *
+     * @param personId
+     * @param accountId
+     * @param amount
+     */
+    public void addWithdrawal(Long personId, Long accountId, BigDecimal amount) {
+        Account account = accountFactory.executeSelectById(accountId);
+
+        if (account != null) {
+            // TODO: These operations should be done transactionally so if one operation fails, neither is comitted.  Consider for future versions.
+            //       Other possibilities chould be making the balance a calculated field so no post-processing is needed in this way.  Custom SQL 
+            //       scripts could also be used to make these changes in a single transaction with rollback upon failure if Derby supports it.
+            AccountTransaction transaction = new AccountTransaction(ID.newId(), accountId, personId, new Timestamp(System.currentTimeMillis()), amount);
+            executeInsert(transaction.toHashMap());
+            
+            BigDecimal balance = account.Balance.subtract(amount);
 
             account.Balance = balance;
             accountFactory.executeUpdate(account.toHashMap());
