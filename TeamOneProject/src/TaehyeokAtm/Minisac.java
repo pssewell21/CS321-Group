@@ -13,35 +13,35 @@ class Minusac extends Account implements Serializable {
      *
      */
     private static final long serialVersionUID = 1L;
-    private long creditlimit;//신용한도
+    private long creditLimit; //신용한도
 
     Minusac(Minusac ma) {
         super(ma);
-        this.creditlimit = ma.getcreditlimit();
+        this.creditLimit = ma.getcreditLimit();
     }
 
-    Minusac(Account ac, long creditlimit) {
+    Minusac(Account ac, long creditLimit) {
         super(ac);
-        this.creditlimit = creditlimit;
+        this.creditLimit = creditLimit;
     }
 
-    Minusac(long salary, long balance, boolean accounttype,
-            Customer cust, long creditlimit) {
-        super(salary, balance, creditlimit, accounttype, cust);
-        this.creditlimit = creditlimit;
+    Minusac(long salary, long balance, boolean accountType,
+            Customer cust, long creditLimit) {
+        super(salary, balance, creditLimit, accountType, cust);
+        this.creditLimit = creditLimit;
     }
 
-    Minusac(long salary, long balance, boolean accounttype,
-            String name, String peoplenumber, String adress, String phonenumber, long creditlimit) {
-        super(salary, balance, creditlimit, accounttype, name, peoplenumber, adress, phonenumber);
-        this.creditlimit = creditlimit;
+    Minusac(long salary, long balance, boolean accountType,
+            String name, String peopleNumber, String adress, String phoneNumber, long creditLimit) {
+        super(salary, balance, creditLimit, accountType, name, peopleNumber, adress, phoneNumber);
+        this.creditLimit = creditLimit;
     }
 
-    public long getcreditlimit() {
-        return creditlimit;
+    public long getcreditLimit() {
+        return creditLimit;
     }
 
-    public void setcreditlimit(long creditlimit) {
-        this.creditlimit = creditlimit;
+    public void setcreditLimit(long creditLimit) {
+        this.creditLimit = creditLimit;
     }
 }

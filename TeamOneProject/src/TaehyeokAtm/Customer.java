@@ -13,61 +13,61 @@ class Customer implements Serializable {
      *
      */
     private static final long serialVersionUID = 1L;
-    private String name;//이름
-    private String peoplenumber;//주민등록번호
-    private String adress;//주소
-    private String phonenumber;//전화번호
+    private String name; //이름
+    private String peopleNumber; //주민등록번호
+    private String address; //주소
+    private String phoneNumber; //전화번호
 
-    Customer(String name, String peoplenumber, String adress, String phonenumber) {
+    Customer(String name, String peopleNumber, String address, String phoneNumber) {
         this.name = name;
-        this.peoplenumber = peoplenumber;
-        this.adress = adress;
-        this.phonenumber = phonenumber;
+        this.peopleNumber = peopleNumber;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
     }
 
     Customer(Customer cust) {
         this.name = cust.getName();
-        this.peoplenumber = cust.getPeoplenumber();
-        this.adress = cust.getAdress();
-        this.phonenumber = cust.getPhonenumber();
+        this.peopleNumber = cust.getPeopleNumber();
+        this.address = cust.getAddress();
+        this.phoneNumber = cust.getPhoneNumber();
     }
 
     Customer() {
         this.name = null;
-        this.peoplenumber = null;
-        this.adress = null;
-        this.phonenumber = null;
+        this.peopleNumber = null;
+        this.address = null;
+        this.phoneNumber = null;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getPeoplenumber() {
-        return peoplenumber;
+    public String getPeopleNumber() {
+        return peopleNumber;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public String getPhonenumber() {
-        return phonenumber;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setPeoplenumber(String peoplenumber) {
-        this.peoplenumber = peoplenumber;
+    public void setPeopleNumber(String peopleNumber) {
+        this.peopleNumber = peopleNumber;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public void setPhonenumber(String phonenumber) {
-        this.phonenumber = phonenumber;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

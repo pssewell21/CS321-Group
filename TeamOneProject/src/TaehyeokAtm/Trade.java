@@ -13,65 +13,65 @@ public class Trade implements Serializable {
      *
      */
     private static final long serialVersionUID = 1L;
-    private long accountnumber;//계좌번호;
-    private long tradedate;//날짜;
-    private boolean tradetype;//거래유형;
-    private long trademoney;//거래액;
-    private long balance;//잔고;
+    private long accountNumber; //계좌번호;
+    private long tradeDate; //날짜;
+    private boolean tradeType; //거래유형;
+    private long tradeMoney; //거래액;
+    private long balance; //잔고;
 
     Trade(Trade td) {
-        this.accountnumber = td.getAccountnumber();
-        this.tradedate = td.getTradedate();
+        this.accountNumber = td.getAccountNumber();
+        this.tradeDate = td.getTradeDate();
         this.balance = td.getBalance();
-        this.tradetype = td.getTradetype();
-        this.trademoney = td.getTrademoney();
+        this.tradeType = td.getTradeType();
+        this.tradeMoney = td.getTradeMoney();
     }
 
-    Trade(long accountnumber, long tradedate, long balance, boolean tradetype, long trademoney) {
-        this.accountnumber = accountnumber;
-        this.tradedate = tradedate;
+    Trade(long accountNumber, long tradeDate, long balance, boolean tradeType, long tradeMoney) {
+        this.accountNumber = accountNumber;
+        this.tradeDate = tradeDate;
         this.balance = balance;
-        this.tradetype = tradetype;
-        this.trademoney = trademoney;
+        this.tradeType = tradeType;
+        this.tradeMoney = tradeMoney;
     }
 
-    public long getAccountnumber() {
-        return accountnumber;
+    public long getAccountNumber() {
+        return accountNumber;
     }
 
-    public long getTradedate() {
-        return tradedate;
+    public long getTradeDate() {
+        return tradeDate;
     }
 
     public long getBalance() {
         return balance;
     }
 
-    public boolean getTradetype() {
-        return tradetype;
+    public boolean getTradeType() {
+        return tradeType;
     }
 
-    public long getTrademoney() {
-        return trademoney;
+    public long getTradeMoney() {
+        return tradeMoney;
     }
 
-    public void setAccountnumber(long accountnumber) {
-        this.accountnumber = accountnumber;
+    public void setAccountNumber(long accountNumber) {
+        this.accountNumber = accountNumber;
     }
 
-    public void setTradedate(long tradedate) {
-        this.tradedate = tradedate;
+    public void setTradeDate(long tradeDate) {
+        this.tradeDate = tradeDate;
     }
 
     public void setBalance(long balance) {
         this.balance = balance;
     }
 
-    public void setTradetype(boolean tradetype) {
-        this.tradetype = tradetype;
+    public void setTradeType(boolean tradeType) {
+        this.tradeType = tradeType;
     }
 
-    public void setTrademoney(long trademoney) {
-        this.trademoney = trademoney;
+    public void setTradeMoney(long tradeMoney) {
+        this.tradeMoney = tradeMoney;
     }
 }

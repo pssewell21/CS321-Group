@@ -5,6 +5,7 @@
  */
 package TaehyeokAtm;
 
+import java.awt.Dimension;
 import java.util.*;
 
 public class ATM {
@@ -14,21 +15,21 @@ public class ATM {
 
     public void showdetails(Trade td) {
         String type;
-        if (td.getTradetype()) {
-            type = " Deposit";
+        if (td.getTradeType()) {
+            type = "Deposit";
         } else {
-            type = " Withdraw";
+            type = "Withdrawal";
         }
-        String details = "Date : ";
-        long times = td.getTradedate();
+        String details = "Date: ";
+        long times = td.getTradeDate();
         Date dt = new Date();
         dt.setTime(times);
         details = details.concat(dt.toString());
-        details = details.concat(" Amount : ");
+        details = details.concat("Amount: ");
         details = details.concat(String.valueOf(td.getBalance()));
         details = details.concat(type);
-        details = details.concat("trans amount : ");
-        details = details.concat(String.valueOf(td.getTrademoney()));
+        details = details.concat("Transaction amount: ");
+        details = details.concat(String.valueOf(td.getTradeMoney()));
         System.out.println(details);
     }
 
@@ -40,9 +41,9 @@ public class ATM {
         }
     }
 
-    public static void main(String[] args) {
-        ATM atm = new ATM();
-        //atm.testrun();
-        atm.uirun();
-    }
+//    public static void main(String[] args) {
+//        ATM atm = new ATM();
+//        //atm.testrun();
+//        atm.uirun();
+//    }
 }

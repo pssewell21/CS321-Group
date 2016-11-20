@@ -13,59 +13,59 @@ class Account implements Serializable {
      *
      */
     private static final long serialVersionUID = 1L;
-    protected long accountnumber;
+    protected long accountNumber;
     protected long salary;
-    protected long balance;//잔액;
-    protected boolean accounttype;//계좌유형;
-    protected Customer cust;//고객정보
+    protected long balance; //잔액;
+    protected boolean accountType; //계좌유형;
+    protected Customer customer; //고객정보
 
-    Account(long salary2, long balance2, boolean accounttype2, String name, String peoplenumber, String adress, String phonenumber) {
-        this.accountnumber = 0;
+    Account(long salary2, long balance2, boolean accountType2, String name, String peopleNumber, String address, String phoneNumber) {
+        this.accountNumber = 0;
         this.salary = 0;
         this.balance = 0;
-        this.accounttype = true;
-        cust = new Customer();
+        this.accountType = true;
+        customer = new Customer();
     }
 
     Account(Account ac) {
-        this.accountnumber = ac.getAccountnumber();
+        this.accountNumber = ac.getAccountNumber();
         this.salary = ac.getSalary();
         this.balance = ac.getBalance();
-        this.accounttype = ac.getAccounttype();
-        cust = new Customer(ac.cust);
+        this.accountType = ac.getAccountType();
+        customer = new Customer(ac.customer);
     }
 
-    Account(long accountnumber, long salary, long balance, boolean accounttype, Customer cust) {
-        this.accountnumber = accountnumber;
+    Account(long accountNumber, long salary, long balance, boolean accountType, Customer customer) {
+        this.accountNumber = accountNumber;
         this.salary = salary;
         this.balance = balance;
-        this.accounttype = accounttype;
-        this.cust = new Customer(cust);
+        this.accountType = accountType;
+        this.customer = new Customer(customer);
     }
 
-    Account(long accountnumber, long salary, long balance, boolean accounttype,
-            String name, String peoplenumber, String adress, String phonenumber) {
-        this.accountnumber = accountnumber;
+    Account(long accountNumber, long salary, long balance, boolean accountType,
+            String name, String peopleNumber, String address, String phoneNumber) {
+        this.accountNumber = accountNumber;
         this.salary = salary;
         this.balance = balance;
-        this.accounttype = accounttype;
-        cust = new Customer(name, peoplenumber, adress, phonenumber);
+        this.accountType = accountType;
+        customer = new Customer(name, peopleNumber, address, phoneNumber);
     }
 
-    public void setAll(long accountnumber, long salary, long balance, boolean accounttype,
-            String name, String peoplenumber, String adress, String phonenumber) {
-        this.accountnumber = accountnumber;
+    public void setAll(long accountNumber, long salary, long balance, boolean accountType,
+            String name, String peopleNumber, String address, String phoneNumber) {
+        this.accountNumber = accountNumber;
         this.salary = salary;
         this.balance = balance;
-        this.accounttype = accounttype;
-        cust.setName(name);
-        cust.setPeoplenumber(peoplenumber);
-        cust.setAdress(adress);
-        cust.setPhonenumber(phonenumber);
+        this.accountType = accountType;
+        customer.setName(name);
+        customer.setPeopleNumber(peopleNumber);
+        customer.setAddress(address);
+        customer.setPhoneNumber(phoneNumber);
     }
 
-    public long getAccountnumber() {
-        return accountnumber;
+    public long getAccountNumber() {
+        return accountNumber;
     }
 
     public long getSalary() {
@@ -76,16 +76,16 @@ class Account implements Serializable {
         return balance;
     }
 
-    public boolean getAccounttype() {
-        return accounttype;
+    public boolean getAccountType() {
+        return accountType;
     }
 
-    public void setAccounttype(boolean accounttype) {
-        this.accounttype = accounttype;
+    public void setAccountType(boolean accountType) {
+        this.accountType = accountType;
     }
 
-    public void setAccountnumber(long accountnumber) {
-        this.accountnumber = accountnumber;
+    public void setAccountNumber(long accountNumber) {
+        this.accountNumber = accountNumber;
     }
 
     public void setSalary(long salary) {
@@ -97,34 +97,34 @@ class Account implements Serializable {
     }
 
     public String getName() {
-        return cust.getName();
+        return customer.getName();
     }
 
-    public String getPeoplenumber() {
-        return cust.getPeoplenumber();
+    public String getPeopleNumber() {
+        return customer.getPeopleNumber();
     }
 
-    public String getAdress() {
-        return cust.getAdress();
+    public String getAddress() {
+        return customer.getAddress();
     }
 
-    public String getPhonenumber() {
-        return cust.getPhonenumber();
+    public String getPhoneNumber() {
+        return customer.getPhoneNumber();
     }
 
     public void setName(String name) {
-        cust.setName(name);
+        customer.setName(name);
     }
 
-    public void setPeoplenumber(String peoplenumber) {
-        cust.setPeoplenumber(peoplenumber);
+    public void setPeopleNumber(String peopleNumber) {
+        customer.setPeopleNumber(peopleNumber);
     }
 
     public void setAdress(String adress) {
-        cust.setAdress(adress);
+        customer.setAddress(adress);
     }
 
-    public void setPhonenumber(String phonenumber) {
-        cust.setPhonenumber(phonenumber);
+    public void setPhoneNumber(String phoneNumber) {
+        customer.setPhoneNumber(phoneNumber);
     }
 }

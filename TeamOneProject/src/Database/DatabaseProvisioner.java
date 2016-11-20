@@ -268,7 +268,7 @@ public final class DatabaseProvisioner {
     }
 
     private static void addDefaultData() {
-        System.out.println("Insert commands being executed:");
+        System.out.println("Insert and Update commands being executed:");
 
         System.out.println(INSERT_ADMIN_PERSON_SCRIPT);
         DataAccessJavaDb.executeInsert(INSERT_ADMIN_PERSON_SCRIPT);
@@ -298,13 +298,13 @@ public final class DatabaseProvisioner {
         DataAccessJavaDb.executeInsert(INSERT_STANDARD_USER_CHECKING_ACCOUNT_TRANSACTION_SCRIPT);
         
         System.out.println(UPDATE_STANDARD_USER_CHECKING_ACCOUNT_BALANCE_SCRIPT);
-        DataAccessJavaDb.executeInsert(UPDATE_STANDARD_USER_CHECKING_ACCOUNT_BALANCE_SCRIPT);
+        DataAccessJavaDb.executeUpdate(UPDATE_STANDARD_USER_CHECKING_ACCOUNT_BALANCE_SCRIPT);
 
         System.out.println(INSERT_STANDARD_USER_SAVING_ACCOUNT_TRANSACTION_SCRIPT);
         DataAccessJavaDb.executeInsert(INSERT_STANDARD_USER_SAVING_ACCOUNT_TRANSACTION_SCRIPT);
         
         System.out.println(UPDATE_STANDARD_USER_SAVING_ACCOUNT_BALANCE_SCRIPT);
-        DataAccessJavaDb.executeInsert(UPDATE_STANDARD_USER_SAVING_ACCOUNT_BALANCE_SCRIPT);
+        DataAccessJavaDb.executeUpdate(UPDATE_STANDARD_USER_SAVING_ACCOUNT_BALANCE_SCRIPT);
     }
 
     // </editor-fold>

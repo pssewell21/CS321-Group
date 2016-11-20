@@ -9,19 +9,19 @@ import java.io.*;
 import java.util.*;
 import java.io.DataOutputStream;
 
-public class Accontrol {
+public final class Accontrol {
 
-    private int acnum;//현재 계좌 개설 갯수 = 마지막 계좌번호
-    private int tdnum;//현재 거래내역 갯수
-    private final int bufacnum = 50;//계좌 버퍼에 생성 갯수 - 시스템이 커질 경우 사이즈 추가
-    private final int buftdnum = 500;//계좌 버퍼에 생성 갯수 - 시스템이 커질 경우 사이즈 추가
-    private int maxaccount;//최대 계좌 갯수
-    private int maxtrade;//최대 거래내역 갯수
-    private Account[] ac;//계좌 배열
-    private Trade[] td;//거래내역 배열
-    private int detailsnum;//현재 거래내역출력 갯수
+    private int acnum; //현재 계좌 개설 갯수 = 마지막 계좌번호
+    private int tdnum; //현재 거래내역 갯수
+    private final int bufacnum = 50; //계좌 버퍼에 생성 갯수 - 시스템이 커질 경우 사이즈 추가
+    private final int buftdnum = 500; //계좌 버퍼에 생성 갯수 - 시스템이 커질 경우 사이즈 추가
+    private int maxaccount; //최대 계좌 갯수
+    private int maxtrade; //최대 거래내역 갯수
+    private Account[] ac; //계좌 배열
+    private Trade[] td; //거래내역 배열
+    private int detailsnum; //현재 거래내역출력 갯수
 
-    Accontrol()//생성자 호출시 계좌갯수를 받고 계좌배열을 생성하고 저장된 계좌 읽어 옴
+    Accontrol() //생성자 호출시 계좌갯수를 받고 계좌배열을 생성하고 저장된 계좌 읽어 옴
     {
         try {
             acnum = 0;
@@ -70,7 +70,7 @@ public class Accontrol {
         }
     }
 
-    public void saveacc()//계좌,거래내역갯수 저장
+    public void saveacc() //계좌,거래내역갯수 저장
     {
         try {
             DataOutputStream out = new DataOutputStream(new FileOutputStream("Accontrol.dat"));
@@ -85,7 +85,7 @@ public class Accontrol {
         }
     }
 
-    public boolean openATMTime()//ATM 사용 가능 체크
+    public boolean openATMTime() //ATM 사용 가능 체크
     {
         int hour = Calendar.getInstance(Locale.KOREA).get(Calendar.HOUR_OF_DAY);
         if (hour >= 9 && hour < 18) {
@@ -95,7 +95,7 @@ public class Accontrol {
         }
     }
 
-    public void addobj(String objtype)//객체 부족시 객체 배열 추가
+    public void addobj(String objtype) //객체 부족시 객체 배열 추가
     {
         try {
             if (objtype.equals("Account")) {
@@ -126,23 +126,23 @@ public class Accontrol {
         }
     }
 
-    public long openAccount(long salary, long balance, boolean accounttype,//계좌 개설
-            String name, String peoplenumber, String adress, String phonenumber) {
+    public long openAccount(long salary, long balance, boolean accountType, //계좌 개설
+            String name, String peopleNumber, String address, String phoneNumber) {
         try {
             if (maxaccount == acnum) {
                 addobj("Account");
             }
-            ac[acnum] = new Account(acnum, salary, balance, accounttype, name, peoplenumber, adress, phonenumber);
-            long tempaccountnumber = ac[acnum].getAccountnumber();
+            ac[acnum] = new Account(acnum, salary, balance, accountType, name, peopleNumber, address, phoneNumber);
+            long tempaccountNumber = ac[acnum].getAccountNumber();
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("Account.dat", true));
             out.writeObject(ac[acnum]);
             acnum++;
             out.close();
-            boolean state = saveTrade(tempaccountnumber, balance, true, balance);
+            boolean state = saveTrade(tempaccountNumber, balance, true, balance);
             if (!state) {
                 System.out.println("거래내역 저장 실패!!!");
             }
-            return tempaccountnumber;
+            return tempaccountNumber;
         } catch (Exception e) {
             System.out.println("계좌 개설 실패!!!");
             System.out.println(e.toString());
@@ -150,29 +150,29 @@ public class Accontrol {
         }
     }
 
-    public boolean drawing(long accountnumber, long trademoney) {
+    public boolean drawing(long accountNumber, long tradeMoney) {
         boolean tstate = false;
         try {
-            long balance = ac[(int) accountnumber].getBalance();
-            boolean accounttype = ac[(int) accountnumber].getAccounttype();
-            if (accounttype) {
-                if (balance >= trademoney) {
-                    ac[(int) accountnumber].setBalance(balance - trademoney);
+            long balance = ac[(int) accountNumber].getBalance();
+            boolean accountType = ac[(int) accountNumber].getAccountType();
+            if (accountType) {
+                if (balance >= tradeMoney) {
+                    ac[(int) accountNumber].setBalance(balance - tradeMoney);
                     tstate = true;
 
-                    boolean state = saveTrade(accountnumber, ac[(int) accountnumber].getBalance(), true, trademoney);
+                    boolean state = saveTrade(accountNumber, ac[(int) accountNumber].getBalance(), true, tradeMoney);
 
                     if (!state) {
                         System.out.println("거래내역 저장 실패!!!");
                     }
                 }
             } else {
-                long salary = ac[(int) accountnumber].getSalary();
-                if (balance + salary * 0.5 >= trademoney) {
-                    ac[(int) accountnumber].setBalance(balance - trademoney);
+                long salary = ac[(int) accountNumber].getSalary();
+                if (balance + salary * 0.5 >= tradeMoney) {
+                    ac[(int) accountNumber].setBalance(balance - tradeMoney);
                     tstate = true;
 
-                    boolean state = saveTrade(accountnumber, ac[(int) accountnumber].getBalance(), false, trademoney);
+                    boolean state = saveTrade(accountNumber, ac[(int) accountNumber].getBalance(), false, tradeMoney);
 
                     if (!state) {
                         System.out.println("거래내역 저장 실패!!!");
@@ -186,13 +186,13 @@ public class Accontrol {
         }
     }
 
-    public boolean deposit(long accountnumber, long trademoney) {
+    public boolean deposit(long accountNumber, long tradeMoney) {
         boolean tstate = false;
         try {
-            ac[(int) accountnumber].setBalance(ac[(int) accountnumber].getBalance() + trademoney);
+            ac[(int) accountNumber].setBalance(ac[(int) accountNumber].getBalance() + tradeMoney);
             tstate = true;
 
-            boolean state = saveTrade(accountnumber, ac[(int) accountnumber].getBalance(), true, trademoney);
+            boolean state = saveTrade(accountNumber, ac[(int) accountNumber].getBalance(), true, tradeMoney);
             if (!state) {
                 System.out.println("거래내역 저장 실패!!!");
             }
@@ -203,14 +203,14 @@ public class Accontrol {
         }
     }
 
-    public boolean saveTrade(long accountnumber, long balance, boolean tradetype, long trademoney) {
+    public boolean saveTrade(long accountNumber, long balance, boolean tradeType, long tradeMoney) {
         boolean state;
         try {
             if (maxtrade == tdnum) {
                 addobj("Trade");
             }
             long time = Calendar.getInstance(Locale.KOREA).getTimeInMillis();
-            td[tdnum] = new Trade(accountnumber, time, balance, tradetype, trademoney);
+            td[tdnum] = new Trade(accountNumber, time, balance, tradeType, tradeMoney);
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("Trade.dat", true));
             out.writeObject(td[tdnum]);
             tdnum++;
@@ -225,28 +225,28 @@ public class Accontrol {
         }
     }
 
-    public long inquiryBalance(long accountnumber) {
-        if (accountnumber < 0 && accountnumber > acnum) {
+    public long inquiryBalance(long accountNumber) {
+        if (accountNumber < 0 && accountNumber > acnum) {
             return -1;
         }
-        return ac[(int) accountnumber].getBalance();
+        return ac[(int) accountNumber].getBalance();
     }
 
-    public int findDetailsnum(long accountnumber) {
+    public int findDetailsnum(long accountNumber) {
         detailsnum = 0;
         for (int i = 0; i < tdnum; i++) {
-            if (td[i].getAccountnumber() == accountnumber) {
+            if (td[i].getAccountNumber() == accountNumber) {
                 detailsnum++;
             }
         }
         return detailsnum;
     }
 
-    public Trade[] inquiryDetails(long accountnumber) {
+    public Trade[] inquiryDetails(long accountNumber) {
         int tempdtnum = 0;
         Trade[] details = new Trade[detailsnum];
         for (int i = 0; i < tdnum; i++) {
-            if (td[i].getAccountnumber() == accountnumber) {
+            if (td[i].getAccountNumber() == accountNumber) {
                 details[tempdtnum] = td[i];
                 tempdtnum++;
             }
@@ -254,12 +254,12 @@ public class Accontrol {
         return details;
     }
 
-    public int findDetailsnum(long accountnumber, long sday, long lday) {
+    public int findDetailsnum(long accountNumber, long sday, long lday) {
         detailsnum = 0;
         long tempdate;
         for (int i = 0; i < tdnum; i++) {
-            if (td[i].getAccountnumber() == accountnumber) {
-                tempdate = td[i].getTradedate();
+            if (td[i].getAccountNumber() == accountNumber) {
+                tempdate = td[i].getTradeDate();
                 if (sday <= tempdate && tempdate <= lday) {
                     detailsnum++;
                 }
@@ -268,14 +268,14 @@ public class Accontrol {
         return detailsnum;
     }
 
-    public Trade[] inquiryDetails(long accountnumber, long sday, long lday) {
+    public Trade[] inquiryDetails(long accountNumber, long sday, long lday) {
         int tempdtnum = 0;
         long tempdate;
         Trade[] details = new Trade[detailsnum];
         for (int i = 0; i < tdnum; i++) {
-            if (td[i].getAccountnumber() == accountnumber) {
+            if (td[i].getAccountNumber() == accountNumber) {
 
-                tempdate = td[i].getTradedate();
+                tempdate = td[i].getTradeDate();
                 if (sday <= tempdate && tempdate <= lday) {
                     details[tempdtnum] = td[i];
                     tempdtnum++;
@@ -289,15 +289,15 @@ public class Accontrol {
         try {
             DataInputStream in = new DataInputStream(new FileInputStream("Account.dat"));
             for (int i = 0; i < acnum; i++) {
-                long accountnumber = in.readLong();//계좌번호;
-                long salary = in.readLong();//연봉;
-                long balance = in.readLong();//잔액;
-                boolean accounttype = in.readBoolean();//계좌유형;
-                String name = in.readUTF();//이름
-                String peoplenumber = in.readUTF();//주민등록번호
-                String adress = in.readUTF();//주소
-                String phonenumber = in.readUTF();//전화번호
-                ac[i] = new Account(accountnumber, salary, balance, accounttype, name, peoplenumber, adress, phonenumber);
+                long accountNumber = in.readLong(); //계좌번호;
+                long salary = in.readLong(); //연봉;
+                long balance = in.readLong(); //잔액;
+                boolean accountType = in.readBoolean(); //계좌유형;
+                String name = in.readUTF(); //이름
+                String peopleNumber = in.readUTF(); //주민등록번호
+                String address = in.readUTF(); //주소
+                String phoneNumber = in.readUTF(); //전화번호
+                ac[i] = new Account(accountNumber, salary, balance, accountType, name, peopleNumber, address, phoneNumber);
             }
             in.close();
         } catch (Exception e) {
@@ -312,14 +312,14 @@ public class Accontrol {
         try {
             DataOutputStream out = new DataOutputStream(new FileOutputStream("Account.dat"));
             for (int i = 0; i < acnum; i++) {
-                out.writeLong(ac[i].getAccountnumber());//계좌번호;
-                out.writeLong(ac[i].getSalary());//연봉;
-                out.writeLong(ac[i].getBalance());//잔액;
-                out.writeBoolean(ac[i].getAccounttype());//계좌유형;
-                out.writeUTF(ac[i].getName());//이름
-                out.writeUTF(ac[i].getPeoplenumber());//주민등록번호
-                out.writeUTF(ac[i].getAdress());//주소
-                out.writeUTF(ac[i].getPhonenumber());//전화번호
+                out.writeLong(ac[i].getAccountNumber()); //계좌번호;
+                out.writeLong(ac[i].getSalary()); //연봉;
+                out.writeLong(ac[i].getBalance()); //잔액;
+                out.writeBoolean(ac[i].getAccountType()); //계좌유형;
+                out.writeUTF(ac[i].getName()); //이름
+                out.writeUTF(ac[i].getPeopleNumber()); //주민등록번호
+                out.writeUTF(ac[i].getAddress()); //주소
+                out.writeUTF(ac[i].getPhoneNumber()); //전화번호
             }
             out.close();
         } catch (Exception e) {
@@ -334,12 +334,12 @@ public class Accontrol {
         try {
             DataInputStream in = new DataInputStream(new FileInputStream("Trade.dat"));
             for (int i = 0; i < tdnum; i++) {
-                long accountnumber = in.readLong();//계좌번호;
-                long tradedate = in.readLong();//날짜
-                boolean tradetype = in.readBoolean();//거래유형;
-                long trademoney = in.readLong();//거래액;
-                long balance = in.readLong();//잔고;
-                td[i] = new Trade(accountnumber, tradedate, balance, tradetype, trademoney);
+                long accountNumber = in.readLong(); //계좌번호;
+                long tradeDate = in.readLong(); //날짜
+                boolean tradeType = in.readBoolean(); //거래유형;
+                long tradeMoney = in.readLong(); //거래액;
+                long balance = in.readLong(); //잔고;
+                td[i] = new Trade(accountNumber, tradeDate, balance, tradeType, tradeMoney);
             }
             in.close();
         } catch (Exception e) {
@@ -354,11 +354,11 @@ public class Accontrol {
         try {
             DataOutputStream out = new DataOutputStream(new FileOutputStream("Trade.dat"));
             for (int i = 0; i < tdnum; i++) {
-                out.writeLong(td[i].getAccountnumber());//계좌번호;
-                out.writeLong(td[i].getTradedate());//날짜
-                out.writeBoolean(td[i].getTradetype());//거래유형;
-                out.writeLong(td[i].getTrademoney());//연봉;
-                out.writeLong(td[i].getBalance());//잔고;
+                out.writeLong(td[i].getAccountNumber()); //계좌번호;
+                out.writeLong(td[i].getTradeDate()); //날짜
+                out.writeBoolean(td[i].getTradeType()); //거래유형;
+                out.writeLong(td[i].getTradeMoney()); //연봉;
+                out.writeLong(td[i].getBalance()); //잔고;
             }
             out.close();
         } catch (Exception e) {
