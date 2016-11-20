@@ -21,7 +21,7 @@ public final class Accontrol {
     private Trade[] td; //거래내역 배열
     private int detailsnum; //현재 거래내역출력 갯수
 
-    Accontrol() //생성자 호출시 계좌갯수를 받고 계좌배열을 생성하고 저장된 계좌 읽어 옴
+    public Accontrol() //생성자 호출시 계좌갯수를 받고 계좌배열을 생성하고 저장된 계좌 읽어 옴
     {
         try {
             acnum = 0;

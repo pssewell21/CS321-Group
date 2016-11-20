@@ -3,8 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package TaehyeokAtm;
+package Views;
 
+import Controllers.AtmViewController;
+import Library.Account;
+import TaehyeokAtm.Accontrol;
+import TaehyeokAtm.Trade;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -15,6 +19,7 @@ import java.awt.Insets;
 import java.awt.Rectangle;
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
 import javax.imageio.ImageIO;
@@ -31,8 +36,9 @@ import javax.swing.JRadioButton;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
-public class ATMUI extends JFrame {
+public class AtmView extends JFrame {
 
+    // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
     private static final long serialVersionUID = 1L;
 
     private JPanel contentPane;
@@ -49,9 +55,17 @@ public class ATMUI extends JFrame {
 
     private JPanel transactionHistoryPanel;
 
+    private JLabel logoLabel;
+
+    private JComboBox<Account> accountSelectionComboBox;
+
+    private JButton selectAccountButton;
+
+    private JButton exitButton;
+
     private JLabel depositAccountNumberLabel;
 
-    private JLabel depositAmountLabel;    
+    private JLabel depositAmountLabel;
 
     private JTextField depositAccountNumberField;
 
@@ -111,45 +125,45 @@ public class ATMUI extends JFrame {
 
     private JButton getTransactionHistoryButton;
 
-    private JLabel logoLabel;
+    private Trade td[];
 
-    private JButton exitButton;
+    private ButtonGroup transactionHistoryRadioButtonGroup;
+
+    private final AtmViewController controller;
 
     private final Accontrol acc;
 
-    Trade td[];
-
-    ButtonGroup transactionHistoryRadioButtonGroup;
-
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     /**
      * This is the default constructor
      */
-    public ATMUI() {
-        super();
-        initialize();
+    public AtmView(AtmViewController controller) {
+        this.controller = controller;
         acc = new Accontrol();
+
+        load();
     }
 
+    // </editor-fold> 
     /**
-     * This method initializes this
+     * This method initializes the AtmView
      *
      * @return void
      */
-    private void initialize() {
-        this.setContentPane(getJContentPane());
-        this.setTitle("ATM Demo");
+    public void load() {
+        setContentPane(getJContentPane());
+        setTitle("ATM Demo");
 
-        this.setBounds(new Rectangle(0, 0, 600, 300));
-        this.addWindowListener(new java.awt.event.WindowAdapter() {
+        setBounds(new Rectangle(0, 0, 520, 300));
+        addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent e) {
-                try {
-                    acc.saveacc();
-                    System.exit(0);
-                } catch (Exception ex) {
-                }
+                controller.executeQuit();
             }
         });
+
+        setVisible(true);
     }
 
     public class back extends JFrame {
@@ -216,13 +230,23 @@ public class ATMUI extends JFrame {
             tabbedPane = new JTabbedPane();
             tabbedPane.setPreferredSize(new Dimension(9000, 380));
             tabbedPane.addTab("Landing", null, getLandingPanel(), null);
+        }
+
+        return tabbedPane;
+    }
+    
+    /**
+     * This method adds additional tabs to the tabbedPane after selecting an account
+     *
+     * @return javax.swing.JTabbedPane
+     */
+    private void addTabbedPaneTabs() {
+        if (tabbedPane != null) {
             tabbedPane.addTab("Deposit", null, getDepositPanel(), null);
             tabbedPane.addTab("Withdrawal", null, getWithdrawalPanel(), null);
             tabbedPane.addTab("Check Balance", null, getBalanceCheckPanel(), null);
             tabbedPane.addTab("Transaction History", null, getTransactionHistoryPanel(), null);
         }
-
-        return tabbedPane;
     }
 
     /**
@@ -233,17 +257,25 @@ public class ATMUI extends JFrame {
     private JPanel getLandingPanel() {
         if (landingPanel == null) {
             GridBagConstraints gridBagConstraints410 = new GridBagConstraints();
-            gridBagConstraints410.gridx = 2;
+            gridBagConstraints410.gridx = 1;
             gridBagConstraints410.gridy = 2;
             GridBagConstraints gridBagConstraints110 = new GridBagConstraints();
             gridBagConstraints110.gridx = 0;
             gridBagConstraints110.gridy = 0;
+            GridBagConstraints gridBagConstraints111 = new GridBagConstraints();
+            gridBagConstraints111.gridx = 1;
+            gridBagConstraints111.gridy = 0;
+            GridBagConstraints gridBagConstraints112 = new GridBagConstraints();
+            gridBagConstraints112.gridx = 1;
+            gridBagConstraints112.gridy = 1;
             logoLabel = new JLabel();
             logoLabel.setText("Insert ATM Logo");
             logoLabel.setPreferredSize(new Dimension(100, 30));
             landingPanel = new JPanel();
             landingPanel.setLayout(new GridBagLayout());
             landingPanel.add(logoLabel, gridBagConstraints110);
+            landingPanel.add(getAccountSelectionComboBox(), gridBagConstraints111);
+            landingPanel.add(getSelectAccountButton(), gridBagConstraints112);
             landingPanel.add(getExitButton(), gridBagConstraints410);
         }
 
@@ -384,10 +416,10 @@ public class ATMUI extends JFrame {
     private JPanel getTransactionHistoryPanel() {
         if (transactionHistoryPanel == null) {
             GridBagConstraints gridBagConstraints = new GridBagConstraints();
-            gridBagConstraints.gridx = 7;
+            gridBagConstraints.gridx = 6;
             gridBagConstraints.gridy = 1;
             GridBagConstraints gridBagConstraints49 = new GridBagConstraints();
-            gridBagConstraints49.gridx = 7;
+            gridBagConstraints49.gridx = 6;
             gridBagConstraints49.gridy = 3;
             GridBagConstraints gridBagConstraints48 = new GridBagConstraints();
             gridBagConstraints48.fill = GridBagConstraints.BOTH;
@@ -460,7 +492,7 @@ public class ATMUI extends JFrame {
             gridBagConstraints34.fill = GridBagConstraints.VERTICAL;
             gridBagConstraints34.gridy = 0;
             gridBagConstraints34.weightx = 1.0;
-            gridBagConstraints34.gridx = 7;
+            gridBagConstraints34.gridx = 6;
             GridBagConstraints gridBagConstraints33 = new GridBagConstraints();
             gridBagConstraints33.gridx = 0;
             gridBagConstraints33.gridy = 0;
@@ -503,7 +535,10 @@ public class ATMUI extends JFrame {
         if (depositAccountNumberField == null) {
             depositAccountNumberField = new JTextField();
             depositAccountNumberField.setPreferredSize(new Dimension(150, 25));
+            depositAccountNumberField.setEnabled(false);
         }
+        
+        depositAccountNumberField.setText(controller.selectedAccount.AccountNumber.toString());
 
         return depositAccountNumberField;
     }
@@ -561,7 +596,10 @@ public class ATMUI extends JFrame {
         if (withdrawalAccountNumberField == null) {
             withdrawalAccountNumberField = new JTextField();
             withdrawalAccountNumberField.setPreferredSize(new Dimension(150, 25));
+            withdrawalAccountNumberField.setEnabled(false);
         }
+        
+        withdrawalAccountNumberField.setText(controller.selectedAccount.AccountNumber.toString());
 
         return withdrawalAccountNumberField;
     }
@@ -618,7 +656,10 @@ public class ATMUI extends JFrame {
         if (balanceCheckAccountNumber == null) {
             balanceCheckAccountNumber = new JTextField();
             balanceCheckAccountNumber.setPreferredSize(new Dimension(150, 25));
+            balanceCheckAccountNumber.setEnabled(false);
         }
+        
+        balanceCheckAccountNumber.setText(controller.selectedAccount.AccountNumber.toString());
 
         return balanceCheckAccountNumber;
     }
@@ -634,18 +675,9 @@ public class ATMUI extends JFrame {
             balanceCheckButton.setText("Check Balance");
             balanceCheckButton.setPreferredSize(new Dimension(120, 30));
             balanceCheckButton.addActionListener((java.awt.event.ActionEvent e) -> {
-                try {
-                    long accountNumber = Long.parseLong(balanceCheckAccountNumber.getText());
-
-                    long balance = acc.inquiryBalance(accountNumber);
-                    if (balance == -1) {
-                        JOptionPane.showMessageDialog(depositPanel, "Failed to check balance, check account number.");
-                    } else {
-                        balanceCheckCurrentBalance.setText(String.valueOf(balance));
-                    }
-                } catch (NumberFormatException | HeadlessException ex) {
-                    JOptionPane.showMessageDialog(transactionHistoryPanel, "Input error, check account number and enter again.");
-                }
+                BigDecimal balance = controller.executeCheckBalance();
+                    
+                balanceCheckCurrentBalance.setText(String.valueOf(balance));
             });
         }
 
@@ -660,8 +692,11 @@ public class ATMUI extends JFrame {
     private JTextField getTransactionHistoryAccountNumberField() {
         if (transactionHistoryAccountNumberField == null) {
             transactionHistoryAccountNumberField = new JTextField();
-            transactionHistoryAccountNumberField.setPreferredSize(new Dimension(120, 25));
+            transactionHistoryAccountNumberField.setPreferredSize(new Dimension(150, 25));
+            transactionHistoryAccountNumberField.setEnabled(false);
         }
+            
+        transactionHistoryAccountNumberField.setText(controller.selectedAccount.AccountNumber.toString());
 
         return transactionHistoryAccountNumberField;
     }
@@ -891,6 +926,53 @@ public class ATMUI extends JFrame {
     }
 
     /**
+     * This method initializes accountSelectionComboBox
+     *
+     * @return javax.swing.JComboBox
+     */
+    private JComboBox getAccountSelectionComboBox() {
+        if (accountSelectionComboBox == null) {
+            accountSelectionComboBox = new JComboBox<>();
+            accountSelectionComboBox.setModel(controller.accountModel);
+            accountSelectionComboBox.setPreferredSize(new Dimension(120, 25));
+            accountSelectionComboBox.setToolTipText("Accounts");
+            accountSelectionComboBox.setName("Accounts");
+        }
+
+        return accountSelectionComboBox;
+    }
+    
+    /**
+     * This method initializes selectAccountButton
+     *
+     * @return javax.swing.JButton
+     */
+    private JButton getSelectAccountButton() {
+        if (selectAccountButton == null) {
+            selectAccountButton = new JButton();
+            selectAccountButton.setText("Select Account");
+            selectAccountButton.setPreferredSize(new Dimension(120, 30));
+            selectAccountButton.addActionListener((java.awt.event.ActionEvent e) -> {
+                controller.selectedAccount = (Account) accountSelectionComboBox.getSelectedItem();
+                
+                tabbedPane.remove(depositPanel);
+                tabbedPane.remove(withdrawalPanel);
+                tabbedPane.remove(balanceCheckPanel);
+                tabbedPane.remove(transactionHistoryPanel);
+               
+                depositPanel = null;
+                withdrawalPanel = null;
+                balanceCheckPanel = null;
+                transactionHistoryPanel = null;
+                
+                addTabbedPaneTabs();
+            });
+        }
+
+        return selectAccountButton;
+    }
+
+    /**
      * This method initializes exitButton
      *
      * @return javax.swing.JButton
@@ -901,17 +983,11 @@ public class ATMUI extends JFrame {
             exitButton.setText("Quit ATM");
             exitButton.setPreferredSize(new Dimension(120, 30));
             exitButton.addActionListener((java.awt.event.ActionEvent e) -> {
-                try {
-                    int n = JOptionPane.showConfirmDialog(landingPanel,
-                            "Quit ATM?", "Confirm Exit",
-                            JOptionPane.OK_CANCEL_OPTION);
-                    if (n == JOptionPane.YES_OPTION) {
-                        acc.saveacc();
-                        System.exit(0);
-                    } else {
-
-                    }
-                } catch (Exception ex) {
+                int n = JOptionPane.showConfirmDialog(landingPanel,
+                        "Quit ATM?", "Confirm Exit",
+                        JOptionPane.OK_CANCEL_OPTION);
+                if (n == JOptionPane.YES_OPTION) {
+                    controller.executeQuit();
                 }
             });
         }

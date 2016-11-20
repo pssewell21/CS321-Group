@@ -19,30 +19,76 @@ import java.util.List;
  */
 public class AccountFactory extends LibraryFactoryBase {
 
+    // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
+    
+    private final String SELECT_ACCOUNTS_BY_USER_ID_SCRIPT = "SELECT a.* FROM ATM_USER u\n"
+            + "INNER JOIN ACCOUNT_PERSON_MAP apm\n"
+            + "    ON apm.PERSON_ID = u.PERSON_ID\n"
+            + "INNER JOIN ACCOUNT a\n"
+            + "    ON a.ID = apm.ACCOUNT_ID\n"
+            + "WHERE u.ID = 887766554433221199"; 
+
+    // </editor-fold> 
+    
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
-    /**
-     *
-     */
+            /**
+             *
+             */
+
     public AccountFactory() {
         super("APP", "ACCOUNT");
     }
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
-    //TODO: May not be necessary since we are selecting a real object in the list view, it may be better to not select a real object though in which case this method would be useful
-//    public TestData getById(long id) {
-//        HashMap<String, String> criteria = new HashMap<>();
-//
-//        criteria.put(DalFields.ID, Long.toString(id));
-//
-//        List<User> result = executeSelect(criteria);
-//
-//        if (result.size() > 0) {
-//            return result.get(0);
-//        } else {
-//            return null;
-//        }
-//    }
+    
+    public List<Account> executeSelectByUserId(Long userId) {
+        List<Account> list = new ArrayList<>();
+
+        DataAccessJavaDb.openConnection();
+
+        try {
+            String command = generateSelectByUserIdCommand(userId);
+
+            if (hasValue(command)) {
+                ResultSet resultSet = DataAccessJavaDb.executeSelect(command);
+                System.out.println("Select command being executed:\n" + command);
+
+                while (resultSet != null && resultSet.next()) {
+                    Long id = resultSet.getLong(DalFields.ID);
+                    Long accountNumber = resultSet.getLong(DalFields.ACCOUNT_NUMBER);
+                    String accountType = resultSet.getString(DalFields.ACCOUNT_TYPE);
+                    String description = resultSet.getString(DalFields.DESCRIPTION);
+                    BigDecimal balance = resultSet.getBigDecimal(DalFields.BALANCE);
+                    BigDecimal interestRate = resultSet.getBigDecimal(DalFields.INTEREST_RATE);
+
+                    list.add(new Account(id, accountNumber, accountType, description,
+                            balance, interestRate));
+                }
+            } else {
+                System.out.println("No select command was run from the provided criteria");
+            }
+
+        } catch (Exception e) {
+            handleException(e);
+        } finally {
+            DataAccessJavaDb.closeConnection();
+        }
+
+        return list;
+    }
+    
+    public String generateSelectByUserIdCommand(Long userId) {
+        String command = "SELECT a.* FROM ATM_USER u\n"
+            + "INNER JOIN ACCOUNT_PERSON_MAP apm\n"
+            + "    ON apm.PERSON_ID = u.PERSON_ID\n"
+            + "INNER JOIN ACCOUNT a\n"
+            + "    ON a.ID = apm.ACCOUNT_ID\n"
+            + "WHERE u.ID = " + userId.toString(); 
+
+        return command;
+    }
+        
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Implementation of LibraryFactoryBase Methods"> 
     @Override
@@ -154,23 +200,21 @@ public class AccountFactory extends LibraryFactoryBase {
                         + ID.newId() + ", "
                         + "" + accountNumber + ", "
                         + "'" + accountType + "', ";
-                
+
                 if (hasValue(description)) {
                     command += "'" + description + "', ";
                 } else {
                     command += "NULL, ";
                 }
-                
+
                 command += "" + balance + ", ";
-                
-                
-                
+
                 if (hasValue(interestRate)) {
                     command += "" + interestRate + "";
                 } else {
                     command += "NULL";
                 }
-                
+
                 command += ")";
             } else {
                 //TODO: Make the logic for printing this message logic better
@@ -214,7 +258,7 @@ public class AccountFactory extends LibraryFactoryBase {
                 } else {
                     command += DalFields.DESCRIPTION + " = NULL, ";
                 }
-                
+
                 command += DalFields.BALANCE + " = " + balance + ", ";
 
                 if (hasValue(interestRate)) {
@@ -222,7 +266,7 @@ public class AccountFactory extends LibraryFactoryBase {
                 } else {
                     command += DalFields.INTEREST_RATE + " = NULL ";
                 }
-                
+
                 command += "WHERE " + DalFields.ID + " = " + id;
             }
         } else {

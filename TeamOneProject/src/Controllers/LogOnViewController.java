@@ -9,7 +9,6 @@ import Database.DatabaseProvisioner;
 import Library.DalFields;
 import Library.User;
 import Library.UserFactory;
-import TaehyeokAtm.ATM;
 import Views.LogOnView;
 import java.util.HashMap;
 import java.util.List;
@@ -21,6 +20,10 @@ import java.util.List;
 public class LogOnViewController {
     
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
+
+    /**
+     *
+     */
     
     public LogOnView view;
     
@@ -73,8 +76,8 @@ public class LogOnViewController {
             }
             else if (!user.IsAdministrator)
             {
-                ATM atm = new ATM();
-                atm.uirun();
+                AtmViewController c = new AtmViewController();
+                c.load(user);
             }
             else
             {
