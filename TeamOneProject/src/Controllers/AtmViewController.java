@@ -69,8 +69,8 @@ public class AtmViewController {
         accountTransactionFactory.addDeposit(currentUser.PersonId, selectedAccount.Id, amount);
     }
     
-    public void executeWithdraw(BigDecimal amount) {
-        accountTransactionFactory.addDeposit(currentUser.PersonId, selectedAccount.Id, amount);
+    public void executeWithdrawal(BigDecimal amount) {
+        accountTransactionFactory.addWithdrawal(currentUser.PersonId, selectedAccount.Id, amount);
     }
 
     // </editor-fold> 

@@ -5,6 +5,7 @@
  */
 package Library;
 
+import Common.ExceptionHandler;
 import Common.ID;
 import DataAccess.DataAccessJavaDb;
 import java.math.BigDecimal;
@@ -21,7 +22,7 @@ import java.util.List;
 public class AccountTransactionFactory extends LibraryFactoryBase {
 
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
-    private AccountFactory accountFactory;
+    private final AccountFactory accountFactory;
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
@@ -56,6 +57,8 @@ public class AccountTransactionFactory extends LibraryFactoryBase {
 
             account.Balance = balance;
             accountFactory.executeUpdate(account.toHashMap());
+        } else {
+            ExceptionHandler.handleException(new Exception("Account is null, deposit failed."));
         }
     }
     
@@ -65,20 +68,27 @@ public class AccountTransactionFactory extends LibraryFactoryBase {
      * @param accountId
      * @param amount
      */
-    public void addWithdrawal(Long personId, Long accountId, BigDecimal amount) {
+    public void addWithdrawal(Long personId, Long accountId, BigDecimal amount){
         Account account = accountFactory.executeSelectById(accountId);
 
         if (account != null) {
             // TODO: These operations should be done transactionally so if one operation fails, neither is comitted.  Consider for future versions.
             //       Other possibilities chould be making the balance a calculated field so no post-processing is needed in this way.  Custom SQL 
             //       scripts could also be used to make these changes in a single transaction with rollback upon failure if Derby supports it.
-            AccountTransaction transaction = new AccountTransaction(ID.newId(), accountId, personId, new Timestamp(System.currentTimeMillis()), amount);
+            
+            // Make amount negative to indicate a withdrawal in the transaction record
+            BigDecimal withdrawalAmount = new BigDecimal("0").subtract(amount);
+            
+            AccountTransaction transaction = new AccountTransaction(ID.newId(), accountId, personId, new Timestamp(System.currentTimeMillis()), withdrawalAmount);
             executeInsert(transaction.toHashMap());
             
-            BigDecimal balance = account.Balance.subtract(amount);
+            // Adding a negative number to the balance
+            BigDecimal balance = account.Balance.add(withdrawalAmount);
 
             account.Balance = balance;
             accountFactory.executeUpdate(account.toHashMap());
+        } else {
+            ExceptionHandler.handleException(new Exception("Account is null, withdrawal failed."));
         }
     }
 

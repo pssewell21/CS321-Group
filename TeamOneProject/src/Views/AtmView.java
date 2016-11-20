@@ -620,18 +620,9 @@ public class AtmView extends JFrame {
             withdrawButton.setText("Withdraw");
             withdrawButton.setPreferredSize(new Dimension(120, 30));
             withdrawButton.addActionListener((java.awt.event.ActionEvent e) -> {
-                try {
-                    long accountNumber = Long.parseLong(withdrawalAccountNumberField.getText());
-                    long tradeMoney = Long.parseLong(withdrawalAmountField.getText());
-                    boolean state1 = acc.withdraw(accountNumber, tradeMoney);
-                    if (state1) {
-                        JOptionPane.showMessageDialog(withdrawalPanel, "Success, balance is $" + acc.inquiryBalance(accountNumber) + ".");
-                    } else {
-                        JOptionPane.showMessageDialog(withdrawalPanel, "Failure, balance is $" + acc.inquiryBalance(accountNumber) + ".");
-                    }
-                } catch (NumberFormatException | HeadlessException ex) {
-                    JOptionPane.showMessageDialog(withdrawalPanel, "Input error, try again.");
-                }
+                BigDecimal amount = new BigDecimal(withdrawalAmountField.getText());
+                
+                controller.executeWithdrawal(amount);
             });
         }
 
