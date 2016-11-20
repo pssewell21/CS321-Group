@@ -149,7 +149,6 @@ public class AtmView extends JFrame {
     /**
      * This method initializes the AtmView
      *
-     * @return void
      */
     public void load() {
         setContentPane(getJContentPane());
@@ -234,9 +233,10 @@ public class AtmView extends JFrame {
 
         return tabbedPane;
     }
-    
+
     /**
-     * This method adds additional tabs to the tabbedPane after selecting an account
+     * This method adds additional tabs to the tabbedPane after selecting an
+     * account
      *
      * @return javax.swing.JTabbedPane
      */
@@ -261,7 +261,7 @@ public class AtmView extends JFrame {
             gridBagConstraints410.gridy = 2;
             GridBagConstraints gridBagConstraints110 = new GridBagConstraints();
             gridBagConstraints110.gridx = 0;
-            gridBagConstraints110.gridy = 0;
+            gridBagConstraints110.gridy = 1;
             GridBagConstraints gridBagConstraints111 = new GridBagConstraints();
             gridBagConstraints111.gridx = 1;
             gridBagConstraints111.gridy = 0;
@@ -537,7 +537,7 @@ public class AtmView extends JFrame {
             depositAccountNumberField.setPreferredSize(new Dimension(150, 25));
             depositAccountNumberField.setEnabled(false);
         }
-        
+
         depositAccountNumberField.setText(controller.selectedAccount.AccountNumber.toString());
 
         return depositAccountNumberField;
@@ -569,18 +569,9 @@ public class AtmView extends JFrame {
             depositButton.setText("Deposit");
             depositButton.setPreferredSize(new Dimension(120, 30));
             depositButton.addActionListener((java.awt.event.ActionEvent e) -> {
-                try {
-                    long accountNumber = Long.parseLong(depositAccountNumberField.getText());
-                    long tradeMoney = Long.parseLong(depositAmountField.getText());
-                    boolean state1 = acc.deposit(accountNumber, tradeMoney);
-                    if (state1) {
-                        JOptionPane.showMessageDialog(depositPanel, "Success, current balance $" + acc.inquiryBalance(accountNumber) + ".");
-                    } else {
-                        JOptionPane.showMessageDialog(depositPanel, "Failure, current balance $" + acc.inquiryBalance(accountNumber) + ".");
-                    }
-                } catch (NumberFormatException | HeadlessException ex) {
-                    JOptionPane.showMessageDialog(depositPanel, "Input error, try again.");
-                }
+                BigDecimal amount = new BigDecimal(depositAmountField.getText());
+                
+                controller.executeDeposit(amount);
             });
         }
 
@@ -598,7 +589,7 @@ public class AtmView extends JFrame {
             withdrawalAccountNumberField.setPreferredSize(new Dimension(150, 25));
             withdrawalAccountNumberField.setEnabled(false);
         }
-        
+
         withdrawalAccountNumberField.setText(controller.selectedAccount.AccountNumber.toString());
 
         return withdrawalAccountNumberField;
@@ -658,7 +649,7 @@ public class AtmView extends JFrame {
             balanceCheckAccountNumber.setPreferredSize(new Dimension(150, 25));
             balanceCheckAccountNumber.setEnabled(false);
         }
-        
+
         balanceCheckAccountNumber.setText(controller.selectedAccount.AccountNumber.toString());
 
         return balanceCheckAccountNumber;
@@ -676,7 +667,7 @@ public class AtmView extends JFrame {
             balanceCheckButton.setPreferredSize(new Dimension(120, 30));
             balanceCheckButton.addActionListener((java.awt.event.ActionEvent e) -> {
                 BigDecimal balance = controller.executeCheckBalance();
-                    
+
                 balanceCheckCurrentBalance.setText(String.valueOf(balance));
             });
         }
@@ -695,7 +686,7 @@ public class AtmView extends JFrame {
             transactionHistoryAccountNumberField.setPreferredSize(new Dimension(150, 25));
             transactionHistoryAccountNumberField.setEnabled(false);
         }
-            
+
         transactionHistoryAccountNumberField.setText(controller.selectedAccount.AccountNumber.toString());
 
         return transactionHistoryAccountNumberField;
@@ -941,7 +932,7 @@ public class AtmView extends JFrame {
 
         return accountSelectionComboBox;
     }
-    
+
     /**
      * This method initializes selectAccountButton
      *
@@ -954,17 +945,17 @@ public class AtmView extends JFrame {
             selectAccountButton.setPreferredSize(new Dimension(120, 30));
             selectAccountButton.addActionListener((java.awt.event.ActionEvent e) -> {
                 controller.selectedAccount = (Account) accountSelectionComboBox.getSelectedItem();
-                
+
                 tabbedPane.remove(depositPanel);
                 tabbedPane.remove(withdrawalPanel);
                 tabbedPane.remove(balanceCheckPanel);
                 tabbedPane.remove(transactionHistoryPanel);
-               
+
                 depositPanel = null;
                 withdrawalPanel = null;
                 balanceCheckPanel = null;
                 transactionHistoryPanel = null;
-                
+
                 addTabbedPaneTabs();
             });
         }

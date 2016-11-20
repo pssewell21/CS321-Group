@@ -7,12 +7,10 @@ package Controllers;
 
 import Library.Account;
 import Library.AccountFactory;
-import Library.DalFields;
-import Library.Person;
+import Library.AccountTransactionFactory;
 import Library.User;
 import Views.AtmView;
 import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 
@@ -26,42 +24,48 @@ public class AtmViewController {
     /**
      *
      */
-    
     public AtmView view;
     
+    private User currentUser;
+
     private final AccountFactory accountFactory;
-    
+
+    private final AccountTransactionFactory accountTransactionFactory;
+
     public DefaultComboBoxModel<Account> accountModel;
-    
+
     public Account selectedAccount;
-    
+
     // </editor-fold> 
-    
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
-    
     public AtmViewController() {
         this.accountFactory = new AccountFactory();
+        this.accountTransactionFactory = new AccountTransactionFactory();
     }
-    
-    // </editor-fold> 
-    
-    // <editor-fold defaultstate="collapsed" desc="Methods"> 
 
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Methods"> 
     public void load(User user) {
-        List<Account> result = accountFactory.executeSelectByUserId(user.Id);
+        currentUser = user;
+        
+        List<Account> result = accountFactory.executeSelectByUserId(currentUser.Id);
         Account[] accountArray = result.toArray(new Account[]{});
         accountModel = new DefaultComboBoxModel<>(accountArray);
-        
+
         view = new AtmView(this);
     }
-    
+
     public void executeQuit() {
         System.exit(0);
     }
-    
+
     public BigDecimal executeCheckBalance() {
         return selectedAccount.Balance;
     }
-    
+
+    public void executeDeposit(BigDecimal amount) {
+        accountTransactionFactory.addDeposit(currentUser.PersonId, selectedAccount.Id, amount);
+    }
+
     // </editor-fold> 
 }

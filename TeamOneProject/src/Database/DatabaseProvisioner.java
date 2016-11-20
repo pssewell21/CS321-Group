@@ -72,7 +72,6 @@ public final class DatabaseProvisioner {
             + "    ACCOUNT_ID              BIGINT          NOT NULL,\n"
             + "    PERSON_ID               BIGINT          NOT NULL,\n"
             + "    TRANSACTION_TIMESTAMP   TIMESTAMP       NOT NULL,\n"
-            + "    DESCRIPTION             VARCHAR(300),\n"
             + "    AMOUNT                  NUMERIC(12,2)   NOT NULL,\n"
             + "    CONSTRAINT ACCOUNT_TRANSACTION_PK PRIMARY KEY (ID),\n"
             + "    CONSTRAINT ACCOUNT_TRANSACTION_ACCOUNT_ID_FK FOREIGN KEY (ACCOUNT_ID) REFERENCES ACCOUNT (ID),\n"
@@ -188,7 +187,6 @@ public final class DatabaseProvisioner {
             + "    555555555555555555, \n"
             + "    223344556677889911, \n"
             + "    '1960-01-01 08:00:00', \n"
-            + "    NULL, \n"
             + "    1000.00 \n"
             + ")";
     
@@ -202,7 +200,6 @@ public final class DatabaseProvisioner {
             + "    666666666666666666, \n"
             + "    223344556677889911, \n"
             + "    '1960-01-01 08:00:00', \n"
-            + "    NULL, \n"
             + "    5000.00 \n"
             + ")";
     

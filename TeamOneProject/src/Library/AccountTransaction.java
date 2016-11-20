@@ -35,11 +35,6 @@ public class AccountTransaction extends LibraryBase  {
     /**
      *
      */
-    public String Description;
-    
-    /**
-     *
-     */
     public BigDecimal Amount;
 
     // </editor-fold>
@@ -60,20 +55,17 @@ public class AccountTransaction extends LibraryBase  {
      * @param accountId
      * @param personId
      * @param timestamp
-     * @param description
      * @param amount
      */
     public AccountTransaction(Long id, 
             Long accountId, 
             Long personId, 
             Timestamp timestamp, 
-            String description, 
             BigDecimal amount) {
         super(id);
         AccountId = accountId;
         PersonId = personId;
         Timestamp = timestamp;
-        Description = description;
         Amount = amount;                  
     }
     
@@ -87,7 +79,6 @@ public class AccountTransaction extends LibraryBase  {
                 + DalFields.ACCOUNT_ID + ": " + AccountId + ", "
                 + DalFields.PERSON_ID + ": " + PersonId + ", "
                 + DalFields.TIMESTAMP + ": " + Timestamp + ", "
-                + DalFields.DESCRIPTION + ": " + Description + ", "
                 + DalFields.AMOUNT + ": " + Amount;
     }
 
@@ -103,12 +94,6 @@ public class AccountTransaction extends LibraryBase  {
         map.put(DalFields.ACCOUNT_ID, AccountId.toString());
         map.put(DalFields.PERSON_ID, PersonId.toString());
         map.put(DalFields.TIMESTAMP, Timestamp.toString());
-        if (Description != null) {
-            map.put(DalFields.DESCRIPTION, Description);
-        }
-        else {
-            map.put(DalFields.DESCRIPTION, null);
-        }
         map.put(DalFields.AMOUNT, Amount.toString());
 
         return map;

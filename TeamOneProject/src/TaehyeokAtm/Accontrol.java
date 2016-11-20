@@ -42,23 +42,11 @@ public final class Accontrol {
             File file2 = new File("Account.dat");
             if (file2.exists()) {
                 loadAccount();
-                /*ObjectInputStream ina = new ObjectInputStream(new FileInputStream("Account.dat"));
-				for(int i=0;i<acnum;i++)
-				{
-					ac[i] = (Account)ina.readObject();
-				}
-				ina.close();*/
             }
 
             File file3 = new File("Trade.dat");
             if (file3.exists()) {
                 loadTrade();
-                /*ObjectInputStream inb = new ObjectInputStream(new FileInputStream("Trade.dat"));
-				for(int i=0;i<tdnum;i++)
-				{
-					td[i] = (Trade)inb.readObject();
-				}
-				inb.close();*/
             }
         } catch (NumberFormatException ex) {
 
