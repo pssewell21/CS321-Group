@@ -314,3 +314,9 @@ os.arch=amd64
 os.version=10.0
 derby.system.home=C:\Users\Owner\Documents\GitHub\CS321-Group\TeamOneProject\netbeans.derby
 Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Sun Nov 20 14:47:06 CST 2016: Shutting down Derby engine
+----------------------------------------------------------------
+Sun Nov 20 14:47:06 CST 2016:
+Shutting down instance 601a400f-0158-82f4-f663-ffffdc267071 on database directory C:\Users\Owner\Documents\GitHub\CS321-Group\TeamOneProject\netbeans.derby\atmdb with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
+----------------------------------------------------------------

@@ -106,7 +106,7 @@ public final class DatabaseProvisioner {
             + "    NULL, \n"
             + "    '000000000'\n"
             + ")";
-    
+
     private static final String INSERT_STANDARD_PERSON_SCRIPT = "INSERT INTO APP.PERSON VALUES \n"
             + "(\n"
             + "    223344556677889911, \n"
@@ -131,7 +131,7 @@ public final class DatabaseProvisioner {
             + "    false, \n"
             + "    'default' \n"
             + ")";
-    
+
     private static final String INSERT_STANDARD_ATM_USER_SCRIPT = "INSERT INTO APP.ATM_USER VALUES \n"
             + "(\n"
             + "    887766554433221199, \n"
@@ -146,7 +146,7 @@ public final class DatabaseProvisioner {
             + "    false, \n"
             + "    'default' \n"
             + ")";
-    
+
     private static final String INSERT_STANDARD_USER_CHECKING_ACCOUNT_SCRIPT = "INSERT INTO APP.ACCOUNT VALUES \n"
             + "(\n"
             + "    555555555555555555, \n"
@@ -156,7 +156,7 @@ public final class DatabaseProvisioner {
             + "    0, \n"
             + "    NULL \n"
             + ")";
-    
+
     private static final String INSERT_STANDARD_USER_SAVING_ACCOUNT_SCRIPT = "INSERT INTO APP.ACCOUNT VALUES \n"
             + "(\n"
             + "    666666666666666666, \n"
@@ -166,21 +166,21 @@ public final class DatabaseProvisioner {
             + "    0, \n"
             + "    2.25 \n"
             + ")";
-    
+
     private static final String INSERT_STANDARD_USER_CHECKING_ACCOUNT_LINK_SCRIPT = "INSERT INTO APP.ACCOUNT_PERSON_MAP VALUES \n"
             + "(\n"
             + "    221122112211221122, \n"
             + "    555555555555555555, \n"
             + "    223344556677889911 \n"
             + ")";
-    
+
     private static final String INSERT_STANDARD_USER_SAVING_ACCOUNT_LINK_SCRIPT = "INSERT INTO APP.ACCOUNT_PERSON_MAP VALUES \n"
             + "(\n"
             + "    112211221122112211, \n"
             + "    666666666666666666, \n"
             + "    223344556677889911 \n"
             + ")";
-    
+
     private static final String INSERT_STANDARD_USER_CHECKING_ACCOUNT_TRANSACTION_SCRIPT = "INSERT INTO APP.ACCOUNT_TRANSACTION VALUES \n"
             + "(\n"
             + "    332233223322332233, \n"
@@ -189,11 +189,11 @@ public final class DatabaseProvisioner {
             + "    '1960-01-01 08:00:00', \n"
             + "    1000.00 \n"
             + ")";
-    
+
     private static final String UPDATE_STANDARD_USER_CHECKING_ACCOUNT_BALANCE_SCRIPT = "UPDATE APP.ACCOUNT SET \n"
             + "    BALANCE = 1000.00 \n"
             + "    WHERE ID = 555555555555555555";
-    
+
     private static final String INSERT_STANDARD_USER_SAVING_ACCOUNT_TRANSACTION_SCRIPT = "INSERT INTO APP.ACCOUNT_TRANSACTION VALUES \n"
             + "(\n"
             + "    443344334433443344, \n"
@@ -202,13 +202,12 @@ public final class DatabaseProvisioner {
             + "    '1960-01-01 08:00:00', \n"
             + "    5000.00 \n"
             + ")";
-    
+
     private static final String UPDATE_STANDARD_USER_SAVING_ACCOUNT_BALANCE_SCRIPT = "UPDATE APP.ACCOUNT SET \n"
             + "    BALANCE = 5000.00 \n"
             + "    WHERE ID = 666666666666666666";
 
     // </editor-fold>
-    
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     private DatabaseProvisioner() {
     }
@@ -236,7 +235,7 @@ public final class DatabaseProvisioner {
     //This method must be called after the database connection has been opened
     private static void dropDatabaseTables() throws SQLException {
         System.out.println("Update command being executed:");
-        
+
         System.out.println(DROP_TABLES_SCRIPT);
         DataAccessJavaDb.execute(DROP_TABLES_SCRIPT);
     }
@@ -269,7 +268,7 @@ public final class DatabaseProvisioner {
 
         System.out.println(INSERT_ADMIN_PERSON_SCRIPT);
         DataAccessJavaDb.executeInsert(INSERT_ADMIN_PERSON_SCRIPT);
-        
+
         System.out.println(INSERT_STANDARD_PERSON_SCRIPT);
         DataAccessJavaDb.executeInsert(INSERT_STANDARD_PERSON_SCRIPT);
 
@@ -293,13 +292,13 @@ public final class DatabaseProvisioner {
 
         System.out.println(INSERT_STANDARD_USER_CHECKING_ACCOUNT_TRANSACTION_SCRIPT);
         DataAccessJavaDb.executeInsert(INSERT_STANDARD_USER_CHECKING_ACCOUNT_TRANSACTION_SCRIPT);
-        
+
         System.out.println(UPDATE_STANDARD_USER_CHECKING_ACCOUNT_BALANCE_SCRIPT);
         DataAccessJavaDb.executeUpdate(UPDATE_STANDARD_USER_CHECKING_ACCOUNT_BALANCE_SCRIPT);
 
         System.out.println(INSERT_STANDARD_USER_SAVING_ACCOUNT_TRANSACTION_SCRIPT);
         DataAccessJavaDb.executeInsert(INSERT_STANDARD_USER_SAVING_ACCOUNT_TRANSACTION_SCRIPT);
-        
+
         System.out.println(UPDATE_STANDARD_USER_SAVING_ACCOUNT_BALANCE_SCRIPT);
         DataAccessJavaDb.executeUpdate(UPDATE_STANDARD_USER_SAVING_ACCOUNT_BALANCE_SCRIPT);
     }

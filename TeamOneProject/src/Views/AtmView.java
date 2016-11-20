@@ -13,7 +13,6 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.HeadlessException;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Rectangle;
@@ -36,7 +35,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
-public class AtmView extends JFrame {
+public final class AtmView extends JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
     private static final long serialVersionUID = 1L;
