@@ -60,10 +60,16 @@ public class AtmViewController {
     }
 
     public BigDecimal executeCheckBalance() {
+        selectedAccount = accountFactory.executeSelectById(selectedAccount.Id);
+        
         return selectedAccount.Balance;
     }
 
     public void executeDeposit(BigDecimal amount) {
+        accountTransactionFactory.addDeposit(currentUser.PersonId, selectedAccount.Id, amount);
+    }
+    
+    public void executeWithdraw(BigDecimal amount) {
         accountTransactionFactory.addDeposit(currentUser.PersonId, selectedAccount.Id, amount);
     }
 
