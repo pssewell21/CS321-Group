@@ -33,7 +33,6 @@ public final class DalFields {
     public static final String SECURITY_QUESTION_2 = "SECURITY_QUESTION_2";
     public static final String SELECTED_THEME = "SELECTED_THEME";
     public static final String SOCIAL_SECURITY_NUMBER = "SOCIAL_SECURITY_NUMBER";
-    public static final String TIMESTAMP = "TIMESTAMP";
     public static final String TRANSACTION_TIMESTAMP = "TRANSACTION_TIMESTAMP";
     public static final String USER_NAME = "USER_NAME";
     public static final String VALUE = "VALUE";

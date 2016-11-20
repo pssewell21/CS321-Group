@@ -78,7 +78,7 @@ public class AccountTransaction extends LibraryBase  {
         return super.toString() + ", " 
                 + DalFields.ACCOUNT_ID + ": " + AccountId + ", "
                 + DalFields.PERSON_ID + ": " + PersonId + ", "
-                + DalFields.TIMESTAMP + ": " + Timestamp + ", "
+                + DalFields.TRANSACTION_TIMESTAMP + ": " + Timestamp + ", "
                 + DalFields.AMOUNT + ": " + Amount;
     }
 
@@ -93,7 +93,7 @@ public class AccountTransaction extends LibraryBase  {
         map.put(DalFields.ID, Id.toString());
         map.put(DalFields.ACCOUNT_ID, AccountId.toString());
         map.put(DalFields.PERSON_ID, PersonId.toString());
-        map.put(DalFields.TIMESTAMP, Timestamp.toString());
+        map.put(DalFields.TRANSACTION_TIMESTAMP, Timestamp.toString());
         map.put(DalFields.AMOUNT, Amount.toString());
 
         return map;

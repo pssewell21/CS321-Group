@@ -7,6 +7,7 @@ package Views;
 
 import Controllers.AtmViewController;
 import Library.Account;
+import Library.AccountTransaction;
 import TaehyeokAtm.Accontrol;
 import TaehyeokAtm.Trade;
 import java.awt.BorderLayout;
@@ -19,6 +20,9 @@ import java.awt.Rectangle;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import javax.imageio.ImageIO;
@@ -116,11 +120,15 @@ public final class AtmView extends JFrame {
 
     private JComboBox<String> endDayComboBox;
 
+    private JTextField transactionHistoryStartDateField;
+
+    private JTextField transactionHistoryEndDateField;
+
     private JLabel startDateLabel;
 
     private JLabel endDateLabel;
 
-    private JList<String> transationHistoryList;
+    private JList<AccountTransaction> transactionHistoryList;
 
     private JButton getTransactionHistoryButton;
 
@@ -136,6 +144,7 @@ public final class AtmView extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     /**
      * This is the default constructor
+     * @param controller
      */
     public AtmView(AtmViewController controller) {
         this.controller = controller;
@@ -165,7 +174,6 @@ public final class AtmView extends JFrame {
     }
 
     public class back extends JFrame {
-
         Image img = null;
 
         back() {
@@ -246,6 +254,8 @@ public final class AtmView extends JFrame {
             tabbedPane.addTab("Check Balance", null, getBalanceCheckPanel(), null);
             tabbedPane.addTab("Transaction History", null, getTransactionHistoryPanel(), null);
         }
+        
+        pack();
     }
 
     /**
@@ -415,10 +425,10 @@ public final class AtmView extends JFrame {
     private JPanel getTransactionHistoryPanel() {
         if (transactionHistoryPanel == null) {
             GridBagConstraints gridBagConstraints = new GridBagConstraints();
-            gridBagConstraints.gridx = 6;
+            gridBagConstraints.gridx = 4;
             gridBagConstraints.gridy = 1;
             GridBagConstraints gridBagConstraints49 = new GridBagConstraints();
-            gridBagConstraints49.gridx = 6;
+            gridBagConstraints49.gridx = 4;
             gridBagConstraints49.gridy = 3;
             GridBagConstraints gridBagConstraints48 = new GridBagConstraints();
             gridBagConstraints48.fill = GridBagConstraints.BOTH;
@@ -442,36 +452,36 @@ public final class AtmView extends JFrame {
             startDateLabel = new JLabel();
             startDateLabel.setText("Start Date: ");
             startDateLabel.setPreferredSize(new Dimension(100, 20));
-            GridBagConstraints gridBagConstraints45 = new GridBagConstraints();
-            gridBagConstraints45.fill = GridBagConstraints.VERTICAL;
-            gridBagConstraints45.gridy = 3;
-            gridBagConstraints45.weightx = 1.0;
-            gridBagConstraints45.gridx = 5;
-            GridBagConstraints gridBagConstraints44 = new GridBagConstraints();
-            gridBagConstraints44.fill = GridBagConstraints.VERTICAL;
-            gridBagConstraints44.gridy = 3;
-            gridBagConstraints44.weightx = 1.0;
-            gridBagConstraints44.gridx = 4;
+//            GridBagConstraints gridBagConstraints45 = new GridBagConstraints();
+//            gridBagConstraints45.fill = GridBagConstraints.VERTICAL;
+//            gridBagConstraints45.gridy = 3;
+//            gridBagConstraints45.weightx = 1.0;
+//            gridBagConstraints45.gridx = 5;
+//            GridBagConstraints gridBagConstraints44 = new GridBagConstraints();
+//            gridBagConstraints44.fill = GridBagConstraints.VERTICAL;
+//            gridBagConstraints44.gridy = 3;
+//            gridBagConstraints44.weightx = 1.0;
+//            gridBagConstraints44.gridx = 4;
             GridBagConstraints gridBagConstraints43 = new GridBagConstraints();
-            gridBagConstraints43.fill = GridBagConstraints.VERTICAL;
+            gridBagConstraints43.fill = GridBagConstraints.BOTH;
             gridBagConstraints43.gridy = 3;
             gridBagConstraints43.weightx = 1.0;
-            gridBagConstraints43.gridx = 3;
-            GridBagConstraints gridBagConstraints42 = new GridBagConstraints();
-            gridBagConstraints42.fill = GridBagConstraints.VERTICAL;
-            gridBagConstraints42.gridy = 2;
-            gridBagConstraints42.weightx = 1.0;
-            gridBagConstraints42.gridx = 5;
-            GridBagConstraints gridBagConstraints41 = new GridBagConstraints();
-            gridBagConstraints41.fill = GridBagConstraints.VERTICAL;
-            gridBagConstraints41.gridy = 2;
-            gridBagConstraints41.weightx = 1.0;
-            gridBagConstraints41.gridx = 4;
+            gridBagConstraints43.gridx = 1;
+//            GridBagConstraints gridBagConstraints42 = new GridBagConstraints();
+//            gridBagConstraints42.fill = GridBagConstraints.VERTICAL;
+//            gridBagConstraints42.gridy = 2;
+//            gridBagConstraints42.weightx = 1.0;
+//            gridBagConstraints42.gridx = 5;
+//            GridBagConstraints gridBagConstraints41 = new GridBagConstraints();
+//            gridBagConstraints41.fill = GridBagConstraints.VERTICAL;
+//            gridBagConstraints41.gridy = 2;
+//            gridBagConstraints41.weightx = 1.0;
+//            gridBagConstraints41.gridx = 4;
             GridBagConstraints gridBagConstraints40 = new GridBagConstraints();
-            gridBagConstraints40.fill = GridBagConstraints.VERTICAL;
+            gridBagConstraints40.fill = GridBagConstraints.BOTH;
             gridBagConstraints40.gridy = 2;
             gridBagConstraints40.weightx = 1.0;
-            gridBagConstraints40.gridx = 3;
+            gridBagConstraints40.gridx = 1;
             GridBagConstraints gridBagConstraints38 = new GridBagConstraints();
             gridBagConstraints38.gridx = 0;
             gridBagConstraints38.gridy = 1;
@@ -479,19 +489,19 @@ public final class AtmView extends JFrame {
             periodLabel.setText("Period: ");
             periodLabel.setPreferredSize(new Dimension(100, 25));
             GridBagConstraints gridBagConstraints37 = new GridBagConstraints();
-            gridBagConstraints37.gridx = 5;
+            gridBagConstraints37.gridx = 3;
             gridBagConstraints37.gridy = 1;
             GridBagConstraints gridBagConstraints36 = new GridBagConstraints();
-            gridBagConstraints36.gridx = 4;
+            gridBagConstraints36.gridx = 2;
             gridBagConstraints36.gridy = 1;
             GridBagConstraints gridBagConstraints35 = new GridBagConstraints();
-            gridBagConstraints35.gridx = 3;
+            gridBagConstraints35.gridx = 1;
             gridBagConstraints35.gridy = 1;
             GridBagConstraints gridBagConstraints34 = new GridBagConstraints();
-            gridBagConstraints34.fill = GridBagConstraints.VERTICAL;
+            gridBagConstraints34.fill = GridBagConstraints.BOTH;
             gridBagConstraints34.gridy = 0;
             gridBagConstraints34.weightx = 1.0;
-            gridBagConstraints34.gridx = 6;
+            gridBagConstraints34.gridx = 4;
             GridBagConstraints gridBagConstraints33 = new GridBagConstraints();
             gridBagConstraints33.gridx = 0;
             gridBagConstraints33.gridy = 0;
@@ -509,15 +519,17 @@ public final class AtmView extends JFrame {
             transactionHistoryPanel.add(getLastYearRadioButton(), gridBagConstraints36);
             transactionHistoryPanel.add(getLastMonthRadioButton(), gridBagConstraints37);
             transactionHistoryPanel.add(periodLabel, gridBagConstraints38);
-            transactionHistoryPanel.add(getStartYearComboBox(), gridBagConstraints40);
-            transactionHistoryPanel.add(getStartMonthComboBox(), gridBagConstraints41);
-            transactionHistoryPanel.add(getStartDayComboBox(), gridBagConstraints42);
-            transactionHistoryPanel.add(getEndYearComboBox(), gridBagConstraints43);
-            transactionHistoryPanel.add(getEndMonthComboBox(), gridBagConstraints44);
-            transactionHistoryPanel.add(getEndDayComboBox(), gridBagConstraints45);
+            transactionHistoryPanel.add(getTransactionHistoryStartDateField(), gridBagConstraints40);
+            transactionHistoryPanel.add(getTransactionHistoryEndDateField(), gridBagConstraints43);
+//            transactionHistoryPanel.add(getStartYearComboBox(), gridBagConstraints40);
+//            transactionHistoryPanel.add(getStartMonthComboBox(), gridBagConstraints41);
+//            transactionHistoryPanel.add(getStartDayComboBox(), gridBagConstraints42);
+//            transactionHistoryPanel.add(getEndYearComboBox(), gridBagConstraints43);
+//            transactionHistoryPanel.add(getEndMonthComboBox(), gridBagConstraints44);
+//            transactionHistoryPanel.add(getEndDayComboBox(), gridBagConstraints45);
             transactionHistoryPanel.add(startDateLabel, gridBagConstraints46);
             transactionHistoryPanel.add(endDateLabel, gridBagConstraints47);
-            transactionHistoryPanel.add(getTransationHistoryList(), gridBagConstraints48);
+            transactionHistoryPanel.add(getTransactionHistoryList(), gridBagConstraints48);
             transactionHistoryPanel.add(getTransactionHistoryButton(), gridBagConstraints49);
             transactionHistoryPanel.add(getCustomDateRangeRadioButton(), gridBagConstraints);
         }
@@ -673,7 +685,7 @@ public final class AtmView extends JFrame {
     private JTextField getTransactionHistoryAccountNumberField() {
         if (transactionHistoryAccountNumberField == null) {
             transactionHistoryAccountNumberField = new JTextField();
-            transactionHistoryAccountNumberField.setPreferredSize(new Dimension(150, 25));
+            //transactionHistoryAccountNumberField.setPreferredSize(new Dimension(50, 25));
             transactionHistoryAccountNumberField.setEnabled(false);
         }
 
@@ -731,126 +743,154 @@ public final class AtmView extends JFrame {
         return lastMonthRadioButton;
     }
 
+//    /**
+//     * This method initializes startYearComboBox
+//     *
+//     * @return javax.swing.JComboBox
+//     */
+//    private JComboBox getStartYearComboBox() {
+//        if (startYearComboBox == null) {
+//            startYearComboBox = new JComboBox<>();
+//            for (int i = 1970; i < 2030; i++) {
+//                startYearComboBox.addItem(String.valueOf(i));
+//            }
+//            startYearComboBox.setPreferredSize(new Dimension(70, 20));
+//            startYearComboBox.setToolTipText("Start Year");
+//            startYearComboBox.setName("Start Year");
+//        }
+//
+//        return startYearComboBox;
+//    }
+//
+//    /**
+//     * This method initializes startMonthComboBox
+//     *
+//     * @return javax.swing.JComboBox
+//     */
+//    private JComboBox getStartMonthComboBox() {
+//        if (startMonthComboBox == null) {
+//            startMonthComboBox = new JComboBox<>();
+//            for (int i = 1; i < 13; i++) {
+//                startMonthComboBox.addItem(String.valueOf(i));
+//            }
+//            startMonthComboBox.setPreferredSize(new Dimension(40, 20));
+//            startMonthComboBox.setToolTipText("Start Month");
+//        }
+//
+//        return startMonthComboBox;
+//    }
+//
+//    /**
+//     * This method initializes startDayComboBox
+//     *
+//     * @return javax.swing.JComboBox
+//     */
+//    private JComboBox getStartDayComboBox() {
+//        if (startDayComboBox == null) {
+//            startDayComboBox = new JComboBox<>();
+//            startDayComboBox.setPreferredSize(new Dimension(40, 20));
+//            for (int i = 1; i < 32; i++) {
+//                startDayComboBox.addItem(String.valueOf(i));
+//            }
+//            startDayComboBox.setToolTipText("Start Day");
+//        }
+//
+//        return startDayComboBox;
+//    }
+//
+//    /**
+//     * This method initializes endYearComboBox
+//     *
+//     * @return javax.swing.JComboBox
+//     */
+//    private JComboBox getEndYearComboBox() {
+//        if (endYearComboBox == null) {
+//            endYearComboBox = new JComboBox<>();
+//            endYearComboBox.setPreferredSize(new Dimension(70, 20));
+//            for (int i = 1970; i < 2030; i++) {
+//                endYearComboBox.addItem(String.valueOf(i));
+//            }
+//            endYearComboBox.setToolTipText("End Year");
+//        }
+//
+//        return endYearComboBox;
+//    }
+//
+//    /**
+//     * This method initializes endMonthComboBox
+//     *
+//     * @return javax.swing.JComboBox
+//     */
+//    private JComboBox getEndMonthComboBox() {
+//        if (endMonthComboBox == null) {
+//            endMonthComboBox = new JComboBox<>();
+//            endMonthComboBox.setPreferredSize(new Dimension(40, 20));
+//            for (int i = 1; i < 13; i++) {
+//                endMonthComboBox.addItem(String.valueOf(i));
+//            }
+//            endMonthComboBox.setToolTipText("End Month");
+//        }
+//
+//        return endMonthComboBox;
+//    }
+//
+//    /**
+//     * This method initializes endDayComboBox
+//     *
+//     * @return javax.swing.JComboBox
+//     */
+//    private JComboBox getEndDayComboBox() {
+//        if (endDayComboBox == null) {
+//            endDayComboBox = new JComboBox<>();
+//            endDayComboBox.setPreferredSize(new Dimension(40, 20));
+//            for (int i = 1; i < 32; i++) {
+//                endDayComboBox.addItem(String.valueOf(i));
+//            }
+//            endDayComboBox.setToolTipText("End Day");
+//        }
+//
+//        return endDayComboBox;
+//    }
+    
     /**
-     * This method initializes startYearComboBox
+     * This method initializes transactionHistoryStartDateField
      *
-     * @return javax.swing.JComboBox
+     * @return javax.swing.JTextField
      */
-    private JComboBox getStartYearComboBox() {
-        if (startYearComboBox == null) {
-            startYearComboBox = new JComboBox<>();
-            for (int i = 1970; i < 2030; i++) {
-                startYearComboBox.addItem(String.valueOf(i));
-            }
-            startYearComboBox.setPreferredSize(new Dimension(70, 20));
-            startYearComboBox.setToolTipText("Start Year");
-            startYearComboBox.setName("Start Year");
+    private JTextField getTransactionHistoryStartDateField() {
+        if (transactionHistoryStartDateField == null) {
+            transactionHistoryStartDateField = new JTextField();
+            transactionHistoryStartDateField.setPreferredSize(new Dimension(150, 25));
         }
 
-        return startYearComboBox;
+        return transactionHistoryStartDateField;
+    }
+    
+    /**
+     * This method initializes transactionHistoryEndDateField
+     *
+     * @return javax.swing.JTextField
+     */
+    private JTextField getTransactionHistoryEndDateField() {
+        if (transactionHistoryEndDateField == null) {
+            transactionHistoryEndDateField = new JTextField();
+            transactionHistoryEndDateField.setPreferredSize(new Dimension(950, 25));
+        }
+
+        return transactionHistoryEndDateField;
     }
 
     /**
-     * This method initializes startMonthComboBox
-     *
-     * @return javax.swing.JComboBox
-     */
-    private JComboBox getStartMonthComboBox() {
-        if (startMonthComboBox == null) {
-            startMonthComboBox = new JComboBox<>();
-            for (int i = 1; i < 13; i++) {
-                startMonthComboBox.addItem(String.valueOf(i));
-            }
-            startMonthComboBox.setPreferredSize(new Dimension(40, 20));
-            startMonthComboBox.setToolTipText("Start Month");
-        }
-
-        return startMonthComboBox;
-    }
-
-    /**
-     * This method initializes startDayComboBox
-     *
-     * @return javax.swing.JComboBox
-     */
-    private JComboBox getStartDayComboBox() {
-        if (startDayComboBox == null) {
-            startDayComboBox = new JComboBox<>();
-            startDayComboBox.setPreferredSize(new Dimension(40, 20));
-            for (int i = 1; i < 32; i++) {
-                startDayComboBox.addItem(String.valueOf(i));
-            }
-            startDayComboBox.setToolTipText("Start Day");
-        }
-
-        return startDayComboBox;
-    }
-
-    /**
-     * This method initializes endYearComboBox
-     *
-     * @return javax.swing.JComboBox
-     */
-    private JComboBox getEndYearComboBox() {
-        if (endYearComboBox == null) {
-            endYearComboBox = new JComboBox<>();
-            endYearComboBox.setPreferredSize(new Dimension(70, 20));
-            for (int i = 1970; i < 2030; i++) {
-                endYearComboBox.addItem(String.valueOf(i));
-            }
-            endYearComboBox.setToolTipText("End Year");
-        }
-
-        return endYearComboBox;
-    }
-
-    /**
-     * This method initializes endMonthComboBox
-     *
-     * @return javax.swing.JComboBox
-     */
-    private JComboBox getEndMonthComboBox() {
-        if (endMonthComboBox == null) {
-            endMonthComboBox = new JComboBox<>();
-            endMonthComboBox.setPreferredSize(new Dimension(40, 20));
-            for (int i = 1; i < 13; i++) {
-                endMonthComboBox.addItem(String.valueOf(i));
-            }
-            endMonthComboBox.setToolTipText("End Month");
-        }
-
-        return endMonthComboBox;
-    }
-
-    /**
-     * This method initializes endDayComboBox
-     *
-     * @return javax.swing.JComboBox
-     */
-    private JComboBox getEndDayComboBox() {
-        if (endDayComboBox == null) {
-            endDayComboBox = new JComboBox<>();
-            endDayComboBox.setPreferredSize(new Dimension(40, 20));
-            for (int i = 1; i < 32; i++) {
-                endDayComboBox.addItem(String.valueOf(i));
-            }
-            endDayComboBox.setToolTipText("End Day");
-        }
-
-        return endDayComboBox;
-    }
-
-    /**
-     * This method initializes transationHistoryList
+     * This method initializes transactionHistoryList
      *
      * @return javax.swing.JList
      */
-    private JList getTransationHistoryList() {
-        if (transationHistoryList == null) {
-            transationHistoryList = new JList<>();
+    private JList getTransactionHistoryList() {
+        if (transactionHistoryList == null) {
+            transactionHistoryList = new JList<>();
         }
 
-        return transationHistoryList;
+        return transactionHistoryList;
     }
 
     /**
@@ -868,6 +908,10 @@ public final class AtmView extends JFrame {
                     String command = transactionHistoryRadioButtonGroup.getSelection().getActionCommand();
                     Calendar lastday = Calendar.getInstance();
                     Calendar startday = Calendar.getInstance();
+                    
+                    Timestamp startTime;
+                    Timestamp endTime;
+                    
                     switch (command) {
                         case "Last Day":
                             startday.roll(Calendar.DATE, false);
@@ -879,26 +923,37 @@ public final class AtmView extends JFrame {
                             startday.roll(Calendar.MONTH, false);
                             break;
                         case "Custom Date Range":
-                            startday.set(Integer.parseInt((String) startYearComboBox.getSelectedItem()), startMonthComboBox.getSelectedIndex(), startDayComboBox.getSelectedIndex() + 1);
-                            lastday.set(Integer.parseInt((String) endYearComboBox.getSelectedItem()), endMonthComboBox.getSelectedIndex(), endDayComboBox.getSelectedIndex() + 1);
+                            SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+                            
+                            Date parsedStartDate = dateFormat.parse(transactionHistoryStartDateField.getText());
+                            Date parsedEndDate = dateFormat.parse(transactionHistoryEndDateField.getText());
+                                    
+                            startTime = new Timestamp(parsedStartDate.getTime());
+                            endTime = new Timestamp(parsedEndDate.getTime());
+                            
+                            controller.executeGetTransactionHistory(startTime, endTime);
+                            //startday.set(Integer.parseInt((String) startYearComboBox.getSelectedItem()), startMonthComboBox.getSelectedIndex(), startDayComboBox.getSelectedIndex() + 1);
+                            //lastday.set(Integer.parseInt((String) endYearComboBox.getSelectedItem()), endMonthComboBox.getSelectedIndex(), endDayComboBox.getSelectedIndex() + 1);
                             break;
                         default:
                             System.out.println("Invalid action command selected.");
                             break;
                     }
+                    
+                    transactionHistoryList.setModel(controller.transactionListModel);
 
                     //Date time = startday.getTime();
                     //System.out.println(time.toString());
-                    long accountNumber = Long.parseLong(transactionHistoryAccountNumberField.getText());
-                    int size = acc.findDetailsnum(accountNumber, startday.getTimeInMillis(), lastday.getTimeInMillis());
-                    td = new Trade[size];
-                    td = acc.inquiryDetails(accountNumber, startday.getTimeInMillis(), lastday.getTimeInMillis());
-                    String detail[] = new String[size];
-                    for (int i = 0; i < size; i++) {
-                        detail[i] = showDetails(td[i]);
-                    }
-                    transationHistoryList.setListData(detail);
-                } catch (Exception ex) {
+//                    long accountNumber = Long.parseLong(transactionHistoryAccountNumberField.getText());
+//                    int size = acc.findDetailsnum(accountNumber, startday.getTimeInMillis(), lastday.getTimeInMillis());
+//                    td = new Trade[size];
+//                    td = acc.inquiryDetails(accountNumber, startday.getTimeInMillis(), lastday.getTimeInMillis());
+//                    String detail[] = new String[size];
+//                    for (int i = 0; i < size; i++) {
+//                        detail[i] = showDetails(td[i]);
+//                    }
+//                    transactionHistoryList.setListData(detail);
+                } catch (ParseException | NumberFormatException ex) {
                 }
             });
         }

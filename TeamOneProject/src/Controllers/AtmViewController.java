@@ -7,12 +7,15 @@ package Controllers;
 
 import Library.Account;
 import Library.AccountFactory;
+import Library.AccountTransaction;
 import Library.AccountTransactionFactory;
 import Library.User;
 import Views.AtmView;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -32,8 +35,19 @@ public class AtmViewController {
 
     private final AccountTransactionFactory accountTransactionFactory;
 
+    /**
+     *
+     */
     public DefaultComboBoxModel<Account> accountModel;
+    
+    /**
+     *
+     */
+    public DefaultListModel<AccountTransaction> transactionListModel;
 
+    /**
+     *
+     */
     public Account selectedAccount;
 
     // </editor-fold> 
@@ -71,6 +85,15 @@ public class AtmViewController {
     
     public void executeWithdrawal(BigDecimal amount) {
         accountTransactionFactory.addWithdrawal(currentUser.PersonId, selectedAccount.Id, amount);
+    }
+    
+    public void executeGetTransactionHistory(Timestamp startTime, Timestamp endTime) {
+        List<AccountTransaction> result = accountTransactionFactory.executeSelectByAccoundIdAndTimestampRange(selectedAccount.Id, startTime, endTime);
+        
+        transactionListModel = new DefaultListModel<>();
+        for (Object item : result) {
+            transactionListModel.addElement((AccountTransaction) item);
+        }
     }
 
     // </editor-fold> 

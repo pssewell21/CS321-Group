@@ -18,28 +18,25 @@ import java.util.List;
  * @author Owner
  */
 public class AccountFactory extends LibraryFactoryBase {
-
-    // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
-    
-    private final String SELECT_ACCOUNTS_BY_USER_ID_SCRIPT = "SELECT a.* FROM ATM_USER u\n"
-            + "INNER JOIN ACCOUNT_PERSON_MAP apm\n"
-            + "    ON apm.PERSON_ID = u.PERSON_ID\n"
-            + "INNER JOIN ACCOUNT a\n"
-            + "    ON a.ID = apm.ACCOUNT_ID\n"
-            + "WHERE u.ID = 887766554433221199"; 
-
-    // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
             /**
              *
              */
-
+    /**
+     *
+     */
     public AccountFactory() {
         super("APP", "ACCOUNT");
     }
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
+
+    /**
+     *
+     * @param accountId
+     * @return
+     */
     
     public Account executeSelectById(Long accountId) {
         HashMap<String, String> criteria = new HashMap<>(0);
@@ -54,6 +51,11 @@ public class AccountFactory extends LibraryFactoryBase {
         return null;
     }
     
+    /**
+     *
+     * @param userId
+     * @return
+     */
     public List<Account> executeSelectByUserId(Long userId) {
         List<Account> list = new ArrayList<>();
 
@@ -90,6 +92,11 @@ public class AccountFactory extends LibraryFactoryBase {
         return list;
     }
     
+    /**
+     *
+     * @param userId
+     * @return
+     */
     public String generateSelectByUserIdCommand(Long userId) {
         String command = "SELECT a.* FROM ATM_USER u\n"
             + "INNER JOIN ACCOUNT_PERSON_MAP apm\n"

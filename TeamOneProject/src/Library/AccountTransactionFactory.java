@@ -7,6 +7,7 @@ package Library;
 
 import Common.ExceptionHandler;
 import Common.ID;
+import Common.Utility;
 import DataAccess.DataAccessJavaDb;
 import java.math.BigDecimal;
 import java.sql.ResultSet;
@@ -50,7 +51,7 @@ public class AccountTransactionFactory extends LibraryFactoryBase {
             // TODO: These operations should be done transactionally so if one operation fails, neither is comitted.  Consider for future versions.
             //       Other possibilities chould be making the balance a calculated field so no post-processing is needed in this way.  Custom SQL 
             //       scripts could also be used to make these changes in a single transaction with rollback upon failure if Derby supports it.
-            AccountTransaction transaction = new AccountTransaction(ID.newId(), accountId, personId, new Timestamp(System.currentTimeMillis()), amount);
+            AccountTransaction transaction = new AccountTransaction(ID.newId(), accountId, personId, Utility.getCurrentTime(), amount);
             executeInsert(transaction.toHashMap());
             
             BigDecimal balance = account.Balance.add(amount);
@@ -58,7 +59,7 @@ public class AccountTransactionFactory extends LibraryFactoryBase {
             account.Balance = balance;
             accountFactory.executeUpdate(account.toHashMap());
         } else {
-            ExceptionHandler.handleException(new Exception("Account is null, deposit failed."));
+            ExceptionHandler.handleException(new Exception("Account not found, deposit failed."));
         }
     }
     
@@ -79,17 +80,77 @@ public class AccountTransactionFactory extends LibraryFactoryBase {
             // Make amount negative to indicate a withdrawal in the transaction record
             BigDecimal withdrawalAmount = new BigDecimal("0").subtract(amount);
             
-            AccountTransaction transaction = new AccountTransaction(ID.newId(), accountId, personId, new Timestamp(System.currentTimeMillis()), withdrawalAmount);
+            AccountTransaction transaction = new AccountTransaction(ID.newId(), accountId, personId, Utility.getCurrentTime(), withdrawalAmount);
             executeInsert(transaction.toHashMap());
             
-            // Adding a negative number to the balance
+            // Adding a negative number to the account balance
             BigDecimal balance = account.Balance.add(withdrawalAmount);
 
             account.Balance = balance;
             accountFactory.executeUpdate(account.toHashMap());
         } else {
-            ExceptionHandler.handleException(new Exception("Account is null, withdrawal failed."));
+            ExceptionHandler.handleException(new Exception("Account not found, withdrawal failed."));
         }
+    }
+    
+    /**
+     *
+     * @param accountId
+     * @param startTime
+     * @param endTime
+     * @return
+     */
+    public List<AccountTransaction> executeSelectByAccoundIdAndTimestampRange(Long accountId, Timestamp startTime, Timestamp endTime) {
+        List<AccountTransaction> list = new ArrayList<>();
+
+        DataAccessJavaDb.openConnection();
+
+        try {
+            String command = generateSelectByAccoundIdAndTimestampRangeCommand(accountId, startTime, endTime);
+
+            if (hasValue(command)) {
+                ResultSet resultSet = DataAccessJavaDb.executeSelect(command);
+                System.out.println("Select command being executed:\n" + command);
+
+                while (resultSet != null && resultSet.next()) {
+                    Long id = resultSet.getLong(DalFields.ID);
+                    Long accId = resultSet.getLong(DalFields.ACCOUNT_ID);
+                    Long personId = resultSet.getLong(DalFields.PERSON_ID);
+                    Timestamp timestamp = resultSet.getTimestamp(DalFields.TRANSACTION_TIMESTAMP);
+                    BigDecimal amount = resultSet.getBigDecimal(DalFields.AMOUNT);
+
+                    list.add(new AccountTransaction(id, accId, personId, timestamp, amount));
+                }
+            } else {
+                System.out.println("No select command was run from the provided criteria");
+            }
+        } catch (Exception e) {
+            handleException(e);
+        } finally {
+            DataAccessJavaDb.closeConnection();
+        }
+
+        return list;
+    }
+    
+    /**
+     *
+     * @param accountId
+     * @param startTime
+     * @param endTime
+     * @return
+     */
+    public String generateSelectByAccoundIdAndTimestampRangeCommand(Long accountId, Timestamp startTime, Timestamp endTime) {
+        String command = "SELECT atr.* FROM ACCOUNT a\n"
+            + "INNER JOIN ACCOUNT_TRANSACTION atr\n"
+            + "    ON atr.ACCOUNT_ID = a.ID\n"
+            + "WHERE a.ID = " + accountId.toString() + "\n"
+            + "    AND (\n"
+            + "        atr.TRANSACTION_TIMESTAMP >= '" + startTime.toString() + "' AND\n"
+            + "        atr.TRANSACTION_TIMESTAMP <= '" + endTime.toString() + "'\n"
+            + "    )";
+
+        return command;
     }
 
     // </editor-fold>
@@ -111,7 +172,7 @@ public class AccountTransactionFactory extends LibraryFactoryBase {
                     Long id = resultSet.getLong(DalFields.ID);
                     Long accountId = resultSet.getLong(DalFields.ACCOUNT_ID);
                     Long personId = resultSet.getLong(DalFields.PERSON_ID);
-                    Timestamp timestamp = resultSet.getTimestamp(DalFields.TIMESTAMP);
+                    Timestamp timestamp = resultSet.getTimestamp(DalFields.TRANSACTION_TIMESTAMP);
                     BigDecimal amount = resultSet.getBigDecimal(DalFields.AMOUNT);
 
                     list.add(new AccountTransaction(id, accountId, personId, timestamp, amount));
@@ -143,7 +204,7 @@ public class AccountTransactionFactory extends LibraryFactoryBase {
             String id = criteria.get(DalFields.ID);
             String accountId = criteria.get(DalFields.ACCOUNT_ID);
             String personId = criteria.get(DalFields.PERSON_ID);
-            //String timestamp = criteria.get(DalFields.TIMESTAMP);
+            //String timestamp = criteria.get(DalFields.TRANSACTION_TIMESTAMP);
             //String amount = criteria.get(DalFields.AMOUNT);
 
             if (hasValue(id) || hasValue(accountId) || hasValue(personId)) {
@@ -188,7 +249,7 @@ public class AccountTransactionFactory extends LibraryFactoryBase {
         if (!criteria.isEmpty()) {
             String accountId = criteria.get(DalFields.ACCOUNT_ID);
             String personId = criteria.get(DalFields.PERSON_ID);
-            String timestamp = criteria.get(DalFields.TIMESTAMP);
+            String timestamp = criteria.get(DalFields.TRANSACTION_TIMESTAMP);
             String amount = criteria.get(DalFields.AMOUNT);
 
             if (hasValue(accountId)

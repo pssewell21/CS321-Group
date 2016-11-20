@@ -5,6 +5,8 @@
  */
 package Common;
 
+import java.sql.Timestamp;
+
 /**
  *
  * @author pssew
@@ -21,4 +23,8 @@ public final class Utility {
 
         return !string.isEmpty();
     }
+    
+    public static final Timestamp getCurrentTime() {
+        return new Timestamp(System.currentTimeMillis());   
+    }    
 }
