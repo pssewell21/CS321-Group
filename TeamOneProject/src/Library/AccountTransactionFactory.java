@@ -20,19 +20,38 @@ import java.util.List;
  */
 public class AccountTransactionFactory extends LibraryFactoryBase {
 
+    // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
+    private AccountFactory accountFactory;
+
+    // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     /**
      *
      */
     public AccountTransactionFactory() {
         super("APP", "ACCOUNT_TRANSACTION");
+        accountFactory = new AccountFactory();
     }
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
     public void addDeposit(Long personId, Long accountId, BigDecimal amount) {
-        //TODO: Implement this
+        Account account = accountFactory.executeSelectById(accountId);
+
+        if (account != null) {
+            // TODO: These operations should be done transactionally so if one operation fails, neither is comitted.  Consider for future versions.
+            //       Other possibilities chould be making the balance a calculated field so no post-processing is needed in this way.  Custom SQL 
+            //       scripts could also be used to make these changes in a single transaction with rollback upon failure if Derby supports it.
+            AccountTransaction transaction = new AccountTransaction(ID.newId(), accountId, personId, new Timestamp(System.currentTimeMillis()), amount);
+            executeInsert(transaction.toHashMap());
+            
+            BigDecimal balance = account.Balance.add(amount);
+
+            account.Balance = balance;
+            accountFactory.executeUpdate(account.toHashMap());
+        }
     }
+
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Implementation of LibraryFactoryBase Methods"> 
     @Override
@@ -139,9 +158,9 @@ public class AccountTransactionFactory extends LibraryFactoryBase {
                 command += "INSERT INTO " + SCHEMA + "." + TABLE_NAME + " VALUES ("
                         + ID.newId() + ", "
                         + "" + accountId + ", "
-                        + "" + personId + ", " 
-                        + "'" + timestamp + "', "            
-                        + "" + amount + ", "                
+                        + "" + personId + ", "
+                        + "'" + timestamp + "', "
+                        + "" + amount + ""
                         + ")";
             } else {
                 //TODO: Make the logic for printing this message logic better

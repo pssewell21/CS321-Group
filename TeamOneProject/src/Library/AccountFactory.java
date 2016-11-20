@@ -29,7 +29,6 @@ public class AccountFactory extends LibraryFactoryBase {
             + "WHERE u.ID = 887766554433221199"; 
 
     // </editor-fold> 
-    
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
             /**
              *
@@ -41,6 +40,19 @@ public class AccountFactory extends LibraryFactoryBase {
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
+    
+    public Account executeSelectById(Long accountId) {
+        HashMap<String, String> criteria = new HashMap<>(0);
+        criteria.put(DalFields.ID, accountId.toString());
+
+        //Returns a list containing 0 or 1 items
+        List<Account> result = executeSelect(criteria);
+        if (!result.isEmpty()) {
+            return result.get(0);
+        }
+            
+        return null;
+    }
     
     public List<Account> executeSelectByUserId(Long userId) {
         List<Account> list = new ArrayList<>();
