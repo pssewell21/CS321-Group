@@ -49,37 +49,37 @@ public class ATMUI extends JFrame {
 
     private JPanel transactionHistoryPanel;
 
-    private JLabel accountNumberLabel2;
+    private JLabel depositAccountNumberLabel;
+
+    private JLabel depositAmountLabel;    
 
     private JTextField depositAccountNumberField;
 
-    private JTextField depositTradeMoneyField;
-
-    private JLabel depositLabel;
+    private JTextField depositAmountField;
 
     private JButton depositButton;
 
-    private JLabel accountNumberLabel3;
+    private JLabel withdrawalAccountNumberLabel;
+
+    private JLabel withdrawalAmountLabel;
 
     private JTextField withdrawalAccountNumberField;
 
-    private JLabel withdrawalLabel;
+    private JTextField withdrawalAmountField;
 
-    private JTextField withdrawalAccountTradeMoneyField;
+    private JButton withdrawButton;
 
-    private JButton withdrawalButton;
+    private JLabel balanceCheckAccountNumberLabel;
 
-    private JLabel accountNumberLabel4;
+    private JTextField balanceCheckAccountNumber;
 
-    private JTextField inquiryBalanceAccountNumber;
+    private JLabel balanceCheckCurrentBalance;
 
-    private JLabel inquiryBalanceBalance;
+    private JButton balanceCheckButton;
 
-    private JButton inquiryBalanceButton;
+    private JLabel transactionHistoryAccountNumberLabel;
 
-    private JLabel accountNumberLabel;
-
-    private JTextField inquiryTradeAccountNumberField;
+    private JTextField transactionHistoryAccountNumberField;
 
     private JRadioButton lastDayRadioButton;
 
@@ -107,12 +107,12 @@ public class ATMUI extends JFrame {
 
     private JLabel endDateLabel;
 
-    private JList<String> inquiryTradeList;
+    private JList<String> transationHistoryList;
 
     private JButton getTransactionHistoryButton;
 
     private JLabel logoLabel;
-    
+
     private JButton exitButton;
 
     private final Accontrol acc;
@@ -168,7 +168,7 @@ public class ATMUI extends JFrame {
         }
     }
 
-    public String showdetails(Trade td) {
+    public String showDetails(Trade td) {
         String type;
         if (td.getTradeType()) {
             type = "Deposit";
@@ -200,7 +200,7 @@ public class ATMUI extends JFrame {
             contentPane.setLayout(new BorderLayout());
             contentPane.setPreferredSize(new Dimension(600, 400));
             contentPane.setName("ATM_Demo");
-            contentPane.add(getJTabbedPane(), BorderLayout.CENTER);
+            contentPane.add(getTabbedPane(), BorderLayout.CENTER);
         }
 
         return contentPane;
@@ -211,7 +211,7 @@ public class ATMUI extends JFrame {
      *
      * @return javax.swing.JTabbedPane
      */
-    private JTabbedPane getJTabbedPane() {
+    private JTabbedPane getTabbedPane() {
         if (tabbedPane == null) {
             tabbedPane = new JTabbedPane();
             tabbedPane.setPreferredSize(new Dimension(9000, 380));
@@ -244,7 +244,7 @@ public class ATMUI extends JFrame {
             landingPanel = new JPanel();
             landingPanel.setLayout(new GridBagLayout());
             landingPanel.add(logoLabel, gridBagConstraints110);
-            landingPanel.add(getJexitButton1(), gridBagConstraints410);
+            landingPanel.add(getExitButton(), gridBagConstraints410);
         }
 
         return landingPanel;
@@ -263,9 +263,9 @@ public class ATMUI extends JFrame {
             GridBagConstraints gridBagConstraints21 = new GridBagConstraints();
             gridBagConstraints21.gridx = 0;
             gridBagConstraints21.gridy = 1;
-            depositLabel = new JLabel();
-            depositLabel.setText("Deposit: ");
-            depositLabel.setPreferredSize(new Dimension(100, 25));
+            depositAmountLabel = new JLabel();
+            depositAmountLabel.setText("Amount: ");
+            depositAmountLabel.setPreferredSize(new Dimension(100, 25));
             GridBagConstraints gridBagConstraints20 = new GridBagConstraints();
             gridBagConstraints20.fill = GridBagConstraints.VERTICAL;
             gridBagConstraints20.gridy = 1;
@@ -279,16 +279,16 @@ public class ATMUI extends JFrame {
             GridBagConstraints gridBagConstraints18 = new GridBagConstraints();
             gridBagConstraints18.gridx = 0;
             gridBagConstraints18.gridy = 0;
-            accountNumberLabel2 = new JLabel();
-            accountNumberLabel2.setText("Account Number: ");
-            accountNumberLabel2.setPreferredSize(new Dimension(100, 25));
+            depositAccountNumberLabel = new JLabel();
+            depositAccountNumberLabel.setText("Account Number: ");
+            depositAccountNumberLabel.setPreferredSize(new Dimension(100, 25));
             depositPanel = new JPanel();
             depositPanel.setLayout(new GridBagLayout());
-            depositPanel.add(accountNumberLabel2, gridBagConstraints18);
-            depositPanel.add(getJTextField_deposit_acnumber(), gridBagConstraints19);
-            depositPanel.add(getJTextField_deposit_trademoney(), gridBagConstraints20);
-            depositPanel.add(depositLabel, gridBagConstraints21);
-            depositPanel.add(getJDepositButton(), gridBagConstraints22);
+            depositPanel.add(depositAccountNumberLabel, gridBagConstraints18);
+            depositPanel.add(getDepositAccountNumberField(), gridBagConstraints19);
+            depositPanel.add(getDepositAmountField(), gridBagConstraints20);
+            depositPanel.add(depositAmountLabel, gridBagConstraints21);
+            depositPanel.add(getDepositButton(), gridBagConstraints22);
         }
 
         return depositPanel;
@@ -312,9 +312,9 @@ public class ATMUI extends JFrame {
             GridBagConstraints gridBagConstraints25 = new GridBagConstraints();
             gridBagConstraints25.gridx = 0;
             gridBagConstraints25.gridy = 1;
-            withdrawalLabel = new JLabel();
-            withdrawalLabel.setText("Withdrawal: ");
-            withdrawalLabel.setPreferredSize(new Dimension(100, 25));
+            withdrawalAmountLabel = new JLabel();
+            withdrawalAmountLabel.setText("Amount: ");
+            withdrawalAmountLabel.setPreferredSize(new Dimension(100, 25));
             GridBagConstraints gridBagConstraints24 = new GridBagConstraints();
             gridBagConstraints24.fill = GridBagConstraints.VERTICAL;
             gridBagConstraints24.gridy = 0;
@@ -323,16 +323,16 @@ public class ATMUI extends JFrame {
             GridBagConstraints gridBagConstraints23 = new GridBagConstraints();
             gridBagConstraints23.gridx = 0;
             gridBagConstraints23.gridy = 0;
-            accountNumberLabel3 = new JLabel();
-            accountNumberLabel3.setText("Account Number: ");
-            accountNumberLabel3.setPreferredSize(new Dimension(100, 25));
+            withdrawalAccountNumberLabel = new JLabel();
+            withdrawalAccountNumberLabel.setText("Account Number: ");
+            withdrawalAccountNumberLabel.setPreferredSize(new Dimension(100, 25));
             withdrawalPanel = new JPanel();
             withdrawalPanel.setLayout(new GridBagLayout());
-            withdrawalPanel.add(accountNumberLabel3, gridBagConstraints23);
-            withdrawalPanel.add(getJTextField_drawing_acnumber(), gridBagConstraints24);
-            withdrawalPanel.add(withdrawalLabel, gridBagConstraints25);
-            withdrawalPanel.add(getJTextField_drawing_trademoney(), gridBagConstraints26);
-            withdrawalPanel.add(getJWithdrawalButton(), gridBagConstraints27);
+            withdrawalPanel.add(withdrawalAccountNumberLabel, gridBagConstraints23);
+            withdrawalPanel.add(getWithdrawalAccountNumberField(), gridBagConstraints24);
+            withdrawalPanel.add(withdrawalAmountLabel, gridBagConstraints25);
+            withdrawalPanel.add(getWithdrawalAmountField(), gridBagConstraints26);
+            withdrawalPanel.add(getWithdrawButton(), gridBagConstraints27);
         }
 
         return withdrawalPanel;
@@ -351,9 +351,9 @@ public class ATMUI extends JFrame {
             GridBagConstraints gridBagConstraints31 = new GridBagConstraints();
             gridBagConstraints31.gridx = 1;
             gridBagConstraints31.gridy = 1;
-            inquiryBalanceBalance = new JLabel();
-            inquiryBalanceBalance.setText("");
-            inquiryBalanceBalance.setPreferredSize(new Dimension(150, 25));
+            balanceCheckCurrentBalance = new JLabel();
+            balanceCheckCurrentBalance.setText("");
+            balanceCheckCurrentBalance.setPreferredSize(new Dimension(150, 25));
             GridBagConstraints gridBagConstraints29 = new GridBagConstraints();
             gridBagConstraints29.fill = GridBagConstraints.VERTICAL;
             gridBagConstraints29.gridy = 0;
@@ -362,15 +362,15 @@ public class ATMUI extends JFrame {
             GridBagConstraints gridBagConstraints28 = new GridBagConstraints();
             gridBagConstraints28.gridx = 0;
             gridBagConstraints28.gridy = 0;
-            accountNumberLabel4 = new JLabel();
-            accountNumberLabel4.setText("Account Number: ");
-            accountNumberLabel4.setPreferredSize(new Dimension(100, 25));
+            balanceCheckAccountNumberLabel = new JLabel();
+            balanceCheckAccountNumberLabel.setText("Account Number: ");
+            balanceCheckAccountNumberLabel.setPreferredSize(new Dimension(100, 25));
             balanceCheckPanel = new JPanel();
             balanceCheckPanel.setLayout(new GridBagLayout());
-            balanceCheckPanel.add(accountNumberLabel4, gridBagConstraints28);
-            balanceCheckPanel.add(getJTextField_inquirybalance_acnumber(), gridBagConstraints29);
-            balanceCheckPanel.add(inquiryBalanceBalance, gridBagConstraints31);
-            balanceCheckPanel.add(getInquiryBalanceButton(), gridBagConstraints32);
+            balanceCheckPanel.add(balanceCheckAccountNumberLabel, gridBagConstraints28);
+            balanceCheckPanel.add(getBalanceCheckAccountNumber(), gridBagConstraints29);
+            balanceCheckPanel.add(balanceCheckCurrentBalance, gridBagConstraints31);
+            balanceCheckPanel.add(getBalanceCheckButton(), gridBagConstraints32);
         }
 
         return balanceCheckPanel;
@@ -464,15 +464,15 @@ public class ATMUI extends JFrame {
             GridBagConstraints gridBagConstraints33 = new GridBagConstraints();
             gridBagConstraints33.gridx = 0;
             gridBagConstraints33.gridy = 0;
-            accountNumberLabel = new JLabel();
-            accountNumberLabel.setText("Account Number: ");
-            accountNumberLabel.setPreferredSize(new Dimension(100, 25));
+            transactionHistoryAccountNumberLabel = new JLabel();
+            transactionHistoryAccountNumberLabel.setText("Account Number: ");
+            transactionHistoryAccountNumberLabel.setPreferredSize(new Dimension(100, 25));
             transactionHistoryPanel = new JPanel();
             transactionHistoryPanel.setLayout(new GridBagLayout());
             transactionHistoryPanel.setPreferredSize(new Dimension(500, 91));
             transactionHistoryPanel.setName("systems");
-            transactionHistoryPanel.add(accountNumberLabel, gridBagConstraints33);
-            transactionHistoryPanel.add(getJTextField_inquirytrade_acnumber(), gridBagConstraints34);
+            transactionHistoryPanel.add(transactionHistoryAccountNumberLabel, gridBagConstraints33);
+            transactionHistoryPanel.add(getTransactionHistoryAccountNumberField(), gridBagConstraints34);
             transactionHistoryRadioButtonGroup = new ButtonGroup();
             transactionHistoryPanel.add(getLastDayRadioButton(), gridBagConstraints35);
             transactionHistoryPanel.add(getLastYearRadioButton(), gridBagConstraints36);
@@ -486,7 +486,7 @@ public class ATMUI extends JFrame {
             transactionHistoryPanel.add(getEndDayComboBox(), gridBagConstraints45);
             transactionHistoryPanel.add(startDateLabel, gridBagConstraints46);
             transactionHistoryPanel.add(endDateLabel, gridBagConstraints47);
-            transactionHistoryPanel.add(getJList_inquirytrade(), gridBagConstraints48);
+            transactionHistoryPanel.add(getTransationHistoryList(), gridBagConstraints48);
             transactionHistoryPanel.add(getTransactionHistoryButton(), gridBagConstraints49);
             transactionHistoryPanel.add(getCustomDateRangeRadioButton(), gridBagConstraints);
         }
@@ -499,7 +499,7 @@ public class ATMUI extends JFrame {
      *
      * @return javax.swing.JTextField
      */
-    private JTextField getJTextField_deposit_acnumber() {
+    private JTextField getDepositAccountNumberField() {
         if (depositAccountNumberField == null) {
             depositAccountNumberField = new JTextField();
             depositAccountNumberField.setPreferredSize(new Dimension(150, 25));
@@ -509,18 +509,18 @@ public class ATMUI extends JFrame {
     }
 
     /**
-     * This method initializes depositTradeMoneyField
+     * This method initializes depositAmountField
      *
      * @return javax.swing.JTextField
      */
-    private JTextField getJTextField_deposit_trademoney() {
-        if (depositTradeMoneyField == null) {
-            depositTradeMoneyField = new JTextField();
-            depositTradeMoneyField.setText("");
-            depositTradeMoneyField.setPreferredSize(new Dimension(150, 25));
+    private JTextField getDepositAmountField() {
+        if (depositAmountField == null) {
+            depositAmountField = new JTextField();
+            depositAmountField.setText("");
+            depositAmountField.setPreferredSize(new Dimension(150, 25));
         }
 
-        return depositTradeMoneyField;
+        return depositAmountField;
     }
 
     /**
@@ -528,20 +528,20 @@ public class ATMUI extends JFrame {
      *
      * @return javax.swing.JButton
      */
-    private JButton getJDepositButton() {
+    private JButton getDepositButton() {
         if (depositButton == null) {
             depositButton = new JButton();
             depositButton.setText("Deposit");
             depositButton.setPreferredSize(new Dimension(120, 30));
             depositButton.addActionListener((java.awt.event.ActionEvent e) -> {
                 try {
-                    long acnumber = Long.parseLong(depositAccountNumberField.getText());
-                    long trademoney = Long.parseLong(depositTradeMoneyField.getText());
-                    boolean state1 = acc.deposit(acnumber, trademoney);
+                    long accountNumber = Long.parseLong(depositAccountNumberField.getText());
+                    long tradeMoney = Long.parseLong(depositAmountField.getText());
+                    boolean state1 = acc.deposit(accountNumber, tradeMoney);
                     if (state1) {
-                        JOptionPane.showMessageDialog(depositPanel, "Success, current balance $" + acc.inquiryBalance(acnumber) + ".");
+                        JOptionPane.showMessageDialog(depositPanel, "Success, current balance $" + acc.inquiryBalance(accountNumber) + ".");
                     } else {
-                        JOptionPane.showMessageDialog(depositPanel, "Failure, current balance $" + acc.inquiryBalance(acnumber) + ".");
+                        JOptionPane.showMessageDialog(depositPanel, "Failure, current balance $" + acc.inquiryBalance(accountNumber) + ".");
                     }
                 } catch (NumberFormatException | HeadlessException ex) {
                     JOptionPane.showMessageDialog(depositPanel, "Input error, try again.");
@@ -557,7 +557,7 @@ public class ATMUI extends JFrame {
      *
      * @return javax.swing.JTextField
      */
-    private JTextField getJTextField_drawing_acnumber() {
+    private JTextField getWithdrawalAccountNumberField() {
         if (withdrawalAccountNumberField == null) {
             withdrawalAccountNumberField = new JTextField();
             withdrawalAccountNumberField.setPreferredSize(new Dimension(150, 25));
@@ -567,17 +567,17 @@ public class ATMUI extends JFrame {
     }
 
     /**
-     * This method initializes withdrawalAccountTradeMoneyField
+     * This method initializes withdrawalAmountField
      *
      * @return javax.swing.JTextField
      */
-    private JTextField getJTextField_drawing_trademoney() {
-        if (withdrawalAccountTradeMoneyField == null) {
-            withdrawalAccountTradeMoneyField = new JTextField();
-            withdrawalAccountTradeMoneyField.setPreferredSize(new Dimension(150, 25));
+    private JTextField getWithdrawalAmountField() {
+        if (withdrawalAmountField == null) {
+            withdrawalAmountField = new JTextField();
+            withdrawalAmountField.setPreferredSize(new Dimension(150, 25));
         }
 
-        return withdrawalAccountTradeMoneyField;
+        return withdrawalAmountField;
     }
 
     /**
@@ -585,20 +585,20 @@ public class ATMUI extends JFrame {
      *
      * @return javax.swing.JButton
      */
-    private JButton getJWithdrawalButton() {
-        if (withdrawalButton == null) {
-            withdrawalButton = new JButton();
-            withdrawalButton.setText("Withdrawal");
-            withdrawalButton.setPreferredSize(new Dimension(120, 30));
-            withdrawalButton.addActionListener((java.awt.event.ActionEvent e) -> {
+    private JButton getWithdrawButton() {
+        if (withdrawButton == null) {
+            withdrawButton = new JButton();
+            withdrawButton.setText("Withdraw");
+            withdrawButton.setPreferredSize(new Dimension(120, 30));
+            withdrawButton.addActionListener((java.awt.event.ActionEvent e) -> {
                 try {
-                    long acnumber = Long.parseLong(withdrawalAccountNumberField.getText());
-                    long trademoney = Long.parseLong(withdrawalAccountTradeMoneyField.getText());
-                    boolean state1 = acc.drawing(acnumber, trademoney);
+                    long accountNumber = Long.parseLong(withdrawalAccountNumberField.getText());
+                    long tradeMoney = Long.parseLong(withdrawalAmountField.getText());
+                    boolean state1 = acc.withdraw(accountNumber, tradeMoney);
                     if (state1) {
-                        JOptionPane.showMessageDialog(withdrawalPanel, "Success, balance is $" + acc.inquiryBalance(acnumber) + ".");
+                        JOptionPane.showMessageDialog(withdrawalPanel, "Success, balance is $" + acc.inquiryBalance(accountNumber) + ".");
                     } else {
-                        JOptionPane.showMessageDialog(withdrawalPanel, "Failure, balance is $" + acc.inquiryBalance(acnumber) + ".");
+                        JOptionPane.showMessageDialog(withdrawalPanel, "Failure, balance is $" + acc.inquiryBalance(accountNumber) + ".");
                     }
                 } catch (NumberFormatException | HeadlessException ex) {
                     JOptionPane.showMessageDialog(withdrawalPanel, "Input error, try again.");
@@ -606,42 +606,42 @@ public class ATMUI extends JFrame {
             });
         }
 
-        return withdrawalButton;
+        return withdrawButton;
     }
 
     /**
-     * This method initializes inquiryBalanceAccountNumber
+     * This method initializes balanceCheckAccountNumber
      *
      * @return javax.swing.JTextField
      */
-    private JTextField getJTextField_inquirybalance_acnumber() {
-        if (inquiryBalanceAccountNumber == null) {
-            inquiryBalanceAccountNumber = new JTextField();
-            inquiryBalanceAccountNumber.setPreferredSize(new Dimension(150, 25));
+    private JTextField getBalanceCheckAccountNumber() {
+        if (balanceCheckAccountNumber == null) {
+            balanceCheckAccountNumber = new JTextField();
+            balanceCheckAccountNumber.setPreferredSize(new Dimension(150, 25));
         }
 
-        return inquiryBalanceAccountNumber;
+        return balanceCheckAccountNumber;
     }
 
     /**
-     * This method initializes inquiryBalanceButton
+     * This method initializes balanceCheckButton
      *
      * @return javax.swing.JButton
      */
-    private JButton getInquiryBalanceButton() {
-        if (inquiryBalanceButton == null) {
-            inquiryBalanceButton = new JButton();
-            inquiryBalanceButton.setText("Check Balance");
-            inquiryBalanceButton.setPreferredSize(new Dimension(120, 30));
-            inquiryBalanceButton.addActionListener((java.awt.event.ActionEvent e) -> {
+    private JButton getBalanceCheckButton() {
+        if (balanceCheckButton == null) {
+            balanceCheckButton = new JButton();
+            balanceCheckButton.setText("Check Balance");
+            balanceCheckButton.setPreferredSize(new Dimension(120, 30));
+            balanceCheckButton.addActionListener((java.awt.event.ActionEvent e) -> {
                 try {
-                    long acnumber = Long.parseLong(inquiryBalanceAccountNumber.getText());
+                    long accountNumber = Long.parseLong(balanceCheckAccountNumber.getText());
 
-                    long balance = acc.inquiryBalance(acnumber);
+                    long balance = acc.inquiryBalance(accountNumber);
                     if (balance == -1) {
                         JOptionPane.showMessageDialog(depositPanel, "Failed to check balance, check account number.");
                     } else {
-                        inquiryBalanceBalance.setText(String.valueOf(balance));
+                        balanceCheckCurrentBalance.setText(String.valueOf(balance));
                     }
                 } catch (NumberFormatException | HeadlessException ex) {
                     JOptionPane.showMessageDialog(transactionHistoryPanel, "Input error, check account number and enter again.");
@@ -649,21 +649,21 @@ public class ATMUI extends JFrame {
             });
         }
 
-        return inquiryBalanceButton;
+        return balanceCheckButton;
     }
 
     /**
-     * This method initializes inquiryTradeAccountNumberField
+     * This method initializes transactionHistoryAccountNumberField
      *
      * @return javax.swing.JTextField
      */
-    private JTextField getJTextField_inquirytrade_acnumber() {
-        if (inquiryTradeAccountNumberField == null) {
-            inquiryTradeAccountNumberField = new JTextField();
-            inquiryTradeAccountNumberField.setPreferredSize(new Dimension(120, 25));
+    private JTextField getTransactionHistoryAccountNumberField() {
+        if (transactionHistoryAccountNumberField == null) {
+            transactionHistoryAccountNumberField = new JTextField();
+            transactionHistoryAccountNumberField.setPreferredSize(new Dimension(120, 25));
         }
 
-        return inquiryTradeAccountNumberField;
+        return transactionHistoryAccountNumberField;
     }
 
     /**
@@ -825,16 +825,16 @@ public class ATMUI extends JFrame {
     }
 
     /**
-     * This method initializes inquiryTradeList
+     * This method initializes transationHistoryList
      *
      * @return javax.swing.JList
      */
-    private JList getJList_inquirytrade() {
-        if (inquiryTradeList == null) {
-            inquiryTradeList = new JList<>();
+    private JList getTransationHistoryList() {
+        if (transationHistoryList == null) {
+            transationHistoryList = new JList<>();
         }
 
-        return inquiryTradeList;
+        return transationHistoryList;
     }
 
     /**
@@ -873,15 +873,15 @@ public class ATMUI extends JFrame {
 
                     //Date time = startday.getTime();
                     //System.out.println(time.toString());
-                    long acnumber = Long.parseLong(inquiryTradeAccountNumberField.getText());
-                    int size = acc.findDetailsnum(acnumber, startday.getTimeInMillis(), lastday.getTimeInMillis());
+                    long accountNumber = Long.parseLong(transactionHistoryAccountNumberField.getText());
+                    int size = acc.findDetailsnum(accountNumber, startday.getTimeInMillis(), lastday.getTimeInMillis());
                     td = new Trade[size];
-                    td = acc.inquiryDetails(acnumber, startday.getTimeInMillis(), lastday.getTimeInMillis());
+                    td = acc.inquiryDetails(accountNumber, startday.getTimeInMillis(), lastday.getTimeInMillis());
                     String detail[] = new String[size];
                     for (int i = 0; i < size; i++) {
-                        detail[i] = showdetails(td[i]);
+                        detail[i] = showDetails(td[i]);
                     }
-                    inquiryTradeList.setListData(detail);
+                    transationHistoryList.setListData(detail);
                 } catch (Exception ex) {
                 }
             });
@@ -895,7 +895,7 @@ public class ATMUI extends JFrame {
      *
      * @return javax.swing.JButton
      */
-    private JButton getJexitButton1() {
+    private JButton getExitButton() {
         if (exitButton == null) {
             exitButton = new JButton();
             exitButton.setText("Quit ATM");
