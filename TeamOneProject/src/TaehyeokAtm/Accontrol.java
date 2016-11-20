@@ -150,7 +150,7 @@ public final class Accontrol {
         }
     }
 
-    public boolean drawing(long accountNumber, long tradeMoney) {
+    public boolean withdraw(long accountNumber, long tradeMoney) {
         boolean tstate = false;
         try {
             long balance = ac[(int) accountNumber].getBalance();
