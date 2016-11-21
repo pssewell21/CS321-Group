@@ -601,7 +601,7 @@ public final class AtmView extends JFrame {
     private JTextField getTransactionHistoryAccountNumberField() {
         if (transactionHistoryAccountNumberField == null) {
             transactionHistoryAccountNumberField = new JTextField();
-            //transactionHistoryAccountNumberField.setPreferredSize(new Dimension(50, 25));
+            transactionHistoryAccountNumberField.setPreferredSize(new Dimension(150, 25));
             transactionHistoryAccountNumberField.setEnabled(false);
         }
 
