@@ -9,7 +9,9 @@ import Common.UserSettings;
 import Controllers.AccountPersonMapEditViewController;
 import Library.Account;
 import Library.Person;
+import java.awt.Graphics;
 import javax.swing.ComboBoxModel;
+import javax.swing.DefaultListCellRenderer;
 
 /**
  *
@@ -61,6 +63,39 @@ public class AccountPersonMapEditView extends javax.swing.JFrame {
     
     private void setThemeColors() {
         jPanel1.setBackground(UserSettings.theme.getBackgroundColor());
+        
+        personComboBox.setBackground(UserSettings.theme.getComboBoxBackgroundColor());
+        accountComboBox.setBackground(UserSettings.theme.getComboBoxBackgroundColor());
+        applyButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        saveButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        cancelButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        deleteButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        
+        personComboBox.setForeground(UserSettings.theme.getTextColor());
+        accountComboBox.setForeground(UserSettings.theme.getTextColor());
+        applyButton.setForeground(UserSettings.theme.getTextColor());
+        saveButton.setForeground(UserSettings.theme.getTextColor());
+        cancelButton.setForeground(UserSettings.theme.getTextColor());
+        deleteButton.setForeground(UserSettings.theme.getTextColor());
+        jLabel2.setForeground(UserSettings.theme.getTextColor());
+        jLabel3.setForeground(UserSettings.theme.getTextColor());
+        
+        personComboBox.setRenderer(new DefaultListCellRenderer() {
+            @Override
+            public void paint(Graphics g) {
+            setBackground(UserSettings.theme.getListBackgroundColor());
+            setForeground(UserSettings.theme.getTextColor());
+            super.paint(g);
+            }
+        });        
+        accountComboBox.setRenderer(new DefaultListCellRenderer() {
+            @Override
+            public void paint(Graphics g) {
+            setBackground(UserSettings.theme.getListBackgroundColor());
+            setForeground(UserSettings.theme.getTextColor());
+            super.paint(g);
+            }
+        });
     }
 
     /**

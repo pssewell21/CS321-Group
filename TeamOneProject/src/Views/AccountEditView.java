@@ -57,6 +57,31 @@ public class AccountEditView extends javax.swing.JFrame {
     
     private void setThemeColors() {
         jPanel1.setBackground(UserSettings.theme.getBackgroundColor());
+        
+        AccountNumberField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        AccountTypeField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        BalanceField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        DescriptionField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        InterestRateField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        applyButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        saveButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        cancelButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        deleteButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        
+        AccountNumberField.setForeground(UserSettings.theme.getTextColor());
+        AccountTypeField.setForeground(UserSettings.theme.getTextColor());
+        BalanceField.setForeground(UserSettings.theme.getTextColor());
+        DescriptionField.setForeground(UserSettings.theme.getTextColor());
+        InterestRateField.setForeground(UserSettings.theme.getTextColor());
+        applyButton.setForeground(UserSettings.theme.getTextColor());
+        saveButton.setForeground(UserSettings.theme.getTextColor());
+        cancelButton.setForeground(UserSettings.theme.getTextColor());
+        deleteButton.setForeground(UserSettings.theme.getTextColor());
+        jLabel2.setForeground(UserSettings.theme.getTextColor());
+        jLabel3.setForeground(UserSettings.theme.getTextColor());
+        jLabel4.setForeground(UserSettings.theme.getTextColor());
+        jLabel5.setForeground(UserSettings.theme.getTextColor());
+        jLabel6.setForeground(UserSettings.theme.getTextColor());
     }
 
     /**

@@ -47,18 +47,13 @@ public class AccountListView extends javax.swing.JFrame {
     
     private void setThemeColors() {
         jPanel1.setBackground(UserSettings.theme.getBackgroundColor());
-
-//        accountManagerButton.setBackground(UserSettings.theme.getButtonColor());
-//        accountPersonLinkManagerButton.setBackground(UserSettings.theme.getButtonColor());
-//        personManagerButton.setBackground(UserSettings.theme.getButtonColor());
-//        testDataButton.setBackground(UserSettings.theme.getButtonColor());
-//        userManagerButton.setBackground(UserSettings.theme.getButtonColor());
-//
-//        accountManagerButton.setForeground(UserSettings.theme.getTextColor());
-//        accountPersonLinkManagerButton.setForeground(UserSettings.theme.getTextColor());
-//        personManagerButton.setForeground(UserSettings.theme.getTextColor());
-//        testDataButton.setForeground(UserSettings.theme.getTextColor());
-//        userManagerButton.setForeground(UserSettings.theme.getTextColor());
+        
+        jList1.setBackground(UserSettings.theme.getListBackgroundColor());
+        newButton.setBackground(UserSettings.theme.getButtonBackgroundColor());
+                
+        jList1.setForeground(UserSettings.theme.getTextColor());
+        newButton.setForeground(UserSettings.theme.getTextColor());
+        jLabel1.setForeground(UserSettings.theme.getTextColor());
     }
 
     /**

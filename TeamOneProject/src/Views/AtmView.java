@@ -5,11 +5,13 @@
  */
 package Views;
 
+import Common.UserSettings;
 import Common.Utility;
 import Controllers.AtmViewController;
 import Library.Account;
 import Library.AccountTransaction;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -34,90 +36,51 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
+import javax.swing.UIDefaults;
 
 public final class AtmView extends JFrame {
-
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
+    
     private static final long serialVersionUID = 1L;
-
-    private JPanel contentPane;
-
     private JTabbedPane tabbedPane;
-
+    private JPanel contentPane;
     private JPanel landingPanel;
-
     private JPanel depositPanel;
-
     private JPanel withdrawalPanel;
-
     private JPanel balanceCheckPanel;
-
     private JPanel transactionHistoryPanel;
-
     private JLabel logoLabel;
-
     private JComboBox<Account> accountSelectionComboBox;
-
     private JButton selectAccountButton;
-
     private JButton exitButton;
-
     private JLabel depositAccountNumberLabel;
-
     private JLabel depositAmountLabel;
-
     private JTextField depositAccountNumberField;
-
     private JTextField depositAmountField;
-
     private JButton depositButton;
-
     private JLabel withdrawalAccountNumberLabel;
-
     private JLabel withdrawalAmountLabel;
-
     private JTextField withdrawalAccountNumberField;
-
     private JTextField withdrawalAmountField;
-
     private JButton withdrawButton;
-
     private JLabel balanceCheckAccountNumberLabel;
-
     private JTextField balanceCheckAccountNumber;
-
     private JLabel balanceCheckCurrentBalance;
-
     private JButton balanceCheckButton;
-
     private JLabel transactionHistoryAccountNumberLabel;
-
     private JTextField transactionHistoryAccountNumberField;
-
     private JRadioButton lastDayRadioButton;
-
     private JRadioButton lastMonthRadioButton;
-
     private JRadioButton lastYearRadioButton;
-
     private JRadioButton customDateRangeRadioButton;
-
     private JLabel periodLabel;
-
     private JTextField transactionHistoryStartDateField;
-
     private JTextField transactionHistoryEndDateField;
-
     private JLabel startDateLabel;
-
     private JLabel endDateLabel;
-
     private JList<AccountTransaction> transactionHistoryList;
-
     private JButton getTransactionHistoryButton;
-
     private ButtonGroup transactionHistoryRadioButtonGroup;
-
     private final AtmViewController controller;
 
     // </editor-fold> 
@@ -148,10 +111,61 @@ public final class AtmView extends JFrame {
                 controller.executeQuit();
             }
         });
+        
+        setThemeColors();
 
         setVisible(true);
     }
-        /**
+    
+    private void setThemeColors() {
+//        private JTabbedPane tabbedPane;
+//        private JComboBox<Account> accountSelectionComboBox;
+//        private JButton selectAccountButton;
+//        private JButton exitButton;
+//        private JTextField depositAccountNumberField;
+//        private JTextField depositAmountField;
+//        private JButton depositButton;
+//        private JTextField withdrawalAccountNumberField;
+//        private JTextField withdrawalAmountField;
+//        private JButton withdrawButton;
+//        private JTextField balanceCheckAccountNumber;
+//        private JButton balanceCheckButton;
+//        private JTextField transactionHistoryAccountNumberField;
+//        private JRadioButton lastDayRadioButton;
+//        private JRadioButton lastMonthRadioButton;
+//        private JRadioButton lastYearRadioButton;
+//        private JRadioButton customDateRangeRadioButton;
+//        private JTextField transactionHistoryStartDateField;
+//        private JTextField transactionHistoryEndDateField;
+//        private JButton getTransactionHistoryButton;
+                
+//        AddressField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+//        DateOfBirthField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+//        NameField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+//        PhoneNumberField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+//        SocialSecurityNumberField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+//        applyButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+//        saveButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+//        cancelButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+//        deleteButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+//        
+//        AddressField.setForeground(UserSettings.theme.getTextColor());
+//        DateOfBirthField.setForeground(UserSettings.theme.getTextColor());
+//        NameField.setForeground(UserSettings.theme.getTextColor());
+//        PhoneNumberField.setForeground(UserSettings.theme.getTextColor());
+//        SocialSecurityNumberField.setForeground(UserSettings.theme.getTextColor());
+//        applyButton.setForeground(UserSettings.theme.getTextColor());
+//        saveButton.setForeground(UserSettings.theme.getTextColor());
+//        cancelButton.setForeground(UserSettings.theme.getTextColor());
+//        deleteButton.setForeground(UserSettings.theme.getTextColor());
+//        jLabel2.setForeground(UserSettings.theme.getTextColor());
+//        jLabel3.setForeground(UserSettings.theme.getTextColor());
+//        jLabel4.setForeground(UserSettings.theme.getTextColor());
+//        jLabel5.setForeground(UserSettings.theme.getTextColor());
+//        jLabel6.setForeground(UserSettings.theme.getTextColor());
+    }
+    
+    /**
      * This method initializes contentPane
      *
      * @return javax.swing.JPanel
@@ -162,6 +176,7 @@ public final class AtmView extends JFrame {
             contentPane.setLayout(new BorderLayout());
             contentPane.setPreferredSize(new Dimension(600, 400));
             contentPane.setName("ATM_Demo");
+            contentPane.setBackground(UserSettings.theme.getBackgroundColor());
             contentPane.add(getTabbedPane(), BorderLayout.CENTER);
         }
 
@@ -222,8 +237,10 @@ public final class AtmView extends JFrame {
             logoLabel = new JLabel();
             logoLabel.setText("Insert ATM Logo");
             logoLabel.setPreferredSize(new Dimension(100, 30));
+            logoLabel.setForeground(UserSettings.theme.getTextColor());
             landingPanel = new JPanel();
             landingPanel.setLayout(new GridBagLayout());
+            landingPanel.setBackground(UserSettings.theme.getBackgroundColor());
             landingPanel.add(logoLabel, gridBagConstraints110);
             landingPanel.add(getAccountSelectionComboBox(), gridBagConstraints111);
             landingPanel.add(getSelectAccountButton(), gridBagConstraints112);
@@ -249,6 +266,7 @@ public final class AtmView extends JFrame {
             depositAmountLabel = new JLabel();
             depositAmountLabel.setText("Amount: ");
             depositAmountLabel.setPreferredSize(new Dimension(100, 25));
+            depositAmountLabel.setForeground(UserSettings.theme.getTextColor());
             GridBagConstraints gridBagConstraints20 = new GridBagConstraints();
             gridBagConstraints20.fill = GridBagConstraints.VERTICAL;
             gridBagConstraints20.gridy = 1;
@@ -265,8 +283,10 @@ public final class AtmView extends JFrame {
             depositAccountNumberLabel = new JLabel();
             depositAccountNumberLabel.setText("Account Number: ");
             depositAccountNumberLabel.setPreferredSize(new Dimension(100, 25));
+            depositAccountNumberLabel.setForeground(UserSettings.theme.getTextColor());
             depositPanel = new JPanel();
             depositPanel.setLayout(new GridBagLayout());
+            depositPanel.setBackground(UserSettings.theme.getBackgroundColor());
             depositPanel.add(depositAccountNumberLabel, gridBagConstraints18);
             depositPanel.add(getDepositAccountNumberField(), gridBagConstraints19);
             depositPanel.add(getDepositAmountField(), gridBagConstraints20);
@@ -298,6 +318,7 @@ public final class AtmView extends JFrame {
             withdrawalAmountLabel = new JLabel();
             withdrawalAmountLabel.setText("Amount: ");
             withdrawalAmountLabel.setPreferredSize(new Dimension(100, 25));
+            withdrawalAmountLabel.setForeground(UserSettings.theme.getTextColor());
             GridBagConstraints gridBagConstraints24 = new GridBagConstraints();
             gridBagConstraints24.fill = GridBagConstraints.VERTICAL;
             gridBagConstraints24.gridy = 0;
@@ -309,8 +330,10 @@ public final class AtmView extends JFrame {
             withdrawalAccountNumberLabel = new JLabel();
             withdrawalAccountNumberLabel.setText("Account Number: ");
             withdrawalAccountNumberLabel.setPreferredSize(new Dimension(100, 25));
+            withdrawalAccountNumberLabel.setForeground(UserSettings.theme.getTextColor());
             withdrawalPanel = new JPanel();
             withdrawalPanel.setLayout(new GridBagLayout());
+            withdrawalPanel.setBackground(UserSettings.theme.getBackgroundColor());
             withdrawalPanel.add(withdrawalAccountNumberLabel, gridBagConstraints23);
             withdrawalPanel.add(getWithdrawalAccountNumberField(), gridBagConstraints24);
             withdrawalPanel.add(withdrawalAmountLabel, gridBagConstraints25);
@@ -337,6 +360,7 @@ public final class AtmView extends JFrame {
             balanceCheckCurrentBalance = new JLabel();
             balanceCheckCurrentBalance.setText("");
             balanceCheckCurrentBalance.setPreferredSize(new Dimension(150, 25));
+            balanceCheckCurrentBalance.setForeground(UserSettings.theme.getTextColor());
             GridBagConstraints gridBagConstraints29 = new GridBagConstraints();
             gridBagConstraints29.fill = GridBagConstraints.VERTICAL;
             gridBagConstraints29.gridy = 0;
@@ -348,8 +372,10 @@ public final class AtmView extends JFrame {
             balanceCheckAccountNumberLabel = new JLabel();
             balanceCheckAccountNumberLabel.setText("Account Number: ");
             balanceCheckAccountNumberLabel.setPreferredSize(new Dimension(100, 25));
+            balanceCheckAccountNumberLabel.setForeground(UserSettings.theme.getTextColor());
             balanceCheckPanel = new JPanel();
             balanceCheckPanel.setLayout(new GridBagLayout());
+            balanceCheckPanel.setBackground(UserSettings.theme.getBackgroundColor());
             balanceCheckPanel.add(balanceCheckAccountNumberLabel, gridBagConstraints28);
             balanceCheckPanel.add(getBalanceCheckAccountNumber(), gridBagConstraints29);
             balanceCheckPanel.add(balanceCheckCurrentBalance, gridBagConstraints31);
@@ -388,12 +414,14 @@ public final class AtmView extends JFrame {
             endDateLabel = new JLabel();
             endDateLabel.setText("End Date: ");
             endDateLabel.setPreferredSize(new Dimension(100, 20));
+            endDateLabel.setForeground(UserSettings.theme.getTextColor());
             GridBagConstraints gridBagConstraints46 = new GridBagConstraints();
             gridBagConstraints46.gridx = 0;
             gridBagConstraints46.gridy = 2;
             startDateLabel = new JLabel();
             startDateLabel.setText("Start Date: ");
             startDateLabel.setPreferredSize(new Dimension(100, 20));
+            startDateLabel.setForeground(UserSettings.theme.getTextColor());
             GridBagConstraints gridBagConstraints43 = new GridBagConstraints();
             gridBagConstraints43.fill = GridBagConstraints.BOTH;
             gridBagConstraints43.gridy = 3;
@@ -410,6 +438,7 @@ public final class AtmView extends JFrame {
             periodLabel = new JLabel();
             periodLabel.setText("Period: ");
             periodLabel.setPreferredSize(new Dimension(100, 25));
+            periodLabel.setForeground(UserSettings.theme.getTextColor());
             GridBagConstraints gridBagConstraints37 = new GridBagConstraints();
             gridBagConstraints37.gridx = 2;
             gridBagConstraints37.gridy = 1;
@@ -430,10 +459,12 @@ public final class AtmView extends JFrame {
             transactionHistoryAccountNumberLabel = new JLabel();
             transactionHistoryAccountNumberLabel.setText("Account Number: ");
             transactionHistoryAccountNumberLabel.setPreferredSize(new Dimension(100, 25));
+            transactionHistoryAccountNumberLabel.setForeground(UserSettings.theme.getTextColor());
             transactionHistoryPanel = new JPanel();
             transactionHistoryPanel.setLayout(new GridBagLayout());
             transactionHistoryPanel.setPreferredSize(new Dimension(500, 91));
             transactionHistoryPanel.setName("systems");
+            transactionHistoryPanel.setBackground(UserSettings.theme.getBackgroundColor());
             transactionHistoryPanel.add(transactionHistoryAccountNumberLabel, gridBagConstraints33);
             transactionHistoryPanel.add(getTransactionHistoryAccountNumberField(), gridBagConstraints34);
             transactionHistoryRadioButtonGroup = new ButtonGroup();
@@ -462,6 +493,9 @@ public final class AtmView extends JFrame {
         if (depositAccountNumberField == null) {
             depositAccountNumberField = new JTextField();
             depositAccountNumberField.setPreferredSize(new Dimension(150, 25));
+            depositAccountNumberField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+            depositAccountNumberField.setDisabledTextColor(UserSettings.theme.getTextColor());
+            depositAccountNumberField.setForeground(UserSettings.theme.getTextColor());
             depositAccountNumberField.setEnabled(false);
         }
 
@@ -478,8 +512,9 @@ public final class AtmView extends JFrame {
     private JTextField getDepositAmountField() {
         if (depositAmountField == null) {
             depositAmountField = new JTextField();
-            depositAmountField.setText("");
             depositAmountField.setPreferredSize(new Dimension(150, 25));
+            depositAmountField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+            depositAmountField.setForeground(UserSettings.theme.getTextColor());
         }
 
         return depositAmountField;
@@ -515,6 +550,9 @@ public final class AtmView extends JFrame {
             withdrawalAccountNumberField = new JTextField();
             withdrawalAccountNumberField.setPreferredSize(new Dimension(150, 25));
             withdrawalAccountNumberField.setEnabled(false);
+            withdrawalAccountNumberField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+            withdrawalAccountNumberField.setDisabledTextColor(UserSettings.theme.getTextColor());
+            withdrawalAccountNumberField.setForeground(UserSettings.theme.getTextColor());
         }
 
         withdrawalAccountNumberField.setText(controller.selectedAccount.AccountNumber.toString());
@@ -531,6 +569,8 @@ public final class AtmView extends JFrame {
         if (withdrawalAmountField == null) {
             withdrawalAmountField = new JTextField();
             withdrawalAmountField.setPreferredSize(new Dimension(150, 25));
+            withdrawalAmountField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+            withdrawalAmountField.setForeground(UserSettings.theme.getTextColor());
         }
 
         return withdrawalAmountField;
@@ -566,6 +606,13 @@ public final class AtmView extends JFrame {
             balanceCheckAccountNumber = new JTextField();
             balanceCheckAccountNumber.setPreferredSize(new Dimension(150, 25));
             balanceCheckAccountNumber.setEnabled(false);
+            
+            UIDefaults overrides = new UIDefaults();
+            overrides.put("TextField.background", new ColorUIResource(Color.RED));
+            
+            balanceCheckAccountNumber.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+            balanceCheckAccountNumber.setDisabledTextColor(UserSettings.theme.getTextColor());
+            balanceCheckAccountNumber.setForeground(UserSettings.theme.getTextColor());
         }
 
         balanceCheckAccountNumber.setText(controller.selectedAccount.AccountNumber.toString());
@@ -603,6 +650,9 @@ public final class AtmView extends JFrame {
             transactionHistoryAccountNumberField = new JTextField();
             transactionHistoryAccountNumberField.setPreferredSize(new Dimension(150, 25));
             transactionHistoryAccountNumberField.setEnabled(false);
+            transactionHistoryAccountNumberField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+            transactionHistoryAccountNumberField.setDisabledTextColor(UserSettings.theme.getTextColor());
+            transactionHistoryAccountNumberField.setForeground(UserSettings.theme.getTextColor());
         }
 
         transactionHistoryAccountNumberField.setText(controller.selectedAccount.AccountNumber.toString());
@@ -668,6 +718,8 @@ public final class AtmView extends JFrame {
         if (transactionHistoryStartDateField == null) {
             transactionHistoryStartDateField = new JTextField();
             transactionHistoryStartDateField.setPreferredSize(new Dimension(150, 25));
+            transactionHistoryStartDateField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+            transactionHistoryStartDateField.setForeground(UserSettings.theme.getTextColor());
         }
 
         return transactionHistoryStartDateField;
@@ -682,6 +734,8 @@ public final class AtmView extends JFrame {
         if (transactionHistoryEndDateField == null) {
             transactionHistoryEndDateField = new JTextField();
             transactionHistoryEndDateField.setPreferredSize(new Dimension(950, 25));
+            transactionHistoryEndDateField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+            transactionHistoryEndDateField.setForeground(UserSettings.theme.getTextColor());
         }
 
         return transactionHistoryEndDateField;
@@ -695,6 +749,8 @@ public final class AtmView extends JFrame {
     private JList getTransactionHistoryList() {
         if (transactionHistoryList == null) {
             transactionHistoryList = new JList<>();
+            transactionHistoryList.setBackground(UserSettings.theme.getListBackgroundColor());
+            transactionHistoryList.setForeground(UserSettings.theme.getTextColor());
         }
 
         return transactionHistoryList;

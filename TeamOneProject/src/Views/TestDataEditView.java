@@ -49,6 +49,25 @@ public class TestDataEditView extends javax.swing.JFrame {
     
     private void setThemeColors() {
         jPanel1.setBackground(UserSettings.theme.getBackgroundColor());
+        
+        IdField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        KeyField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        ValueField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        applyButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        saveButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        cancelButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        deleteButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        
+        IdField.setForeground(UserSettings.theme.getTextColor());
+        KeyField.setForeground(UserSettings.theme.getTextColor());
+        ValueField.setForeground(UserSettings.theme.getTextColor());
+        applyButton.setForeground(UserSettings.theme.getTextColor());
+        saveButton.setForeground(UserSettings.theme.getTextColor());
+        cancelButton.setForeground(UserSettings.theme.getTextColor());
+        deleteButton.setForeground(UserSettings.theme.getTextColor());
+        jLabel1.setForeground(UserSettings.theme.getTextColor());
+        jLabel2.setForeground(UserSettings.theme.getTextColor());
+        jLabel3.setForeground(UserSettings.theme.getTextColor());
     }
 
     /**

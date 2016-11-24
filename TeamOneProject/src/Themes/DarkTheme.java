@@ -18,26 +18,36 @@ public final class DarkTheme implements ITheme{
     
     @Override
     public Color getBackgroundColor() {
-        return Color.GREEN;
+        return Color.BLACK;
     }
     
     @Override
     public Color getListBackgroundColor() {
-        return Color.ORANGE;
+        return Color.DARK_GRAY;
     }
     
     @Override
     public Color getComboBoxBackgroundColor() {
-        return Color.GRAY;
+        return Color.DARK_GRAY;
+    }
+    
+    @Override
+    public Color getButtonBackgroundColor() {
+        return Color.DARK_GRAY;
+    }
+    
+    @Override
+    public Color getTextFieldBackgroundColor() {
+        return Color.DARK_GRAY;
+    }
+    
+    @Override
+    public Color getCheckBoxBackgroundColor() {
+        return Color.DARK_GRAY;
     }
     
     @Override
     public Color getTextColor() {
-        return Color.PINK;
-    }
-    
-    @Override
-    public Color getButtonColor() {
-        return Color.BLUE;
+        return Color.WHITE;
     }
 }

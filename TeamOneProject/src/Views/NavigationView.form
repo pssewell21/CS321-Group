@@ -38,8 +38,8 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="158" max="-2" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace pref="170" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="testDataButton" alignment="0" min="-2" pref="191" max="-2" attributes="0"/>
                       <Component id="accountManagerButton" alignment="0" min="-2" pref="191" max="-2" attributes="0"/>
@@ -47,7 +47,7 @@
                       <Component id="userManagerButton" alignment="0" min="-2" pref="191" max="-2" attributes="0"/>
                       <Component id="personManagerButton" alignment="0" min="-2" pref="191" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="18" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

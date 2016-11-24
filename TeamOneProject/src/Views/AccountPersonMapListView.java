@@ -13,20 +13,20 @@ import Common.UserSettings;
 import Controllers.AccountPersonMapListViewController;
 import Library.AccountPersonMap;
 import Library.Person;
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.JComboBox;
 import javax.swing.JList;
 
 public class AccountPersonMapListView extends javax.swing.JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
-    
     private final AccountPersonMapListViewController controller;
-    
-    // </editor-fold> 
-    
-    // <editor-fold defaultstate="collapsed" desc="Constructors"> 
 
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     /**
      * Creates new form TestDataListView
      *
@@ -36,23 +36,40 @@ public class AccountPersonMapListView extends javax.swing.JFrame {
         this.controller = controller;
         load();
     }
-    
+
     // </editor-fold> 
-    
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
-    
     private void load() {
         initComponents();
         setThemeColors();
-        
+
         personComboBox.setSelectedItem(null);
         newButton.setEnabled(false);
-        
+
         setVisible(true);
     }
-    
+
     private void setThemeColors() {
         jPanel1.setBackground(UserSettings.theme.getBackgroundColor());
+
+        jList1.setBackground(UserSettings.theme.getListBackgroundColor());
+        newButton.setBackground(UserSettings.theme.getButtonBackgroundColor());
+        personComboBox.setBackground(UserSettings.theme.getComboBoxBackgroundColor());
+
+        jList1.setForeground(UserSettings.theme.getTextColor());
+        newButton.setForeground(UserSettings.theme.getTextColor());
+        personComboBox.setForeground(UserSettings.theme.getTextColor());
+        jLabel1.setForeground(UserSettings.theme.getTextColor());
+        jLabel2.setForeground(UserSettings.theme.getTextColor());
+
+        personComboBox.setRenderer(new DefaultListCellRenderer() {
+            @Override
+            public void paint(Graphics g) {
+            setBackground(UserSettings.theme.getListBackgroundColor());
+            setForeground(UserSettings.theme.getTextColor());
+            super.paint(g);
+            }
+        });
     }
 
     /**
@@ -67,7 +84,7 @@ public class AccountPersonMapListView extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        javax.swing.JList<AccountPersonMap> jList1 = new javax.swing.JList<>();
+        jList1 = new javax.swing.JList<>();
         newButton = new javax.swing.JButton();
         personComboBox = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
@@ -202,43 +219,29 @@ public class AccountPersonMapListView extends javax.swing.JFrame {
     private void personComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personComboBoxActionPerformed
         JComboBox comboBox = (JComboBox) evt.getSource();
         Person person = (Person) comboBox.getSelectedItem();
-        
+
         if (person != null) {
             controller.loadAccountList(person.Id);
             newButton.setEnabled(true);
         } else {
             controller.initializeAccountList();
             newButton.setEnabled(false);
-        }  
-        
-        javax.swing.JList<AccountPersonMap> jList1 = new javax.swing.JList<>();
+        }
+
         jList1.setModel(controller.accountPersonMapListModel);
-        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jList1MouseClicked(evt);
-            }
-        });
-        jList1.addKeyListener(new java.awt.event.KeyAdapter() {
-            @Override
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jList1KeyPressed(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jList1);
     }//GEN-LAST:event_personComboBoxActionPerformed
 
     // </editor-fold> 
-    
     // <editor-fold defaultstate="collapsed" desc="Generated UI Variables"> 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JList<AccountPersonMap> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton newButton;
     private javax.swing.JComboBox<Person> personComboBox;
     // End of variables declaration//GEN-END:variables
-    
+
     // </editor-fold> 
 }

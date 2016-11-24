@@ -18,7 +18,11 @@ public interface ITheme {
     
     public abstract Color getComboBoxBackgroundColor();
     
-    public abstract Color getTextColor();
+    public abstract Color getButtonBackgroundColor();
     
-    public abstract Color getButtonColor();
+    public abstract Color getTextFieldBackgroundColor();
+    
+    public abstract Color getCheckBoxBackgroundColor();
+    
+    public abstract Color getTextColor();
 }

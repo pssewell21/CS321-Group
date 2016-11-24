@@ -50,6 +50,31 @@ public class PersonEditView extends javax.swing.JFrame {
     
     private void setThemeColors() {
         jPanel1.setBackground(UserSettings.theme.getBackgroundColor());
+                
+        AddressField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        DateOfBirthField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        NameField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        PhoneNumberField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        SocialSecurityNumberField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        applyButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        saveButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        cancelButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        deleteButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        
+        AddressField.setForeground(UserSettings.theme.getTextColor());
+        DateOfBirthField.setForeground(UserSettings.theme.getTextColor());
+        NameField.setForeground(UserSettings.theme.getTextColor());
+        PhoneNumberField.setForeground(UserSettings.theme.getTextColor());
+        SocialSecurityNumberField.setForeground(UserSettings.theme.getTextColor());
+        applyButton.setForeground(UserSettings.theme.getTextColor());
+        saveButton.setForeground(UserSettings.theme.getTextColor());
+        cancelButton.setForeground(UserSettings.theme.getTextColor());
+        deleteButton.setForeground(UserSettings.theme.getTextColor());
+        jLabel2.setForeground(UserSettings.theme.getTextColor());
+        jLabel3.setForeground(UserSettings.theme.getTextColor());
+        jLabel4.setForeground(UserSettings.theme.getTextColor());
+        jLabel5.setForeground(UserSettings.theme.getTextColor());
+        jLabel6.setForeground(UserSettings.theme.getTextColor());
     }
 
     /**

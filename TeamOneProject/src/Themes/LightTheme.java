@@ -30,12 +30,22 @@ public final class LightTheme implements ITheme {
     }
     
     @Override
-    public Color getTextColor() {
+    public Color getButtonBackgroundColor() {
         return new Color(0,0,0);
     }
     
     @Override
-    public Color getButtonColor() {
+    public Color getTextFieldBackgroundColor() {
+        return Color.DARK_GRAY;
+    }
+    
+    @Override
+    public Color getCheckBoxBackgroundColor() {
+        return Color.DARK_GRAY;
+    }
+    
+    @Override
+    public Color getTextColor() {
         return new Color(0,0,0);
     }
 }

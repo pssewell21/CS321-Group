@@ -39,11 +39,11 @@ public class NavigationView extends javax.swing.JFrame {
     private void setThemeColors() {
         jPanel1.setBackground(UserSettings.theme.getBackgroundColor());
 
-        accountManagerButton.setBackground(UserSettings.theme.getButtonColor());
-        accountPersonLinkManagerButton.setBackground(UserSettings.theme.getButtonColor());
-        personManagerButton.setBackground(UserSettings.theme.getButtonColor());
-        testDataButton.setBackground(UserSettings.theme.getButtonColor());
-        userManagerButton.setBackground(UserSettings.theme.getButtonColor());
+        accountManagerButton.setBackground(UserSettings.theme.getButtonBackgroundColor());
+        accountPersonLinkManagerButton.setBackground(UserSettings.theme.getButtonBackgroundColor());
+        personManagerButton.setBackground(UserSettings.theme.getButtonBackgroundColor());
+        testDataButton.setBackground(UserSettings.theme.getButtonBackgroundColor());
+        userManagerButton.setBackground(UserSettings.theme.getButtonBackgroundColor());
 
         accountManagerButton.setForeground(UserSettings.theme.getTextColor());
         accountPersonLinkManagerButton.setForeground(UserSettings.theme.getTextColor());
@@ -109,15 +109,15 @@ public class NavigationView extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(158, 158, 158)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(170, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(testDataButton, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(accountManagerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(accountPersonLinkManagerButton)
                     .addComponent(userManagerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(personManagerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

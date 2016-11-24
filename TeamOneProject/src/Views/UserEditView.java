@@ -8,6 +8,8 @@ package Views;
 import Common.UserSettings;
 import Controllers.UserEditViewController;
 import Library.Person;
+import java.awt.Graphics;
+import javax.swing.DefaultListCellRenderer;
 
 /**
  *
@@ -70,6 +72,51 @@ public class UserEditView extends javax.swing.JFrame {
     
     private void setThemeColors() {
         jPanel1.setBackground(UserSettings.theme.getBackgroundColor());
+                
+        PersonComboBox.setBackground(UserSettings.theme.getComboBoxBackgroundColor());
+        PasswordField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        SecurityAnswer1Field.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        SecurityAnswer2Field.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        SecurityQuestion1Field.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        SecurityQuestion2Field.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        SelectedThemeField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        UserNameField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        applyButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        saveButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        cancelButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        deleteButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        
+        PersonComboBox.setForeground(UserSettings.theme.getTextColor());
+        PasswordField.setForeground(UserSettings.theme.getTextColor());
+        SecurityAnswer1Field.setForeground(UserSettings.theme.getTextColor());
+        SecurityAnswer2Field.setForeground(UserSettings.theme.getTextColor());
+        SecurityQuestion1Field.setForeground(UserSettings.theme.getTextColor());
+        SecurityQuestion2Field.setForeground(UserSettings.theme.getTextColor());
+        SelectedThemeField.setForeground(UserSettings.theme.getTextColor());
+        UserNameField.setForeground(UserSettings.theme.getTextColor());
+        applyButton.setForeground(UserSettings.theme.getTextColor());
+        saveButton.setForeground(UserSettings.theme.getTextColor());
+        cancelButton.setForeground(UserSettings.theme.getTextColor());
+        deleteButton.setForeground(UserSettings.theme.getTextColor());
+        jLabel2.setForeground(UserSettings.theme.getTextColor());
+        jLabel3.setForeground(UserSettings.theme.getTextColor());
+        jLabel4.setForeground(UserSettings.theme.getTextColor());
+        jLabel5.setForeground(UserSettings.theme.getTextColor());
+        jLabel6.setForeground(UserSettings.theme.getTextColor());
+        jLabel7.setForeground(UserSettings.theme.getTextColor());
+        jLabel8.setForeground(UserSettings.theme.getTextColor());
+        jLabel9.setForeground(UserSettings.theme.getTextColor());
+        jLabel10.setForeground(UserSettings.theme.getTextColor());
+        jLabel11.setForeground(UserSettings.theme.getTextColor());
+        
+        PersonComboBox.setRenderer(new DefaultListCellRenderer() {
+            @Override
+            public void paint(Graphics g) {
+            setBackground(UserSettings.theme.getListBackgroundColor());
+            setForeground(UserSettings.theme.getTextColor());
+            super.paint(g);
+            }
+        });
     }
 
     /**
@@ -84,7 +131,6 @@ public class UserEditView extends javax.swing.JFrame {
         selectedPerson = (Person) PersonComboBox.getSelectedItem();
         
         controller.model.PersonId = selectedPerson.Id;
-        //controller.model.PersonId = Long.parseLong(PersonIdField.getText());
         controller.model.UserName = UserNameField.getText();
         controller.model.Password = PasswordField.getText();
         controller.model.SecurityQuestion1 = SecurityQuestion1Field.getText();
@@ -93,8 +139,6 @@ public class UserEditView extends javax.swing.JFrame {
         controller.model.SecurityAnswer2 = SecurityAnswer2Field.getText();
         controller.model.IsAdministrator = IsAdministratorCheckBox.isSelected();
         controller.model.IsAccountLocked = IsAccountLockedCheckBox.isSelected();
-        //controller.model.IsAdministrator = Boolean.parseBoolean(IsAdministratorField.getText());
-        //controller.model.IsAccountLocked = Boolean.parseBoolean(IsAccountLockedField.getText());
         controller.model.SelectedTheme = SelectedThemeField.getText();
     }
 
