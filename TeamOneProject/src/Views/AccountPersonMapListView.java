@@ -11,7 +11,9 @@ package Views;
  */
 import Controllers.AccountPersonMapListViewController;
 import Library.AccountPersonMap;
+import Library.Person;
 import java.awt.event.KeyEvent;
+import javax.swing.JComboBox;
 import javax.swing.JList;
 
 public class AccountPersonMapListView extends javax.swing.JFrame {
@@ -40,6 +42,9 @@ public class AccountPersonMapListView extends javax.swing.JFrame {
     
     private void load() {
         initComponents();
+        personComboBox.setSelectedItem(null);
+        newButton.setEnabled(false);
+        
         setVisible(true);
     }
 
@@ -56,13 +61,15 @@ public class AccountPersonMapListView extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         javax.swing.JList<AccountPersonMap> jList1 = new javax.swing.JList<>();
         newButton = new javax.swing.JButton();
+        personComboBox = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Account Person Linking Manager");
 
-        jList1.setModel(controller.listModel);
+        jList1.setModel(controller.accountPersonMapListModel);
         jList1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jList1MouseClicked(evt);
@@ -82,6 +89,15 @@ public class AccountPersonMapListView extends javax.swing.JFrame {
             }
         });
 
+        personComboBox.setModel(controller.personListModel);
+        personComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                personComboBoxActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Person:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -89,23 +105,35 @@ public class AccountPersonMapListView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(newButton)
-                        .addGap(209, 209, 209)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(personComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(newButton))
+                        .addGap(45, 45, 45)
                         .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE))
+                        .addGap(0, 275, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(newButton)
-                    .addComponent(jLabel1))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(personComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(newButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -121,7 +149,8 @@ public class AccountPersonMapListView extends javax.swing.JFrame {
                 JList<AccountPersonMap> list = (JList<AccountPersonMap>) source;
 
                 AccountPersonMap item = list.getSelectedValue();
-                controller.executeEdit(item);
+                Person person = (Person) personComboBox.getSelectedItem();
+                controller.executeEdit(item, person.Id);
             }
         }
     }//GEN-LAST:event_jList1MouseClicked
@@ -135,22 +164,56 @@ public class AccountPersonMapListView extends javax.swing.JFrame {
                 JList<AccountPersonMap> list = (JList<AccountPersonMap>) source;
 
                 AccountPersonMap item = list.getSelectedValue();
-                controller.executeEdit(item);
+                Person person = (Person) personComboBox.getSelectedItem();
+                controller.executeEdit(item, person.Id);
             }
         }
     }//GEN-LAST:event_jList1KeyPressed
 
     private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
-        controller.executeAdd();
+        Person person = (Person) personComboBox.getSelectedItem();
+        controller.executeAdd(person.Id);
     }//GEN-LAST:event_newButtonActionPerformed
+
+    @SuppressWarnings("unchecked")
+    private void personComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personComboBoxActionPerformed
+        JComboBox comboBox = (JComboBox) evt.getSource();
+        Person person = (Person) comboBox.getSelectedItem();
+        
+        if (person != null) {
+            controller.loadAccountList(person.Id);
+            newButton.setEnabled(true);
+        } else {
+            controller.initializeAccountList();
+            newButton.setEnabled(false);
+        }  
+        
+        javax.swing.JList<AccountPersonMap> jList1 = new javax.swing.JList<>();
+        jList1.setModel(controller.accountPersonMapListModel);
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList1MouseClicked(evt);
+            }
+        });
+        jList1.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jList1KeyPressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jList1);
+    }//GEN-LAST:event_personComboBoxActionPerformed
 
     // </editor-fold> 
     
     // <editor-fold defaultstate="collapsed" desc="Generated UI Variables"> 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton newButton;
+    private javax.swing.JComboBox<Person> personComboBox;
     // End of variables declaration//GEN-END:variables
     
     // </editor-fold> 

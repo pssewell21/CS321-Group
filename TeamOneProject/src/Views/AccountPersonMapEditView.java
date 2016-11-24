@@ -6,6 +6,9 @@
 package Views;
 
 import Controllers.AccountPersonMapEditViewController;
+import Library.Account;
+import Library.Person;
+import javax.swing.ComboBoxModel;
 
 /**
  *
@@ -37,10 +40,17 @@ public class AccountPersonMapEditView extends javax.swing.JFrame {
         initComponents();
         
         if (controller.model.AccountId != null) { 
-            AccountIdField.setText(controller.model.AccountId.toString());
-        }
-        if (controller.model.AccountId != null) { 
-            PersonIdField.setText(controller.model.PersonId.toString());
+            ComboBoxModel<Account> comboBoxModel = accountComboBox.getModel();
+            
+            for (int i = 0; i < comboBoxModel.getSize(); i++) {
+                Account account = comboBoxModel.getElementAt(i);
+                
+                if (account.Id.equals(controller.model.AccountId)) {
+                    comboBoxModel.setSelectedItem(account);
+                }
+            }
+        } else {
+            accountComboBox.setSelectedItem(null);
         }
 
         pack();
@@ -56,8 +66,11 @@ public class AccountPersonMapEditView extends javax.swing.JFrame {
     }
 
     private void setModelFields() {
-        controller.model.AccountId = Long.parseLong(AccountIdField.getText());
-        controller.model.PersonId = Long.parseLong(PersonIdField.getText());
+        Person person = (Person) personComboBox.getSelectedItem();
+        Account account = (Account) accountComboBox.getSelectedItem();
+                
+        controller.model.PersonId = person.Id;
+        controller.model.AccountId = account.Id;
     }
 
     /**
@@ -73,10 +86,10 @@ public class AccountPersonMapEditView extends javax.swing.JFrame {
         applyButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
-        AccountIdField = new javax.swing.JTextField();
-        PersonIdField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        personComboBox = new javax.swing.JComboBox<>();
+        accountComboBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -112,43 +125,48 @@ public class AccountPersonMapEditView extends javax.swing.JFrame {
 
         jLabel3.setText("Person ID:");
 
+        personComboBox.setModel(controller.personListModel);
+        personComboBox.setEnabled(false);
+
+        accountComboBox.setModel(controller.accountListModel);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(79, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(4, 4, 4)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(AccountIdField)
-                            .addComponent(PersonIdField, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(applyButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(saveButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cancelButton)))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(personComboBox, 0, 158, Short.MAX_VALUE)
+                    .addComponent(accountComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(87, 87, 87))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(129, 129, 129)
+                .addComponent(applyButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(saveButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cancelButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(deleteButton)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AccountIdField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(personComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(PersonIdField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(accountComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveButton)
                     .addComponent(cancelButton)
@@ -182,13 +200,13 @@ public class AccountPersonMapEditView extends javax.swing.JFrame {
     
     // <editor-fold defaultstate="collapsed" desc="Generated UI Variables"> 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField AccountIdField;
-    private javax.swing.JTextField PersonIdField;
+    private javax.swing.JComboBox<Account> accountComboBox;
     private javax.swing.JButton applyButton;
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton deleteButton;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JComboBox<Person> personComboBox;
     private javax.swing.JButton saveButton;
     // End of variables declaration//GEN-END:variables
 

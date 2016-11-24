@@ -115,7 +115,7 @@ public class AccountPersonMapFactory extends LibraryFactoryBase {
                         command += and;
                     }
 
-                    command += DalFields.PERSON_ID + " = '" + personId + "' ";
+                    command += DalFields.PERSON_ID + " = " + personId + " ";
                 }
             }
         }
