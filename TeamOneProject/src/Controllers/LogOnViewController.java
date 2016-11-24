@@ -5,10 +5,14 @@
  */
 package Controllers;
 
+import Common.UserSettings;
+import Common.Utility;
 import Database.DatabaseProvisioner;
 import Library.DalFields;
 import Library.User;
 import Library.UserFactory;
+import Themes.DarkTheme;
+import Themes.LightTheme;
 import Views.LogOnView;
 import java.util.HashMap;
 import java.util.List;
@@ -69,6 +73,15 @@ public class LogOnViewController {
         User user = result.get(0);
         
         if (user.Password.equals(password)) {
+            if (Utility.hasValue(user.SelectedTheme)) {
+                if (user.SelectedTheme.equalsIgnoreCase("Dark Theme")) {
+                    UserSettings.theme = new DarkTheme();
+                }
+                if (user.SelectedTheme.equalsIgnoreCase("Light Theme")) {
+                    UserSettings.theme = new LightTheme();
+                }
+            }
+            
             if (user.IsAdministrator)
             {
                 NavigationViewController c = new NavigationViewController();
