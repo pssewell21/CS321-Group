@@ -129,7 +129,7 @@ public final class DatabaseProvisioner {
             + "    'answer', \n"
             + "    true, \n"
             + "    false, \n"
-            + "    'default' \n"
+            + "    'Dark Theme' \n"
             + ")";
 
     private static final String INSERT_STANDARD_ATM_USER_SCRIPT = "INSERT INTO APP.ATM_USER VALUES \n"
@@ -144,7 +144,7 @@ public final class DatabaseProvisioner {
             + "    'answer', \n"
             + "    false, \n"
             + "    false, \n"
-            + "    'default' \n"
+            + "    'Dark Theme' \n"
             + ")";
 
     private static final String INSERT_STANDARD_USER_CHECKING_ACCOUNT_SCRIPT = "INSERT INTO APP.ACCOUNT VALUES \n"
