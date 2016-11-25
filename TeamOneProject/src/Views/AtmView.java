@@ -11,12 +11,10 @@ import Controllers.AtmViewController;
 import Library.Account;
 import Library.AccountTransaction;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.Rectangle;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -755,7 +753,7 @@ public final class AtmView extends JFrame {
     private JComboBox getAccountSelectionComboBox() {
         accountSelectionComboBox = new JComboBox<>();
         accountSelectionComboBox.setModel(controller.accountModel);
-        accountSelectionComboBox.setPreferredSize(new Dimension(120, 25));
+        accountSelectionComboBox.setPreferredSize(new Dimension(250, 25));
         accountSelectionComboBox.setToolTipText("Accounts");
         accountSelectionComboBox.setName("Accounts");
         accountSelectionComboBox.setSelectedItem(null);
@@ -796,7 +794,7 @@ public final class AtmView extends JFrame {
         model.addElement("Light Theme");
         model.addElement("Dark Theme");
         selectedThemeComboBox.setModel(model);
-        selectedThemeComboBox.setPreferredSize(new Dimension(120, 25));
+        selectedThemeComboBox.setPreferredSize(new Dimension(250, 25));
         selectedThemeComboBox.setToolTipText("Accounts");
         selectedThemeComboBox.setName("Accounts");
         selectedThemeComboBox.setSelectedItem(controller.getSelectedTheme());

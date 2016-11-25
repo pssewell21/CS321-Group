@@ -36,6 +36,10 @@ public class AccountTransaction extends LibraryBase  {
      *
      */
     public BigDecimal Amount;
+    
+    private String name;
+    
+    private PersonFactory personFactory;
 
     // </editor-fold>
     
@@ -47,6 +51,8 @@ public class AccountTransaction extends LibraryBase  {
     
     public AccountTransaction() {
         super();
+        
+        personFactory = new PersonFactory();
     }
 
     /**
@@ -66,7 +72,10 @@ public class AccountTransaction extends LibraryBase  {
         AccountId = accountId;
         PersonId = personId;
         Timestamp = timestamp;
-        Amount = amount;                  
+        Amount = amount;   
+        
+        personFactory = new PersonFactory();
+        name = personFactory.getById(PersonId).Name;
     }
     
     // </editor-fold>
@@ -75,11 +84,7 @@ public class AccountTransaction extends LibraryBase  {
 
     @Override
     public String toString() {
-        return super.toString() + ", " 
-                + DalFields.ACCOUNT_ID + ": " + AccountId + ", "
-                + DalFields.PERSON_ID + ": " + PersonId + ", "
-                + DalFields.TRANSACTION_TIMESTAMP + ": " + Timestamp + ", "
-                + DalFields.AMOUNT + ": " + Amount;
+        return "DATE: " + Timestamp + ", AMOUNT: $" + Amount + ", BY: " + name;
     }
 
     /**

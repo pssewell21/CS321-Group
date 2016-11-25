@@ -82,12 +82,7 @@ public class Account extends LibraryBase  {
 
     @Override
     public String toString() {
-        return super.toString() + ", " 
-                + DalFields.ACCOUNT_NUMBER + ": " + AccountNumber + ", "
-                + DalFields.ACCOUNT_TYPE + ": " + AccountType + ", "
-                + DalFields.DESCRIPTION + ": " + Description + ", "
-                + DalFields.BALANCE + ": " + Balance + ", "
-                + DalFields.INTEREST_RATE + ": " + InterestRate;
+        return AccountType + " ACCOUNT #: " + AccountNumber;
     }
 
     /**
