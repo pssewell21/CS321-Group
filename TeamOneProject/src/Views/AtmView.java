@@ -11,7 +11,9 @@ import Controllers.AtmViewController;
 import Library.Account;
 import Library.AccountTransaction;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -26,6 +28,7 @@ import java.util.concurrent.TimeUnit;
 
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -65,6 +68,7 @@ public final class AtmView extends JFrame {
     private JTextField withdrawalAmountField;
     private JButton withdrawButton;
     private JLabel balanceCheckAccountNumberLabel;
+    private JLabel balanceCheckBalanceLabel;
     private JLabel balanceCheckAccountNumberField;
     private JLabel balanceCheckCurrentBalance;
     private JButton balanceCheckButton;
@@ -169,45 +173,46 @@ public final class AtmView extends JFrame {
      * @return javax.swing.JPanel
      */
     private JPanel getLandingPanel() {
-        GridBagConstraints gridBagConstraints410 = new GridBagConstraints();
-        gridBagConstraints410.gridx = 2;
-        gridBagConstraints410.gridy = 2;
-        GridBagConstraints gridBagConstraints110 = new GridBagConstraints();
-        gridBagConstraints110.gridx = 0;
-        gridBagConstraints110.gridy = 1;
-        GridBagConstraints gridBagConstraints111 = new GridBagConstraints();
-        gridBagConstraints111.gridx = 2;
-        gridBagConstraints111.gridy = 0;
-        GridBagConstraints gridBagConstraints112 = new GridBagConstraints();
-        gridBagConstraints112.gridx = 2;
-        gridBagConstraints112.gridy = 1;
-        GridBagConstraints gridBagConstraints114 = new GridBagConstraints();
-        gridBagConstraints114.gridx = 1;
-        gridBagConstraints114.gridy = 1;
-        GridBagConstraints gridBagConstraints115 = new GridBagConstraints();
-        gridBagConstraints115.gridx = 1;
-        gridBagConstraints115.gridy = 0;
+        GridBagConstraints gridBagConstraintsExitButton = new GridBagConstraints();
+        gridBagConstraintsExitButton.gridx = 2;
+        gridBagConstraintsExitButton.gridy = 2;
+        GridBagConstraints gridBagConstraintsLogoLabel = new GridBagConstraints();
+        gridBagConstraintsLogoLabel.gridx = 0;
+        gridBagConstraintsLogoLabel.gridy = 1;
+        gridBagConstraintsLogoLabel.ipadx = 30;
+        gridBagConstraintsLogoLabel.ipady = 30;        
+        GridBagConstraints gridBagConstraintsAccountSelectionComboBox = new GridBagConstraints();
+        gridBagConstraintsAccountSelectionComboBox.gridx = 2;
+        gridBagConstraintsAccountSelectionComboBox.gridy = 0;
+        GridBagConstraints gridBagConstraintsSelectedThemeComboBox = new GridBagConstraints();
+        gridBagConstraintsSelectedThemeComboBox.gridx = 2;
+        gridBagConstraintsSelectedThemeComboBox.gridy = 1;
+        GridBagConstraints gridBagConstraintsSelectedThemeLabel = new GridBagConstraints();
+        gridBagConstraintsSelectedThemeLabel.gridx = 1;
+        gridBagConstraintsSelectedThemeLabel.gridy = 1;
+        gridBagConstraintsSelectedThemeLabel.anchor = GridBagConstraints.EAST;    
+        GridBagConstraints gridBagConstraintsAccountLabel = new GridBagConstraints();
+        gridBagConstraintsAccountLabel.gridx = 1;
+        gridBagConstraintsAccountLabel.gridy = 0;
+        gridBagConstraintsAccountLabel.anchor = GridBagConstraints.EAST;        
         logoLabel = new JLabel();
         logoLabel.setText("Insert ATM Logo");
-        logoLabel.setPreferredSize(new Dimension(100, 30));
         logoLabel.setForeground(UserSettings.theme.getTextColor());
         accountLabel = new JLabel();
-        accountLabel.setText("Account:");
-        accountLabel.setPreferredSize(new Dimension(100, 30));
+        accountLabel.setText("Account: ");
         accountLabel.setForeground(UserSettings.theme.getTextColor());
         selectedThemeLabel = new JLabel();
-        selectedThemeLabel.setText("Selected Theme:");
-        selectedThemeLabel.setPreferredSize(new Dimension(100, 30));
+        selectedThemeLabel.setText("Selected Theme: ");
         selectedThemeLabel.setForeground(UserSettings.theme.getTextColor());
         landingPanel = new JPanel();
         landingPanel.setLayout(new GridBagLayout());
         landingPanel.setBackground(UserSettings.theme.getBackgroundColor());
-        landingPanel.add(logoLabel, gridBagConstraints110);
-        landingPanel.add(accountLabel, gridBagConstraints115);
-        landingPanel.add(getAccountSelectionComboBox(), gridBagConstraints111);
-        landingPanel.add(selectedThemeLabel, gridBagConstraints114);
-        landingPanel.add(getSelectedThemeComboBox(), gridBagConstraints112);
-        landingPanel.add(getExitButton(), gridBagConstraints410);
+        landingPanel.add(logoLabel, gridBagConstraintsLogoLabel);
+        landingPanel.add(accountLabel, gridBagConstraintsAccountLabel);
+        landingPanel.add(getAccountSelectionComboBox(), gridBagConstraintsAccountSelectionComboBox);
+        landingPanel.add(selectedThemeLabel, gridBagConstraintsSelectedThemeLabel);
+        landingPanel.add(getSelectedThemeComboBox(), gridBagConstraintsSelectedThemeComboBox);
+        landingPanel.add(getExitButton(), gridBagConstraintsExitButton);
 
         return landingPanel;
     }
@@ -218,41 +223,39 @@ public final class AtmView extends JFrame {
      * @return javax.swing.JPanel
      */
     private JPanel getDepositPanel() {
-        GridBagConstraints gridBagConstraints22 = new GridBagConstraints();
-        gridBagConstraints22.gridx = 1;
-        gridBagConstraints22.gridy = 2;
-        GridBagConstraints gridBagConstraints21 = new GridBagConstraints();
-        gridBagConstraints21.gridx = 0;
-        gridBagConstraints21.gridy = 1;
+        GridBagConstraints gridBagConstraintsDepositButton = new GridBagConstraints();
+        gridBagConstraintsDepositButton.gridx = 1;
+        gridBagConstraintsDepositButton.gridy = 2;
+        GridBagConstraints gridBagConstraintsDepositAmountLabel = new GridBagConstraints();
+        gridBagConstraintsDepositAmountLabel.gridx = 0;
+        gridBagConstraintsDepositAmountLabel.gridy = 1;
+        gridBagConstraintsDepositAmountLabel.anchor = GridBagConstraints.EAST;
         depositAmountLabel = new JLabel();
         depositAmountLabel.setText("Amount: ");
-        depositAmountLabel.setPreferredSize(new Dimension(100, 25));
         depositAmountLabel.setForeground(UserSettings.theme.getTextColor());
-        GridBagConstraints gridBagConstraints20 = new GridBagConstraints();
-        gridBagConstraints20.fill = GridBagConstraints.VERTICAL;
-        gridBagConstraints20.gridy = 1;
-        gridBagConstraints20.weightx = 1.0;
-        gridBagConstraints20.gridx = 1;
-        GridBagConstraints gridBagConstraints19 = new GridBagConstraints();
-        gridBagConstraints19.fill = GridBagConstraints.VERTICAL;
-        gridBagConstraints19.gridy = 0;
-        gridBagConstraints19.weightx = 1.0;
-        gridBagConstraints19.gridx = 1;
-        GridBagConstraints gridBagConstraints18 = new GridBagConstraints();
-        gridBagConstraints18.gridx = 0;
-        gridBagConstraints18.gridy = 0;
+        GridBagConstraints gridBagConstraintsDepositAmountField = new GridBagConstraints();
+        gridBagConstraintsDepositAmountField.fill = GridBagConstraints.VERTICAL;
+        gridBagConstraintsDepositAmountField.gridy = 1;
+        gridBagConstraintsDepositAmountField.gridx = 1;
+        GridBagConstraints gridBagConstraintsDepositAccountNumberField = new GridBagConstraints();
+        gridBagConstraintsDepositAccountNumberField.gridy = 0;
+        gridBagConstraintsDepositAccountNumberField.gridx = 1;
+        gridBagConstraintsDepositAccountNumberField.anchor = GridBagConstraints.WEST;
+        GridBagConstraints gridBagConstraintsDepositAccountNumberLabel = new GridBagConstraints();
+        gridBagConstraintsDepositAccountNumberLabel.gridx = 0;
+        gridBagConstraintsDepositAccountNumberLabel.gridy = 0;
+        gridBagConstraintsDepositAccountNumberLabel.anchor = GridBagConstraints.EAST;
         depositAccountNumberLabel = new JLabel();
         depositAccountNumberLabel.setText("Account Number: ");
-        depositAccountNumberLabel.setPreferredSize(new Dimension(100, 25));
         depositAccountNumberLabel.setForeground(UserSettings.theme.getTextColor());
         depositPanel = new JPanel();
         depositPanel.setLayout(new GridBagLayout());
         depositPanel.setBackground(UserSettings.theme.getBackgroundColor());
-        depositPanel.add(depositAccountNumberLabel, gridBagConstraints18);
-        depositPanel.add(getDepositAccountNumberField(), gridBagConstraints19);
-        depositPanel.add(getDepositAmountField(), gridBagConstraints20);
-        depositPanel.add(depositAmountLabel, gridBagConstraints21);
-        depositPanel.add(getDepositButton(), gridBagConstraints22);
+        depositPanel.add(depositAccountNumberLabel, gridBagConstraintsDepositAccountNumberLabel);
+        depositPanel.add(getDepositAccountNumberField(), gridBagConstraintsDepositAccountNumberField);
+        depositPanel.add(getDepositAmountField(), gridBagConstraintsDepositAmountField);
+        depositPanel.add(depositAmountLabel, gridBagConstraintsDepositAmountLabel);
+        depositPanel.add(getDepositButton(), gridBagConstraintsDepositButton);
 
         return depositPanel;
     }
@@ -263,41 +266,39 @@ public final class AtmView extends JFrame {
      * @return javax.swing.JPanel
      */
     private JPanel getWithdrawalPanel() {
-        GridBagConstraints gridBagConstraints27 = new GridBagConstraints();
-        gridBagConstraints27.gridx = 1;
-        gridBagConstraints27.gridy = 2;
-        GridBagConstraints gridBagConstraints26 = new GridBagConstraints();
-        gridBagConstraints26.fill = GridBagConstraints.VERTICAL;
-        gridBagConstraints26.gridy = 1;
-        gridBagConstraints26.weightx = 1.0;
-        gridBagConstraints26.gridx = 1;
-        GridBagConstraints gridBagConstraints25 = new GridBagConstraints();
-        gridBagConstraints25.gridx = 0;
-        gridBagConstraints25.gridy = 1;
+        GridBagConstraints gridBagConstraintsWithdrawButton = new GridBagConstraints();
+        gridBagConstraintsWithdrawButton.gridx = 1;
+        gridBagConstraintsWithdrawButton.gridy = 2;
+        GridBagConstraints gridBagConstraintsWithdrawalAmountField = new GridBagConstraints();
+        gridBagConstraintsWithdrawalAmountField.fill = GridBagConstraints.VERTICAL;
+        gridBagConstraintsWithdrawalAmountField.gridy = 1;
+        gridBagConstraintsWithdrawalAmountField.gridx = 1;
+        gridBagConstraintsWithdrawalAmountField.anchor = GridBagConstraints.WEST;
+        GridBagConstraints gridBagConstraintsWithdrawalAmountLabel = new GridBagConstraints();
+        gridBagConstraintsWithdrawalAmountLabel.gridx = 0;
+        gridBagConstraintsWithdrawalAmountLabel.gridy = 1;
+        gridBagConstraintsWithdrawalAmountLabel.anchor = GridBagConstraints.EAST;
         withdrawalAmountLabel = new JLabel();
         withdrawalAmountLabel.setText("Amount: ");
-        withdrawalAmountLabel.setPreferredSize(new Dimension(100, 25));
         withdrawalAmountLabel.setForeground(UserSettings.theme.getTextColor());
-        GridBagConstraints gridBagConstraints24 = new GridBagConstraints();
-        gridBagConstraints24.fill = GridBagConstraints.VERTICAL;
-        gridBagConstraints24.gridy = 0;
-        gridBagConstraints24.weightx = 1.0;
-        gridBagConstraints24.gridx = 1;
-        GridBagConstraints gridBagConstraints23 = new GridBagConstraints();
-        gridBagConstraints23.gridx = 0;
-        gridBagConstraints23.gridy = 0;
+        GridBagConstraints gridBagConstraintsWithdrawalAccountNumberField = new GridBagConstraints();
+        gridBagConstraintsWithdrawalAccountNumberField.gridy = 0;
+        gridBagConstraintsWithdrawalAccountNumberField.gridx = 1;
+        GridBagConstraints gridBagConstraintsWithdrawalAccountNumberLabel = new GridBagConstraints();
+        gridBagConstraintsWithdrawalAccountNumberLabel.gridx = 0;
+        gridBagConstraintsWithdrawalAccountNumberLabel.gridy = 0;
+        gridBagConstraintsWithdrawalAccountNumberLabel.anchor = GridBagConstraints.EAST;
         withdrawalAccountNumberLabel = new JLabel();
         withdrawalAccountNumberLabel.setText("Account Number: ");
-        withdrawalAccountNumberLabel.setPreferredSize(new Dimension(100, 25));
         withdrawalAccountNumberLabel.setForeground(UserSettings.theme.getTextColor());
         withdrawalPanel = new JPanel();
         withdrawalPanel.setLayout(new GridBagLayout());
         withdrawalPanel.setBackground(UserSettings.theme.getBackgroundColor());
-        withdrawalPanel.add(withdrawalAccountNumberLabel, gridBagConstraints23);
-        withdrawalPanel.add(getWithdrawalAccountNumberField(), gridBagConstraints24);
-        withdrawalPanel.add(withdrawalAmountLabel, gridBagConstraints25);
-        withdrawalPanel.add(getWithdrawalAmountField(), gridBagConstraints26);
-        withdrawalPanel.add(getWithdrawButton(), gridBagConstraints27);
+        withdrawalPanel.add(withdrawalAccountNumberLabel, gridBagConstraintsWithdrawalAccountNumberLabel);
+        withdrawalPanel.add(getWithdrawalAccountNumberField(), gridBagConstraintsWithdrawalAccountNumberField);
+        withdrawalPanel.add(withdrawalAmountLabel, gridBagConstraintsWithdrawalAmountLabel);
+        withdrawalPanel.add(getWithdrawalAmountField(), gridBagConstraintsWithdrawalAmountField);
+        withdrawalPanel.add(getWithdrawButton(), gridBagConstraintsWithdrawButton);
 
         return withdrawalPanel;
     }
@@ -308,35 +309,42 @@ public final class AtmView extends JFrame {
      * @return javax.swing.JPanel
      */
     private JPanel getBalanceCheckPanel() {
-        GridBagConstraints gridBagConstraints32 = new GridBagConstraints();
-        gridBagConstraints32.gridx = 1;
-        gridBagConstraints32.gridy = 2;
-        GridBagConstraints gridBagConstraints31 = new GridBagConstraints();
-        gridBagConstraints31.gridx = 1;
-        gridBagConstraints31.gridy = 1;
+        GridBagConstraints gridBagConstraintsBalanceCheckButton = new GridBagConstraints();
+        gridBagConstraintsBalanceCheckButton.gridx = 1;
+        gridBagConstraintsBalanceCheckButton.gridy = 2;
+        GridBagConstraints gridBagConstraintsBalanceCheckCurrentBalance = new GridBagConstraints();
+        gridBagConstraintsBalanceCheckCurrentBalance.gridx = 1;
+        gridBagConstraintsBalanceCheckCurrentBalance.gridy = 1;
+        gridBagConstraintsBalanceCheckCurrentBalance.anchor = GridBagConstraints.WEST;
         balanceCheckCurrentBalance = new JLabel();
         balanceCheckCurrentBalance.setText("");
-        balanceCheckCurrentBalance.setPreferredSize(new Dimension(150, 25));
         balanceCheckCurrentBalance.setForeground(UserSettings.theme.getTextColor());
-        GridBagConstraints gridBagConstraints29 = new GridBagConstraints();
-        gridBagConstraints29.fill = GridBagConstraints.VERTICAL;
-        gridBagConstraints29.gridy = 0;
-        gridBagConstraints29.weightx = 1.0;
-        gridBagConstraints29.gridx = 1;
-        GridBagConstraints gridBagConstraints28 = new GridBagConstraints();
-        gridBagConstraints28.gridx = 0;
-        gridBagConstraints28.gridy = 0;
+        GridBagConstraints gridBagConstraintsBalanceCheckAccountNumberField = new GridBagConstraints();
+        gridBagConstraintsBalanceCheckAccountNumberField.gridx = 1;
+        gridBagConstraintsBalanceCheckAccountNumberField.gridy = 0;
+        gridBagConstraintsBalanceCheckAccountNumberField.anchor = GridBagConstraints.WEST;
+        GridBagConstraints gridBagConstraintsBalanceCheckAccountNumberLabel = new GridBagConstraints();
+        gridBagConstraintsBalanceCheckAccountNumberLabel.gridx = 0;
+        gridBagConstraintsBalanceCheckAccountNumberLabel.gridy = 0;
+        gridBagConstraintsBalanceCheckAccountNumberLabel.anchor = GridBagConstraints.EAST;
         balanceCheckAccountNumberLabel = new JLabel();
         balanceCheckAccountNumberLabel.setText("Account Number: ");
-        balanceCheckAccountNumberLabel.setPreferredSize(new Dimension(100, 25));
         balanceCheckAccountNumberLabel.setForeground(UserSettings.theme.getTextColor());
+        GridBagConstraints gridBagConstraintsBalanceCheckBalanceLabel = new GridBagConstraints();
+        gridBagConstraintsBalanceCheckBalanceLabel.gridx = 0;
+        gridBagConstraintsBalanceCheckBalanceLabel.gridy = 1;
+        gridBagConstraintsBalanceCheckBalanceLabel.anchor = GridBagConstraints.EAST;
+        balanceCheckBalanceLabel = new JLabel();
+        balanceCheckBalanceLabel.setText("Balance: ");
+        balanceCheckBalanceLabel.setForeground(UserSettings.theme.getTextColor());
         balanceCheckPanel = new JPanel();
         balanceCheckPanel.setLayout(new GridBagLayout());
         balanceCheckPanel.setBackground(UserSettings.theme.getBackgroundColor());
-        balanceCheckPanel.add(balanceCheckAccountNumberLabel, gridBagConstraints28);
-        balanceCheckPanel.add(getBalanceCheckAccountNumberField(), gridBagConstraints29);
-        balanceCheckPanel.add(balanceCheckCurrentBalance, gridBagConstraints31);
-        balanceCheckPanel.add(getBalanceCheckButton(), gridBagConstraints32);
+        balanceCheckPanel.add(balanceCheckAccountNumberLabel, gridBagConstraintsBalanceCheckAccountNumberLabel);
+        balanceCheckPanel.add(balanceCheckBalanceLabel, gridBagConstraintsBalanceCheckBalanceLabel);
+        balanceCheckPanel.add(getBalanceCheckAccountNumberField(), gridBagConstraintsBalanceCheckAccountNumberField);
+        balanceCheckPanel.add(balanceCheckCurrentBalance, gridBagConstraintsBalanceCheckCurrentBalance);
+        balanceCheckPanel.add(getBalanceCheckButton(), gridBagConstraintsBalanceCheckButton);
 
         return balanceCheckPanel;
     }
@@ -347,93 +355,96 @@ public final class AtmView extends JFrame {
      * @return javax.swing.JPanel
      */
     private JPanel getTransactionHistoryPanel() {
-        GridBagConstraints gridBagConstraints = new GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 1;
-        GridBagConstraints gridBagConstraints49 = new GridBagConstraints();
-        gridBagConstraints49.gridx = 4;
-        gridBagConstraints49.gridy = 3;
-        GridBagConstraints gridBagConstraints48 = new GridBagConstraints();
-        gridBagConstraints48.fill = GridBagConstraints.BOTH;
-        gridBagConstraints48.gridy = 4;
-        gridBagConstraints48.weightx = 1.0;
-        gridBagConstraints48.weighty = 1.0;
-        gridBagConstraints48.gridwidth = 8;
-        gridBagConstraints48.anchor = GridBagConstraints.SOUTHWEST;
-        gridBagConstraints48.ipadx = 0;
-        gridBagConstraints48.insets = new Insets(0, 0, 0, 0);
-        gridBagConstraints48.gridx = 0;
-        GridBagConstraints gridBagConstraints47 = new GridBagConstraints();
-        gridBagConstraints47.gridx = 0;
-        gridBagConstraints47.gridy = 3;
+        GridBagConstraints gridBagConstraintsCustomDateRangeRadioButton = new GridBagConstraints();
+        gridBagConstraintsCustomDateRangeRadioButton.gridx = 4;
+        gridBagConstraintsCustomDateRangeRadioButton.gridy = 1;
+        gridBagConstraintsCustomDateRangeRadioButton.anchor = GridBagConstraints.WEST;
+        gridBagConstraintsCustomDateRangeRadioButton.ipadx = 10;
+        GridBagConstraints gridBagConstraintsGetTransactionHistoryButton = new GridBagConstraints();
+        gridBagConstraintsGetTransactionHistoryButton.gridx = 4;
+        gridBagConstraintsGetTransactionHistoryButton.gridy = 3;
+        GridBagConstraints gridBagConstraintsTransactionHistoryList = new GridBagConstraints();
+        gridBagConstraintsTransactionHistoryList.gridx = 0;
+        gridBagConstraintsTransactionHistoryList.gridy = 4;
+        gridBagConstraintsTransactionHistoryList.gridwidth = 8;
+        gridBagConstraintsTransactionHistoryList.fill = GridBagConstraints.BOTH;
+        gridBagConstraintsTransactionHistoryList.anchor = GridBagConstraints.SOUTHWEST;
+        gridBagConstraintsTransactionHistoryList.weightx = 1.0;
+        gridBagConstraintsTransactionHistoryList.weighty = 1.0;
+        GridBagConstraints gridBagConstraintsEndDateLabel = new GridBagConstraints();
+        gridBagConstraintsEndDateLabel.gridx = 0;
+        gridBagConstraintsEndDateLabel.gridy = 3;
+        gridBagConstraintsEndDateLabel.anchor = GridBagConstraints.EAST;
         endDateLabel = new JLabel();
         endDateLabel.setText("End Date: ");
-        endDateLabel.setPreferredSize(new Dimension(100, 20));
         endDateLabel.setForeground(UserSettings.theme.getTextColor());
-        GridBagConstraints gridBagConstraints46 = new GridBagConstraints();
-        gridBagConstraints46.gridx = 0;
-        gridBagConstraints46.gridy = 2;
+        GridBagConstraints gridBagConstraintsStartDateLabel = new GridBagConstraints();
+        gridBagConstraintsStartDateLabel.gridx = 0;
+        gridBagConstraintsStartDateLabel.gridy = 2;
+        gridBagConstraintsStartDateLabel.anchor = GridBagConstraints.EAST;
         startDateLabel = new JLabel();
         startDateLabel.setText("Start Date: ");
-        startDateLabel.setPreferredSize(new Dimension(100, 20));
         startDateLabel.setForeground(UserSettings.theme.getTextColor());
-        GridBagConstraints gridBagConstraints43 = new GridBagConstraints();
-        gridBagConstraints43.fill = GridBagConstraints.BOTH;
-        gridBagConstraints43.gridy = 3;
-        gridBagConstraints43.weightx = 1.0;
-        gridBagConstraints43.gridx = 1;
-        GridBagConstraints gridBagConstraints40 = new GridBagConstraints();
-        gridBagConstraints40.fill = GridBagConstraints.BOTH;
-        gridBagConstraints40.gridy = 2;
-        gridBagConstraints40.weightx = 1.0;
-        gridBagConstraints40.gridx = 1;
-        GridBagConstraints gridBagConstraints38 = new GridBagConstraints();
-        gridBagConstraints38.gridx = 0;
-        gridBagConstraints38.gridy = 1;
+        GridBagConstraints gridBagConstraintsTransactionHistoryEndDateField = new GridBagConstraints();
+        gridBagConstraintsTransactionHistoryEndDateField.gridx = 1;
+        gridBagConstraintsTransactionHistoryEndDateField.gridy = 3;
+        gridBagConstraintsTransactionHistoryEndDateField.gridwidth = 2;
+        gridBagConstraintsTransactionHistoryEndDateField.anchor = GridBagConstraints.WEST;
+        gridBagConstraintsTransactionHistoryEndDateField.fill = GridBagConstraints.VERTICAL;
+        GridBagConstraints gridBagConstraintsTransactionHistoryStartDateField = new GridBagConstraints();
+        gridBagConstraintsTransactionHistoryStartDateField.gridx = 1;
+        gridBagConstraintsTransactionHistoryStartDateField.gridy = 2;
+        gridBagConstraintsTransactionHistoryStartDateField.gridwidth = 2;
+        gridBagConstraintsTransactionHistoryStartDateField.anchor = GridBagConstraints.WEST;
+        gridBagConstraintsTransactionHistoryStartDateField.fill = GridBagConstraints.VERTICAL;
+        GridBagConstraints gridBagConstraintsPeriodLabel = new GridBagConstraints();
+        gridBagConstraintsPeriodLabel.gridx = 0;
+        gridBagConstraintsPeriodLabel.gridy = 1;
+        gridBagConstraintsPeriodLabel.anchor = GridBagConstraints.EAST;
         periodLabel = new JLabel();
         periodLabel.setText("Period: ");
-        periodLabel.setPreferredSize(new Dimension(100, 25));
         periodLabel.setForeground(UserSettings.theme.getTextColor());
-        GridBagConstraints gridBagConstraints37 = new GridBagConstraints();
-        gridBagConstraints37.gridx = 2;
-        gridBagConstraints37.gridy = 1;
-        GridBagConstraints gridBagConstraints36 = new GridBagConstraints();
-        gridBagConstraints36.gridx = 3;
-        gridBagConstraints36.gridy = 1;
-        GridBagConstraints gridBagConstraints35 = new GridBagConstraints();
-        gridBagConstraints35.gridx = 1;
-        gridBagConstraints35.gridy = 1;
-        GridBagConstraints gridBagConstraints34 = new GridBagConstraints();
-        gridBagConstraints34.fill = GridBagConstraints.BOTH;
-        gridBagConstraints34.gridy = 0;
-        gridBagConstraints34.weightx = 1.0;
-        gridBagConstraints34.gridx = 4;
-        GridBagConstraints gridBagConstraints33 = new GridBagConstraints();
-        gridBagConstraints33.gridx = 0;
-        gridBagConstraints33.gridy = 0;
+        GridBagConstraints gridBagConstraintsLastMonthRadioButton = new GridBagConstraints();
+        gridBagConstraintsLastMonthRadioButton.gridx = 2;
+        gridBagConstraintsLastMonthRadioButton.gridy = 1;
+        gridBagConstraintsLastMonthRadioButton.ipadx = 10;
+        GridBagConstraints gridBagConstraintsLastYearRadioButton = new GridBagConstraints();
+        gridBagConstraintsLastYearRadioButton.gridx = 3;
+        gridBagConstraintsLastYearRadioButton.gridy = 1;
+        gridBagConstraintsLastYearRadioButton.ipadx = 10;
+        GridBagConstraints gridBagConstraintsLastDayRadioButton = new GridBagConstraints();
+        gridBagConstraintsLastDayRadioButton.gridx = 1;
+        gridBagConstraintsLastDayRadioButton.gridy = 1;
+        gridBagConstraintsLastDayRadioButton.ipadx = 10;
+        GridBagConstraints gridBagConstraintsTransactionHistoryAccountNumberField = new GridBagConstraints();
+        gridBagConstraintsTransactionHistoryAccountNumberField.gridx = 1;
+        gridBagConstraintsTransactionHistoryAccountNumberField.gridy = 0;
+        GridBagConstraints gridBagConstraintsTransactionHistoryAccountNumberLabel = new GridBagConstraints();
+        gridBagConstraintsTransactionHistoryAccountNumberLabel.gridy = 0;
+        gridBagConstraintsTransactionHistoryAccountNumberLabel.gridx = 0;
+        gridBagConstraintsTransactionHistoryAccountNumberLabel.anchor = GridBagConstraints.EAST;
         transactionHistoryAccountNumberLabel = new JLabel();
         transactionHistoryAccountNumberLabel.setText("Account Number: ");
-        transactionHistoryAccountNumberLabel.setPreferredSize(new Dimension(100, 25));
         transactionHistoryAccountNumberLabel.setForeground(UserSettings.theme.getTextColor());
         transactionHistoryPanel = new JPanel();
         transactionHistoryPanel.setLayout(new GridBagLayout());
         transactionHistoryPanel.setPreferredSize(new Dimension(500, 91));
         transactionHistoryPanel.setName("systems");
         transactionHistoryPanel.setBackground(UserSettings.theme.getBackgroundColor());
-        transactionHistoryPanel.add(transactionHistoryAccountNumberLabel, gridBagConstraints33);
-        transactionHistoryPanel.add(getTransactionHistoryAccountNumberField(), gridBagConstraints34);
+        transactionHistoryPanel.add(transactionHistoryAccountNumberLabel, gridBagConstraintsTransactionHistoryAccountNumberLabel);
+        transactionHistoryPanel.add(getTransactionHistoryAccountNumberField(), gridBagConstraintsTransactionHistoryAccountNumberField);
         transactionHistoryRadioButtonGroup = new ButtonGroup();
-        transactionHistoryPanel.add(getLastDayRadioButton(), gridBagConstraints35);
-        transactionHistoryPanel.add(getLastYearRadioButton(), gridBagConstraints36);
-        transactionHistoryPanel.add(getLastMonthRadioButton(), gridBagConstraints37);
-        transactionHistoryPanel.add(periodLabel, gridBagConstraints38);
-        transactionHistoryPanel.add(getTransactionHistoryStartDateField(), gridBagConstraints40);
-        transactionHistoryPanel.add(getTransactionHistoryEndDateField(), gridBagConstraints43);
-        transactionHistoryPanel.add(startDateLabel, gridBagConstraints46);
-        transactionHistoryPanel.add(endDateLabel, gridBagConstraints47);
-        transactionHistoryPanel.add(getTransactionHistoryList(), gridBagConstraints48);
-        transactionHistoryPanel.add(getTransactionHistoryButton(), gridBagConstraints49);
-        transactionHistoryPanel.add(getCustomDateRangeRadioButton(), gridBagConstraints);
+        transactionHistoryPanel.add(getLastDayRadioButton(), gridBagConstraintsLastDayRadioButton);
+        transactionHistoryPanel.add(getLastYearRadioButton(), gridBagConstraintsLastYearRadioButton);
+        transactionHistoryPanel.add(getLastMonthRadioButton(), gridBagConstraintsLastMonthRadioButton);
+        transactionHistoryPanel.add(periodLabel, gridBagConstraintsPeriodLabel);
+        transactionHistoryPanel.add(getTransactionHistoryStartDateField(), gridBagConstraintsTransactionHistoryStartDateField);
+        transactionHistoryPanel.add(getTransactionHistoryEndDateField(), gridBagConstraintsTransactionHistoryEndDateField);
+        transactionHistoryPanel.add(startDateLabel, gridBagConstraintsStartDateLabel);
+        transactionHistoryPanel.add(endDateLabel, gridBagConstraintsEndDateLabel);
+        transactionHistoryPanel.add(getTransactionHistoryList(), gridBagConstraintsTransactionHistoryList);
+        transactionHistoryPanel.add(getTransactionHistoryButton(), gridBagConstraintsGetTransactionHistoryButton);
+        transactionHistoryPanel.add(getCustomDateRangeRadioButton(), gridBagConstraintsCustomDateRangeRadioButton);
 
         return transactionHistoryPanel;
     }
@@ -460,7 +471,7 @@ public final class AtmView extends JFrame {
      */
     private JTextField getDepositAmountField() {
         depositAmountField = new JTextField();
-        depositAmountField.setPreferredSize(new Dimension(150, 25));
+        depositAmountField.setPreferredSize(new Dimension(120, 25));
         depositAmountField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
         depositAmountField.setForeground(UserSettings.theme.getTextColor());
 
@@ -476,6 +487,8 @@ public final class AtmView extends JFrame {
         depositButton = new JButton();
         depositButton.setText("Deposit");
         depositButton.setPreferredSize(new Dimension(120, 30));
+        depositButton.setBackground(UserSettings.theme.getButtonBackgroundColor());
+        depositButton.setForeground(UserSettings.theme.getTextColor());
         depositButton.addActionListener((java.awt.event.ActionEvent e) -> {
             BigDecimal amount = new BigDecimal(depositAmountField.getText());
 
@@ -507,7 +520,7 @@ public final class AtmView extends JFrame {
      */
     private JTextField getWithdrawalAmountField() {
         withdrawalAmountField = new JTextField();
-        withdrawalAmountField.setPreferredSize(new Dimension(150, 25));
+        withdrawalAmountField.setPreferredSize(new Dimension(120, 25));
         withdrawalAmountField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
         withdrawalAmountField.setForeground(UserSettings.theme.getTextColor());
 
@@ -523,6 +536,8 @@ public final class AtmView extends JFrame {
         withdrawButton = new JButton();
         withdrawButton.setText("Withdraw");
         withdrawButton.setPreferredSize(new Dimension(120, 30));
+        withdrawButton.setBackground(UserSettings.theme.getButtonBackgroundColor());
+        withdrawButton.setForeground(UserSettings.theme.getTextColor());
         withdrawButton.addActionListener((java.awt.event.ActionEvent e) -> {
             BigDecimal amount = new BigDecimal(withdrawalAmountField.getText());
 
@@ -556,6 +571,8 @@ public final class AtmView extends JFrame {
         balanceCheckButton = new JButton();
         balanceCheckButton.setText("Check Balance");
         balanceCheckButton.setPreferredSize(new Dimension(120, 30));
+        balanceCheckButton.setBackground(UserSettings.theme.getButtonBackgroundColor());
+        balanceCheckButton.setForeground(UserSettings.theme.getTextColor());
         balanceCheckButton.addActionListener((java.awt.event.ActionEvent e) -> {
             BigDecimal balance = controller.executeCheckBalance();
 
@@ -633,7 +650,7 @@ public final class AtmView extends JFrame {
      */
     private JTextField getTransactionHistoryStartDateField() {
         transactionHistoryStartDateField = new JTextField();
-        transactionHistoryStartDateField.setPreferredSize(new Dimension(150, 25));
+        transactionHistoryStartDateField.setPreferredSize(new Dimension(120, 25));
         transactionHistoryStartDateField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
         transactionHistoryStartDateField.setForeground(UserSettings.theme.getTextColor());
 
@@ -647,7 +664,7 @@ public final class AtmView extends JFrame {
      */
     private JTextField getTransactionHistoryEndDateField() {
         transactionHistoryEndDateField = new JTextField();
-        transactionHistoryEndDateField.setPreferredSize(new Dimension(950, 25));
+        transactionHistoryEndDateField.setPreferredSize(new Dimension(120, 25));
         transactionHistoryEndDateField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
         transactionHistoryEndDateField.setForeground(UserSettings.theme.getTextColor());
 
@@ -674,8 +691,10 @@ public final class AtmView extends JFrame {
      */
     private JButton getTransactionHistoryButton() {
         getTransactionHistoryButton = new JButton();
-        getTransactionHistoryButton.setPreferredSize(new Dimension(200, 20));
+        getTransactionHistoryButton.setPreferredSize(new Dimension(200, 30));
         getTransactionHistoryButton.setText("Get Transaction History");
+        getTransactionHistoryButton.setBackground(UserSettings.theme.getButtonBackgroundColor());
+        getTransactionHistoryButton.setForeground(UserSettings.theme.getTextColor());
         getTransactionHistoryButton.addActionListener((java.awt.event.ActionEvent e) -> {
             try {
                 String command = transactionHistoryRadioButtonGroup.getSelection().getActionCommand();
@@ -745,6 +764,16 @@ public final class AtmView extends JFrame {
         accountSelectionComboBox.setToolTipText("Accounts");
         accountSelectionComboBox.setName("Accounts");
         accountSelectionComboBox.setSelectedItem(null);
+        accountSelectionComboBox.setBackground(UserSettings.theme.getComboBoxBackgroundColor());
+        accountSelectionComboBox.setForeground(UserSettings.theme.getTextColor());
+        accountSelectionComboBox.setRenderer(new DefaultListCellRenderer() {
+            @Override
+            public void paint(Graphics g) {
+            setBackground(UserSettings.theme.getListBackgroundColor());
+            setForeground(UserSettings.theme.getTextColor());
+            super.paint(g);
+            }
+        });
         accountSelectionComboBox.addActionListener((java.awt.event.ActionEvent e) -> {
             controller.selectedAccount = (Account) accountSelectionComboBox.getSelectedItem();
 
@@ -776,6 +805,16 @@ public final class AtmView extends JFrame {
         selectedThemeComboBox.setToolTipText("Accounts");
         selectedThemeComboBox.setName("Accounts");
         selectedThemeComboBox.setSelectedItem(controller.getSelectedTheme());
+        selectedThemeComboBox.setBackground(UserSettings.theme.getComboBoxBackgroundColor());
+        selectedThemeComboBox.setForeground(UserSettings.theme.getTextColor());
+        selectedThemeComboBox.setRenderer(new DefaultListCellRenderer() {
+            @Override
+            public void paint(Graphics g) {
+            setBackground(UserSettings.theme.getListBackgroundColor());
+            setForeground(UserSettings.theme.getTextColor());
+            super.paint(g);
+            }
+        });
         selectedThemeComboBox.addActionListener((java.awt.event.ActionEvent e) -> {
             controller.executeSelectTheme((String) selectedThemeComboBox.getSelectedItem());
             dispose();
@@ -794,6 +833,8 @@ public final class AtmView extends JFrame {
         exitButton = new JButton();
         exitButton.setText("Quit ATM");
         exitButton.setPreferredSize(new Dimension(120, 30));
+        exitButton.setBackground(UserSettings.theme.getButtonBackgroundColor());
+        exitButton.setForeground(UserSettings.theme.getTextColor());
         exitButton.addActionListener((java.awt.event.ActionEvent e) -> {
             int n = JOptionPane.showConfirmDialog(landingPanel,
                     "Quit ATM?", "Confirm Exit",
