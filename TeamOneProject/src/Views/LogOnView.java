@@ -43,10 +43,8 @@ public class LogOnView extends javax.swing.JFrame {
     }
 
     private void doLogOn() {
-        //TODO: Encrypt here
-        String password = passwordField.getText();
-
-        boolean successful = controller.executeLogOn(userNameField.getText(), password);
+        //TODO: Encrypt here        
+        boolean successful = controller.executeLogOn(userNameField.getText(), new String(passwordField.getPassword()));
 
         if (successful) {
             logOnFailureLabel.setVisible(false);
@@ -72,17 +70,16 @@ public class LogOnView extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         logOnFailureLabel = new javax.swing.JLabel();
         userNameField = new javax.swing.JTextField();
-        passwordField = new javax.swing.JTextField();
         logOnButton = new javax.swing.JButton();
         provisionDatabaseButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         userNameField2 = new javax.swing.JTextField();
         logOnButton1 = new javax.swing.JButton();
+        passwordField = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         logOnPanel.setDoubleBuffered(false);
-        logOnPanel.setNextFocusableComponent(passwordField);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("User Name:");
@@ -99,14 +96,6 @@ public class LogOnView extends javax.swing.JFrame {
         userNameField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 userNameFieldKeyPressed(evt);
-            }
-        });
-
-        passwordField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        passwordField.setNextFocusableComponent(logOnButton);
-        passwordField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                passwordFieldKeyPressed(evt);
             }
         });
 
@@ -136,7 +125,6 @@ public class LogOnView extends javax.swing.JFrame {
         jLabel3.setText("User Name:");
 
         userNameField2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        userNameField2.setNextFocusableComponent(passwordField);
         userNameField2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 userNameField2KeyPressed(evt);
@@ -157,6 +145,13 @@ public class LogOnView extends javax.swing.JFrame {
             }
         });
 
+        passwordField.setNextFocusableComponent(logOnButton);
+        passwordField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                passwordFieldKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout logOnPanelLayout = new javax.swing.GroupLayout(logOnPanel);
         logOnPanel.setLayout(logOnPanelLayout);
         logOnPanelLayout.setHorizontalGroup(
@@ -169,51 +164,49 @@ public class LogOnView extends javax.swing.JFrame {
                 .addGap(354, 354, 354)
                 .addGroup(logOnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(logOnPanelLayout.createSequentialGroup()
+                        .addGroup(logOnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(logOnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(userNameField)
+                            .addComponent(passwordField))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(logOnButton))
+                    .addGroup(logOnPanelLayout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(userNameField2, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(logOnButton1))
-                    .addGroup(logOnPanelLayout.createSequentialGroup()
-                        .addGroup(logOnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(logOnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(userNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
-                            .addComponent(passwordField))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(logOnButton))
                     .addComponent(logOnFailureLabel))
-                .addContainerGap(369, Short.MAX_VALUE))
+                .addGap(369, 369, 369))
         );
         logOnPanelLayout.setVerticalGroup(
             logOnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(logOnPanelLayout.createSequentialGroup()
-                .addGroup(logOnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(logOnPanelLayout.createSequentialGroup()
-                        .addGap(200, 200, 200)
-                        .addGroup(logOnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(userNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addGap(18, 18, 18)
-                        .addGroup(logOnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, logOnPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(logOnButton)
-                        .addGap(35, 35, 35)))
+                .addGap(200, 200, 200)
+                .addGroup(logOnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(userNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
+                .addGroup(logOnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(logOnFailureLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(logOnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(userNameField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(logOnButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 179, Short.MAX_VALUE)
                 .addComponent(provisionDatabaseButton)
                 .addContainerGap())
+            .addGroup(logOnPanelLayout.createSequentialGroup()
+                .addGap(224, 224, 224)
+                .addComponent(logOnButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -238,10 +231,6 @@ public class LogOnView extends javax.swing.JFrame {
         doLogOn();
     }//GEN-LAST:event_logOnButtonActionPerformed
 
-    private void passwordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordFieldKeyPressed
-        doKeyPressed(evt);
-    }//GEN-LAST:event_passwordFieldKeyPressed
-
     private void userNameFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_userNameFieldKeyPressed
         doKeyPressed(evt);
     }//GEN-LAST:event_userNameFieldKeyPressed
@@ -253,9 +242,8 @@ public class LogOnView extends javax.swing.JFrame {
     private void userNameField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_userNameField2KeyPressed
         //TODO: This will need to be removed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            String password = passwordField.getText();
 
-            boolean successful = controller.executeLogOn(userNameField2.getText(), password);
+            boolean successful = controller.executeLogOn(userNameField2.getText(), new String(passwordField.getPassword()));
 
             if (successful) {
                 logOnFailureLabel.setVisible(false);
@@ -269,9 +257,7 @@ public class LogOnView extends javax.swing.JFrame {
 
     private void logOnButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOnButton1ActionPerformed
         //TODO: This will need to be removed
-        String password = passwordField.getText();
-
-        boolean successful = controller.executeLogOn(userNameField2.getText(), password);
+        boolean successful = controller.executeLogOn(userNameField2.getText(), new String(passwordField.getPassword()));
 
         if (successful) {
             logOnFailureLabel.setVisible(false);
@@ -285,9 +271,8 @@ public class LogOnView extends javax.swing.JFrame {
     private void logOnButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_logOnButton1KeyPressed
         //TODO: This will need to be removed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            String password = passwordField.getText();
 
-            boolean successful = controller.executeLogOn(userNameField2.getText(), password);
+            boolean successful = controller.executeLogOn(userNameField2.getText(), new String(passwordField.getPassword()));
 
             if (successful) {
                 logOnFailureLabel.setVisible(false);
@@ -299,6 +284,10 @@ public class LogOnView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_logOnButton1KeyPressed
 
+    private void passwordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordFieldKeyPressed
+        doKeyPressed(evt);
+    }//GEN-LAST:event_passwordFieldKeyPressed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -307,7 +296,7 @@ public class LogOnView extends javax.swing.JFrame {
     private javax.swing.JButton logOnButton1;
     private javax.swing.JLabel logOnFailureLabel;
     private javax.swing.JPanel logOnPanel;
-    private javax.swing.JTextField passwordField;
+    private javax.swing.JPasswordField passwordField;
     private javax.swing.JButton provisionDatabaseButton;
     private javax.swing.JTextField userNameField;
     private javax.swing.JTextField userNameField2;
