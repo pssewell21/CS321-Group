@@ -284,6 +284,7 @@ public final class AtmView extends JFrame {
         GridBagConstraints gridBagConstraintsWithdrawalAccountNumberField = new GridBagConstraints();
         gridBagConstraintsWithdrawalAccountNumberField.gridy = 0;
         gridBagConstraintsWithdrawalAccountNumberField.gridx = 1;
+        gridBagConstraintsWithdrawalAccountNumberField.anchor = GridBagConstraints.WEST;
         GridBagConstraints gridBagConstraintsWithdrawalAccountNumberLabel = new GridBagConstraints();
         gridBagConstraintsWithdrawalAccountNumberLabel.gridx = 0;
         gridBagConstraintsWithdrawalAccountNumberLabel.gridy = 0;
@@ -388,15 +389,11 @@ public final class AtmView extends JFrame {
         GridBagConstraints gridBagConstraintsTransactionHistoryEndDateField = new GridBagConstraints();
         gridBagConstraintsTransactionHistoryEndDateField.gridx = 1;
         gridBagConstraintsTransactionHistoryEndDateField.gridy = 3;
-        gridBagConstraintsTransactionHistoryEndDateField.gridwidth = 2;
-        gridBagConstraintsTransactionHistoryEndDateField.anchor = GridBagConstraints.WEST;
-        gridBagConstraintsTransactionHistoryEndDateField.fill = GridBagConstraints.VERTICAL;
+        gridBagConstraintsTransactionHistoryEndDateField.fill = GridBagConstraints.BOTH;
         GridBagConstraints gridBagConstraintsTransactionHistoryStartDateField = new GridBagConstraints();
         gridBagConstraintsTransactionHistoryStartDateField.gridx = 1;
         gridBagConstraintsTransactionHistoryStartDateField.gridy = 2;
-        gridBagConstraintsTransactionHistoryStartDateField.gridwidth = 2;
-        gridBagConstraintsTransactionHistoryStartDateField.anchor = GridBagConstraints.WEST;
-        gridBagConstraintsTransactionHistoryStartDateField.fill = GridBagConstraints.VERTICAL;
+        gridBagConstraintsTransactionHistoryStartDateField.fill = GridBagConstraints.BOTH;
         GridBagConstraints gridBagConstraintsPeriodLabel = new GridBagConstraints();
         gridBagConstraintsPeriodLabel.gridx = 0;
         gridBagConstraintsPeriodLabel.gridy = 1;
@@ -419,6 +416,7 @@ public final class AtmView extends JFrame {
         GridBagConstraints gridBagConstraintsTransactionHistoryAccountNumberField = new GridBagConstraints();
         gridBagConstraintsTransactionHistoryAccountNumberField.gridx = 1;
         gridBagConstraintsTransactionHistoryAccountNumberField.gridy = 0;
+        gridBagConstraintsTransactionHistoryAccountNumberField.anchor = GridBagConstraints.WEST;
         GridBagConstraints gridBagConstraintsTransactionHistoryAccountNumberLabel = new GridBagConstraints();
         gridBagConstraintsTransactionHistoryAccountNumberLabel.gridy = 0;
         gridBagConstraintsTransactionHistoryAccountNumberLabel.gridx = 0;
@@ -650,7 +648,6 @@ public final class AtmView extends JFrame {
      */
     private JTextField getTransactionHistoryStartDateField() {
         transactionHistoryStartDateField = new JTextField();
-        transactionHistoryStartDateField.setPreferredSize(new Dimension(120, 25));
         transactionHistoryStartDateField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
         transactionHistoryStartDateField.setForeground(UserSettings.theme.getTextColor());
 
@@ -664,7 +661,6 @@ public final class AtmView extends JFrame {
      */
     private JTextField getTransactionHistoryEndDateField() {
         transactionHistoryEndDateField = new JTextField();
-        transactionHistoryEndDateField.setPreferredSize(new Dimension(120, 25));
         transactionHistoryEndDateField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
         transactionHistoryEndDateField.setForeground(UserSettings.theme.getTextColor());
 
@@ -691,7 +687,6 @@ public final class AtmView extends JFrame {
      */
     private JButton getTransactionHistoryButton() {
         getTransactionHistoryButton = new JButton();
-        getTransactionHistoryButton.setPreferredSize(new Dimension(200, 30));
         getTransactionHistoryButton.setText("Get Transaction History");
         getTransactionHistoryButton.setBackground(UserSettings.theme.getButtonBackgroundColor());
         getTransactionHistoryButton.setForeground(UserSettings.theme.getTextColor());
