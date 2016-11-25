@@ -537,7 +537,10 @@ public final class AtmView extends JFrame {
         withdrawButton.addActionListener((java.awt.event.ActionEvent e) -> {
             BigDecimal amount = new BigDecimal(withdrawalAmountField.getText());
 
-            controller.executeWithdrawal(amount);
+            if (!controller.executeWithdrawal(amount))
+            {
+                JOptionPane.showMessageDialog(withdrawalPanel, "Insufficient funds to make withdrawal.");
+            }
         });
 
         return withdrawButton;

@@ -18,6 +18,7 @@ import java.sql.Timestamp;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -30,20 +31,20 @@ public class AtmViewController {
      *
      */
     public AtmView view;
-    
+
     private User currentUser;
 
     private final AccountFactory accountFactory;
 
     private final AccountTransactionFactory accountTransactionFactory;
-    
+
     private final UserFactory userFactory;
 
     /**
      *
      */
     public DefaultComboBoxModel<Account> accountModel;
-    
+
     /**
      *
      */
@@ -66,7 +67,7 @@ public class AtmViewController {
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
     public void load(User user) {
         currentUser = user;
-        
+
         List<Account> result = accountFactory.executeSelectByUserId(currentUser.Id);
         Account[] accountArray = result.toArray(new Account[]{});
         accountModel = new DefaultComboBoxModel<>(accountArray);
@@ -80,34 +81,39 @@ public class AtmViewController {
 
     public BigDecimal executeCheckBalance() {
         selectedAccount = accountFactory.executeSelectById(selectedAccount.Id);
-        
+
         return selectedAccount.Balance;
     }
 
     public void executeDeposit(BigDecimal amount) {
         accountTransactionFactory.addDeposit(currentUser.PersonId, selectedAccount.Id, amount);
     }
-    
-    public void executeWithdrawal(BigDecimal amount) {
-        accountTransactionFactory.addWithdrawal(currentUser.PersonId, selectedAccount.Id, amount);
+
+    public boolean executeWithdrawal(BigDecimal amount) {
+        if (selectedAccount.Balance.compareTo(amount) > 0) {
+            accountTransactionFactory.addWithdrawal(currentUser.PersonId, selectedAccount.Id, amount);
+            return true;
+        } else {
+            return false;
+        }
     }
-    
+
     public void executeGetTransactionHistory(Timestamp startTime, Timestamp endTime) {
         List<AccountTransaction> result = accountTransactionFactory.executeSelectByAccoundIdAndTimestampRange(selectedAccount.Id, startTime, endTime);
-        
+
         transactionListModel = new DefaultListModel<>();
         for (Object item : result) {
             transactionListModel.addElement((AccountTransaction) item);
         }
     }
-    
+
     public void executeSelectTheme(String selectedTheme) {
         currentUser.SelectedTheme = selectedTheme;
         userFactory.executeUpdate(currentUser.toHashMap());
-        
+
         UserSettings.setSelectedTheme(selectedTheme);
     }
-    
+
     public String getSelectedTheme() {
         return currentUser.SelectedTheme;
     }
