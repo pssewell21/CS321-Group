@@ -12,40 +12,38 @@ import java.awt.Color;
  * @author Owner
  */
 public final class LightTheme implements ITheme {
-    public final String themeName = "Light Theme";
-    
     @Override
     public Color getBackgroundColor() {
-        return new Color(0,0,0);
+        return Color.LIGHT_GRAY;
     }
     
     @Override
     public Color getListBackgroundColor() {
-        return new Color(0,0,0);
+        return Color.WHITE;
     }
     
     @Override
     public Color getComboBoxBackgroundColor() {
-        return new Color(0,0,0);
+        return Color.WHITE;
     }
     
     @Override
     public Color getButtonBackgroundColor() {
-        return new Color(0,0,0);
+        return Color.WHITE;
     }
     
     @Override
     public Color getTextFieldBackgroundColor() {
-        return Color.DARK_GRAY;
+        return Color.WHITE;
     }
     
     @Override
     public Color getCheckBoxBackgroundColor() {
-        return Color.DARK_GRAY;
+        return Color.WHITE;
     }
     
     @Override
     public Color getTextColor() {
-        return new Color(0,0,0);
+        return Color.BLACK;
     }
 }

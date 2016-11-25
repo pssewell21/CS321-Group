@@ -607,8 +607,8 @@ public final class AtmView extends JFrame {
             balanceCheckAccountNumber.setPreferredSize(new Dimension(150, 25));
             balanceCheckAccountNumber.setEnabled(false);
             
-            UIDefaults overrides = new UIDefaults();
-            overrides.put("TextField.background", new ColorUIResource(Color.RED));
+            //UIDefaults overrides = new UIDefaults();
+            //overrides.put("TextField.background", new ColorUIResource(Color.RED));
             
             balanceCheckAccountNumber.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
             balanceCheckAccountNumber.setDisabledTextColor(UserSettings.theme.getTextColor());

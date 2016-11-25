@@ -1,8 +1,8 @@
-Thu Nov 24 12:16:18 CST 2016 : Apache Derby Network Server - 10.11.1.2 - (1629631) started and ready to accept connections on port 1527
+Thu Nov 24 20:59:24 CST 2016 : Apache Derby Network Server - 10.11.1.2 - (1629631) started and ready to accept connections on port 1527
 ----------------------------------------------------------------
-Thu Nov 24 12:16:19 CST 2016:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): instance a816c00e-0158-978d-6f2b-ffff9f336114 
-on database directory C:\Users\pssew\OneDrive\Documents\GitHub\CS321-Group\TeamOneProject\netbeans.derby\atmdb with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
+Thu Nov 24 20:59:25 CST 2016:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): instance a816c00e-0158-996c-598b-ffffdc267071 
+on database directory C:\Users\Owner\Documents\GitHub\CS321-Group\TeamOneProject\netbeans.derby\atmdb with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
 Loaded from file:/C:/Program%20Files/Java/jdk1.8.0_102/db/lib/derby.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.8.0_102-b14
@@ -10,5 +10,22 @@ user.dir=C:\Program Files\Java\jdk1.8.0_102\db
 os.name=Windows 10
 os.arch=amd64
 os.version=10.0
-derby.system.home=C:\Users\pssew\OneDrive\Documents\GitHub\CS321-Group\TeamOneProject\netbeans.derby
+derby.system.home=C:\Users\Owner\Documents\GitHub\CS321-Group\TeamOneProject\netbeans.derby
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Thu Nov 24 21:00:16 CST 2016:
+Shutting down instance a816c00e-0158-996c-598b-ffffdc267071 on database directory C:\Users\Owner\Documents\GitHub\CS321-Group\TeamOneProject\netbeans.derby\atmdb with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
+Thu Nov 24 21:00:16 CST 2016 Thread[DRDAConnThread_3,5,main] (DATABASE = atmdb), (DRDAID = {5}), Database 'atmdb' shutdown.
+----------------------------------------------------------------
+Thu Nov 24 21:00:21 CST 2016:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): instance 07170079-0158-996c-598b-ffffdc267071 
+on database directory C:\Users\Owner\Documents\GitHub\CS321-Group\TeamOneProject\netbeans.derby\atmdb with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
+Loaded from file:/C:/Program%20Files/Java/jdk1.8.0_102/db/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_102-b14
+user.dir=C:\Program Files\Java\jdk1.8.0_102\db
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=C:\Users\Owner\Documents\GitHub\CS321-Group\TeamOneProject\netbeans.derby
 Database Class Loader started - derby.database.classpath=''

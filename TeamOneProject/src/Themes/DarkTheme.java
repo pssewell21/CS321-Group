@@ -12,10 +12,6 @@ import java.awt.Color;
  * @author Owner
  */
 public final class DarkTheme implements ITheme{
-    public static String themeName = "Dark Theme";
-    
-    public static Color backgroundColor = Color.GREEN;
-    
     @Override
     public Color getBackgroundColor() {
         return Color.BLACK;
