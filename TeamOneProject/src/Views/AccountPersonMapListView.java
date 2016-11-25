@@ -13,7 +13,6 @@ import Common.UserSettings;
 import Controllers.AccountPersonMapListViewController;
 import Library.AccountPersonMap;
 import Library.Person;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import javax.swing.DefaultListCellRenderer;
@@ -92,7 +91,7 @@ public class AccountPersonMapListView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Account Person Linking Manager");
+        jLabel1.setText("Account Linking Manager");
 
         jList1.setModel(controller.accountPersonMapListModel);
         jList1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -132,15 +131,15 @@ public class AccountPersonMapListView extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(newButton)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(personComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(newButton))
-                        .addGap(45, 45, 45)
+                                .addComponent(personComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(86, 86, 86)
                         .addComponent(jLabel1)
-                        .addGap(0, 287, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(

@@ -82,12 +82,7 @@ public class Person extends LibraryBase  {
 
     @Override
     public String toString() {
-        return super.toString() + ", " 
-                + DalFields.NAME + ": " + Name + ", "
-                + DalFields.DATE_OF_BIRTH + ": " + DateOfBirth + ", "
-                + DalFields.ADDRESS + ": " + Address + ", "
-                + DalFields.PHONE_NUMBER + ": " + PhoneNumber + ", "
-                + DalFields.SOCIAL_SECURITY_NUMBER + ": " + SocialSecurityNumber;
+        return Name;
     }
 
     /**

@@ -25,6 +25,14 @@ public class AccountPersonMap extends LibraryBase  {
      */
     public Long PersonId;
     
+    private Person person;
+    
+    private Account account;
+    
+    private PersonFactory personFactory;
+    
+    private AccountFactory accountFactory;
+    
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
 
     /**
@@ -33,6 +41,8 @@ public class AccountPersonMap extends LibraryBase  {
     
     public AccountPersonMap() {
         super();
+        personFactory = new PersonFactory();
+        accountFactory = new AccountFactory();
     }
 
     /**
@@ -46,7 +56,13 @@ public class AccountPersonMap extends LibraryBase  {
             Long personId) {
         super(id);
         AccountId = accountId;
-        PersonId = personId;               
+        PersonId = personId;
+        
+        personFactory = new PersonFactory();
+        accountFactory = new AccountFactory();
+        
+        person = personFactory.getById(PersonId);
+        account = accountFactory.executeSelectById(accountId);
     }
     
     // </editor-fold>
@@ -55,9 +71,7 @@ public class AccountPersonMap extends LibraryBase  {
 
     @Override
     public String toString() {
-        return super.toString() + ", " 
-                + DalFields.ACCOUNT_ID + ": " + AccountId + ", "
-                + DalFields.PERSON_ID + ": " + PersonId;
+        return account.toString() + ", PERSON: " + person.toString();
     }
 
     /**

@@ -116,17 +116,9 @@ public class User extends LibraryBase {
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
     @Override
     public String toString() {
-        return super.toString() + ", "
-                + DalFields.PERSON_ID + ": " + PersonId + ", "
-                + DalFields.USER_NAME + ": " + UserName + ", "
-                + DalFields.PASSWORD + ": " + Password + ", "
-                + DalFields.SECURITY_QUESTION_1 + ": " + SecurityQuestion1 + ", "
-                + DalFields.SECURITY_ANSWER_1 + ": " + SecurityAnswer1 + ", "
-                + DalFields.SECURITY_QUESTION_2 + ": " + SecurityQuestion2 + ", "
-                + DalFields.SECURITY_ANSWER_2 + ": " + SecurityAnswer2 + ", "
+        return DalFields.USER_NAME + ": " + UserName + ", "
                 + DalFields.IS_ADMINISTRATOR + ": " + IsAdministrator + ", "
-                + DalFields.IS_ACCOUNT_LOCKED + ": " + IsAccountLocked + ", "
-                + DalFields.SELECTED_THEME + ": " + SelectedTheme;
+                + DalFields.IS_ACCOUNT_LOCKED + ": " + IsAccountLocked;
     }
 
     /**

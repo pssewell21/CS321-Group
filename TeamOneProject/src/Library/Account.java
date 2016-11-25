@@ -82,7 +82,7 @@ public class Account extends LibraryBase  {
 
     @Override
     public String toString() {
-        return AccountType + " ACCOUNT #: " + AccountNumber;
+        return AccountType + " ACCOUNT " + AccountNumber;
     }
 
     /**
