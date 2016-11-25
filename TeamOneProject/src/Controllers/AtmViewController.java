@@ -5,11 +5,13 @@
  */
 package Controllers;
 
+import Common.UserSettings;
 import Library.Account;
 import Library.AccountFactory;
 import Library.AccountTransaction;
 import Library.AccountTransactionFactory;
 import Library.User;
+import Library.UserFactory;
 import Views.AtmView;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -34,6 +36,8 @@ public class AtmViewController {
     private final AccountFactory accountFactory;
 
     private final AccountTransactionFactory accountTransactionFactory;
+    
+    private final UserFactory userFactory;
 
     /**
      *
@@ -55,6 +59,7 @@ public class AtmViewController {
     public AtmViewController() {
         this.accountFactory = new AccountFactory();
         this.accountTransactionFactory = new AccountTransactionFactory();
+        this.userFactory = new UserFactory();
     }
 
     // </editor-fold> 
@@ -94,6 +99,17 @@ public class AtmViewController {
         for (Object item : result) {
             transactionListModel.addElement((AccountTransaction) item);
         }
+    }
+    
+    public void executeSelectTheme(String selectedTheme) {
+        currentUser.SelectedTheme = selectedTheme;
+        userFactory.executeUpdate(currentUser.toHashMap());
+        
+        UserSettings.setSelectedTheme(selectedTheme);
+    }
+    
+    public String getSelectedTheme() {
+        return currentUser.SelectedTheme;
     }
 
     // </editor-fold> 

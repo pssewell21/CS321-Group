@@ -46,25 +46,30 @@ public class UserEditView extends javax.swing.JFrame {
         setThemeColors();
         
         if (controller.model.PersonId != null) { 
-            PersonComboBox.setSelectedItem(selectedPerson);
+            personComboBox.setSelectedItem(selectedPerson);
         }
         else {
-            PersonComboBox.setSelectedItem(null);
+            personComboBox.setSelectedItem(null);
         }
             
-        UserNameField.setText(controller.model.UserName);
-        PasswordField.setText(controller.model.Password);
-        SecurityQuestion1Field.setText(controller.model.SecurityQuestion1);
-        SecurityAnswer1Field.setText(controller.model.SecurityAnswer1);
-        SecurityQuestion2Field.setText(controller.model.SecurityQuestion2);
-        SecurityAnswer2Field.setText(controller.model.SecurityAnswer2);
+        userNameField.setText(controller.model.UserName);
+        passwordField.setText(controller.model.Password);
+        securityQuestion1Field.setText(controller.model.SecurityQuestion1);
+        securityAnswer1Field.setText(controller.model.SecurityAnswer1);
+        securityQuestion2Field.setText(controller.model.SecurityQuestion2);
+        securityAnswer2Field.setText(controller.model.SecurityAnswer2);
         if (controller.model.IsAdministrator != null) { 
-            IsAdministratorCheckBox.setSelected(controller.model.IsAdministrator);
+            isAdministratorCheckBox.setSelected(controller.model.IsAdministrator);
         }
         if (controller.model.IsAccountLocked != null) { 
-            IsAccountLockedCheckBox.setSelected(controller.model.IsAccountLocked);
+            isAccountLockedCheckBox.setSelected(controller.model.IsAccountLocked);
         }
-        SelectedThemeField.setText(controller.model.SelectedTheme);
+        if (controller.model.SelectedTheme != null) { 
+            selectedThemeComboBox.setSelectedItem(controller.model.SelectedTheme);
+        }
+        else {
+            selectedThemeComboBox.setSelectedItem(null);
+        }
 
         pack();
         setVisible(true);
@@ -73,27 +78,27 @@ public class UserEditView extends javax.swing.JFrame {
     private void setThemeColors() {
         jPanel1.setBackground(UserSettings.theme.getBackgroundColor());
                 
-        PersonComboBox.setBackground(UserSettings.theme.getComboBoxBackgroundColor());
-        PasswordField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        SecurityAnswer1Field.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        SecurityAnswer2Field.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        SecurityQuestion1Field.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        SecurityQuestion2Field.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        SelectedThemeField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        UserNameField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        personComboBox.setBackground(UserSettings.theme.getComboBoxBackgroundColor());
+        selectedThemeComboBox.setBackground(UserSettings.theme.getComboBoxBackgroundColor());
+        passwordField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        securityAnswer1Field.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        securityAnswer2Field.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        securityQuestion1Field.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        securityQuestion2Field.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        userNameField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
         applyButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
         saveButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
         cancelButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
         deleteButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
         
-        PersonComboBox.setForeground(UserSettings.theme.getTextColor());
-        PasswordField.setForeground(UserSettings.theme.getTextColor());
-        SecurityAnswer1Field.setForeground(UserSettings.theme.getTextColor());
-        SecurityAnswer2Field.setForeground(UserSettings.theme.getTextColor());
-        SecurityQuestion1Field.setForeground(UserSettings.theme.getTextColor());
-        SecurityQuestion2Field.setForeground(UserSettings.theme.getTextColor());
-        SelectedThemeField.setForeground(UserSettings.theme.getTextColor());
-        UserNameField.setForeground(UserSettings.theme.getTextColor());
+        personComboBox.setForeground(UserSettings.theme.getTextColor());
+        selectedThemeComboBox.setForeground(UserSettings.theme.getTextColor());
+        passwordField.setForeground(UserSettings.theme.getTextColor());
+        securityAnswer1Field.setForeground(UserSettings.theme.getTextColor());
+        securityAnswer2Field.setForeground(UserSettings.theme.getTextColor());
+        securityQuestion1Field.setForeground(UserSettings.theme.getTextColor());
+        securityQuestion2Field.setForeground(UserSettings.theme.getTextColor());
+        userNameField.setForeground(UserSettings.theme.getTextColor());
         applyButton.setForeground(UserSettings.theme.getTextColor());
         saveButton.setForeground(UserSettings.theme.getTextColor());
         cancelButton.setForeground(UserSettings.theme.getTextColor());
@@ -109,7 +114,15 @@ public class UserEditView extends javax.swing.JFrame {
         jLabel10.setForeground(UserSettings.theme.getTextColor());
         jLabel11.setForeground(UserSettings.theme.getTextColor());
         
-        PersonComboBox.setRenderer(new DefaultListCellRenderer() {
+        personComboBox.setRenderer(new DefaultListCellRenderer() {
+            @Override
+            public void paint(Graphics g) {
+            setBackground(UserSettings.theme.getListBackgroundColor());
+            setForeground(UserSettings.theme.getTextColor());
+            super.paint(g);
+            }
+        });
+        selectedThemeComboBox.setRenderer(new DefaultListCellRenderer() {
             @Override
             public void paint(Graphics g) {
             setBackground(UserSettings.theme.getListBackgroundColor());
@@ -128,18 +141,18 @@ public class UserEditView extends javax.swing.JFrame {
     }
 
     private void setModelFields() {
-        selectedPerson = (Person) PersonComboBox.getSelectedItem();
+        selectedPerson = (Person) personComboBox.getSelectedItem();
         
         controller.model.PersonId = selectedPerson.Id;
-        controller.model.UserName = UserNameField.getText();
-        controller.model.Password = new String(PasswordField.getPassword());
-        controller.model.SecurityQuestion1 = SecurityQuestion1Field.getText();
-        controller.model.SecurityAnswer1 = SecurityAnswer1Field.getText();
-        controller.model.SecurityQuestion2 = SecurityQuestion2Field.getText();
-        controller.model.SecurityAnswer2 = SecurityAnswer2Field.getText();
-        controller.model.IsAdministrator = IsAdministratorCheckBox.isSelected();
-        controller.model.IsAccountLocked = IsAccountLockedCheckBox.isSelected();
-        controller.model.SelectedTheme = SelectedThemeField.getText();
+        controller.model.UserName = userNameField.getText();
+        controller.model.Password = new String(passwordField.getPassword());
+        controller.model.SecurityQuestion1 = securityQuestion1Field.getText();
+        controller.model.SecurityAnswer1 = securityAnswer1Field.getText();
+        controller.model.SecurityQuestion2 = securityQuestion2Field.getText();
+        controller.model.SecurityAnswer2 = securityAnswer2Field.getText();
+        controller.model.IsAdministrator = isAdministratorCheckBox.isSelected();
+        controller.model.IsAccountLocked = isAccountLockedCheckBox.isSelected();
+        controller.model.SelectedTheme = (String) selectedThemeComboBox.getSelectedItem();
     }
 
     /**
@@ -156,26 +169,26 @@ public class UserEditView extends javax.swing.JFrame {
         applyButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
-        UserNameField = new javax.swing.JTextField();
-        SecurityQuestion1Field = new javax.swing.JTextField();
-        SecurityAnswer1Field = new javax.swing.JTextField();
+        userNameField = new javax.swing.JTextField();
+        securityQuestion1Field = new javax.swing.JTextField();
+        securityAnswer1Field = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        SecurityQuestion2Field = new javax.swing.JTextField();
+        securityQuestion2Field = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        SecurityAnswer2Field = new javax.swing.JTextField();
+        securityAnswer2Field = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        SelectedThemeField = new javax.swing.JTextField();
-        PersonComboBox = new javax.swing.JComboBox<>();
-        IsAdministratorCheckBox = new javax.swing.JCheckBox();
-        IsAccountLockedCheckBox = new javax.swing.JCheckBox();
-        PasswordField = new javax.swing.JPasswordField();
+        personComboBox = new javax.swing.JComboBox<>();
+        isAdministratorCheckBox = new javax.swing.JCheckBox();
+        isAccountLockedCheckBox = new javax.swing.JCheckBox();
+        passwordField = new javax.swing.JPasswordField();
+        selectedThemeComboBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -227,19 +240,21 @@ public class UserEditView extends javax.swing.JFrame {
 
         jLabel11.setText("Selected Theme:");
 
-        PersonComboBox.setModel(controller.personModel);
+        personComboBox.setModel(controller.personModel);
 
-        IsAdministratorCheckBox.addActionListener(new java.awt.event.ActionListener() {
+        isAdministratorCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IsAdministratorCheckBoxActionPerformed(evt);
+                isAdministratorCheckBoxActionPerformed(evt);
             }
         });
 
-        IsAccountLockedCheckBox.addActionListener(new java.awt.event.ActionListener() {
+        isAccountLockedCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IsAccountLockedCheckBoxActionPerformed(evt);
+                isAccountLockedCheckBoxActionPerformed(evt);
             }
         });
+
+        selectedThemeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Light Theme", "Dark Theme" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -274,20 +289,20 @@ public class UserEditView extends javax.swing.JFrame {
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(SelectedThemeField, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                    .addComponent(SecurityQuestion2Field, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(UserNameField)
-                        .addComponent(SecurityQuestion1Field)
-                        .addComponent(SecurityAnswer1Field)
-                        .addComponent(PersonComboBox, 0, 180, Short.MAX_VALUE))
-                    .addComponent(SecurityAnswer2Field, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                    .addComponent(securityQuestion2Field, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                    .addComponent(userNameField)
+                    .addComponent(securityQuestion1Field)
+                    .addComponent(securityAnswer1Field)
+                    .addComponent(personComboBox, 0, 180, Short.MAX_VALUE)
+                    .addComponent(securityAnswer2Field, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(IsAccountLockedCheckBox)
-                            .addComponent(IsAdministratorCheckBox)))
-                    .addComponent(PasswordField))
+                            .addComponent(isAccountLockedCheckBox)
+                            .addComponent(isAdministratorCheckBox))
+                        .addGap(117, 117, 117))
+                    .addComponent(passwordField)
+                    .addComponent(selectedThemeComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -295,44 +310,44 @@ public class UserEditView extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(PersonComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(personComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(UserNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(userNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(PasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SecurityQuestion1Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(securityQuestion1Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SecurityAnswer1Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(securityAnswer1Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SecurityQuestion2Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(securityQuestion2Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SecurityAnswer2Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(securityAnswer2Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(IsAdministratorCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                    .addComponent(isAdministratorCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(IsAccountLockedCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
-                .addGap(13, 13, 13)
+                    .addComponent(isAccountLockedCheckBox, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
+                .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SelectedThemeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11))
+                    .addComponent(jLabel11)
+                    .addComponent(selectedThemeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveButton)
@@ -384,31 +399,23 @@ public class UserEditView extends javax.swing.JFrame {
         controller.executeDelete();
     }//GEN-LAST:event_deleteButtonActionPerformed
 
-    private void IsAccountLockedCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IsAccountLockedCheckBoxActionPerformed
+    private void isAccountLockedCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isAccountLockedCheckBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_IsAccountLockedCheckBoxActionPerformed
+    }//GEN-LAST:event_isAccountLockedCheckBoxActionPerformed
 
-    private void IsAdministratorCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IsAdministratorCheckBoxActionPerformed
+    private void isAdministratorCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isAdministratorCheckBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_IsAdministratorCheckBoxActionPerformed
+    }//GEN-LAST:event_isAdministratorCheckBoxActionPerformed
 
     // </editor-fold> 
     
     // <editor-fold defaultstate="collapsed" desc="Generated UI Variables"> 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox IsAccountLockedCheckBox;
-    private javax.swing.JCheckBox IsAdministratorCheckBox;
-    private javax.swing.JPasswordField PasswordField;
-    private javax.swing.JComboBox<Person> PersonComboBox;
-    private javax.swing.JTextField SecurityAnswer1Field;
-    private javax.swing.JTextField SecurityAnswer2Field;
-    private javax.swing.JTextField SecurityQuestion1Field;
-    private javax.swing.JTextField SecurityQuestion2Field;
-    private javax.swing.JTextField SelectedThemeField;
-    private javax.swing.JTextField UserNameField;
     private javax.swing.JButton applyButton;
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton deleteButton;
+    private javax.swing.JCheckBox isAccountLockedCheckBox;
+    private javax.swing.JCheckBox isAdministratorCheckBox;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
@@ -420,7 +427,15 @@ public class UserEditView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPasswordField passwordField;
+    private javax.swing.JComboBox<Person> personComboBox;
     private javax.swing.JButton saveButton;
+    private javax.swing.JTextField securityAnswer1Field;
+    private javax.swing.JTextField securityAnswer2Field;
+    private javax.swing.JTextField securityQuestion1Field;
+    private javax.swing.JTextField securityQuestion2Field;
+    private javax.swing.JComboBox<String> selectedThemeComboBox;
+    private javax.swing.JTextField userNameField;
     // End of variables declaration//GEN-END:variables
 
     // </editor-fold> 

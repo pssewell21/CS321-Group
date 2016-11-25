@@ -7,20 +7,30 @@ package Common;
 
 import Themes.DarkTheme;
 import Themes.ITheme;
+import Themes.LightTheme;
 
 /**
  *
  * @author Owner
  */
 public final class UserSettings {
-    
+
     /**
      *
      */
     public String selectedTheme;
-    
+
     public static ITheme theme;
-    
+
     private UserSettings() {
+    }
+
+    public static void setSelectedTheme(String theme) {
+        if (theme.equals("Dark Theme")) {
+            UserSettings.theme = new DarkTheme();
+        }
+        if (theme.equals("Light Theme")) {
+            UserSettings.theme = new LightTheme();
+        }
     }
 }

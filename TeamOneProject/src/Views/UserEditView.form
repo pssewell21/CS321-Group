@@ -86,23 +86,22 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="SelectedThemeField" alignment="0" pref="180" max="32767" attributes="0"/>
-                      <Component id="SecurityQuestion2Field" alignment="0" pref="180" max="32767" attributes="0"/>
-                      <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="UserNameField" alignment="0" max="32767" attributes="0"/>
-                          <Component id="SecurityQuestion1Field" alignment="0" max="32767" attributes="0"/>
-                          <Component id="SecurityAnswer1Field" alignment="0" max="32767" attributes="0"/>
-                          <Component id="PersonComboBox" alignment="0" pref="180" max="32767" attributes="0"/>
-                      </Group>
-                      <Component id="SecurityAnswer2Field" alignment="0" pref="180" max="32767" attributes="0"/>
+                      <Component id="securityQuestion2Field" alignment="0" pref="180" max="32767" attributes="0"/>
+                      <Component id="userNameField" alignment="0" max="32767" attributes="0"/>
+                      <Component id="securityQuestion1Field" alignment="0" max="32767" attributes="0"/>
+                      <Component id="securityAnswer1Field" alignment="0" max="32767" attributes="0"/>
+                      <Component id="personComboBox" alignment="0" pref="180" max="32767" attributes="0"/>
+                      <Component id="securityAnswer2Field" alignment="0" pref="180" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace pref="11" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="IsAccountLockedCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="IsAdministratorCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="isAccountLockedCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="isAdministratorCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="PasswordField" max="32767" attributes="0"/>
+                      <Component id="passwordField" max="32767" attributes="0"/>
+                      <Component id="selectedThemeComboBox" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -113,53 +112,53 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="PersonComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="personComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="UserNameField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="userNameField" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="PasswordField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="passwordField" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="SecurityQuestion1Field" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="securityQuestion1Field" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="SecurityAnswer1Field" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="securityAnswer1Field" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="SecurityQuestion2Field" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="securityQuestion2Field" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="SecurityAnswer2Field" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="securityAnswer2Field" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="IsAdministratorCheckBox" pref="27" max="32767" attributes="0"/>
+                      <Component id="isAdministratorCheckBox" pref="27" max="32767" attributes="0"/>
                       <Component id="jLabel9" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel10" max="32767" attributes="0"/>
-                      <Component id="IsAccountLockedCheckBox" pref="27" max="32767" attributes="0"/>
+                      <Component id="isAccountLockedCheckBox" pref="27" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="SelectedThemeField" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="selectedThemeComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -206,11 +205,11 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="UserNameField">
+        <Component class="javax.swing.JTextField" name="userNameField">
         </Component>
-        <Component class="javax.swing.JTextField" name="SecurityQuestion1Field">
+        <Component class="javax.swing.JTextField" name="securityQuestion1Field">
         </Component>
-        <Component class="javax.swing.JTextField" name="SecurityAnswer1Field">
+        <Component class="javax.swing.JTextField" name="securityAnswer1Field">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
@@ -242,14 +241,14 @@
             <Property name="text" type="java.lang.String" value="Security Question 2:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="SecurityQuestion2Field">
+        <Component class="javax.swing.JTextField" name="securityQuestion2Field">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">
           <Properties>
             <Property name="text" type="java.lang.String" value="Security Answer 2:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="SecurityAnswer2Field">
+        <Component class="javax.swing.JTextField" name="securityAnswer2Field">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel9">
           <Properties>
@@ -266,9 +265,7 @@
             <Property name="text" type="java.lang.String" value="Selected Theme:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="SelectedThemeField">
-        </Component>
-        <Component class="javax.swing.JComboBox" name="PersonComboBox">
+        <Component class="javax.swing.JComboBox" name="personComboBox">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="controller.personModel" type="code"/>
@@ -278,17 +275,30 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Person&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="IsAdministratorCheckBox">
+        <Component class="javax.swing.JCheckBox" name="isAdministratorCheckBox">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="IsAdministratorCheckBoxActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="isAdministratorCheckBoxActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="IsAccountLockedCheckBox">
+        <Component class="javax.swing.JCheckBox" name="isAccountLockedCheckBox">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="IsAccountLockedCheckBoxActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="isAccountLockedCheckBoxActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JPasswordField" name="PasswordField">
+        <Component class="javax.swing.JPasswordField" name="passwordField">
+        </Component>
+        <Component class="javax.swing.JComboBox" name="selectedThemeComboBox">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="2">
+                <StringItem index="0" value="Light Theme"/>
+                <StringItem index="1" value="Dark Theme"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

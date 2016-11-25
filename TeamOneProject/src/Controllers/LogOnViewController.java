@@ -74,12 +74,7 @@ public class LogOnViewController {
         
         if (user.Password.equals(password)) {
             if (Utility.hasValue(user.SelectedTheme)) {
-                if (user.SelectedTheme.equalsIgnoreCase("Dark Theme")) {
-                    UserSettings.theme = new DarkTheme();
-                }
-                if (user.SelectedTheme.equalsIgnoreCase("Light Theme")) {
-                    UserSettings.theme = new LightTheme();
-                }
+                UserSettings.setSelectedTheme(user.SelectedTheme);
             }
             
             if (user.IsAdministrator)
