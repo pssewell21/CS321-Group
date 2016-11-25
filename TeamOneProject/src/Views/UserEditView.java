@@ -5,11 +5,15 @@
  */
 package Views;
 
+import Common.AesEncryption;
 import Common.UserSettings;
 import Controllers.UserEditViewController;
 import Library.Person;
 import java.awt.Graphics;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListCellRenderer;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,15 +21,13 @@ import javax.swing.DefaultListCellRenderer;
  */
 public class UserEditView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
-    
-    private final UserEditViewController controller;
-    
-    private Person selectedPerson;
-    
-    // </editor-fold> 
-    
-    // <editor-fold defaultstate="collapsed" desc="Constructors"> 
 
+    private final UserEditViewController controller;
+
+    private Person selectedPerson;
+
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     /**
      *
      * @param controller
@@ -36,48 +38,48 @@ public class UserEditView extends javax.swing.JFrame {
         this.selectedPerson = selectedPerson;
         load();
     }
-    
-    // </editor-fold> 
-    
-    // <editor-fold defaultstate="collapsed" desc="Methods"> 
 
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Methods"> 
     private void load() {
         initComponents();
         setThemeColors();
-        
-        if (controller.model.PersonId != null) { 
+
+        if (controller.model.PersonId != null) {
             personComboBox.setSelectedItem(selectedPerson);
-        }
-        else {
+        } else {
             personComboBox.setSelectedItem(null);
         }
-            
+
         userNameField.setText(controller.model.UserName);
-        passwordField.setText(controller.model.Password);
+        try {
+            passwordField.setText(AesEncryption.encryptText(controller.model.Password));
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(jPanel1, "Password encryption failure.");
+        }
         securityQuestion1Field.setText(controller.model.SecurityQuestion1);
         securityAnswer1Field.setText(controller.model.SecurityAnswer1);
         securityQuestion2Field.setText(controller.model.SecurityQuestion2);
         securityAnswer2Field.setText(controller.model.SecurityAnswer2);
-        if (controller.model.IsAdministrator != null) { 
+        if (controller.model.IsAdministrator != null) {
             isAdministratorCheckBox.setSelected(controller.model.IsAdministrator);
         }
-        if (controller.model.IsAccountLocked != null) { 
+        if (controller.model.IsAccountLocked != null) {
             isAccountLockedCheckBox.setSelected(controller.model.IsAccountLocked);
         }
-        if (controller.model.SelectedTheme != null) { 
+        if (controller.model.SelectedTheme != null) {
             selectedThemeComboBox.setSelectedItem(controller.model.SelectedTheme);
-        }
-        else {
+        } else {
             selectedThemeComboBox.setSelectedItem(null);
         }
 
         pack();
         setVisible(true);
     }
-    
+
     private void setThemeColors() {
         jPanel1.setBackground(UserSettings.theme.getBackgroundColor());
-                
+
         personComboBox.setBackground(UserSettings.theme.getComboBoxBackgroundColor());
         selectedThemeComboBox.setBackground(UserSettings.theme.getComboBoxBackgroundColor());
         passwordField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
@@ -90,7 +92,7 @@ public class UserEditView extends javax.swing.JFrame {
         saveButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
         cancelButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
         deleteButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        
+
         personComboBox.setForeground(UserSettings.theme.getTextColor());
         selectedThemeComboBox.setForeground(UserSettings.theme.getTextColor());
         passwordField.setForeground(UserSettings.theme.getTextColor());
@@ -113,21 +115,21 @@ public class UserEditView extends javax.swing.JFrame {
         jLabel9.setForeground(UserSettings.theme.getTextColor());
         jLabel10.setForeground(UserSettings.theme.getTextColor());
         jLabel11.setForeground(UserSettings.theme.getTextColor());
-        
+
         personComboBox.setRenderer(new DefaultListCellRenderer() {
             @Override
             public void paint(Graphics g) {
-            setBackground(UserSettings.theme.getListBackgroundColor());
-            setForeground(UserSettings.theme.getTextColor());
-            super.paint(g);
+                setBackground(UserSettings.theme.getListBackgroundColor());
+                setForeground(UserSettings.theme.getTextColor());
+                super.paint(g);
             }
         });
         selectedThemeComboBox.setRenderer(new DefaultListCellRenderer() {
             @Override
             public void paint(Graphics g) {
-            setBackground(UserSettings.theme.getListBackgroundColor());
-            setForeground(UserSettings.theme.getTextColor());
-            super.paint(g);
+                setBackground(UserSettings.theme.getListBackgroundColor());
+                setForeground(UserSettings.theme.getTextColor());
+                super.paint(g);
             }
         });
     }
@@ -142,17 +144,21 @@ public class UserEditView extends javax.swing.JFrame {
 
     private void setModelFields() {
         selectedPerson = (Person) personComboBox.getSelectedItem();
-        
-        controller.model.PersonId = selectedPerson.Id;
-        controller.model.UserName = userNameField.getText();
-        controller.model.Password = new String(passwordField.getPassword());
-        controller.model.SecurityQuestion1 = securityQuestion1Field.getText();
-        controller.model.SecurityAnswer1 = securityAnswer1Field.getText();
-        controller.model.SecurityQuestion2 = securityQuestion2Field.getText();
-        controller.model.SecurityAnswer2 = securityAnswer2Field.getText();
-        controller.model.IsAdministrator = isAdministratorCheckBox.isSelected();
-        controller.model.IsAccountLocked = isAccountLockedCheckBox.isSelected();
-        controller.model.SelectedTheme = (String) selectedThemeComboBox.getSelectedItem();
+
+        try {
+            controller.model.PersonId = selectedPerson.Id;
+            controller.model.UserName = userNameField.getText();
+            controller.model.Password = AesEncryption.encryptText(new String(passwordField.getPassword()));
+            controller.model.SecurityQuestion1 = securityQuestion1Field.getText();
+            controller.model.SecurityAnswer1 = securityAnswer1Field.getText();
+            controller.model.SecurityQuestion2 = securityQuestion2Field.getText();
+            controller.model.SecurityAnswer2 = securityAnswer2Field.getText();
+            controller.model.IsAdministrator = isAdministratorCheckBox.isSelected();
+            controller.model.IsAccountLocked = isAccountLockedCheckBox.isSelected();
+            controller.model.SelectedTheme = (String) selectedThemeComboBox.getSelectedItem();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(jPanel1, "Password encryption failure.");
+        }
     }
 
     /**
@@ -408,7 +414,6 @@ public class UserEditView extends javax.swing.JFrame {
     }//GEN-LAST:event_isAdministratorCheckBoxActionPerformed
 
     // </editor-fold> 
-    
     // <editor-fold defaultstate="collapsed" desc="Generated UI Variables"> 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton applyButton;

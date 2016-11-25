@@ -24,8 +24,8 @@ public class Application {
         LogOnViewController c = new LogOnViewController();
 
         try {
-//            AesEncryption a = new AesEncryption();
-//            a.run();
+            AesEncryption a = new AesEncryption();
+            a.run();
 
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -37,8 +37,8 @@ public class Application {
             c.load();
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
             ExceptionHandler.handleException(e);
-        } //catch (Exception ex) {
-            //Logger.getLogger(Application.class.getName()).log(Level.SEVERE, null, ex);
-        //}
+        } catch (Exception ex) {
+            Logger.getLogger(Application.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
