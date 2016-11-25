@@ -46,4 +46,9 @@ public final class DarkTheme implements ITheme{
     public Color getTextColor() {
         return Color.WHITE;
     }
+    
+    @Override
+    public Color getDisabledTextColor() {
+        return Color.BLACK;
+    }
 }

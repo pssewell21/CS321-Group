@@ -56,20 +56,20 @@ public final class AtmView extends JFrame {
     private JButton exitButton;
     private JLabel depositAccountNumberLabel;
     private JLabel depositAmountLabel;
-    private JTextField depositAccountNumberField;
+    private JLabel depositAccountNumberField;
     private JTextField depositAmountField;
     private JButton depositButton;
     private JLabel withdrawalAccountNumberLabel;
     private JLabel withdrawalAmountLabel;
-    private JTextField withdrawalAccountNumberField;
+    private JLabel withdrawalAccountNumberField;
     private JTextField withdrawalAmountField;
     private JButton withdrawButton;
     private JLabel balanceCheckAccountNumberLabel;
-    private JTextField balanceCheckAccountNumber;
+    private JLabel balanceCheckAccountNumberField;
     private JLabel balanceCheckCurrentBalance;
     private JButton balanceCheckButton;
     private JLabel transactionHistoryAccountNumberLabel;
-    private JTextField transactionHistoryAccountNumberField;
+    private JLabel transactionHistoryAccountNumberField;
     private JRadioButton lastDayRadioButton;
     private JRadioButton lastMonthRadioButton;
     private JRadioButton lastYearRadioButton;
@@ -334,7 +334,7 @@ public final class AtmView extends JFrame {
         balanceCheckPanel.setLayout(new GridBagLayout());
         balanceCheckPanel.setBackground(UserSettings.theme.getBackgroundColor());
         balanceCheckPanel.add(balanceCheckAccountNumberLabel, gridBagConstraints28);
-        balanceCheckPanel.add(getBalanceCheckAccountNumber(), gridBagConstraints29);
+        balanceCheckPanel.add(getBalanceCheckAccountNumberField(), gridBagConstraints29);
         balanceCheckPanel.add(balanceCheckCurrentBalance, gridBagConstraints31);
         balanceCheckPanel.add(getBalanceCheckButton(), gridBagConstraints32);
 
@@ -441,15 +441,11 @@ public final class AtmView extends JFrame {
     /**
      * This method initializes depositAccountNumberField
      *
-     * @return javax.swing.JTextField
+     * @return javax.swing.JLabel
      */
-    private JTextField getDepositAccountNumberField() {
-        depositAccountNumberField = new JTextField();
-        depositAccountNumberField.setPreferredSize(new Dimension(150, 25));
-        depositAccountNumberField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        depositAccountNumberField.setDisabledTextColor(UserSettings.theme.getTextColor());
+    private JLabel getDepositAccountNumberField() {
+        depositAccountNumberField = new JLabel();
         depositAccountNumberField.setForeground(UserSettings.theme.getTextColor());
-        depositAccountNumberField.setEnabled(false);
         if (controller.selectedAccount != null && controller.selectedAccount.AccountNumber != null) {
             depositAccountNumberField.setText(controller.selectedAccount.AccountNumber.toString());
         }
@@ -492,14 +488,10 @@ public final class AtmView extends JFrame {
     /**
      * This method initializes withdrawalAccountNumberField
      *
-     * @return javax.swing.JTextField
+     * @return javax.swing.JLabel
      */
-    private JTextField getWithdrawalAccountNumberField() {
-        withdrawalAccountNumberField = new JTextField();
-        withdrawalAccountNumberField.setPreferredSize(new Dimension(150, 25));
-        withdrawalAccountNumberField.setEnabled(false);
-        withdrawalAccountNumberField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        withdrawalAccountNumberField.setDisabledTextColor(UserSettings.theme.getTextColor());
+    private JLabel getWithdrawalAccountNumberField() {
+        withdrawalAccountNumberField = new JLabel();
         withdrawalAccountNumberField.setForeground(UserSettings.theme.getTextColor());
         if (controller.selectedAccount != null && controller.selectedAccount.AccountNumber != null) {
             withdrawalAccountNumberField.setText(controller.selectedAccount.AccountNumber.toString());
@@ -541,23 +533,18 @@ public final class AtmView extends JFrame {
     }
 
     /**
-     * This method initializes balanceCheckAccountNumber
+     * This method initializes balanceCheckAccountNumberField
      *
-     * @return javax.swing.JTextField
+     * @return javax.swing.JLabel
      */
-    private JTextField getBalanceCheckAccountNumber() {
-        balanceCheckAccountNumber = new JTextField();
-        balanceCheckAccountNumber.setPreferredSize(new Dimension(150, 25));
-        balanceCheckAccountNumber.setEnabled(false);
-
-        balanceCheckAccountNumber.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        balanceCheckAccountNumber.setDisabledTextColor(UserSettings.theme.getTextColor());
-        balanceCheckAccountNumber.setForeground(UserSettings.theme.getTextColor());
+    private JLabel getBalanceCheckAccountNumberField() {
+        balanceCheckAccountNumberField = new JLabel();
+        balanceCheckAccountNumberField.setForeground(UserSettings.theme.getTextColor());
         if (controller.selectedAccount != null && controller.selectedAccount.AccountNumber != null) {
-            balanceCheckAccountNumber.setText(controller.selectedAccount.AccountNumber.toString());
+            balanceCheckAccountNumberField.setText(controller.selectedAccount.AccountNumber.toString());
         }
 
-        return balanceCheckAccountNumber;
+        return balanceCheckAccountNumberField;
     }
 
     /**
@@ -581,14 +568,10 @@ public final class AtmView extends JFrame {
     /**
      * This method initializes transactionHistoryAccountNumberField
      *
-     * @return javax.swing.JTextField
+     * @return javax.swing.JLabel
      */
-    private JTextField getTransactionHistoryAccountNumberField() {
-        transactionHistoryAccountNumberField = new JTextField();
-        transactionHistoryAccountNumberField.setPreferredSize(new Dimension(150, 25));
-        transactionHistoryAccountNumberField.setEnabled(false);
-        transactionHistoryAccountNumberField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        transactionHistoryAccountNumberField.setDisabledTextColor(UserSettings.theme.getTextColor());
+    private JLabel getTransactionHistoryAccountNumberField() {
+        transactionHistoryAccountNumberField = new JLabel();
         transactionHistoryAccountNumberField.setForeground(UserSettings.theme.getTextColor());
         if (controller.selectedAccount != null && controller.selectedAccount.AccountNumber != null) {
             transactionHistoryAccountNumberField.setText(controller.selectedAccount.AccountNumber.toString());

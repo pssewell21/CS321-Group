@@ -46,4 +46,9 @@ public final class LightTheme implements ITheme {
     public Color getTextColor() {
         return Color.BLACK;
     }
+    
+    @Override
+    public Color getDisabledTextColor() {
+        return Color.BLACK;
+    }
 }

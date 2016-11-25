@@ -25,4 +25,6 @@ public interface ITheme {
     public abstract Color getCheckBoxBackgroundColor();
     
     public abstract Color getTextColor();
+    
+    public abstract Color getDisabledTextColor();
 }
