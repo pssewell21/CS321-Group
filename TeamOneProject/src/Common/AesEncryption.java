@@ -28,12 +28,21 @@ public class AesEncryption {
     public void run() throws Exception {
         String plainText = "Hello World";
         SecretKey secKey = getSecretEncryptionKey();
-        String excryptedText = encryptText(plainText);
-        String decryptedText = decryptText(DatatypeConverter.parseHexBinary(excryptedText));
+        String encryptedText = encryptText(plainText);
+        String decryptedText = decryptText(encryptedText);
 
         System.out.println("Original Text:" + plainText);
         System.out.println("AES Key (Hex Form):" + bytesToHex(secKey.getEncoded()));
-        System.out.println("Encrypted Text (Hex Form):" + excryptedText);
+        System.out.println("Encrypted Text (Hex Form):" + encryptedText);
+        System.out.println("Decrypted Text:" + decryptedText);
+        
+        plainText = "password";
+        encryptedText = encryptText(plainText);
+        decryptedText = decryptText(encryptedText);
+        
+        System.out.println("Original Text:" + plainText);
+        System.out.println("AES Key (Hex Form):" + bytesToHex(secKey.getEncoded()));
+        System.out.println("Encrypted Text (Hex Form):" + encryptedText);
         System.out.println("Decrypted Text:" + decryptedText);
     }
 
@@ -55,21 +64,20 @@ public class AesEncryption {
     /**
      * Decrypts encrypted byte array using the key used for encryption.
      *
-     * @param byteCipherText
+     * @param encryptedText
      * @return
      * @throws Exception
      */
-    public static final String decryptText(byte[] byteCipherText) throws Exception {
+    public static final String decryptText(String encryptedText) throws Exception {
         // AES defaults to AES/ECB/PKCS5Padding in Java 7
         Cipher aesCipher = Cipher.getInstance("AES");
         aesCipher.init(Cipher.DECRYPT_MODE, getSecretEncryptionKey());
-        byte[] bytePlainText = aesCipher.doFinal(byteCipherText);
+        byte[] bytePlainText = aesCipher.doFinal(DatatypeConverter.parseHexBinary(encryptedText));
         return new String(bytePlainText);
     }
     
     /**
-     * gets the AES encryption key. In your actual programs, this should be
-     * safely stored.
+     * gets the AES encryption key.
      *
      * @return
      * @throws Exception
