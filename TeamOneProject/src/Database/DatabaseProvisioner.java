@@ -30,7 +30,7 @@ public final class DatabaseProvisioner {
             + "    DATE_OF_BIRTH           DATE            NOT NULL,\n"
             + "    ADDRESS                 VARCHAR(200)    NOT NULL,\n"
             + "    PHONE_NUMBER            VARCHAR(20),\n"
-            + "    SOCIAL_SECURITY_NUMBER  VARCHAR(50)      NOT NULL,\n"
+            + "    SOCIAL_SECURITY_NUMBER  VARCHAR(50)     NOT NULL,\n"
             + "    CONSTRAINT PERSON_PK PRIMARY KEY (ID),\n"
             + "    CONSTRAINT SOCIAL_SECURITY_NUMBER_UC UNIQUE (SOCIAL_SECURITY_NUMBER)\n"
             + ")";
@@ -104,7 +104,7 @@ public final class DatabaseProvisioner {
             + "    '01/01/1900', \n"
             + "    '1 Infinite Loop, Cupertino, CA 95014', \n"
             + "    NULL, \n"
-            + "    '3048F1A7BF84F08F2556AEFB08A150F6'\n"
+            + "    'DDB716023F2844326ADA0381BDE3E770'\n"
             + ")";
 
     private static final String INSERT_STANDARD_PERSON_SCRIPT = "INSERT INTO APP.PERSON VALUES \n"
@@ -114,7 +114,7 @@ public final class DatabaseProvisioner {
             + "    '01/01/1900', \n"
             + "    '1 Infinite Loop, Cupertino, CA 95014', \n"
             + "    NULL, \n"
-            + "    'CD3A1C4E0B4F1E7D5BFAF2FC8A2F0994'\n"
+            + "    'F2D1A66BAC2979D1B576BCA34B1A1EE3'\n"
             + ")";
 
     private static final String INSERT_ADMIN_ATM_USER_SCRIPT = "INSERT INTO APP.ATM_USER VALUES \n"

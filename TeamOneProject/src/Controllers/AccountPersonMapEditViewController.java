@@ -99,8 +99,6 @@ public class AccountPersonMapEditViewController extends EditViewControllerBase {
     @Override
     public void executeApply() {
         doSave();
-        isNew = false;
-        view.setDeleteEnabled(true);
     }
 
     /**
@@ -154,6 +152,8 @@ public class AccountPersonMapEditViewController extends EditViewControllerBase {
 
             if (successful) {
                 listModel.addElement(model);
+                isNew = false;
+                view.setDeleteEnabled(true);
             }
         } else {
             boolean successful = accountPersonMapFactory.executeUpdate(model.toHashMap());

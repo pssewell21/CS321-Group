@@ -38,6 +38,15 @@ public final class Utility {
     public static boolean isNumeric(String string) {
         return string.matches("-?\\d+(\\.\\d+)?");
     }
+    
+    /**
+     *
+     * @param string
+     * @return
+     */
+    public static boolean isPositiveInteger(String string) {
+        return string.matches("\\d+");
+    }
 
     /**
      * Taken from http://stackoverflow.com/questions/11480542/fastest-way-to-tell-if-a-string-is-a-valid-date
@@ -61,6 +70,10 @@ public final class Utility {
         boolean dayOk = (day >= 1) && (day <= daysInMonth(year, month));
 
         return (yearOk && monthOk && dayOk);
+    } 
+    
+    public static boolean isValidSocialSecurityNumber(String ssnString) {
+        return ssnString.matches("^\\d{3}-\\d{2}-\\d{4}$");
     }    
 
     /**

@@ -6,8 +6,10 @@
 package Views;
 
 import Common.UserSettings;
+import Common.Utility;
 import Controllers.AccountEditViewController;
 import java.math.BigDecimal;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -89,15 +91,36 @@ public class AccountEditView extends javax.swing.JFrame {
         jLabel4.setForeground(UserSettings.theme.getTextColor());
         jLabel5.setForeground(UserSettings.theme.getTextColor());
         jLabel6.setForeground(UserSettings.theme.getTextColor());
+        requiredLabel.setForeground(UserSettings.theme.getTextColor());
     }
 
-    private void setModelFields() {
-        controller.model.accountNumber = Long.parseLong(accountNumberField.getText());
-        controller.model.accountType = accountTypeField.getText();
+    private void setModelFields() throws Exception {
+        if (Utility.isPositiveInteger(accountNumberField.getText())) {
+            controller.model.accountNumber = Long.parseLong(accountNumberField.getText());
+        } else {
+            throw new Exception("Invalid Account Number");
+        }
+
+        if (Utility.hasValue(accountTypeField.getText())) {
+            controller.model.accountType = accountTypeField.getText();
+        } else {
+            throw new Exception("Account Type is required");
+        }
+
         controller.model.description = descriptionField.getText();
-        controller.model.balance = new BigDecimal(balanceField.getText());
-        if (interestRateField.getText() != null && !interestRateField.getText().isEmpty()) {
-            controller.model.interestRate = new BigDecimal(interestRateField.getText());
+
+        if (Utility.isNumeric(balanceField.getText())) {
+            controller.model.balance = new BigDecimal(balanceField.getText());
+        } else {
+            throw new Exception("Invalid Balance");
+        }
+
+        if (Utility.hasValue(interestRateField.getText())) {
+            if (Utility.isNumeric(interestRateField.getText())) {
+                controller.model.interestRate = new BigDecimal(interestRateField.getText());
+            } else {
+                throw new Exception("Invalid Interest Rate");
+            }
         }
     }
 
@@ -125,6 +148,7 @@ public class AccountEditView extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        requiredLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -156,15 +180,17 @@ public class AccountEditView extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Account Number:");
+        jLabel2.setText("Account Number*:");
 
-        jLabel3.setText("Account Type:");
+        jLabel3.setText("Account Type*:");
 
         jLabel4.setText("Description:");
 
-        jLabel5.setText("Balance:");
+        jLabel5.setText("Balance*:");
 
         jLabel6.setText("Interest Rate:");
+
+        requiredLabel.setText("* - Required");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -187,9 +213,11 @@ public class AccountEditView extends javax.swing.JFrame {
                             .addComponent(descriptionField)
                             .addComponent(balanceField)
                             .addComponent(interestRateField, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 71, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap()
+                        .addComponent(requiredLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                         .addComponent(applyButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(saveButton)
@@ -227,7 +255,8 @@ public class AccountEditView extends javax.swing.JFrame {
                     .addComponent(saveButton)
                     .addComponent(cancelButton)
                     .addComponent(deleteButton)
-                    .addComponent(applyButton))
+                    .addComponent(applyButton)
+                    .addComponent(requiredLabel))
                 .addContainerGap())
         );
 
@@ -237,7 +266,7 @@ public class AccountEditView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 401, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -260,13 +289,21 @@ public class AccountEditView extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void applyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applyButtonActionPerformed
-        setModelFields();
-        controller.executeApply();
+        try {
+            setModelFields();
+            controller.executeApply();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(jPanel1, e.getMessage());
+        }
     }//GEN-LAST:event_applyButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        setModelFields();
-        controller.executeSave();
+        try {
+            setModelFields();
+            controller.executeSave();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(jPanel1, e.getMessage());
+        }
     }//GEN-LAST:event_saveButtonActionPerformed
 
     // </editor-fold> 
@@ -286,6 +323,7 @@ public class AccountEditView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel requiredLabel;
     private javax.swing.JButton saveButton;
     // End of variables declaration//GEN-END:variables
 

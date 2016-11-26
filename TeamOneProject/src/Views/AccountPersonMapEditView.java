@@ -6,12 +6,15 @@
 package Views;
 
 import Common.UserSettings;
+import Common.Utility;
 import Controllers.AccountPersonMapEditViewController;
 import Library.Account;
 import Library.Person;
 import java.awt.Graphics;
+import java.math.BigDecimal;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultListCellRenderer;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -86,6 +89,7 @@ public class AccountPersonMapEditView extends javax.swing.JFrame {
         deleteButton.setForeground(UserSettings.theme.getTextColor());
         jLabel2.setForeground(UserSettings.theme.getTextColor());
         jLabel3.setForeground(UserSettings.theme.getTextColor());
+        requiredLabel.setForeground(UserSettings.theme.getTextColor());
 
         personComboBox.setRenderer(new DefaultListCellRenderer() {
             @Override
@@ -105,12 +109,21 @@ public class AccountPersonMapEditView extends javax.swing.JFrame {
         });
     }
 
-    private void setModelFields() {
+    private void setModelFields() throws Exception {
         Person person = (Person) personComboBox.getSelectedItem();
         Account account = (Account) accountComboBox.getSelectedItem();
 
-        controller.model.personId = person.id;
-        controller.model.accountId = account.id;
+        if (person != null) {
+            controller.model.personId = person.id;
+        } else {
+            throw new Exception("Person ID is required");
+        }
+
+        if (account != null) {
+            controller.model.accountId = account.id;
+        } else {
+            throw new Exception("Person ID is required");
+        }
     }
 
     /**
@@ -131,6 +144,7 @@ public class AccountPersonMapEditView extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         personComboBox = new javax.swing.JComboBox<>();
         accountComboBox = new javax.swing.JComboBox<>();
+        requiredLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -162,9 +176,9 @@ public class AccountPersonMapEditView extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Account ID:");
+        jLabel2.setText("Account ID*:");
 
-        jLabel3.setText("Person ID:");
+        jLabel3.setText("Person ID*:");
 
         personComboBox.setModel(controller.personListModel);
         personComboBox.setEnabled(false);
@@ -216,11 +230,16 @@ public class AccountPersonMapEditView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        requiredLabel.setText("* - Required");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 396, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(requiredLabel)
+                .addContainerGap(324, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -228,7 +247,10 @@ public class AccountPersonMapEditView extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 104, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(82, Short.MAX_VALUE)
+                .addComponent(requiredLabel)
+                .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -239,13 +261,21 @@ public class AccountPersonMapEditView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        setModelFields();
-        controller.executeSave();
+        try {
+            setModelFields();
+            controller.executeSave();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(jPanel1, e.getMessage());
+        }
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void applyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applyButtonActionPerformed
-        setModelFields();
-        controller.executeApply();
+        try {
+            setModelFields();
+            controller.executeApply();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(jPanel1, e.getMessage());
+        }
     }//GEN-LAST:event_applyButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
@@ -267,6 +297,7 @@ public class AccountPersonMapEditView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JComboBox<Person> personComboBox;
+    private javax.swing.JLabel requiredLabel;
     private javax.swing.JButton saveButton;
     // End of variables declaration//GEN-END:variables
 

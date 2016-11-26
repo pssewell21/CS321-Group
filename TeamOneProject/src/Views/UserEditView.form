@@ -23,7 +23,11 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="420" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="requiredLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="348" max="32767" attributes="0"/>
+          </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -35,7 +39,11 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="395" max="32767" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace pref="373" max="32767" attributes="0"/>
+              <Component id="requiredLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -213,56 +221,56 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Person ID:"/>
+            <Property name="text" type="java.lang.String" value="Person ID*:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="User Name:"/>
+            <Property name="text" type="java.lang.String" value="User Name*:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Password:"/>
+            <Property name="text" type="java.lang.String" value="Password*:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Security Question 1:"/>
+            <Property name="text" type="java.lang.String" value="Security Question 1*:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Security Answer 1:"/>
+            <Property name="text" type="java.lang.String" value="Security Answer 1*:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Security Question 2:"/>
+            <Property name="text" type="java.lang.String" value="Security Question 2*:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="securityQuestion2Field">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Security Answer 2:"/>
+            <Property name="text" type="java.lang.String" value="Security Answer 2*:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="securityAnswer2Field">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel9">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Is Administrator:"/>
+            <Property name="text" type="java.lang.String" value="Is Administrator*:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel10">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Is Account Locked:"/>
+            <Property name="text" type="java.lang.String" value="Is Account Locked*:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel11">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Selected Theme:"/>
+            <Property name="text" type="java.lang.String" value="Selected Theme*:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="personComboBox">
@@ -302,5 +310,10 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="requiredLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="* - Required"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>

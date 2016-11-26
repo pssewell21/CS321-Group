@@ -73,8 +73,6 @@ public class TestDataEditViewController extends EditViewControllerBase {
     @Override
     public void executeApply() {
         doSave();
-        isNew = false;
-        view.setDeleteEnabled(true);
     }
 
     /**
@@ -105,6 +103,8 @@ public class TestDataEditViewController extends EditViewControllerBase {
 
             if (successful) {
                 listModel.addElement(model);
+                isNew = false;
+                view.setDeleteEnabled(true);
             }
         } else {
             boolean successful = factory.executeUpdate(model.toHashMap());

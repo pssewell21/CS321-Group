@@ -6,7 +6,9 @@
 package Views;
 
 import Common.UserSettings;
+import Common.Utility;
 import Controllers.TestDataEditViewController;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -74,11 +76,21 @@ public class TestDataEditView extends javax.swing.JFrame {
         jLabel1.setForeground(UserSettings.theme.getTextColor());
         jLabel2.setForeground(UserSettings.theme.getTextColor());
         jLabel3.setForeground(UserSettings.theme.getTextColor());
+        requiredLabel.setForeground(UserSettings.theme.getTextColor());
     }
 
-    private void setModelFields() {
-        controller.model.lookupKey = keyField.getText();
-        controller.model.value = valueField.getText();
+    private void setModelFields() throws Exception {
+        if (Utility.hasValue(keyField.getText())) {
+            controller.model.lookupKey = keyField.getText();
+        } else {
+            throw new Exception("Key is required");
+        }
+        
+        if (Utility.hasValue(valueField.getText())) {
+            controller.model.value = valueField.getText();
+        } else {
+            throw new Exception("Value is required");
+        }
     }
 
     /**
@@ -101,6 +113,8 @@ public class TestDataEditView extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         idField = new javax.swing.JTextField();
         keyField = new javax.swing.JTextField();
+        requiredLabel = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -132,20 +146,24 @@ public class TestDataEditView extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Key");
+        jLabel1.setText("Key*");
 
-        jLabel2.setText("Value");
+        jLabel2.setText("Value*");
 
-        jLabel3.setText("ID");
+        jLabel3.setText("ID*");
 
         idField.setEditable(false);
+
+        requiredLabel.setText("* - Required");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(112, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(requiredLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -179,7 +197,7 @@ public class TestDataEditView extends javax.swing.JFrame {
                     .addComponent(keyField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(valueField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
@@ -187,9 +205,12 @@ public class TestDataEditView extends javax.swing.JFrame {
                     .addComponent(saveButton)
                     .addComponent(cancelButton)
                     .addComponent(deleteButton)
-                    .addComponent(applyButton))
+                    .addComponent(applyButton)
+                    .addComponent(requiredLabel))
                 .addContainerGap())
         );
+
+        jLabel8.setText("* - Required");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -201,6 +222,11 @@ public class TestDataEditView extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(156, 156, 156)
+                    .addComponent(jLabel8)
+                    .addContainerGap(157, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,19 +236,32 @@ public class TestDataEditView extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(83, 83, 83)
+                    .addComponent(jLabel8)
+                    .addContainerGap(83, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        setModelFields();
-        controller.executeSave();
+        try {
+            setModelFields();
+            controller.executeSave();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(jPanel1, e.getMessage());
+        }
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void applyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applyButtonActionPerformed
-        setModelFields();
-        controller.executeApply();
+        try {
+            setModelFields();
+            controller.executeApply();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(jPanel1, e.getMessage());
+        }
     }//GEN-LAST:event_applyButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
@@ -243,8 +282,10 @@ public class TestDataEditView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField keyField;
+    private javax.swing.JLabel requiredLabel;
     private javax.swing.JButton saveButton;
     private javax.swing.JTextField valueField;
     // End of variables declaration//GEN-END:variables

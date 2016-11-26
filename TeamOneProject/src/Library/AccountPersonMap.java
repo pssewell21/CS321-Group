@@ -56,7 +56,7 @@ public class AccountPersonMap extends LibraryBase {
         personFactory = new PersonFactory();
         accountFactory = new AccountFactory();
 
-        person = personFactory.getById(this.personId);
+        person = personFactory.getById(personId);
         account = accountFactory.getById(accountId);
     }
 
@@ -64,6 +64,14 @@ public class AccountPersonMap extends LibraryBase {
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
     @Override
     public String toString() {
+        if (person == null) {
+            person = personFactory.getById(personId);
+        }
+        
+        if (account == null) {
+            account = accountFactory.getById(accountId);
+        }
+        
         return account.toString() + ", PERSON: " + person.toString();
     }
 

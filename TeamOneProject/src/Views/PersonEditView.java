@@ -7,6 +7,7 @@ package Views;
 
 import Common.AesEncryption;
 import Common.UserSettings;
+import Common.Utility;
 import Controllers.PersonEditViewController;
 import javax.swing.JOptionPane;
 
@@ -84,22 +85,53 @@ public class PersonEditView extends javax.swing.JFrame {
         saveButton.setForeground(UserSettings.theme.getTextColor());
         cancelButton.setForeground(UserSettings.theme.getTextColor());
         deleteButton.setForeground(UserSettings.theme.getTextColor());
+        jLabel1.setForeground(UserSettings.theme.getTextColor());
         jLabel2.setForeground(UserSettings.theme.getTextColor());
         jLabel3.setForeground(UserSettings.theme.getTextColor());
         jLabel4.setForeground(UserSettings.theme.getTextColor());
         jLabel5.setForeground(UserSettings.theme.getTextColor());
         jLabel6.setForeground(UserSettings.theme.getTextColor());
+        jLabel7.setForeground(UserSettings.theme.getTextColor());
+        requiredLabel.setForeground(UserSettings.theme.getTextColor());
     }
 
-    private void setModelFields() {
-        try {
+    private void setModelFields() throws Exception {
+        if (Utility.hasValue(nameField.getText())) {
             controller.model.name = nameField.getText();
-            controller.model.dateOfBirth = dateOfBirthField.getText();
+        } else {
+            throw new Exception("Name is required");
+        }
+
+        if (Utility.hasValue(dateOfBirthField.getText())) {
+            if (Utility.isValidDate(dateOfBirthField.getText())) {
+                controller.model.dateOfBirth = dateOfBirthField.getText();
+            } else {
+                throw new Exception("Invalid Date of Birth");
+            }
+        } else {
+            throw new Exception("Date of Birth is required");
+        }
+
+        if (Utility.hasValue(addressField.getText())) {
             controller.model.address = addressField.getText();
-            controller.model.phoneNumber = phoneNumberField.getText();
-            controller.model.socialSecurityNumber = AesEncryption.encryptText(socialSecurityNumberField.getText());
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(jPanel1, "Encryption failure.");
+        } else {
+            throw new Exception("Address is required");
+        }
+
+        controller.model.phoneNumber = phoneNumberField.getText();
+
+        if (Utility.hasValue(socialSecurityNumberField.getText())) {
+            if (Utility.isValidSocialSecurityNumber(socialSecurityNumberField.getText())) {
+                try {
+                    controller.model.socialSecurityNumber = AesEncryption.encryptText(socialSecurityNumberField.getText());
+                } catch (Exception ex) {
+                    throw new Exception("Encryption failure");
+                }
+            } else {
+                throw new Exception("Invalid Social Security Number");
+            }
+        } else {
+            throw new Exception("Social Security Number is required");
         }
     }
 
@@ -127,6 +159,9 @@ public class PersonEditView extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        requiredLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -158,22 +193,30 @@ public class PersonEditView extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Name:");
+        jLabel2.setText("Name*:");
 
-        jLabel3.setText("Date of Birth:");
+        jLabel3.setText("Date of Birth*:");
 
-        jLabel4.setText("Address:");
+        jLabel4.setText("Address*:");
 
         jLabel5.setText("Phone Number:");
 
-        jLabel6.setText("Social Security Number:");
+        jLabel6.setText("Social Security Number*:");
+
+        jLabel1.setText("(YYYY-MM-DD)");
+
+        jLabel7.setText("(111-11-1111)");
+
+        requiredLabel.setText("* - Required");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(requiredLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(applyButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(saveButton)
@@ -197,7 +240,11 @@ public class PersonEditView extends javax.swing.JFrame {
                     .addComponent(addressField)
                     .addComponent(phoneNumberField)
                     .addComponent(socialSecurityNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel7))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,7 +256,8 @@ public class PersonEditView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dateOfBirthField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -221,13 +269,15 @@ public class PersonEditView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(socialSecurityNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveButton)
                     .addComponent(cancelButton)
                     .addComponent(deleteButton)
-                    .addComponent(applyButton))
+                    .addComponent(applyButton)
+                    .addComponent(requiredLabel))
                 .addContainerGap())
         );
 
@@ -235,7 +285,7 @@ public class PersonEditView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 407, Short.MAX_VALUE)
+            .addGap(0, 444, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -250,8 +300,12 @@ public class PersonEditView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        setModelFields();
-        controller.executeSave();
+        try {
+            setModelFields();
+            controller.executeSave();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(jPanel1, e.getMessage());
+        }
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
@@ -263,8 +317,12 @@ public class PersonEditView extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void applyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applyButtonActionPerformed
-        setModelFields();
-        controller.executeApply();
+        try {
+            setModelFields();
+            controller.executeApply();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(jPanel1, e.getMessage());
+        }
     }//GEN-LAST:event_applyButtonActionPerformed
 
     // </editor-fold> 
@@ -275,14 +333,17 @@ public class PersonEditView extends javax.swing.JFrame {
     private javax.swing.JButton cancelButton;
     private javax.swing.JTextField dateOfBirthField;
     private javax.swing.JButton deleteButton;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField nameField;
     private javax.swing.JTextField phoneNumberField;
+    private javax.swing.JLabel requiredLabel;
     private javax.swing.JButton saveButton;
     private javax.swing.JTextField socialSecurityNumberField;
     // End of variables declaration//GEN-END:variables

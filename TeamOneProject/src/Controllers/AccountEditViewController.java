@@ -97,8 +97,6 @@ public class AccountEditViewController extends EditViewControllerBase {
     @Override
     public void executeApply() {
         doSave();
-        isNew = false;
-        view.setDeleteEnabled(true);
     }
 
     /**
@@ -129,6 +127,8 @@ public class AccountEditViewController extends EditViewControllerBase {
             
             if (successful) {
                 listModel.addElement(model);
+                isNew = false;
+                view.setDeleteEnabled(true);
             }
         } else {
             boolean successful = accountFactory.executeUpdate(model.toHashMap());

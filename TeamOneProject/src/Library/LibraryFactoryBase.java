@@ -125,7 +125,7 @@ public abstract class LibraryFactoryBase implements ISqlGenerator {
             String command = generateDeleteCommand(criteria);
 
             if (hasValue(command)) {
-                DataAccessJavaDb.executeDelete(command);
+                successful = DataAccessJavaDb.executeDelete(command);
                 System.out.println("Delete command being executed:\n" + command);
             } else {
                 System.out.println("No delete command was run from the provided criteria");

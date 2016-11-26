@@ -98,8 +98,6 @@ public class UserEditViewController extends EditViewControllerBase {
     @Override
     public void executeApply() {
         doSave();
-        isNew = false;
-        view.setDeleteEnabled(true);
     }
 
     /**
@@ -125,11 +123,14 @@ public class UserEditViewController extends EditViewControllerBase {
     }
 
     private void doSave() {
+                
         if (isNew) {
             boolean successful = userFactory.executeInsert(model.toHashMap());
 
             if (successful) {
                 listModel.addElement(model);
+                isNew = false;
+                view.setDeleteEnabled(true);
             }
         } else {
             boolean successful = userFactory.executeUpdate(model.toHashMap());

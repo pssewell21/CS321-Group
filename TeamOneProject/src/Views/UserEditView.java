@@ -7,6 +7,7 @@ package Views;
 
 import Common.AesEncryption;
 import Common.UserSettings;
+import Common.Utility;
 import Controllers.UserEditViewController;
 import Library.Person;
 import java.awt.Graphics;
@@ -124,6 +125,7 @@ public class UserEditView extends javax.swing.JFrame {
         jLabel9.setForeground(UserSettings.theme.getTextColor());
         jLabel10.setForeground(UserSettings.theme.getTextColor());
         jLabel11.setForeground(UserSettings.theme.getTextColor());
+        requiredLabel.setForeground(UserSettings.theme.getTextColor());
 
         personComboBox.setRenderer(new DefaultListCellRenderer() {
             @Override
@@ -143,22 +145,78 @@ public class UserEditView extends javax.swing.JFrame {
         });
     }
 
-    private void setModelFields() {
+    private void setModelFields() throws Exception {
         selectedPerson = (Person) personComboBox.getSelectedItem();
 
-        try {
+        if (selectedPerson != null && selectedPerson.id != null) {
             controller.model.personId = selectedPerson.id;
+        } else {
+            throw new Exception("Person ID is required");
+        }
+
+        if (Utility.hasValue(userNameField.getText())) {
             controller.model.userName = userNameField.getText();
-            controller.model.password = AesEncryption.encryptText(new String(passwordField.getPassword()));
-            controller.model.securityQuestion1 = AesEncryption.encryptText(securityQuestion1Field.getText());
-            controller.model.securityAnswer1 = AesEncryption.encryptText(securityAnswer1Field.getText());
-            controller.model.securityQuestion2 = AesEncryption.encryptText(securityQuestion2Field.getText());
-            controller.model.securityAnswer2 = AesEncryption.encryptText(securityAnswer2Field.getText());
-            controller.model.isAdministrator = isAdministratorCheckBox.isSelected();
-            controller.model.isAccountLocked = isAccountLockedCheckBox.isSelected();
+        } else {
+            throw new Exception("User Name is required");
+        }
+
+        if (Utility.hasValue(new String(passwordField.getPassword()))) {
+            try {
+                controller.model.password = AesEncryption.encryptText(new String(passwordField.getPassword()));
+            } catch (Exception e) {
+                throw new Exception("Encryption failure");
+            }
+        } else {
+            throw new Exception("Password is required");
+        }
+
+        if (Utility.hasValue(securityQuestion1Field.getText())) {
+            try {
+                controller.model.securityQuestion1 = AesEncryption.encryptText(securityQuestion1Field.getText());
+            } catch (Exception e) {
+                throw new Exception("Encryption failure");
+            }
+        } else {
+            throw new Exception("Security Question 1 is required");
+        }
+        
+        if (Utility.hasValue(securityAnswer1Field.getText())) {
+            try {
+                controller.model.securityAnswer1 = AesEncryption.encryptText(securityAnswer1Field.getText());
+            } catch (Exception e) {
+                throw new Exception("Encryption failure");
+            }
+        } else {
+            throw new Exception("Security Answer 1 is required");
+        }
+        
+        if (Utility.hasValue(securityQuestion2Field.getText())) {
+            try {
+                controller.model.securityQuestion2 = AesEncryption.encryptText(securityQuestion2Field.getText());
+            } catch (Exception e) {
+                throw new Exception("Encryption failure");
+            }
+        } else {
+            throw new Exception("Security Question 2 is required");
+        }
+        
+        if (Utility.hasValue(securityAnswer2Field.getText())) {
+            try {
+                controller.model.securityAnswer2 = AesEncryption.encryptText(securityAnswer2Field.getText());
+            } catch (Exception e) {
+                throw new Exception("Encryption failure");
+            }
+        } else {
+            throw new Exception("Security Answer 2 is required");
+        }   
+        
+        controller.model.isAdministrator = isAdministratorCheckBox.isSelected();
+        controller.model.isAccountLocked = isAccountLockedCheckBox.isSelected();
+        
+        if (Utility.hasValue((String) selectedThemeComboBox.getSelectedItem())) {
             controller.model.selectedTheme = (String) selectedThemeComboBox.getSelectedItem();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(jPanel1, "Encryption failure.");
+        } else {
+            throw new Exception("Selected Theme is required");
         }
     }
 
@@ -196,6 +254,7 @@ public class UserEditView extends javax.swing.JFrame {
         isAccountLockedCheckBox = new javax.swing.JCheckBox();
         passwordField = new javax.swing.JPasswordField();
         selectedThemeComboBox = new javax.swing.JComboBox<>();
+        requiredLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -227,25 +286,25 @@ public class UserEditView extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Person ID:");
+        jLabel2.setText("Person ID*:");
 
-        jLabel3.setText("User Name:");
+        jLabel3.setText("User Name*:");
 
-        jLabel4.setText("Password:");
+        jLabel4.setText("Password*:");
 
-        jLabel5.setText("Security Question 1:");
+        jLabel5.setText("Security Question 1*:");
 
-        jLabel6.setText("Security Answer 1:");
+        jLabel6.setText("Security Answer 1*:");
 
-        jLabel7.setText("Security Question 2:");
+        jLabel7.setText("Security Question 2*:");
 
-        jLabel8.setText("Security Answer 2:");
+        jLabel8.setText("Security Answer 2*:");
 
-        jLabel9.setText("Is Administrator:");
+        jLabel9.setText("Is Administrator*:");
 
-        jLabel10.setText("Is Account Locked:");
+        jLabel10.setText("Is Account Locked*:");
 
-        jLabel11.setText("Selected Theme:");
+        jLabel11.setText("Selected Theme*:");
 
         personComboBox.setModel(controller.personModel);
 
@@ -364,11 +423,16 @@ public class UserEditView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        requiredLabel.setText("* - Required");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 420, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(requiredLabel)
+                .addContainerGap(348, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -377,7 +441,10 @@ public class UserEditView extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 395, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(373, Short.MAX_VALUE)
+                .addComponent(requiredLabel)
+                .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -389,13 +456,21 @@ public class UserEditView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        setModelFields();
-        controller.executeSave();
+        try {
+            setModelFields();
+            controller.executeSave();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(jPanel1, e.getMessage());
+        }
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void applyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applyButtonActionPerformed
-        setModelFields();
-        controller.executeApply();
+        try {
+            setModelFields();
+            controller.executeApply();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(jPanel1, e.getMessage());
+        }
     }//GEN-LAST:event_applyButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
@@ -435,6 +510,7 @@ public class UserEditView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JComboBox<Person> personComboBox;
+    private javax.swing.JLabel requiredLabel;
     private javax.swing.JButton saveButton;
     private javax.swing.JTextField securityAnswer1Field;
     private javax.swing.JTextField securityAnswer2Field;

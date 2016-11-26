@@ -161,15 +161,19 @@ public final class DataAccessJavaDb {
     /**
      *
      * @param command
+     * @return 
      */
-    public static void executeDelete(String command) {
+    public static boolean executeDelete(String command) {
         try {
             statement = connection.createStatement();
 
             statement.executeUpdate(command);
         } catch (Exception e) {
             ExceptionHandler.handleException(e);
+            return false;
         }
+        
+        return true;
     }
 
     /**

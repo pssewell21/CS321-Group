@@ -90,6 +90,7 @@ public final class AtmView extends JFrame {
     private JTextField transactionHistoryEndDateField;
     private JLabel startDateLabel;
     private JLabel endDateLabel;
+    private JLabel dateFormatLabel;
     private JScrollPane transactionHistoryScrollPanel;
     private JList<AccountTransaction> transactionHistoryList;
     private JButton getTransactionHistoryButton;
@@ -405,6 +406,13 @@ public final class AtmView extends JFrame {
         startDateLabel = new JLabel();
         startDateLabel.setText("Start Date: ");
         startDateLabel.setForeground(UserSettings.theme.getTextColor());
+        GridBagConstraints gridBagConstraintsDateFormatLabel = new GridBagConstraints();
+        gridBagConstraintsDateFormatLabel.gridx = 2;
+        gridBagConstraintsDateFormatLabel.gridy = 2;
+        gridBagConstraintsDateFormatLabel.anchor = GridBagConstraints.WEST;
+        dateFormatLabel = new JLabel();
+        dateFormatLabel.setText("(YYYY-MM-DD)");
+        dateFormatLabel.setForeground(UserSettings.theme.getTextColor());
         GridBagConstraints gridBagConstraintsTransactionHistoryEndDateField = new GridBagConstraints();
         gridBagConstraintsTransactionHistoryEndDateField.gridx = 1;
         gridBagConstraintsTransactionHistoryEndDateField.gridy = 3;
@@ -459,6 +467,7 @@ public final class AtmView extends JFrame {
         transactionHistoryPanel.add(getTransactionHistoryEndDateField(), gridBagConstraintsTransactionHistoryEndDateField);
         transactionHistoryPanel.add(startDateLabel, gridBagConstraintsStartDateLabel);
         transactionHistoryPanel.add(endDateLabel, gridBagConstraintsEndDateLabel);
+        transactionHistoryPanel.add(dateFormatLabel, gridBagConstraintsDateFormatLabel);
         transactionHistoryPanel.add(getTransactionHistoryList(), gridBagConstraintsTransactionHistoryList);
         transactionHistoryPanel.add(getTransactionHistoryButton(), gridBagConstraintsGetTransactionHistoryButton);
         transactionHistoryPanel.add(getCustomDateRangeRadioButton(), gridBagConstraintsCustomDateRangeRadioButton);
