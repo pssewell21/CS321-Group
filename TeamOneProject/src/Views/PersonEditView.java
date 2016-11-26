@@ -42,9 +42,9 @@ public class PersonEditView extends javax.swing.JFrame {
     }
 
     private void load() {
-
         initComponents();
         setThemeColors();
+        setTitle("Create a Person");
 
         this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png")).getImage());
 

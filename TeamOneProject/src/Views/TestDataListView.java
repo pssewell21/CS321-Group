@@ -37,6 +37,7 @@ public class TestDataListView extends javax.swing.JFrame {
     private void load() {
         initComponents();
         setThemeColors();
+        setTitle("Test Data List");
 
         this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png")).getImage());
 
