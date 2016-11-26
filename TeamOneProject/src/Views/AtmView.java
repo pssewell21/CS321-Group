@@ -40,6 +40,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 /**
  *
@@ -93,6 +95,9 @@ public final class AtmView extends JFrame {
     private JButton getTransactionHistoryButton;
     private ButtonGroup transactionHistoryRadioButtonGroup;
     private final AtmViewController controller;
+    
+    private boolean startDateIsValid;
+    private boolean endDateIsValid;
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
@@ -118,7 +123,7 @@ public final class AtmView extends JFrame {
 
         this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png")).getImage());
 
-        setBounds(new Rectangle(0, 0, 616, 439));
+        setBounds(new Rectangle(0, 0, 606, 429));
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent e) {
@@ -486,6 +491,30 @@ public final class AtmView extends JFrame {
         depositAmountField.setPreferredSize(new Dimension(120, 25));
         depositAmountField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
         depositAmountField.setForeground(UserSettings.theme.getTextColor());
+        depositAmountField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                actionPerformed();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                actionPerformed();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                actionPerformed();
+            }
+
+            private void actionPerformed() {
+                if (Utility.isNumeric(depositAmountField.getText())) {
+                    depositButton.setEnabled(true);
+                } else {
+                    depositButton.setEnabled(false);
+                }
+            }
+        });
 
         return depositAmountField;
     }
@@ -501,6 +530,7 @@ public final class AtmView extends JFrame {
         depositButton.setPreferredSize(new Dimension(120, 30));
         depositButton.setBackground(UserSettings.theme.getButtonBackgroundColor());
         depositButton.setForeground(UserSettings.theme.getTextColor());
+        depositButton.setEnabled(false);
         depositButton.addActionListener((java.awt.event.ActionEvent e) -> {
             BigDecimal amount = new BigDecimal(depositAmountField.getText());
 
@@ -535,6 +565,30 @@ public final class AtmView extends JFrame {
         withdrawalAmountField.setPreferredSize(new Dimension(120, 25));
         withdrawalAmountField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
         withdrawalAmountField.setForeground(UserSettings.theme.getTextColor());
+        withdrawalAmountField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                actionPerformed();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                actionPerformed();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                actionPerformed();
+            }
+
+            private void actionPerformed() {
+                if (Utility.isNumeric(withdrawalAmountField.getText())) {
+                    withdrawButton.setEnabled(true);
+                } else {
+                    withdrawButton.setEnabled(false);
+                }
+            }
+        });
 
         return withdrawalAmountField;
     }
@@ -550,6 +604,7 @@ public final class AtmView extends JFrame {
         withdrawButton.setPreferredSize(new Dimension(120, 30));
         withdrawButton.setBackground(UserSettings.theme.getButtonBackgroundColor());
         withdrawButton.setForeground(UserSettings.theme.getTextColor());
+        withdrawButton.setEnabled(false);
         withdrawButton.addActionListener((java.awt.event.ActionEvent e) -> {
             BigDecimal amount = new BigDecimal(withdrawalAmountField.getText());
 
@@ -622,6 +677,13 @@ public final class AtmView extends JFrame {
         lastDayRadioButton.setActionCommand("Last Day");
         lastDayRadioButton.setForeground(UserSettings.theme.getTextColor());
         lastDayRadioButton.setSelected(true);
+        lastDayRadioButton.addActionListener((java.awt.event.ActionEvent e) -> {
+            if (lastDayRadioButton.isSelected()) {
+                transactionHistoryStartDateField.setEnabled(false);
+                transactionHistoryEndDateField.setEnabled(false);
+                getTransactionHistoryButton.setEnabled(true);
+            }  
+        });
         transactionHistoryRadioButtonGroup.add(lastDayRadioButton);
 
         return lastDayRadioButton;
@@ -637,6 +699,13 @@ public final class AtmView extends JFrame {
         lastMonthRadioButton.setText("Last Month");
         lastMonthRadioButton.setActionCommand("Last Month");
         lastMonthRadioButton.setForeground(UserSettings.theme.getTextColor());
+        lastMonthRadioButton.addActionListener((java.awt.event.ActionEvent e) -> {
+            if (lastMonthRadioButton.isSelected()) {
+                transactionHistoryStartDateField.setEnabled(false);
+                transactionHistoryEndDateField.setEnabled(false);
+                getTransactionHistoryButton.setEnabled(true);
+            }
+        });
         transactionHistoryRadioButtonGroup.add(lastMonthRadioButton);
 
         return lastMonthRadioButton;
@@ -652,6 +721,13 @@ public final class AtmView extends JFrame {
         lastYearRadioButton.setText("Last Year");
         lastYearRadioButton.setActionCommand("Last Year");
         lastYearRadioButton.setForeground(UserSettings.theme.getTextColor());
+        lastYearRadioButton.addActionListener((java.awt.event.ActionEvent e) -> {
+            if (lastYearRadioButton.isSelected()) {
+                transactionHistoryStartDateField.setEnabled(false);
+                transactionHistoryEndDateField.setEnabled(false);
+                getTransactionHistoryButton.setEnabled(true);
+            }  
+        });
         transactionHistoryRadioButtonGroup.add(lastYearRadioButton);
 
         return lastYearRadioButton;
@@ -666,6 +742,33 @@ public final class AtmView extends JFrame {
         transactionHistoryStartDateField = new JTextField();
         transactionHistoryStartDateField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
         transactionHistoryStartDateField.setForeground(UserSettings.theme.getTextColor());
+        transactionHistoryStartDateField.setEnabled(false);
+        transactionHistoryStartDateField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                actionPerformed();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                actionPerformed();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                actionPerformed();
+            }
+
+            private void actionPerformed() {
+                startDateIsValid = Utility.isValidDate(transactionHistoryStartDateField.getText());
+                
+                if (startDateIsValid && endDateIsValid) {
+                    getTransactionHistoryButton.setEnabled(true);
+                } else {
+                    getTransactionHistoryButton.setEnabled(false);
+                }
+            }
+        });
 
         return transactionHistoryStartDateField;
     }
@@ -679,6 +782,33 @@ public final class AtmView extends JFrame {
         transactionHistoryEndDateField = new JTextField();
         transactionHistoryEndDateField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
         transactionHistoryEndDateField.setForeground(UserSettings.theme.getTextColor());
+        transactionHistoryEndDateField.setEnabled(false);
+        transactionHistoryEndDateField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                actionPerformed();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                actionPerformed();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                actionPerformed();
+            }
+
+            private void actionPerformed() {
+                endDateIsValid = Utility.isValidDate(transactionHistoryEndDateField.getText());
+                
+                if (startDateIsValid && endDateIsValid) {
+                    getTransactionHistoryButton.setEnabled(true);
+                } else {
+                    getTransactionHistoryButton.setEnabled(false);
+                }
+            }
+        });
 
         return transactionHistoryEndDateField;
     }
@@ -708,6 +838,7 @@ public final class AtmView extends JFrame {
         getTransactionHistoryButton.setText("Get Transaction History");
         getTransactionHistoryButton.setBackground(UserSettings.theme.getButtonBackgroundColor());
         getTransactionHistoryButton.setForeground(UserSettings.theme.getTextColor());
+        getTransactionHistoryButton.setEnabled(true);
         getTransactionHistoryButton.addActionListener((java.awt.event.ActionEvent e) -> {
             try {
                 String command = transactionHistoryRadioButtonGroup.getSelection().getActionCommand();
@@ -736,7 +867,7 @@ public final class AtmView extends JFrame {
                         endTime = Utility.getCurrentTime();
                         break;
                     case "Custom Date Range":
-                        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
                         Date parsedStartDate = dateFormat.parse(transactionHistoryStartDateField.getText());
                         Date parsedEndDate = dateFormat.parse(transactionHistoryEndDateField.getText());
@@ -866,6 +997,13 @@ public final class AtmView extends JFrame {
         customDateRangeRadioButton.setText("Custom Date Range");
         customDateRangeRadioButton.setActionCommand("Custom Date Range");
         customDateRangeRadioButton.setForeground(UserSettings.theme.getTextColor());
+        customDateRangeRadioButton.addActionListener((java.awt.event.ActionEvent e) -> {
+            if (customDateRangeRadioButton.isSelected()) {
+                transactionHistoryStartDateField.setEnabled(true);
+                transactionHistoryEndDateField.setEnabled(true);
+                getTransactionHistoryButton.setEnabled(startDateIsValid && endDateIsValid);
+            } 
+        });
         transactionHistoryRadioButtonGroup.add(customDateRangeRadioButton);
 
         return customDateRangeRadioButton;

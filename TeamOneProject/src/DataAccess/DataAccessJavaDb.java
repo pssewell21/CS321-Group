@@ -44,13 +44,10 @@ public final class DataAccessJavaDb {
 
         boolean dbExists = infile.exists();
 
-        System.out.println("the file " + infile.toString() + " is " + dbExists);
-
         if (dbExists) {
             try {
                 Class.forName(DRIVER).newInstance();
                 String connString = "jdbc:derby:" + infile.toString();
-                System.out.println("the connection string where dbExists is true is " + connString);
                 connection = DriverManager.getConnection(connString);
             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
                 ExceptionHandler.handleException(e);
