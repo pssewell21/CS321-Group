@@ -49,7 +49,7 @@ import javax.swing.event.DocumentListener;
 
 /**
  *
- * @author Owner
+ * @author Patrick Sewell
  */
 public final class AtmView extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 

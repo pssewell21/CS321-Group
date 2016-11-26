@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Owner
+ * @author Patrick Sewell
  */
 public class UserEditView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 

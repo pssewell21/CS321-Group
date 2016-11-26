@@ -11,7 +11,7 @@ package Controllers;
 
 /**
  *
- * @author Owner
+ * @author Patrick Sewell
  */
 public abstract class EditViewControllerBase {
 

@@ -15,7 +15,7 @@ import Themes.LightTheme;
 
 /**
  *
- * @author Owner
+ * @author Patrick Sewell
  */
 public final class UserSettings {
 

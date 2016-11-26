@@ -15,7 +15,7 @@ import java.sql.SQLException;
 
 /**
  *
- * @author Owner
+ * @author Patrick Sewell
  */
 public class AdminViewController {
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 

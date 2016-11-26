@@ -14,7 +14,7 @@ import java.sql.Timestamp;
 
 /**
  *
- * @author pssew
+ * @author Patrick Sewell
  */
 public final class Utility {
 

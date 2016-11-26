@@ -13,7 +13,7 @@ import java.util.HashMap;
 
 /**
  *
- * @author Owner
+ * @author Patrick Sewell
  */
 public class User extends LibraryBase {
 

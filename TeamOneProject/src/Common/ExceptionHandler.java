@@ -12,8 +12,8 @@ package Common;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author pssew
+ * Used to handle exceptions gracefully and provide feedback to the user.
+ * @author Patrick Sewell
  */
 public final class ExceptionHandler {
 
@@ -21,7 +21,7 @@ public final class ExceptionHandler {
     }
 
     /**
-     *
+     * Displays exception text to the user in a popup dialog.
      * @param e
      */
     public static final void handleException(Exception e) {

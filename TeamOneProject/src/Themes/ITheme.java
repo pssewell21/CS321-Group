@@ -13,7 +13,7 @@ import java.awt.Color;
 
 /**
  *
- * @author Owner
+ * @author Patrick Sewell
  */
 public interface ITheme {
 

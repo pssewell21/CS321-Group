@@ -14,7 +14,7 @@ import java.util.HashMap;
 
 /**
  *
- * @author Owner
+ * @author Patrick Sewell
  */
 public abstract class LibraryBase {
 

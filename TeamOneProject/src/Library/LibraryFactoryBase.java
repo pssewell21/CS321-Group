@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  *
- * @author Owner
+ * @author Patrick Sewell
  */
 public abstract class LibraryFactoryBase implements ISqlGenerator {
 

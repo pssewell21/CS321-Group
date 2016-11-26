@@ -24,7 +24,7 @@ import javax.swing.DefaultListModel;
 
 /**
  *
- * @author pssew
+ * @author Patrick Sewell
  */
 public class AccountPersonMapEditViewController extends EditViewControllerBase {
 

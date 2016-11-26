@@ -17,7 +17,7 @@ import javax.swing.JList;
 
 /**
  *
- * @author Owner
+ * @author Patrick Sewell
  */
 public class PersonListView extends javax.swing.JFrame {
 

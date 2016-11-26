@@ -16,7 +16,7 @@ import javax.swing.ImageIcon;
  * Got help from
  * http://stackoverflow.com/questions/6714045/how-to-resize-jlabel-imageicon
  *
- * @author Owner
+ * @author Patrick Sewell
  */
 public final class ImageIconScaler {
 

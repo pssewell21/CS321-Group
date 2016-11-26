@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Owner
+ * @author Patrick Sewell
  */
 public class AdminView extends javax.swing.JFrame {
 

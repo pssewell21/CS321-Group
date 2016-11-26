@@ -25,7 +25,7 @@ import javax.swing.DefaultListModel;
 
 /**
  *
- * @author Owner
+ * @author Patrick Sewell
  */
 public class AtmViewController {
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 

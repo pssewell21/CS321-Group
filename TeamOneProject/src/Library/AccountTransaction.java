@@ -15,7 +15,7 @@ import java.util.HashMap;
 
 /**
  *
- * @author Owner
+ * @author Patrick Sewell
  */
 public class AccountTransaction extends LibraryBase {
 

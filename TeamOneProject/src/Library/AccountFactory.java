@@ -19,7 +19,7 @@ import java.util.List;
 
 /**
  *
- * @author Owner
+ * @author Patrick Sewell
  */
 public class AccountFactory extends LibraryFactoryBase {
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 

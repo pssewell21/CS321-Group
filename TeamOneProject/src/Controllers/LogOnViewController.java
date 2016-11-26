@@ -21,7 +21,7 @@ import java.util.List;
 
 /**
  *
- * @author Owner
+ * @author Patrick Sewell
  */
 public class LogOnViewController {
 

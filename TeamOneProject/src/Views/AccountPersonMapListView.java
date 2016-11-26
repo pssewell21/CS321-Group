@@ -11,7 +11,7 @@ package Views;
 
 /**
  *
- * @author pssew
+ * @author Patrick Sewell
  */
 import Common.UserSettings;
 import Controllers.AccountPersonMapListViewController;
@@ -25,7 +25,7 @@ import javax.swing.JList;
 
 /**
  *
- * @author Owner
+ * @author Patrick Sewell
  */
 public class AccountPersonMapListView extends javax.swing.JFrame {
 

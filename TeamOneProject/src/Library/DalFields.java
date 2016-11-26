@@ -11,7 +11,7 @@ package Library;
 
 /**
  *
- * @author pssew
+ * @author Patrick Sewell
  */
 public final class DalFields {
 

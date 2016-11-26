@@ -19,7 +19,7 @@ import javax.swing.DefaultListModel;
 
 /**
  *
- * @author Owner
+ * @author Patrick Sewell
  */
 public class PersonListViewController extends ListViewControllerBase {
 

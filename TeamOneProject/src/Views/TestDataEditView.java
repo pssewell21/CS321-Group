@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author pssew
+ * @author Patrick Sewell
  */
 public class TestDataEditView extends javax.swing.JFrame {
 

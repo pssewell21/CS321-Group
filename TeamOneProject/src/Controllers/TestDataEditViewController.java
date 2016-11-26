@@ -16,7 +16,7 @@ import javax.swing.DefaultListModel;
 
 /**
  *
- * @author Owner
+ * @author Patrick Sewell
  */
 public class TestDataEditViewController extends EditViewControllerBase {
 

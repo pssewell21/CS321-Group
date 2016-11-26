@@ -12,8 +12,8 @@ package Common;
 import java.util.Random;
 
 /**
- *
- * @author Owner
+ * Handles the creation of ID's 
+ * @author Patrick Sewell
  */
 public final class ID {
 
@@ -21,8 +21,8 @@ public final class ID {
     }
 
     /**
-     *
-     * @return
+     * Creates a new ID
+     * @return returns an ID
      */
     public static final Long newId() {
         Random random = new Random();

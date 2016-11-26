@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Owner
+ * @author Patrick Sewell
  */
 public class LogOnView extends javax.swing.JFrame {
 

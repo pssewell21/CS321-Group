@@ -15,22 +15,22 @@ import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
 
 /**
- * Used to encrypt and decrypt data using an AES encryption algorithm
+ * Used to encrypt and decrypt data using an AES encryption algorithm.
  * 
  * This code was originally taken from
  * http://www.quickprogrammingtips.com/java/how-to-encrypt-and-decrypt-data-in-java-using-aes-algorithm.html
- * and adapted for use in this application
+ * and adapted for use in this application.
  *
- * @author Owner
+ * @author Patrick Sewell
  */
 public class AesEncryption {
 
     /**
-     * Encrypts plainText in AES using the secret key
+     * Encrypts plainText in AES using the secret key.
      *
      * @param plainText
-     * @return
-     * @throws Exception
+     * @return 
+     * @throws Exception 
      */
     public static final String encryptText(String plainText) throws Exception {
         // AES defaults to AES/ECB/PKCS5Padding in Java 7

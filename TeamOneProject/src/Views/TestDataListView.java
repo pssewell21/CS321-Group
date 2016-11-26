@@ -17,7 +17,7 @@ import javax.swing.JList;
 
 /**
  *
- * @author pssew
+ * @author Patrick Sewell
  */
 public class TestDataListView extends javax.swing.JFrame {
 

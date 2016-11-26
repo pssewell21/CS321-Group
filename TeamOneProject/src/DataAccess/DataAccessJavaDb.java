@@ -20,7 +20,7 @@ import java.sql.Statement;
 
 /**
  *
- * @author pssew
+ * @author Patrick Sewell
  */
 public final class DataAccessJavaDb {
 

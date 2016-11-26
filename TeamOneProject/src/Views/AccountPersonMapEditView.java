@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author pssew
+ * @author Patrick Sewell
  */
 public class AccountPersonMapEditView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 

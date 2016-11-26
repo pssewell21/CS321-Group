@@ -18,7 +18,7 @@ import java.util.List;
 
 /**
  *
- * @author Owner
+ * @author Patrick Sewell
  */
 public class UserFactory extends LibraryFactoryBase {
 
