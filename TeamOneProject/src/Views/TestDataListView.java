@@ -16,6 +16,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.JList;
 
 /**
+ * The Test Data list view.
  *
  * @author Patrick Sewell
  */
@@ -29,7 +30,7 @@ public class TestDataListView extends javax.swing.JFrame {
     /**
      * Creates new form TestDataListView
      *
-     * @param controller
+     * @param controller The TestDataListViewController for the view
      */
     public TestDataListView(TestDataListViewController controller) {
         this.controller = controller;

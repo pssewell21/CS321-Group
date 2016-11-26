@@ -15,6 +15,7 @@ import Controllers.TestDataEditViewController;
 import javax.swing.JOptionPane;
 
 /**
+ * The Test Data edit view.
  *
  * @author Patrick Sewell
  */
@@ -26,8 +27,9 @@ public class TestDataEditView extends javax.swing.JFrame {
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     /**
+     * Creates new form TestDataEditView.
      *
-     * @param controller
+     * @param controller The TestDataEditViewController for the view
      */
     public TestDataEditView(TestDataEditViewController controller) {
         this.controller = controller;
@@ -37,8 +39,10 @@ public class TestDataEditView extends javax.swing.JFrame {
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
     /**
+     * Enables or Disables the delete button.
      *
-     * @param isEnabled
+     * @param isEnabled the value indicating if the button will be enabled or
+     * disabled
      */
     public void setDeleteEnabled(boolean isEnabled) {
         deleteButton.setEnabled(isEnabled);
@@ -90,7 +94,7 @@ public class TestDataEditView extends javax.swing.JFrame {
         } else {
             throw new Exception("Key is required");
         }
-        
+
         if (Utility.hasValue(valueField.getText())) {
             controller.model.value = valueField.getText();
         } else {

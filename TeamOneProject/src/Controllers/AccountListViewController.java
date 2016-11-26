@@ -25,7 +25,7 @@ public class AccountListViewController extends ListViewControllerBase {
 
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
     /**
-     *
+     * The listModel that hols objects displayed in the  listView.
      */
     public DefaultListModel<Account> listModel;
 

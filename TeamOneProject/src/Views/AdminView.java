@@ -14,7 +14,7 @@ import Controllers.AdminViewController;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * The Admin view.
  * @author Patrick Sewell
  */
 public class AdminView extends javax.swing.JFrame {
@@ -24,9 +24,9 @@ public class AdminView extends javax.swing.JFrame {
 
     // </editor-fold>
     /**
-     * Creates new form NavigationView
-     *
-     * @param controller
+     * Creates new form AdminView.
+     * 
+     * @param controller The AdminViewController for the view
      */
     public AdminView(AdminViewController controller) {
         this.controller = controller;

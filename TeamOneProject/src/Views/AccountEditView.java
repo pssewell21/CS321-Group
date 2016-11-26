@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * The Account edit view.
  * @author Patrick Sewell
  */
 public class AccountEditView extends javax.swing.JFrame {
@@ -27,8 +27,8 @@ public class AccountEditView extends javax.swing.JFrame {
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     /**
-     *
-     * @param controller
+     * Creates new form AccountEditView.
+     * @param controller The AccountEditViewController for the view
      */
     public AccountEditView(AccountEditViewController controller) {
         this.controller = controller;
@@ -38,8 +38,10 @@ public class AccountEditView extends javax.swing.JFrame {
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
     /**
+     * Enables or Disables the delete button.
      *
-     * @param isEnabled
+     * @param isEnabled the value indicating if the button will be enabled or
+     * disabled
      */
     public void setDeleteEnabled(boolean isEnabled) {
         deleteButton.setEnabled(isEnabled);

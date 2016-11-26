@@ -24,6 +24,7 @@ import javax.swing.JComboBox;
 import javax.swing.JList;
 
 /**
+ * The AccountPersonMap list view.
  *
  * @author Patrick Sewell
  */
@@ -35,9 +36,9 @@ public class AccountPersonMapListView extends javax.swing.JFrame {
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     /**
-     * Creates new form TestDataListView
+     * Creates new form AccountPersonMapListView.
      *
-     * @param controller
+     * @param controller The AccountPersonMapListViewController for the view
      */
     public AccountPersonMapListView(AccountPersonMapListViewController controller) {
         this.controller = controller;

@@ -16,6 +16,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.JList;
 
 /**
+ * The Person list view.
  *
  * @author Patrick Sewell
  */
@@ -27,9 +28,9 @@ public class PersonListView extends javax.swing.JFrame {
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     /**
-     * Creates new form TestDataListView
+     * Creates new form PersonListView.
      *
-     * @param controller
+     * @param controller The PersonEditViewController for the view
      */
     public PersonListView(PersonListViewController controller) {
         this.controller = controller;

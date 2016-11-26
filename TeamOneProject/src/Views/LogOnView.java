@@ -15,7 +15,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * The LogOn view.
  * @author Patrick Sewell
  */
 public class LogOnView extends javax.swing.JFrame {
@@ -26,8 +26,8 @@ public class LogOnView extends javax.swing.JFrame {
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     /**
-     *
-     * @param controller
+     * Creates new form LogOnView.
+     * @param controller The LogOnViewController for the view
      */
     public LogOnView(LogOnViewController controller) {
         this.controller = controller;

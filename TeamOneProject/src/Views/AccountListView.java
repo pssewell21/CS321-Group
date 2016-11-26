@@ -16,7 +16,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.JList;
 
 /**
- *
+ * The Account list view.
  * @author Patrick Sewell
  */
 public class AccountListView extends javax.swing.JFrame {
@@ -27,9 +27,9 @@ public class AccountListView extends javax.swing.JFrame {
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     /**
-     * Creates new form TestDataListView
+     * Creates new form AccountListView.
      *
-     * @param controller
+     * @param controller The AccountListViewController for the view
      */
     public AccountListView(AccountListViewController controller) {
         this.controller = controller;

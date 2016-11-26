@@ -16,7 +16,7 @@ import Controllers.PersonEditViewController;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * The Person edit view.
  * @author Patrick Sewell
  */
 public class PersonEditView extends javax.swing.JFrame {
@@ -27,8 +27,8 @@ public class PersonEditView extends javax.swing.JFrame {
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     /**
-     *
-     * @param controller
+     * Creates new form PersonEditView.
+     * @param controller The PersonEditViewController for the view
      */
     public PersonEditView(PersonEditViewController controller) {
         this.controller = controller;
@@ -38,8 +38,8 @@ public class PersonEditView extends javax.swing.JFrame {
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
     /**
-     *
-     * @param isEnabled
+     * Enables or Disables the delete button.
+     * @param isEnabled the value indicating if the button will be enabled or disabled
      */
     public void setDeleteEnabled(boolean isEnabled) {
         deleteButton.setEnabled(isEnabled);

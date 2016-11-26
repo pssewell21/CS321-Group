@@ -19,6 +19,7 @@ import javax.swing.DefaultListCellRenderer;
 import javax.swing.JOptionPane;
 
 /**
+ * The User edit view.
  *
  * @author Patrick Sewell
  */
@@ -31,9 +32,10 @@ public class UserEditView extends javax.swing.JFrame {
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     /**
+     * Creates new form UserEditView.
      *
-     * @param controller
-     * @param selectedPerson
+     * @param controller The UserEditViewController for the view
+     * @param selectedPerson The Person to be selected when loading the view
      */
     public UserEditView(UserEditViewController controller, Person selectedPerson) {
         this.controller = controller;
@@ -44,8 +46,10 @@ public class UserEditView extends javax.swing.JFrame {
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
     /**
+     * Enables or Disables the delete button.
      *
-     * @param isEnabled
+     * @param isEnabled the value indicating if the button will be enabled or
+     * disabled
      */
     public void setDeleteEnabled(boolean isEnabled) {
         deleteButton.setEnabled(isEnabled);
@@ -184,7 +188,7 @@ public class UserEditView extends javax.swing.JFrame {
         } else {
             throw new Exception("Security Question 1 is required");
         }
-        
+
         if (Utility.hasValue(securityAnswer1Field.getText())) {
             try {
                 controller.model.securityAnswer1 = AesEncryption.encryptText(securityAnswer1Field.getText());
@@ -194,7 +198,7 @@ public class UserEditView extends javax.swing.JFrame {
         } else {
             throw new Exception("Security Answer 1 is required");
         }
-        
+
         if (Utility.hasValue(securityQuestion2Field.getText())) {
             try {
                 controller.model.securityQuestion2 = AesEncryption.encryptText(securityQuestion2Field.getText());
@@ -204,7 +208,7 @@ public class UserEditView extends javax.swing.JFrame {
         } else {
             throw new Exception("Security Question 2 is required");
         }
-        
+
         if (Utility.hasValue(securityAnswer2Field.getText())) {
             try {
                 controller.model.securityAnswer2 = AesEncryption.encryptText(securityAnswer2Field.getText());
@@ -213,11 +217,11 @@ public class UserEditView extends javax.swing.JFrame {
             }
         } else {
             throw new Exception("Security Answer 2 is required");
-        }   
-        
+        }
+
         controller.model.isAdministrator = isAdministratorCheckBox.isSelected();
         controller.model.isAccountLocked = isAccountLockedCheckBox.isSelected();
-        
+
         if (Utility.hasValue((String) selectedThemeComboBox.getSelectedItem())) {
             controller.model.selectedTheme = (String) selectedThemeComboBox.getSelectedItem();
         } else {

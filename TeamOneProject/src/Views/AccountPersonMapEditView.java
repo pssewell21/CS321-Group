@@ -19,7 +19,7 @@ import javax.swing.DefaultListCellRenderer;
 import javax.swing.JOptionPane;
 
 /**
- *
+ *The AccountPersonMap edit view.
  * @author Patrick Sewell
  */
 public class AccountPersonMapEditView extends javax.swing.JFrame {
@@ -30,8 +30,8 @@ public class AccountPersonMapEditView extends javax.swing.JFrame {
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     /**
-     *
-     * @param controller
+     * Creates new form AccountPersonMapEditView.
+     * @param controller The AccountPersonMapEditViewController for the view
      */
     public AccountPersonMapEditView(AccountPersonMapEditViewController controller) {
         this.controller = controller;
@@ -41,8 +41,8 @@ public class AccountPersonMapEditView extends javax.swing.JFrame {
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
     /**
-     *
-     * @param isEnabled
+     * Enables or Disables the delete button.
+     * @param isEnabled the value indicating if the button will be enabled or disabled
      */
     public void setDeleteEnabled(boolean isEnabled) {
         deleteButton.setEnabled(isEnabled);
