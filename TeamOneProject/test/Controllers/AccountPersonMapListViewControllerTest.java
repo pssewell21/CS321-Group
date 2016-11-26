@@ -55,13 +55,39 @@ public class AccountPersonMapListViewControllerTest {
     }
 
     /**
+     * Test of loadAccountList method, of class AccountPersonMapListViewController.
+     */
+    @Test
+    public void testLoadAccountList() {
+        System.out.println("loadAccountList");
+        Long personId = null;
+        AccountPersonMapListViewController instance = new AccountPersonMapListViewController();
+        instance.loadAccountList(personId);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of initializeAccountList method, of class AccountPersonMapListViewController.
+     */
+    @Test
+    public void testInitializeAccountList() {
+        System.out.println("initializeAccountList");
+        AccountPersonMapListViewController instance = new AccountPersonMapListViewController();
+        instance.initializeAccountList();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
      * Test of executeAdd method, of class AccountPersonMapListViewController.
      */
     @Test
     public void testExecuteAdd() {
         System.out.println("executeAdd");
+        Long personId = null;
         AccountPersonMapListViewController instance = new AccountPersonMapListViewController();
-        instance.executeAdd();
+        instance.executeAdd(personId);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -73,8 +99,9 @@ public class AccountPersonMapListViewControllerTest {
     public void testExecuteEdit() {
         System.out.println("executeEdit");
         AccountPersonMap item = null;
+        Long personId = null;
         AccountPersonMapListViewController instance = new AccountPersonMapListViewController();
-        instance.executeEdit(item);
+        instance.executeEdit(item, personId);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

@@ -80,5 +80,17 @@ public class LogOnViewControllerTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
+
+    /**
+     * Test of executeDeleteDatabase method, of class LogOnViewController.
+     */
+    @Test
+    public void testExecuteDeleteDatabase() {
+        System.out.println("executeDeleteDatabase");
+        LogOnViewController instance = new LogOnViewController();
+        instance.executeDeleteDatabase();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
     
 }

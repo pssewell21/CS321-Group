@@ -51,8 +51,9 @@ public class AccountPersonMapEditViewControllerTest {
         System.out.println("load");
         AccountPersonMap model = null;
         DefaultListModel<AccountPersonMap> listModel = null;
+        Long personId = null;
         AccountPersonMapEditViewController instance = new AccountPersonMapEditViewController();
-        instance.load(model, listModel);
+        instance.load(model, listModel, personId);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

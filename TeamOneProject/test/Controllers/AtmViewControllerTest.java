@@ -104,7 +104,9 @@ public class AtmViewControllerTest {
         System.out.println("executeWithdrawal");
         BigDecimal amount = null;
         AtmViewController instance = new AtmViewController();
-        instance.executeWithdrawal(amount);
+        boolean expResult = false;
+        boolean result = instance.executeWithdrawal(amount);
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -119,6 +121,33 @@ public class AtmViewControllerTest {
         Timestamp endTime = null;
         AtmViewController instance = new AtmViewController();
         instance.executeGetTransactionHistory(startTime, endTime);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of executeSelectTheme method, of class AtmViewController.
+     */
+    @Test
+    public void testExecuteSelectTheme() {
+        System.out.println("executeSelectTheme");
+        String selectedTheme = "";
+        AtmViewController instance = new AtmViewController();
+        instance.executeSelectTheme(selectedTheme);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getSelectedTheme method, of class AtmViewController.
+     */
+    @Test
+    public void testGetSelectedTheme() {
+        System.out.println("getSelectedTheme");
+        AtmViewController instance = new AtmViewController();
+        String expResult = "";
+        String result = instance.getSelectedTheme();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
