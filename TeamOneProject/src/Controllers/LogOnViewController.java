@@ -105,5 +105,10 @@ public class LogOnViewController {
         DatabaseProvisioner.provisionDatabase();
     }
     
+    public void executeDeleteDatabase() {
+        //TODO: Add confirmation box with warning
+        DatabaseProvisioner.deleteDatabase();
+    }
+    
     // </editor-fold> 
 }

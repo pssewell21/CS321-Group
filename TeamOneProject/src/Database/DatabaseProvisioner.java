@@ -231,6 +231,10 @@ public final class DatabaseProvisioner {
             DataAccessJavaDb.closeConnection();
         }
     }
+    
+    public static void deleteDatabase() {
+        DataAccessJavaDb.deleteDatabase();
+    }
 
     //This method must be called after the database connection has been opened
     private static void dropDatabaseTables() throws SQLException {

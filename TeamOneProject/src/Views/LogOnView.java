@@ -79,6 +79,7 @@ public class LogOnView extends javax.swing.JFrame {
         logOnButton = new javax.swing.JButton();
         provisionDatabaseButton = new javax.swing.JButton();
         passwordField = new javax.swing.JPasswordField();
+        deleteDatabaseButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -131,29 +132,40 @@ public class LogOnView extends javax.swing.JFrame {
             }
         });
 
+        deleteDatabaseButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        deleteDatabaseButton.setText("Delete Database");
+        deleteDatabaseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteDatabaseButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout logOnPanelLayout = new javax.swing.GroupLayout(logOnPanel);
         logOnPanel.setLayout(logOnPanelLayout);
         logOnPanelLayout.setHorizontalGroup(
             logOnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(logOnPanelLayout.createSequentialGroup()
-                .addGap(349, 349, 349)
-                .addComponent(provisionDatabaseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, logOnPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(66, Short.MAX_VALUE)
                 .addGroup(logOnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(logOnPanelLayout.createSequentialGroup()
-                        .addGroup(logOnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, logOnPanelLayout.createSequentialGroup()
+                        .addGroup(logOnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(logOnPanelLayout.createSequentialGroup()
+                                .addGroup(logOnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(logOnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(userNameField)
+                                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(logOnButton))
+                            .addComponent(logOnFailureLabel))
+                        .addGap(54, 54, 54))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, logOnPanelLayout.createSequentialGroup()
+                        .addComponent(deleteDatabaseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(logOnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(userNameField)
-                            .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(logOnButton))
-                    .addComponent(logOnFailureLabel))
-                .addGap(54, 54, 54))
+                        .addComponent(provisionDatabaseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         logOnPanelLayout.setVerticalGroup(
             logOnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,8 +185,10 @@ public class LogOnView extends javax.swing.JFrame {
                         .addComponent(logOnButton)
                         .addGap(42, 42, 42)))
                 .addComponent(logOnFailureLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(provisionDatabaseButton)
+                .addGap(40, 40, 40)
+                .addGroup(logOnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(provisionDatabaseButton)
+                    .addComponent(deleteDatabaseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -212,7 +226,12 @@ public class LogOnView extends javax.swing.JFrame {
         doKeyPressed(evt);
     }//GEN-LAST:event_passwordFieldKeyPressed
 
+    private void deleteDatabaseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteDatabaseButtonActionPerformed
+        controller.executeDeleteDatabase();
+    }//GEN-LAST:event_deleteDatabaseButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton deleteDatabaseButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton logOnButton;

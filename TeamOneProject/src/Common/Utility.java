@@ -5,6 +5,7 @@
  */
 package Common;
 
+import java.io.File;
 import java.sql.Timestamp;
 
 /**
@@ -26,5 +27,15 @@ public final class Utility {
     
     public static final Timestamp getCurrentTime() {
         return new Timestamp(System.currentTimeMillis());   
-    }    
+    }  
+    
+    // http://stackoverflow.com/questions/20281835/how-to-delete-a-folder-with-files-using-java
+    public static void deleteFile(File element) {
+    if (element.isDirectory()) {
+        for (File sub : element.listFiles()) {
+            deleteFile(sub);
+        }
+    }
+    element.delete();
+}
 }
