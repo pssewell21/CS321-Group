@@ -13,55 +13,55 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 
 /**
- *
+ * The object used to describe an Account record.
  * @author Patrick Sewell
  */
 public class Account extends LibraryBase {
 
     // <editor-fold defaultstate="collapsed" desc="Member Variables">   
     /**
-     *
+     * The account number.
      */
     public Long accountNumber;
 
     /**
-     *
+     * The account type.
      */
     public String accountType;
 
     /**
-     *
+     * The account description.
      */
     public String description;
 
     /**
-     *
+     * The account balance.
      */
     public BigDecimal balance;
 
     /**
-     *
+     * The account interest rate.
      */
     public BigDecimal interestRate;
 
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     /**
-     * This constructor is used for creating new objects
+     * This constructor is used for creating new objects.
      */
     public Account() {
         super();
     }
 
     /**
-     * This constructor is used for mapping existing objects
+     * This constructor is used for mapping existing objects.
      *
-     * @param id
-     * @param accountNumber
-     * @param accountType
-     * @param description
-     * @param balance
-     * @param interestRate
+     * @param id the ID
+     * @param accountNumber the account number
+     * @param accountType the account type
+     * @param description the account description
+     * @param balance the account balance
+     * @param interestRate the account interestRate
      */
     public Account(Long id,
             Long accountNumber,
@@ -84,10 +84,6 @@ public class Account extends LibraryBase {
         return accountType + " ACCOUNT " + accountNumber;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public HashMap<String, String> toHashMap() {
         HashMap<String, String> map = new HashMap<>();

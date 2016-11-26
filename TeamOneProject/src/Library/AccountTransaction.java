@@ -14,29 +14,29 @@ import java.sql.Timestamp;
 import java.util.HashMap;
 
 /**
- *
+ * The object used to describe an AccountTransaction record.
  * @author Patrick Sewell
  */
 public class AccountTransaction extends LibraryBase {
 
     // <editor-fold defaultstate="collapsed" desc="Member Variables">   
     /**
-     *
+     * The account ID of the account the transaction is performed on.
      */
     public Long accountId;
 
     /**
-     *
+     * The person ID of the person performing the transaction.
      */
     public Long personId;
 
     /**
-     *
+     * The transaction timestamp.
      */
     public Timestamp timestamp;
 
     /**
-     *
+     * The transaction amount.
      */
     public BigDecimal amount;
 
@@ -46,7 +46,7 @@ public class AccountTransaction extends LibraryBase {
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     /**
-     * This constructor is used for creating new objects
+     * This constructor is used for creating new objects.
      */
     public AccountTransaction() {
         super();
@@ -55,13 +55,13 @@ public class AccountTransaction extends LibraryBase {
     }
 
     /**
-     * This constructor is used for mapping existing objects
+     * This constructor is used for mapping existing objects.
      *
-     * @param id
-     * @param accountId
-     * @param personId
-     * @param timestamp
-     * @param amount
+     * @param id The ID
+     * @param accountId The account ID
+     * @param personId The person ID
+     * @param timestamp The timestamp
+     * @param amount The amount
      */
     public AccountTransaction(Long id,
             Long accountId,
@@ -85,10 +85,6 @@ public class AccountTransaction extends LibraryBase {
         return "DATE: " + timestamp + ", AMOUNT: $" + amount + ", BY: " + name;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public HashMap<String, String> toHashMap() {
         HashMap<String, String> map = new HashMap<>();

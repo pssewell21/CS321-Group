@@ -12,85 +12,85 @@ package Library;
 import java.util.HashMap;
 
 /**
- *
+ * The object used to describe an User record.
  * @author Patrick Sewell
  */
 public class User extends LibraryBase {
 
     // <editor-fold defaultstate="collapsed" desc="Member Variables">   
     /**
-     *
+     * The person ID of the person the user belongs to.
      */
     public Long personId;
 
     /**
-     *
+     * The name of the user account used to log in to the system.
      */
     public String userName;
 
     /**
-     *
+     * The password for the user account used to log in to the system.
      */
     public String password;
 
     /**
-     *
+     * The first security question for the user account used to log in to the system.
      */
     public String securityQuestion1;
 
     /**
-     *
+     * The first security answer for the user account used to log in to the system.
      */
     public String securityAnswer1;
 
     /**
-     *
+     * The second security question for the user account used to log in to the system.
      */
     public String securityQuestion2;
 
     /**
-     *
+     * The second security answer for the user account used to log in to the system.
      */
     public String securityAnswer2;
 
     /**
-     *
+     * Specifies if the user account is an administrator account.
      */
     public Boolean isAdministrator;
 
     /**
-     *
+     * Specifies if the user account is locked.
      */
     public Boolean isAccountLocked;
 
     /**
-     *
+     * The selected Theme for the user account.
      */
     public String selectedTheme;
 
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     /**
-     * This constructor is used for creating new objects
+     * This constructor is used for creating new objects.
      */
     public User() {
         super();
     }
 
     /**
-     * This constructor is used for mapping existing objects
+     * This constructor is used for mapping existing objects.
      *
-     * @param id
-     * @param personId
-     * @param userName
-     * @param password
-     * @param securityQuestion1
-     * @param securityAnswer1
-     * @param securityQuestion2
-     * @param securityAnswer2
-     * @param isAdministrator
-     * @param isAccountLocked
-     * @param selectedTheme
+     * @param id The ID
+     * @param personId The person ID
+     * @param userName The user name
+     * @param password The password
+     * @param securityQuestion1 The first security question
+     * @param securityAnswer1 The first security answer
+     * @param securityQuestion2 The second security question
+     * @param securityAnswer2 The second security answer
+     * @param isAdministrator is administrator
+     * @param isAccountLocked is account locked
+     * @param selectedTheme The selected Theme
      */
     public User(Long id,
             Long personId,
@@ -125,10 +125,6 @@ public class User extends LibraryBase {
                 + DalFields.IS_ACCOUNT_LOCKED + ": " + isAccountLocked;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public HashMap<String, String> toHashMap() {
         HashMap<String, String> map = new HashMap<>();

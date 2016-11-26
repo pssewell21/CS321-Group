@@ -12,19 +12,19 @@ package Library;
 import java.util.HashMap;
 
 /**
- *
+ * The object used to describe an AccountPersonMap record.
  * @author Patrick Sewell
  */
 public class AccountPersonMap extends LibraryBase {
 
     // <editor-fold defaultstate="collapsed" desc="Member Variables">   
     /**
-     *
+     * The ID of the account for the account person link.
      */
     public Long accountId;
 
     /**
-     *
+     * The ID of the person for the account person link.
      */
     public Long personId;
 
@@ -35,7 +35,7 @@ public class AccountPersonMap extends LibraryBase {
 
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     /**
-     * This constructor is used for creating new objects
+     * This constructor is used for creating new objects.
      */
     public AccountPersonMap() {
         super();
@@ -44,11 +44,11 @@ public class AccountPersonMap extends LibraryBase {
     }
 
     /**
-     * This constructor is used for mapping existing objects
+     * This constructor is used for mapping existing objects.
      *
-     * @param id
-     * @param accountId
-     * @param personId
+     * @param id the ID
+     * @param accountId The account ID
+     * @param personId The person ID
      */
     public AccountPersonMap(Long id,
             Long accountId,
@@ -79,10 +79,7 @@ public class AccountPersonMap extends LibraryBase {
         return account.toString() + ", PERSON: " + person.toString();
     }
 
-    /**
-     *
-     * @return
-     */
+
     @Override
     public HashMap<String, String> toHashMap() {
         HashMap<String, String> map = new HashMap<>();

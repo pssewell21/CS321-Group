@@ -13,14 +13,14 @@ import Common.ID;
 import java.util.HashMap;
 
 /**
- *
+ * The class that defines the contract for Library objects.
  * @author Patrick Sewell
  */
 public abstract class LibraryBase {
 
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
     /**
-     *
+     * The ID of the object.
      */
     public Long id;
 
@@ -44,8 +44,8 @@ public abstract class LibraryBase {
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
     /**
-     *
-     * @return
+     * Creates a HashMap that contains all of the fields on an object.
+     * @return The HashMap describing the object
      */
     public abstract HashMap<String, String> toHashMap();
 

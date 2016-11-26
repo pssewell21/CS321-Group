@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- *
+ * The class that defines the contract for LibraryFactory objects.
  * @author Patrick Sewell
  */
 public abstract class LibraryFactoryBase implements ISqlGenerator {
@@ -49,16 +49,16 @@ public abstract class LibraryFactoryBase implements ISqlGenerator {
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
     /**
-     *
-     * @param hashMap
-     * @return
+     * Selects records from the database based on the criteria that are passed in.
+     * @param criteria The HashMap that contains the fields to filter by
+     * @return A list of records from the database
      */
-    public abstract List<? extends LibraryBase> executeSelect(HashMap<String, String> hashMap);
+    public abstract List<? extends LibraryBase> executeSelect(HashMap<String, String> criteria);
 
     /**
-     *
-     * @param criteria
-     * @return
+     * Inserts a records in the database based on the criteria that are passed in.
+     * @param criteria The HashMap that describes the object
+     * @return The value indicating if the insert was successful
      */
     public boolean executeInsert(HashMap<String, String> criteria) {
         boolean successful = true;
@@ -86,9 +86,9 @@ public abstract class LibraryFactoryBase implements ISqlGenerator {
     }
 
     /**
-     *
-     * @param criteria
-     * @return
+     * Updates a records in the database based on the criteria that are passed in.
+     * @param criteria The HashMap that describes the object
+     * @return The value indicating if the insert was successful
      */
     public boolean executeUpdate(HashMap<String, String> criteria) {
         boolean successful = true;
@@ -116,9 +116,9 @@ public abstract class LibraryFactoryBase implements ISqlGenerator {
     }
 
     /**
-     *
-     * @param criteria
-     * @return
+     * Deletes a records in the database based on the criteria that are passed in.
+     * @param criteria The HashMap that describes the object
+     * @return The value indicating if the insert was successful
      */
     public boolean executeDelete(HashMap<String, String> criteria) {
         boolean successful = true;

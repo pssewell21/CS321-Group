@@ -12,56 +12,55 @@ package Library;
 import java.util.HashMap;
 
 /**
- *
+ * The object used to describe an Person record.
  * @author Patrick Sewell
  */
 public class Person extends LibraryBase {
 
     // <editor-fold defaultstate="collapsed" desc="Member Variables">   
     /**
-     *
+     * The name of the person.
      */
     public String name;
 
-    //TODO: Change this to a Date data type
     /**
-     *
+     * The date of birth of the person.
      */
     public String dateOfBirth;
 
     /**
-     *
+     * The address of the person.
      */
     public String address;
 
     /**
-     *
+     * The phone number of the person.
      */
     public String phoneNumber;
 
     /**
-     *
+     * The social security number of the person.
      */
     public String socialSecurityNumber;
 
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     /**
-     * This constructor is used for creating new objects
+     * This constructor is used for creating new objects.
      */
     public Person() {
         super();
     }
 
     /**
-     * This constructor is used for mapping existing objects
+     * This constructor is used for mapping existing objects.
      *
-     * @param id
-     * @param name
-     * @param dateOfBirth
-     * @param address
-     * @param phoneNumber
-     * @param socialSecurityNumber
+     * @param id The ID
+     * @param name The name
+     * @param dateOfBirth The date of birth
+     * @param address The address
+     * @param phoneNumber The phone number
+     * @param socialSecurityNumber The social security number
      */
     public Person(Long id,
             String name,
@@ -84,10 +83,6 @@ public class Person extends LibraryBase {
         return name;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public HashMap<String, String> toHashMap() {
         HashMap<String, String> map = new HashMap<>();

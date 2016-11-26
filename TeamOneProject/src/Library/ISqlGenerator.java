@@ -18,30 +18,30 @@ import java.util.HashMap;
 public interface ISqlGenerator {
 
     /**
-     *
-     * @param criteria
-     * @return
+     * Generates a select SQL command based on the criteria passed in.
+     * @param criteria The criteria to filter the select by
+     * @return The SQL command to be executed
      */
     public String generateSelectCommand(HashMap<String, String> criteria);
 
     /**
-     *
-     * @param criteria
-     * @return
+     * Generates an insert SQL command based on the criteria passed in.
+     * @param criteria The criteria to create the command with
+     * @return The SQL command to be executed
      */
     public String generateInsertCommand(HashMap<String, String> criteria);
 
     /**
-     *
-     * @param criteria
-     * @return
+     * Generates an update SQL command based on the criteria passed in.
+     * @param criteria The criteria to create the command with
+     * @return The SQL command to be executed
      */
     public String generateUpdateCommand(HashMap<String, String> criteria);
 
     /**
-     *
-     * @param criteria
-     * @return
+     * Generates a delete SQL command based on the criteria passed in.
+     * @param criteria The criteria to create the command with
+     * @return The SQL command to be executed
      */
     public String generateDeleteCommand(HashMap<String, String> criteria);
 }
