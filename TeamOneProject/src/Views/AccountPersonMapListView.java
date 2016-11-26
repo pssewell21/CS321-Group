@@ -45,6 +45,7 @@ public class AccountPersonMapListView extends javax.swing.JFrame {
         personComboBox.setSelectedItem(null);
         newButton.setEnabled(false);
 
+        setResizable(false);
         setVisible(true);
     }
 

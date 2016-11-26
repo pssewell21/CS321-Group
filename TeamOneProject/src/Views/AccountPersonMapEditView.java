@@ -58,6 +58,7 @@ public class AccountPersonMapEditView extends javax.swing.JFrame {
         }
 
         pack();
+        setResizable(false);
         setVisible(true);
     }
     

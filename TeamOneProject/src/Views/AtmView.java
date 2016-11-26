@@ -118,6 +118,7 @@ public final class AtmView extends JFrame {
             }
         });
 
+        setResizable(false);
         setVisible(true);
     }
 

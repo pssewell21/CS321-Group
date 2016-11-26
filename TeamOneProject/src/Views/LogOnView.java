@@ -34,6 +34,7 @@ public class LogOnView extends javax.swing.JFrame {
         userNameField.setText("admin");
         passwordField.setText("password");
 
+        setResizable(false);
         setVisible(true);
     }
 

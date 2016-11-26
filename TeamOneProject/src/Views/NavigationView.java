@@ -33,6 +33,7 @@ public class NavigationView extends javax.swing.JFrame {
         initComponents();
         setThemeColors();
 
+        setResizable(false);
         setVisible(true);
     }
 

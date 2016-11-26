@@ -42,6 +42,7 @@ public class AccountListView extends javax.swing.JFrame {
     private void load() {
         initComponents();
         setThemeColors();
+        setResizable(false);
         setVisible(true);
     }
     

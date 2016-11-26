@@ -74,6 +74,7 @@ public class UserEditView extends javax.swing.JFrame {
         }
 
         pack();
+        setResizable(false);
         setVisible(true);
     }
 

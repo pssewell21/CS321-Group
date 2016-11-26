@@ -52,6 +52,7 @@ public class AccountEditView extends javax.swing.JFrame {
         }
 
         pack();
+        setResizable(false);
         setVisible(true);
     }
     

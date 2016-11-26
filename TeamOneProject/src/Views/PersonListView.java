@@ -43,6 +43,7 @@ public class PersonListView extends javax.swing.JFrame {
         initComponents();
         setThemeColors();
         
+        setResizable(false);
         setVisible(true);
     }
     

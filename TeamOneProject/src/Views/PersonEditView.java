@@ -45,6 +45,7 @@ public class PersonEditView extends javax.swing.JFrame {
         SocialSecurityNumberField.setText(controller.model.SocialSecurityNumber);
 
         pack();
+        setResizable(false);
         setVisible(true);
     }
     

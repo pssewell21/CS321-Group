@@ -44,6 +44,7 @@ public class TestDataEditView extends javax.swing.JFrame {
         ValueField.setText(controller.model.Value);
 
         pack();
+        setResizable(false);
         setVisible(true);
     }
     
