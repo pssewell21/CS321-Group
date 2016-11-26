@@ -1,7 +1,11 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright 2016 AUTHORS. Patrick S Sewell, Paul M Dyer, Taehyeok Lee, 
+ * Benjamin C Ferguson, Hyunki J KIm Permission is granted to copy, distribute 
+ * and/or modify this document under the terms of the GNU Free Documentation 
+ * License, Version 1.3, (3 November 2008) or any later version published by 
+ * the Free Software Foundation; with no Invariant Sections, with no 
+ * Front-Cover Texts, and with no Back-Cover Texts. A copy of the license 
+ * can be found at http://www.gnu.org/copyleft/fdl.html
  */
 package Common;
 
@@ -11,6 +15,7 @@ import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
 
 /**
+ * Used to encrypt and decrypt data using an AES encryption algorithm
  * 
  * This code was originally taken from
  * http://www.quickprogrammingtips.com/java/how-to-encrypt-and-decrypt-data-in-java-using-aes-algorithm.html
@@ -40,7 +45,7 @@ public class AesEncryption {
     }
 
     /**
-     * Decrypts encrypted byte array using the key used for encryption.
+     * Decrypts encrypted string using the key used for encryption.
      *
      * @param encryptedText
      * @return
@@ -57,26 +62,14 @@ public class AesEncryption {
 
         return null;
     }
-
-    /**
-     * gets the AES encryption key.
-     *
-     * @return
-     * @throws Exception
-     */
+    
     private static SecretKey getSecretEncryptionKey() throws Exception {
         byte[] raw = DatatypeConverter.parseHexBinary("1918CE2C428773705B9B43688E4B4FB2");
         SecretKeySpec skeySpec = new SecretKeySpec(raw, "AES");
 
         return skeySpec;
     }
-
-    /**
-     * Convert a binary byte array into readable hex form
-     *
-     * @param hash
-     * @return
-     */
+    
     private static String bytesToHex(byte[] hash) {
         return DatatypeConverter.printHexBinary(hash);
     }
