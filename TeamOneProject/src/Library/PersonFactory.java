@@ -41,6 +41,7 @@ public class PersonFactory extends LibraryFactoryBase {
             return null;
         }
     }
+
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Implementation of LibraryFactoryBase Methods"> 
     @Override
@@ -154,13 +155,13 @@ public class PersonFactory extends LibraryFactoryBase {
                         + "'" + name + "', "
                         + "'" + dateOfBirth + "', "
                         + "'" + address + "', ";
-                
+
                 if (hasValue(phoneNumber)) {
                     command += "'" + phoneNumber + "', ";
                 } else {
                     command += "NULL, ";
                 }
-                
+
                 command += "'" + socialSecurityNumber + "'"
                         + ")";
             } else {
@@ -207,9 +208,9 @@ public class PersonFactory extends LibraryFactoryBase {
                 } else {
                     command += DalFields.PHONE_NUMBER + " = NULL, ";
                 }
-                
+
                 command += DalFields.SOCIAL_SECURITY_NUMBER + " = '" + socialSecurityNumber + "' ";
-                
+
                 command += "WHERE " + DalFields.ID + " = " + id;
             }
         } else {

@@ -15,49 +15,34 @@ import javax.swing.DefaultListModel;
  * @author Owner
  */
 public class PersonEditViewController extends EditViewControllerBase {
-   
-    // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
 
+    // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
     /**
      *
-     */    
+     */
     public Person model;
 
-    /**
-     *
-     */
-    public PersonEditView view;
-
-    /**
-     *
-     */
-    public PersonFactory factory;
-    
+    private final PersonFactory factory;
+    private PersonEditView view;
     private DefaultListModel<Person> listModel;
-    
-    // </editor-fold> 
-    
-    // <editor-fold defaultstate="collapsed" desc="Constructors"> 
 
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     /**
      *
      */
-
     public PersonEditViewController() {
         factory = new PersonFactory();
     }
-    
+
     // </editor-fold> 
-
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
-
     /**
      *
      * @param model
      * @param listModel
      */
-    
-    public void load (Person model, DefaultListModel<Person> listModel) {
+    public void load(Person model, DefaultListModel<Person> listModel) {
         if (model != null) {
             this.model = model;
             isNew = false;
@@ -65,7 +50,7 @@ public class PersonEditViewController extends EditViewControllerBase {
             this.model = new Person();
             isNew = true;
         }
-        
+
         this.listModel = listModel;
 
         view = new PersonEditView(this);
@@ -107,7 +92,7 @@ public class PersonEditViewController extends EditViewControllerBase {
     public void executeDelete() {
         //TODO: Add confirmation prompt
         boolean successful = factory.executeDelete(model.toHashMap());
-        
+
         if (successful) {
             listModel.removeElement(model);
             view.dispose();
@@ -117,18 +102,18 @@ public class PersonEditViewController extends EditViewControllerBase {
     private void doSave() {
         if (isNew) {
             boolean successful = factory.executeInsert(model.toHashMap());
-            
+
             if (successful) {
                 listModel.addElement(model);
             }
         } else {
             boolean successful = factory.executeUpdate(model.toHashMap());
-            
+
             if (!successful) {
                 //TODO: rollback changes in some way
             }
-        }      
+        }
     }
-    
+
     // </editor-fold>    
 }

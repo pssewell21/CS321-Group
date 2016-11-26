@@ -15,11 +15,6 @@ import Themes.LightTheme;
  */
 public final class UserSettings {
 
-    /**
-     *
-     */
-    public String selectedTheme;
-
     public static ITheme theme;
 
     private UserSettings() {

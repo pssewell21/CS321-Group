@@ -15,24 +15,20 @@ import java.sql.SQLException;
  */
 public class NavigationViewController {
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
-    
-    public NavigationView view;
-    
+
+    private NavigationView view;
+
     // </editor-fold> 
-    
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
-    
     public NavigationViewController() {
     }
-    
-    // </editor-fold> 
-       
-    // <editor-fold defaultstate="collapsed" desc="Methods"> 
 
-    public void load() {        
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Methods"> 
+    public void load() {
         view = new NavigationView(this);
     }
-    
+
     public void executeNavigateTestDataList() {
         try {
             TestDataListViewController t = new TestDataListViewController();
@@ -41,7 +37,7 @@ public class NavigationViewController {
             ExceptionHandler.handleException(e);
         }
     }
-    
+
     public void executeNavigatePersonList() {
         try {
             PersonListViewController p = new PersonListViewController();
@@ -50,7 +46,7 @@ public class NavigationViewController {
             ExceptionHandler.handleException(e);
         }
     }
-    
+
     public void executeNavigateUserList() {
         try {
             UserListViewController t = new UserListViewController();
@@ -59,7 +55,7 @@ public class NavigationViewController {
             ExceptionHandler.handleException(e);
         }
     }
-    
+
     public void executeNavigateAccountList() {
         try {
             AccountListViewController t = new AccountListViewController();
@@ -68,7 +64,7 @@ public class NavigationViewController {
             ExceptionHandler.handleException(e);
         }
     }
-    
+
     public void executeNavigateAccountPersonMapList() {
         try {
             AccountPersonMapListViewController t = new AccountPersonMapListViewController();
@@ -77,6 +73,6 @@ public class NavigationViewController {
             ExceptionHandler.handleException(e);
         }
     }
-    
+
     // </editor-fold> 
 }

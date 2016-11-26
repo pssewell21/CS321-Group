@@ -60,11 +60,11 @@
                           </Group>
                           <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="AccountNumberField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="AccountTypeField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="DescriptionField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="BalanceField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="InterestRateField" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
+                              <Component id="accountNumberField" alignment="0" max="32767" attributes="0"/>
+                              <Component id="accountTypeField" alignment="0" max="32767" attributes="0"/>
+                              <Component id="descriptionField" alignment="0" max="32767" attributes="0"/>
+                              <Component id="balanceField" alignment="0" max="32767" attributes="0"/>
+                              <Component id="interestRateField" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="71" max="32767" attributes="0"/>
                       </Group>
@@ -88,27 +88,27 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="AccountNumberField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="accountNumberField" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="AccountTypeField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="accountTypeField" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="DescriptionField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="descriptionField" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="BalanceField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="balanceField" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="InterestRateField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="interestRateField" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -156,15 +156,15 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="AccountNumberField">
+        <Component class="javax.swing.JTextField" name="accountNumberField">
         </Component>
-        <Component class="javax.swing.JTextField" name="AccountTypeField">
+        <Component class="javax.swing.JTextField" name="accountTypeField">
         </Component>
-        <Component class="javax.swing.JTextField" name="DescriptionField">
+        <Component class="javax.swing.JTextField" name="descriptionField">
         </Component>
-        <Component class="javax.swing.JTextField" name="BalanceField">
+        <Component class="javax.swing.JTextField" name="balanceField">
         </Component>
-        <Component class="javax.swing.JTextField" name="InterestRateField">
+        <Component class="javax.swing.JTextField" name="interestRateField">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>

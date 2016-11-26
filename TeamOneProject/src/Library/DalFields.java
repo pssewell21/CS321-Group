@@ -10,6 +10,7 @@ package Library;
  * @author pssew
  */
 public final class DalFields {
+
     public static final String ACCOUNT_ID = "ACCOUNT_ID";
     public static final String ACCOUNT_NUMBER = "ACCOUNT_NUMBER";
     public static final String ACCOUNT_TYPE = "ACCOUNT_TYPE";

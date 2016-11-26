@@ -11,50 +11,47 @@ import java.util.HashMap;
  *
  * @author Owner
  */
-public class Person extends LibraryBase  {
-    
-    // <editor-fold defaultstate="collapsed" desc="Member Variables">   
+public class Person extends LibraryBase {
 
+    // <editor-fold defaultstate="collapsed" desc="Member Variables">   
     /**
      *
      */
-    public String Name;
+    public String name;
 
     //TODO: Change this to a Date data type
     /**
      *
      */
-    public String DateOfBirth;
-    
+    public String dateOfBirth;
+
     /**
      *
      */
-    public String Address;
-    
+    public String address;
+
     /**
      *
      */
-    public String PhoneNumber;
-    
+    public String phoneNumber;
+
     /**
      *
      */
-    public String SocialSecurityNumber;
+    public String socialSecurityNumber;
 
     // </editor-fold>
-    
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
-
     /**
      * This constructor is used for creating new objects
      */
-    
     public Person() {
         super();
     }
 
     /**
      * This constructor is used for mapping existing objects
+     *
      * @param id
      * @param name
      * @param dateOfBirth
@@ -62,27 +59,25 @@ public class Person extends LibraryBase  {
      * @param phoneNumber
      * @param socialSecurityNumber
      */
-    public Person(Long id, 
-            String name, 
-            String dateOfBirth, 
-            String address, 
-            String phoneNumber, 
+    public Person(Long id,
+            String name,
+            String dateOfBirth,
+            String address,
+            String phoneNumber,
             String socialSecurityNumber) {
         super(id);
-        Name = name;
-        DateOfBirth = dateOfBirth;
-        Address = address;
-        PhoneNumber = phoneNumber;
-        SocialSecurityNumber = socialSecurityNumber;                  
+        this.name = name;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.socialSecurityNumber = socialSecurityNumber;
     }
-    
-    // </editor-fold>
-    
-    // <editor-fold defaultstate="collapsed" desc="Methods"> 
 
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="Methods"> 
     @Override
     public String toString() {
-        return Name;
+        return name;
     }
 
     /**
@@ -92,16 +87,16 @@ public class Person extends LibraryBase  {
     @Override
     public HashMap<String, String> toHashMap() {
         HashMap<String, String> map = new HashMap<>();
-        
-        map.put(DalFields.ID, Id.toString());
-        map.put(DalFields.NAME, Name);
-        map.put(DalFields.DATE_OF_BIRTH, DateOfBirth);
-        map.put(DalFields.ADDRESS, Address);
-        map.put(DalFields.PHONE_NUMBER, PhoneNumber);
-        map.put(DalFields.SOCIAL_SECURITY_NUMBER, SocialSecurityNumber);
+
+        map.put(DalFields.ID, id.toString());
+        map.put(DalFields.NAME, name);
+        map.put(DalFields.DATE_OF_BIRTH, dateOfBirth);
+        map.put(DalFields.ADDRESS, address);
+        map.put(DalFields.PHONE_NUMBER, phoneNumber);
+        map.put(DalFields.SOCIAL_SECURITY_NUMBER, socialSecurityNumber);
 
         return map;
     }
-    
+
     // </editor-fold>
 }

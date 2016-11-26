@@ -41,6 +41,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
+/**
+ *
+ * @author Owner
+ */
 public final class AtmView extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
 
@@ -111,7 +115,7 @@ public final class AtmView extends JFrame {
     public void load() {
         setContentPane(getJContentPane());
         setTitle("ATM Demo");
-        
+
         this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png")).getImage());
 
         setBounds(new Rectangle(0, 0, 616, 439));
@@ -129,7 +133,7 @@ public final class AtmView extends JFrame {
     /**
      * This method initializes contentPane
      *
-     * @return javax.swing.JPanel
+     * @return JPanel
      */
     private JPanel getJContentPane() {
         contentPane = new JPanel();
@@ -145,7 +149,7 @@ public final class AtmView extends JFrame {
     /**
      * This method initializes tabbedPane
      *
-     * @return javax.swing.JTabbedPane
+     * @return JTabbedPane
      */
     private JTabbedPane getTabbedPane() {
         tabbedPane = new JTabbedPane();
@@ -159,7 +163,7 @@ public final class AtmView extends JFrame {
      * This method adds additional tabs to the tabbedPane after selecting an
      * account
      *
-     * @return javax.swing.JTabbedPane
+     * @return JTabbedPane
      */
     private void addTabbedPaneTabs() {
         if (tabbedPane != null) {
@@ -175,7 +179,7 @@ public final class AtmView extends JFrame {
     /**
      * This method initializes LandingPanel
      *
-     * @return javax.swing.JPanel
+     * @return JPanel
      */
     private JPanel getLandingPanel() {
         GridBagConstraints gridBagConstraintsExitButton = new GridBagConstraints();
@@ -185,7 +189,7 @@ public final class AtmView extends JFrame {
         gridBagConstraintsLogoLabel.gridx = 0;
         gridBagConstraintsLogoLabel.gridy = 0;
         gridBagConstraintsLogoLabel.ipadx = 30;
-        gridBagConstraintsLogoLabel.ipady = 30;  
+        gridBagConstraintsLogoLabel.ipady = 30;
         gridBagConstraintsLogoLabel.gridheight = 5;
         gridBagConstraintsLogoLabel.fill = GridBagConstraints.VERTICAL;
         GridBagConstraints gridBagConstraintsAccountSelectionComboBox = new GridBagConstraints();
@@ -197,7 +201,7 @@ public final class AtmView extends JFrame {
         GridBagConstraints gridBagConstraintsSelectedThemeLabel = new GridBagConstraints();
         gridBagConstraintsSelectedThemeLabel.gridx = 1;
         gridBagConstraintsSelectedThemeLabel.gridy = 2;
-        gridBagConstraintsSelectedThemeLabel.anchor = GridBagConstraints.EAST;    
+        gridBagConstraintsSelectedThemeLabel.anchor = GridBagConstraints.EAST;
         GridBagConstraints gridBagConstraintsAccountLabel = new GridBagConstraints();
         gridBagConstraintsAccountLabel.gridx = 1;
         gridBagConstraintsAccountLabel.gridy = 1;
@@ -207,7 +211,7 @@ public final class AtmView extends JFrame {
         logoLabel.setPreferredSize(new Dimension(150, 150));
         logoLabel.setText(null);
         logoLabel.setIcon(ImageIconScaler.getScaledImage(image, 150, 150));
-        
+
         accountLabel = new JLabel();
         accountLabel.setText("Account: ");
         accountLabel.setForeground(UserSettings.theme.getTextColor());
@@ -230,7 +234,7 @@ public final class AtmView extends JFrame {
     /**
      * This method initializes depositPanel
      *
-     * @return javax.swing.JPanel
+     * @return JPanel
      */
     private JPanel getDepositPanel() {
         GridBagConstraints gridBagConstraintsDepositButton = new GridBagConstraints();
@@ -273,7 +277,7 @@ public final class AtmView extends JFrame {
     /**
      * This method initializes withdrawalPanel
      *
-     * @return javax.swing.JPanel
+     * @return JPanel
      */
     private JPanel getWithdrawalPanel() {
         GridBagConstraints gridBagConstraintsWithdrawButton = new GridBagConstraints();
@@ -317,7 +321,7 @@ public final class AtmView extends JFrame {
     /**
      * This method initializes balanceCheckPanel
      *
-     * @return javax.swing.JPanel
+     * @return JPanel
      */
     private JPanel getBalanceCheckPanel() {
         GridBagConstraints gridBagConstraintsBalanceCheckButton = new GridBagConstraints();
@@ -363,7 +367,7 @@ public final class AtmView extends JFrame {
     /**
      * This method initializes transactionHistoryPanel
      *
-     * @return javax.swing.JPanel
+     * @return JPanel
      */
     private JPanel getTransactionHistoryPanel() {
         GridBagConstraints gridBagConstraintsCustomDateRangeRadioButton = new GridBagConstraints();
@@ -460,13 +464,13 @@ public final class AtmView extends JFrame {
     /**
      * This method initializes depositAccountNumberField
      *
-     * @return javax.swing.JLabel
+     * @return JLabel
      */
     private JLabel getDepositAccountNumberField() {
         depositAccountNumberField = new JLabel();
         depositAccountNumberField.setForeground(UserSettings.theme.getTextColor());
-        if (controller.selectedAccount != null && controller.selectedAccount.AccountNumber != null) {
-            depositAccountNumberField.setText(controller.selectedAccount.AccountNumber.toString());
+        if (controller.selectedAccount != null && controller.selectedAccount.accountNumber != null) {
+            depositAccountNumberField.setText(controller.selectedAccount.accountNumber.toString());
         }
 
         return depositAccountNumberField;
@@ -475,7 +479,7 @@ public final class AtmView extends JFrame {
     /**
      * This method initializes depositAmountField
      *
-     * @return javax.swing.JTextField
+     * @return JTextField
      */
     private JTextField getDepositAmountField() {
         depositAmountField = new JTextField();
@@ -489,7 +493,7 @@ public final class AtmView extends JFrame {
     /**
      * This method initializes depositButton
      *
-     * @return javax.swing.JButton
+     * @return JButton
      */
     private JButton getDepositButton() {
         depositButton = new JButton();
@@ -509,13 +513,13 @@ public final class AtmView extends JFrame {
     /**
      * This method initializes withdrawalAccountNumberField
      *
-     * @return javax.swing.JLabel
+     * @return JLabel
      */
     private JLabel getWithdrawalAccountNumberField() {
         withdrawalAccountNumberField = new JLabel();
         withdrawalAccountNumberField.setForeground(UserSettings.theme.getTextColor());
-        if (controller.selectedAccount != null && controller.selectedAccount.AccountNumber != null) {
-            withdrawalAccountNumberField.setText(controller.selectedAccount.AccountNumber.toString());
+        if (controller.selectedAccount != null && controller.selectedAccount.accountNumber != null) {
+            withdrawalAccountNumberField.setText(controller.selectedAccount.accountNumber.toString());
         }
 
         return withdrawalAccountNumberField;
@@ -524,7 +528,7 @@ public final class AtmView extends JFrame {
     /**
      * This method initializes withdrawalAmountField
      *
-     * @return javax.swing.JTextField
+     * @return JTextField
      */
     private JTextField getWithdrawalAmountField() {
         withdrawalAmountField = new JTextField();
@@ -538,7 +542,7 @@ public final class AtmView extends JFrame {
     /**
      * This method initializes jdrawingButton
      *
-     * @return javax.swing.JButton
+     * @return JButton
      */
     private JButton getWithdrawButton() {
         withdrawButton = new JButton();
@@ -549,8 +553,7 @@ public final class AtmView extends JFrame {
         withdrawButton.addActionListener((java.awt.event.ActionEvent e) -> {
             BigDecimal amount = new BigDecimal(withdrawalAmountField.getText());
 
-            if (!controller.executeWithdrawal(amount))
-            {
+            if (!controller.executeWithdrawal(amount)) {
                 JOptionPane.showMessageDialog(withdrawalPanel, "Insufficient funds to make withdrawal.");
             }
         });
@@ -561,13 +564,13 @@ public final class AtmView extends JFrame {
     /**
      * This method initializes balanceCheckAccountNumberField
      *
-     * @return javax.swing.JLabel
+     * @return JLabel
      */
     private JLabel getBalanceCheckAccountNumberField() {
         balanceCheckAccountNumberField = new JLabel();
         balanceCheckAccountNumberField.setForeground(UserSettings.theme.getTextColor());
-        if (controller.selectedAccount != null && controller.selectedAccount.AccountNumber != null) {
-            balanceCheckAccountNumberField.setText(controller.selectedAccount.AccountNumber.toString());
+        if (controller.selectedAccount != null && controller.selectedAccount.accountNumber != null) {
+            balanceCheckAccountNumberField.setText(controller.selectedAccount.accountNumber.toString());
         }
 
         return balanceCheckAccountNumberField;
@@ -576,7 +579,7 @@ public final class AtmView extends JFrame {
     /**
      * This method initializes balanceCheckButton
      *
-     * @return javax.swing.JButton
+     * @return JButton
      */
     private JButton getBalanceCheckButton() {
         balanceCheckButton = new JButton();
@@ -596,13 +599,13 @@ public final class AtmView extends JFrame {
     /**
      * This method initializes transactionHistoryAccountNumberField
      *
-     * @return javax.swing.JLabel
+     * @return JLabel
      */
     private JLabel getTransactionHistoryAccountNumberField() {
         transactionHistoryAccountNumberField = new JLabel();
         transactionHistoryAccountNumberField.setForeground(UserSettings.theme.getTextColor());
-        if (controller.selectedAccount != null && controller.selectedAccount.AccountNumber != null) {
-            transactionHistoryAccountNumberField.setText(controller.selectedAccount.AccountNumber.toString());
+        if (controller.selectedAccount != null && controller.selectedAccount.accountNumber != null) {
+            transactionHistoryAccountNumberField.setText(controller.selectedAccount.accountNumber.toString());
         }
 
         return transactionHistoryAccountNumberField;
@@ -611,7 +614,7 @@ public final class AtmView extends JFrame {
     /**
      * This method initializes lastDayRadioButton
      *
-     * @return javax.swing.JRadioButton
+     * @return JRadioButton
      */
     private JRadioButton getLastDayRadioButton() {
         lastDayRadioButton = new JRadioButton();
@@ -627,7 +630,7 @@ public final class AtmView extends JFrame {
     /**
      * This method initializes lastMonthRadioButton
      *
-     * @return javax.swing.JRadioButton
+     * @return JRadioButton
      */
     private JRadioButton getLastMonthRadioButton() {
         lastMonthRadioButton = new JRadioButton();
@@ -642,7 +645,7 @@ public final class AtmView extends JFrame {
     /**
      * This method initializes lastYearRadioButton
      *
-     * @return javax.swing.JRadioButton
+     * @return JRadioButton
      */
     private JRadioButton getLastYearRadioButton() {
         lastYearRadioButton = new JRadioButton();
@@ -657,7 +660,7 @@ public final class AtmView extends JFrame {
     /**
      * This method initializes transactionHistoryStartDateField
      *
-     * @return javax.swing.JTextField
+     * @return JTextField
      */
     private JTextField getTransactionHistoryStartDateField() {
         transactionHistoryStartDateField = new JTextField();
@@ -670,7 +673,7 @@ public final class AtmView extends JFrame {
     /**
      * This method initializes transactionHistoryEndDateField
      *
-     * @return javax.swing.JTextField
+     * @return JTextField
      */
     private JTextField getTransactionHistoryEndDateField() {
         transactionHistoryEndDateField = new JTextField();
@@ -683,7 +686,7 @@ public final class AtmView extends JFrame {
     /**
      * This method initializes transactionHistoryList
      *
-     * @return javax.swing.JScrollPane
+     * @return JScrollPane
      */
     private JScrollPane getTransactionHistoryList() {
         transactionHistoryScrollPanel = new JScrollPane();
@@ -698,7 +701,7 @@ public final class AtmView extends JFrame {
     /**
      * This method initializes getTransactionHistoryButton
      *
-     * @return javax.swing.JButton
+     * @return JButton
      */
     private JButton getTransactionHistoryButton() {
         getTransactionHistoryButton = new JButton();
@@ -765,7 +768,7 @@ public final class AtmView extends JFrame {
     /**
      * This method initializes accountSelectionComboBox
      *
-     * @return javax.swing.JComboBox
+     * @return JComboBox
      */
     private JComboBox getAccountSelectionComboBox() {
         accountSelectionComboBox = new JComboBox<>();
@@ -779,9 +782,9 @@ public final class AtmView extends JFrame {
         accountSelectionComboBox.setRenderer(new DefaultListCellRenderer() {
             @Override
             public void paint(Graphics g) {
-            setBackground(UserSettings.theme.getListBackgroundColor());
-            setForeground(UserSettings.theme.getTextColor());
-            super.paint(g);
+                setBackground(UserSettings.theme.getListBackgroundColor());
+                setForeground(UserSettings.theme.getTextColor());
+                super.paint(g);
             }
         });
         accountSelectionComboBox.addActionListener((java.awt.event.ActionEvent e) -> {
@@ -803,7 +806,7 @@ public final class AtmView extends JFrame {
     /**
      * This method initializes selectedThemeComboBox
      *
-     * @return javax.swing.JComboBox
+     * @return JComboBox
      */
     private JComboBox getSelectedThemeComboBox() {
         selectedThemeComboBox = new JComboBox<>();
@@ -820,9 +823,9 @@ public final class AtmView extends JFrame {
         selectedThemeComboBox.setRenderer(new DefaultListCellRenderer() {
             @Override
             public void paint(Graphics g) {
-            setBackground(UserSettings.theme.getListBackgroundColor());
-            setForeground(UserSettings.theme.getTextColor());
-            super.paint(g);
+                setBackground(UserSettings.theme.getListBackgroundColor());
+                setForeground(UserSettings.theme.getTextColor());
+                super.paint(g);
             }
         });
         selectedThemeComboBox.addActionListener((java.awt.event.ActionEvent e) -> {
@@ -837,7 +840,7 @@ public final class AtmView extends JFrame {
     /**
      * This method initializes exitButton
      *
-     * @return javax.swing.JButton
+     * @return JButton
      */
     private JButton getExitButton() {
         exitButton = new JButton();

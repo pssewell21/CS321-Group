@@ -12,49 +12,46 @@ import java.util.HashMap;
  *
  * @author Owner
  */
-public class Account extends LibraryBase  {
-    
+public class Account extends LibraryBase {
+
     // <editor-fold defaultstate="collapsed" desc="Member Variables">   
+    /**
+     *
+     */
+    public Long accountNumber;
 
     /**
      *
      */
-    public Long AccountNumber;
+    public String accountType;
 
     /**
      *
      */
-    public String AccountType;
-    
+    public String description;
+
     /**
      *
      */
-    public String Description;
-    
+    public BigDecimal balance;
+
     /**
      *
      */
-    public BigDecimal Balance;
-    
-    /**
-     *
-     */
-    public BigDecimal InterestRate;
+    public BigDecimal interestRate;
 
     // </editor-fold>
-    
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
-
     /**
      * This constructor is used for creating new objects
      */
-    
     public Account() {
         super();
     }
 
     /**
      * This constructor is used for mapping existing objects
+     *
      * @param id
      * @param accountNumber
      * @param accountType
@@ -62,27 +59,25 @@ public class Account extends LibraryBase  {
      * @param balance
      * @param interestRate
      */
-    public Account(Long id, 
-            Long accountNumber, 
-            String accountType, 
-            String description, 
-            BigDecimal balance, 
+    public Account(Long id,
+            Long accountNumber,
+            String accountType,
+            String description,
+            BigDecimal balance,
             BigDecimal interestRate) {
         super(id);
-        AccountNumber = accountNumber;
-        AccountType = accountType;
-        Description = description;
-        Balance = balance;
-        InterestRate = interestRate;                  
+        this.accountNumber = accountNumber;
+        this.accountType = accountType;
+        this.description = description;
+        this.balance = balance;
+        this.interestRate = interestRate;
     }
-    
-    // </editor-fold>
-    
-    // <editor-fold defaultstate="collapsed" desc="Methods"> 
 
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="Methods"> 
     @Override
     public String toString() {
-        return AccountType + " ACCOUNT " + AccountNumber;
+        return accountType + " ACCOUNT " + accountNumber;
     }
 
     /**
@@ -92,21 +87,20 @@ public class Account extends LibraryBase  {
     @Override
     public HashMap<String, String> toHashMap() {
         HashMap<String, String> map = new HashMap<>();
-        
-        map.put(DalFields.ID, Id.toString());
-        map.put(DalFields.ACCOUNT_NUMBER, AccountNumber.toString());
-        map.put(DalFields.ACCOUNT_TYPE, AccountType);
-        map.put(DalFields.DESCRIPTION, Description);
-        map.put(DalFields.BALANCE, Balance.toString());
-        if (InterestRate != null) {
-            map.put(DalFields.INTEREST_RATE, InterestRate.toString());
-        }
-        else {
+
+        map.put(DalFields.ID, id.toString());
+        map.put(DalFields.ACCOUNT_NUMBER, accountNumber.toString());
+        map.put(DalFields.ACCOUNT_TYPE, accountType);
+        map.put(DalFields.DESCRIPTION, description);
+        map.put(DalFields.BALANCE, balance.toString());
+        if (interestRate != null) {
+            map.put(DalFields.INTEREST_RATE, interestRate.toString());
+        } else {
             map.put(DalFields.INTEREST_RATE, null);
         }
 
         return map;
-    }  
-    
+    }
+
     // </editor-fold>
 }

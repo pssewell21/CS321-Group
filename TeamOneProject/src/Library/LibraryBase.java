@@ -15,46 +15,40 @@ import java.util.HashMap;
 public abstract class LibraryBase {
 
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
-    
     /**
      *
      */
-    public Long Id;
-    
-    // </editor-fold> 
-    
-    // <editor-fold defaultstate="collapsed" desc="Constructors"> 
+    public Long id;
 
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     /**
      *
      */
     protected LibraryBase() {
-        Id = ID.newId();
+        id = ID.newId();
     }
-    
+
     /**
      *
      * @param id
      */
-    protected LibraryBase(Long id){
-        Id = id;
+    protected LibraryBase(Long id) {
+        this.id = id;
     }
-    
+
     // </editor-fold> 
-    
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
-    
     /**
      *
      * @return
      */
     public abstract HashMap<String, String> toHashMap();
-    
+
     @Override
-    public String toString()
-    {
-        return "ID: " + Id.toString();
+    public String toString() {
+        return "ID: " + id.toString();
     }
-    
+
     // </editor-fold> 
 }

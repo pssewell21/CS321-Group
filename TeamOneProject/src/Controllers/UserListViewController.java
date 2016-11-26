@@ -18,53 +18,30 @@ import javax.swing.DefaultListModel;
  * @author Owner
  */
 public class UserListViewController extends ListViewControllerBase {
-    
-    // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
 
-    /**
-     *
-     */
-    public UserListView view;
-    
+    // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
     /**
      *
      */
     public DefaultListModel<User> listModel;
-    
-    /**
-     *
-     */
-    public UserFactory factory;
-    
+
+    private final UserFactory factory;
+    private UserListView view;
+
     // </editor-fold> 
-    
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
-    
     public UserListViewController() {
         factory = new UserFactory();
     }
-    
-    // </editor-fold> 
-    
-    // <editor-fold defaultstate="collapsed" desc="Methods"> 
 
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Methods"> 
     public void load() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         loadModel();
-        
+
         view = new UserListView(this);
     }
-    
-    private void loadModel() {
-        HashMap<String, String> criteria = new HashMap<>();
-        
-        List<User> result = factory.executeSelect(criteria);
 
-        listModel = new DefaultListModel<>();
-        for (Object item : result) {
-            listModel.addElement((User) item);
-        }
-    }
-    
     public void executeAdd() {
         UserEditViewController controller = new UserEditViewController();
         controller.load(null, listModel);
@@ -74,6 +51,17 @@ public class UserListViewController extends ListViewControllerBase {
         UserEditViewController controller = new UserEditViewController();
         controller.load(item, listModel);
     }
-    
+
+    private void loadModel() {
+        HashMap<String, String> criteria = new HashMap<>();
+
+        List<User> result = factory.executeSelect(criteria);
+
+        listModel = new DefaultListModel<>();
+        for (Object item : result) {
+            listModel.addElement((User) item);
+        }
+    }
+
     // </editor-fold>
 }

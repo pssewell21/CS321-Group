@@ -19,9 +19,7 @@ import java.util.List;
  */
 public class AccountFactory extends LibraryFactoryBase {
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
-            /**
-             *
-             */
+
     /**
      *
      */
@@ -31,14 +29,12 @@ public class AccountFactory extends LibraryFactoryBase {
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
-
     /**
      *
      * @param accountId
      * @return
      */
-    
-    public Account executeSelectById(Long accountId) {
+    public Account getById(Long accountId) {
         HashMap<String, String> criteria = new HashMap<>(0);
         criteria.put(DalFields.ID, accountId.toString());
 
@@ -47,16 +43,16 @@ public class AccountFactory extends LibraryFactoryBase {
         if (!result.isEmpty()) {
             return result.get(0);
         }
-            
+
         return null;
     }
-    
+
     /**
      *
      * @param userId
      * @return
      */
-    public List<Account> executeSelectByUserId(Long userId) {
+    public List<Account> getByUserId(Long userId) {
         List<Account> list = new ArrayList<>();
 
         DataAccessJavaDb.openConnection();
@@ -91,23 +87,23 @@ public class AccountFactory extends LibraryFactoryBase {
 
         return list;
     }
-    
+
     /**
      *
      * @param userId
      * @return
      */
-    public String generateSelectByUserIdCommand(Long userId) {
+    private String generateSelectByUserIdCommand(Long userId) {
         String command = "SELECT a.* FROM ATM_USER u\n"
-            + "INNER JOIN ACCOUNT_PERSON_MAP apm\n"
-            + "    ON apm.PERSON_ID = u.PERSON_ID\n"
-            + "INNER JOIN ACCOUNT a\n"
-            + "    ON a.ID = apm.ACCOUNT_ID\n"
-            + "WHERE u.ID = " + userId.toString(); 
+                + "INNER JOIN ACCOUNT_PERSON_MAP apm\n"
+                + "    ON apm.PERSON_ID = u.PERSON_ID\n"
+                + "INNER JOIN ACCOUNT a\n"
+                + "    ON a.ID = apm.ACCOUNT_ID\n"
+                + "WHERE u.ID = " + userId.toString();
 
         return command;
     }
-        
+
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Implementation of LibraryFactoryBase Methods"> 
     @Override

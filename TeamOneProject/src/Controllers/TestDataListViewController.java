@@ -17,54 +17,31 @@ import javax.swing.DefaultListModel;
  *
  * @author pssew
  */
-public class TestDataListViewController extends ListViewControllerBase{
+public class TestDataListViewController extends ListViewControllerBase {
 
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
-
-    /**
-     *
-     */
-    public TestDataListView view;
-    
     /**
      *
      */
     public DefaultListModel<TestData> listModel;
-    
-    /**
-     *
-     */
-    public TestDataFactory factory;
-    
+
+    private final TestDataFactory factory;
+    private TestDataListView view;
+
     // </editor-fold> 
-    
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
-    
     public TestDataListViewController() {
         factory = new TestDataFactory();
     }
-    
-    // </editor-fold> 
-    
-    // <editor-fold defaultstate="collapsed" desc="Methods"> 
 
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Methods"> 
     public void load() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         loadModel();
-        
+
         view = new TestDataListView(this);
     }
-    
-    private void loadModel() {
-        HashMap<String, String> criteria = new HashMap<>();
-        
-        List<TestData> result = factory.executeSelect(criteria);
 
-        listModel = new DefaultListModel<>();
-        for (Object item : result) {
-            listModel.addElement((TestData) item);
-        }
-    }
-    
     public void executeAdd() {
         TestDataEditViewController controller = new TestDataEditViewController();
         controller.load(null, listModel);
@@ -74,6 +51,17 @@ public class TestDataListViewController extends ListViewControllerBase{
         TestDataEditViewController controller = new TestDataEditViewController();
         controller.load(item, listModel);
     }
-    
+
+    private void loadModel() {
+        HashMap<String, String> criteria = new HashMap<>();
+
+        List<TestData> result = factory.executeSelect(criteria);
+
+        listModel = new DefaultListModel<>();
+        for (Object item : result) {
+            listModel.addElement((TestData) item);
+        }
+    }
+
     // </editor-fold> 
 }

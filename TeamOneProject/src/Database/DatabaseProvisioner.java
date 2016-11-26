@@ -231,7 +231,7 @@ public final class DatabaseProvisioner {
             DataAccessJavaDb.closeConnection();
         }
     }
-    
+
     public static void deleteDatabase() {
         DataAccessJavaDb.deleteDatabase();
     }

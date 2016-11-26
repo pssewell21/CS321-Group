@@ -27,22 +27,6 @@ public class AccountPersonMapFactory extends LibraryFactoryBase {
     }
 
     // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Methods"> 
-    //TODO: May not be necessary since we are selecting a real object in the list view, it may be better to not select a real object though in which case this method would be useful
-//    public TestData getById(long id) {
-//        HashMap<String, String> criteria = new HashMap<>();
-//
-//        criteria.put(DalFields.ID, Long.toString(id));
-//
-//        List<Person> result = executeSelect(criteria);
-//
-//        if (result.size() > 0) {
-//            return result.get(0);
-//        } else {
-//            return null;
-//        }
-//    }
-    // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Implementation of LibraryFactoryBase Methods"> 
     @Override
     public List<AccountPersonMap> executeSelect(HashMap<String, String> criteria) {
@@ -175,7 +159,7 @@ public class AccountPersonMapFactory extends LibraryFactoryBase {
                 command += "UPDATE " + SCHEMA + "." + TABLE_NAME + " SET "
                         + DalFields.ACCOUNT_ID + " = " + accountId + ", "
                         + DalFields.PERSON_ID + " = " + personId + " ";
-                
+
                 command += "WHERE " + DalFields.ID + " = " + id;
             }
         } else {

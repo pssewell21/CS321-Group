@@ -145,17 +145,17 @@ public class UserFactory extends LibraryFactoryBase {
             String isAccountLocked = criteria.get(DalFields.IS_ACCOUNT_LOCKED);
             String selectedTheme = criteria.get(DalFields.SELECTED_THEME);
 
-            if (hasValue(personId) 
-                    && hasValue(userName) 
-                    && hasValue(password) 
-                    && hasValue(securityQuestion1) 
-                    && hasValue(securityAnswer1) 
-                    && hasValue(securityQuestion2) 
-                    && hasValue(securityAnswer2) 
-                    && hasValue(isAdministrator) 
-                    && hasValue(isAccountLocked) 
+            if (hasValue(personId)
+                    && hasValue(userName)
+                    && hasValue(password)
+                    && hasValue(securityQuestion1)
+                    && hasValue(securityAnswer1)
+                    && hasValue(securityQuestion2)
+                    && hasValue(securityAnswer2)
+                    && hasValue(isAdministrator)
+                    && hasValue(isAccountLocked)
                     && hasValue(selectedTheme)) {
-                command += "INSERT INTO " + SCHEMA + "." + TABLE_NAME + " VALUES ("  
+                command += "INSERT INTO " + SCHEMA + "." + TABLE_NAME + " VALUES ("
                         + ID.newId() + ", "
                         + "" + personId + ", "
                         + "'" + userName + "', "
@@ -202,7 +202,7 @@ public class UserFactory extends LibraryFactoryBase {
             String isAccountLocked = criteria.get(DalFields.IS_ACCOUNT_LOCKED);
             String selectedTheme = criteria.get(DalFields.SELECTED_THEME);
 
-            if (hasValue(id) 
+            if (hasValue(id)
                     && hasValue(personId)
                     && hasValue(userName)
                     && hasValue(password)

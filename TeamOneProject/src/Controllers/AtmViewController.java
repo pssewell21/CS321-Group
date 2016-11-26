@@ -18,7 +18,6 @@ import java.sql.Timestamp;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -30,30 +29,20 @@ public class AtmViewController {
     /**
      *
      */
-    public AtmView view;
-
-    private User currentUser;
-
-    private final AccountFactory accountFactory;
-
-    private final AccountTransactionFactory accountTransactionFactory;
-
-    private final UserFactory userFactory;
+    public DefaultListModel<AccountTransaction> transactionListModel;
 
     /**
      *
      */
     public DefaultComboBoxModel<Account> accountModel;
 
-    /**
-     *
-     */
-    public DefaultListModel<AccountTransaction> transactionListModel;
-
-    /**
-     *
-     */
     public Account selectedAccount;
+
+    private final AccountFactory accountFactory;
+    private final AccountTransactionFactory accountTransactionFactory;
+    private final UserFactory userFactory;
+    private AtmView view;
+    private User currentUser;
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
@@ -68,7 +57,7 @@ public class AtmViewController {
     public void load(User user) {
         currentUser = user;
 
-        List<Account> result = accountFactory.executeSelectByUserId(currentUser.Id);
+        List<Account> result = accountFactory.getByUserId(currentUser.id);
         Account[] accountArray = result.toArray(new Account[]{});
         accountModel = new DefaultComboBoxModel<>(accountArray);
 
@@ -80,18 +69,18 @@ public class AtmViewController {
     }
 
     public BigDecimal executeCheckBalance() {
-        selectedAccount = accountFactory.executeSelectById(selectedAccount.Id);
+        selectedAccount = accountFactory.getById(selectedAccount.id);
 
-        return selectedAccount.Balance;
+        return selectedAccount.balance;
     }
 
     public void executeDeposit(BigDecimal amount) {
-        accountTransactionFactory.addDeposit(currentUser.PersonId, selectedAccount.Id, amount);
+        accountTransactionFactory.addDeposit(currentUser.personId, selectedAccount.id, amount);
     }
 
     public boolean executeWithdrawal(BigDecimal amount) {
-        if (selectedAccount.Balance.compareTo(amount) > 0) {
-            accountTransactionFactory.addWithdrawal(currentUser.PersonId, selectedAccount.Id, amount);
+        if (selectedAccount.balance.compareTo(amount) > 0) {
+            accountTransactionFactory.addWithdrawal(currentUser.personId, selectedAccount.id, amount);
             return true;
         } else {
             return false;
@@ -99,7 +88,7 @@ public class AtmViewController {
     }
 
     public void executeGetTransactionHistory(Timestamp startTime, Timestamp endTime) {
-        List<AccountTransaction> result = accountTransactionFactory.executeSelectByAccoundIdAndTimestampRange(selectedAccount.Id, startTime, endTime);
+        List<AccountTransaction> result = accountTransactionFactory.getByAccoundIdAndTimestampRange(selectedAccount.id, startTime, endTime);
 
         transactionListModel = new DefaultListModel<>();
         for (Object item : result) {
@@ -108,14 +97,14 @@ public class AtmViewController {
     }
 
     public void executeSelectTheme(String selectedTheme) {
-        currentUser.SelectedTheme = selectedTheme;
+        currentUser.selectedTheme = selectedTheme;
         userFactory.executeUpdate(currentUser.toHashMap());
 
         UserSettings.setSelectedTheme(selectedTheme);
     }
 
     public String getSelectedTheme() {
-        return currentUser.SelectedTheme;
+        return currentUser.selectedTheme;
     }
 
     // </editor-fold> 

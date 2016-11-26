@@ -37,7 +37,6 @@ public class AccountTransactionFactory extends LibraryFactoryBase {
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
-
     /**
      *
      * @param personId
@@ -45,7 +44,7 @@ public class AccountTransactionFactory extends LibraryFactoryBase {
      * @param amount
      */
     public void addDeposit(Long personId, Long accountId, BigDecimal amount) {
-        Account account = accountFactory.executeSelectById(accountId);
+        Account account = accountFactory.getById(accountId);
 
         if (account != null) {
             // TODO: These operations should be done transactionally so if one operation fails, neither is comitted.  Consider for future versions.
@@ -53,46 +52,46 @@ public class AccountTransactionFactory extends LibraryFactoryBase {
             //       scripts could also be used to make these changes in a single transaction with rollback upon failure if Derby supports it.
             AccountTransaction transaction = new AccountTransaction(ID.newId(), accountId, personId, Utility.getCurrentTime(), amount);
             executeInsert(transaction.toHashMap());
-            
-            BigDecimal balance = account.Balance.add(amount);
 
-            account.Balance = balance;
+            BigDecimal balance = account.balance.add(amount);
+
+            account.balance = balance;
             accountFactory.executeUpdate(account.toHashMap());
         } else {
             ExceptionHandler.handleException(new Exception("Account not found, deposit failed."));
         }
     }
-    
+
     /**
      *
      * @param personId
      * @param accountId
      * @param amount
      */
-    public void addWithdrawal(Long personId, Long accountId, BigDecimal amount){
-        Account account = accountFactory.executeSelectById(accountId);
+    public void addWithdrawal(Long personId, Long accountId, BigDecimal amount) {
+        Account account = accountFactory.getById(accountId);
 
         if (account != null) {
             // TODO: These operations should be done transactionally so if one operation fails, neither is comitted.  Consider for future versions.
             //       Other possibilities chould be making the balance a calculated field so no post-processing is needed in this way.  Custom SQL 
             //       scripts could also be used to make these changes in a single transaction with rollback upon failure if Derby supports it.
-            
+
             // Make amount negative to indicate a withdrawal in the transaction record
             BigDecimal withdrawalAmount = new BigDecimal("0").subtract(amount);
-            
+
             AccountTransaction transaction = new AccountTransaction(ID.newId(), accountId, personId, Utility.getCurrentTime(), withdrawalAmount);
             executeInsert(transaction.toHashMap());
-            
-            // Adding a negative number to the account balance
-            BigDecimal balance = account.Balance.add(withdrawalAmount);
 
-            account.Balance = balance;
+            // Adding a negative number to the account balance
+            BigDecimal balance = account.balance.add(withdrawalAmount);
+
+            account.balance = balance;
             accountFactory.executeUpdate(account.toHashMap());
         } else {
             ExceptionHandler.handleException(new Exception("Account not found, withdrawal failed."));
         }
     }
-    
+
     /**
      *
      * @param accountId
@@ -100,7 +99,7 @@ public class AccountTransactionFactory extends LibraryFactoryBase {
      * @param endTime
      * @return
      */
-    public List<AccountTransaction> executeSelectByAccoundIdAndTimestampRange(Long accountId, Timestamp startTime, Timestamp endTime) {
+    public List<AccountTransaction> getByAccoundIdAndTimestampRange(Long accountId, Timestamp startTime, Timestamp endTime) {
         List<AccountTransaction> list = new ArrayList<>();
 
         DataAccessJavaDb.openConnection();
@@ -132,7 +131,7 @@ public class AccountTransactionFactory extends LibraryFactoryBase {
 
         return list;
     }
-    
+
     /**
      *
      * @param accountId
@@ -140,15 +139,15 @@ public class AccountTransactionFactory extends LibraryFactoryBase {
      * @param endTime
      * @return
      */
-    public String generateSelectByAccoundIdAndTimestampRangeCommand(Long accountId, Timestamp startTime, Timestamp endTime) {
+    private String generateSelectByAccoundIdAndTimestampRangeCommand(Long accountId, Timestamp startTime, Timestamp endTime) {
         String command = "SELECT atr.* FROM ACCOUNT a\n"
-            + "INNER JOIN ACCOUNT_TRANSACTION atr\n"
-            + "    ON atr.ACCOUNT_ID = a.ID\n"
-            + "WHERE a.ID = " + accountId.toString() + "\n"
-            + "    AND (\n"
-            + "        atr.TRANSACTION_TIMESTAMP >= '" + startTime.toString() + "' AND\n"
-            + "        atr.TRANSACTION_TIMESTAMP <= '" + endTime.toString() + "'\n"
-            + "    )";
+                + "INNER JOIN ACCOUNT_TRANSACTION atr\n"
+                + "    ON atr.ACCOUNT_ID = a.ID\n"
+                + "WHERE a.ID = " + accountId.toString() + "\n"
+                + "    AND (\n"
+                + "        atr.TRANSACTION_TIMESTAMP >= '" + startTime.toString() + "' AND\n"
+                + "        atr.TRANSACTION_TIMESTAMP <= '" + endTime.toString() + "'\n"
+                + "    )";
 
         return command;
     }

@@ -11,34 +11,28 @@ import java.util.HashMap;
  *
  * @author Owner
  */
-public class AccountPersonMap extends LibraryBase  {
-    
+public class AccountPersonMap extends LibraryBase {
+
     // <editor-fold defaultstate="collapsed" desc="Member Variables">   
+    /**
+     *
+     */
+    public Long accountId;
 
     /**
      *
      */
-    public Long AccountId;
+    public Long personId;
 
-    /**
-     *
-     */
-    public Long PersonId;
-    
+    private final PersonFactory personFactory;
+    private final AccountFactory accountFactory;
     private Person person;
-    
     private Account account;
-    
-    private PersonFactory personFactory;
-    
-    private AccountFactory accountFactory;
-    
-    // <editor-fold defaultstate="collapsed" desc="Constructors"> 
 
+    // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     /**
      * This constructor is used for creating new objects
      */
-    
     public AccountPersonMap() {
         super();
         personFactory = new PersonFactory();
@@ -47,28 +41,27 @@ public class AccountPersonMap extends LibraryBase  {
 
     /**
      * This constructor is used for mapping existing objects
+     *
      * @param id
      * @param accountId
      * @param personId
      */
-    public AccountPersonMap(Long id, 
-            Long accountId, 
+    public AccountPersonMap(Long id,
+            Long accountId,
             Long personId) {
         super(id);
-        AccountId = accountId;
-        PersonId = personId;
-        
+        this.accountId = accountId;
+        this.personId = personId;
+
         personFactory = new PersonFactory();
         accountFactory = new AccountFactory();
-        
-        person = personFactory.getById(PersonId);
-        account = accountFactory.executeSelectById(accountId);
-    }
-    
-    // </editor-fold>
-    
-    // <editor-fold defaultstate="collapsed" desc="Methods"> 
 
+        person = personFactory.getById(this.personId);
+        account = accountFactory.getById(accountId);
+    }
+
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="Methods"> 
     @Override
     public String toString() {
         return account.toString() + ", PERSON: " + person.toString();
@@ -81,10 +74,10 @@ public class AccountPersonMap extends LibraryBase  {
     @Override
     public HashMap<String, String> toHashMap() {
         HashMap<String, String> map = new HashMap<>();
-        
-        map.put(DalFields.ID, Id.toString());
-        map.put(DalFields.ACCOUNT_ID, AccountId.toString());
-        map.put(DalFields.PERSON_ID, PersonId.toString());
+
+        map.put(DalFields.ID, id.toString());
+        map.put(DalFields.ACCOUNT_ID, accountId.toString());
+        map.put(DalFields.PERSON_ID, personId.toString());
 
         return map;
     }

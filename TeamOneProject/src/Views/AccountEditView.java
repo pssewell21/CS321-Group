@@ -15,13 +15,11 @@ import java.math.BigDecimal;
  */
 public class AccountEditView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
-    
-    private final AccountEditViewController controller;
-    
-    // </editor-fold> 
-    
-    // <editor-fold defaultstate="collapsed" desc="Constructors"> 
 
+    private final AccountEditViewController controller;
+
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     /**
      *
      * @param controller
@@ -30,52 +28,58 @@ public class AccountEditView extends javax.swing.JFrame {
         this.controller = controller;
         load();
     }
-    
+
     // </editor-fold> 
-    
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
+    /**
+     *
+     * @param isEnabled
+     */
+    public void setDeleteEnabled(boolean isEnabled) {
+        deleteButton.setEnabled(isEnabled);
+    }
 
     private void load() {
         initComponents();
         setThemeColors();
-        
+
         this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png")).getImage());
-        
-        if (controller.model.AccountNumber != null) { 
-            AccountNumberField.setText(controller.model.AccountNumber.toString());
+
+        if (controller.model.accountNumber != null) {
+            accountNumberField.setText(controller.model.accountNumber.toString());
         }
-        AccountTypeField.setText(controller.model.AccountType);
-        DescriptionField.setText(controller.model.Description);
-        if (controller.model.Balance != null) { 
-            BalanceField.setText(controller.model.Balance.toString());
+        accountTypeField.setText(controller.model.accountType);
+        descriptionField.setText(controller.model.description);
+        if (controller.model.balance != null) {
+            balanceField.setText(controller.model.balance.toString());
         }
-        if (controller.model.InterestRate != null) { 
-            InterestRateField.setText(controller.model.InterestRate.toString());
+        if (controller.model.interestRate != null) {
+            interestRateField.setText(controller.model.interestRate.toString());
         }
 
         pack();
         setResizable(false);
         setVisible(true);
     }
-    
+
     private void setThemeColors() {
         jPanel1.setBackground(UserSettings.theme.getBackgroundColor());
-        
-        AccountNumberField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        AccountTypeField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        BalanceField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        DescriptionField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        InterestRateField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+
+        accountNumberField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        accountTypeField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        balanceField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        descriptionField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        interestRateField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
         applyButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
         saveButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
         cancelButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
         deleteButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        
-        AccountNumberField.setForeground(UserSettings.theme.getTextColor());
-        AccountTypeField.setForeground(UserSettings.theme.getTextColor());
-        BalanceField.setForeground(UserSettings.theme.getTextColor());
-        DescriptionField.setForeground(UserSettings.theme.getTextColor());
-        InterestRateField.setForeground(UserSettings.theme.getTextColor());
+
+        accountNumberField.setForeground(UserSettings.theme.getTextColor());
+        accountTypeField.setForeground(UserSettings.theme.getTextColor());
+        balanceField.setForeground(UserSettings.theme.getTextColor());
+        descriptionField.setForeground(UserSettings.theme.getTextColor());
+        interestRateField.setForeground(UserSettings.theme.getTextColor());
         applyButton.setForeground(UserSettings.theme.getTextColor());
         saveButton.setForeground(UserSettings.theme.getTextColor());
         cancelButton.setForeground(UserSettings.theme.getTextColor());
@@ -87,23 +91,14 @@ public class AccountEditView extends javax.swing.JFrame {
         jLabel6.setForeground(UserSettings.theme.getTextColor());
     }
 
-    /**
-     *
-     * @param isEnabled
-     */
-    public void setDeleteEnabled(boolean isEnabled) {
-        deleteButton.setEnabled(isEnabled);
-    }
-
     private void setModelFields() {
-        controller.model.AccountNumber = Long.parseLong(AccountNumberField.getText());
-        controller.model.AccountType = AccountTypeField.getText();
-        controller.model.Description = DescriptionField.getText();
-        controller.model.Balance = new BigDecimal(BalanceField.getText());
-        if (InterestRateField.getText() != null && !InterestRateField.getText().isEmpty()) {
-            controller.model.InterestRate = new BigDecimal(InterestRateField.getText());
+        controller.model.accountNumber = Long.parseLong(accountNumberField.getText());
+        controller.model.accountType = accountTypeField.getText();
+        controller.model.description = descriptionField.getText();
+        controller.model.balance = new BigDecimal(balanceField.getText());
+        if (interestRateField.getText() != null && !interestRateField.getText().isEmpty()) {
+            controller.model.interestRate = new BigDecimal(interestRateField.getText());
         }
-            
     }
 
     /**
@@ -120,11 +115,11 @@ public class AccountEditView extends javax.swing.JFrame {
         applyButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
-        AccountNumberField = new javax.swing.JTextField();
-        AccountTypeField = new javax.swing.JTextField();
-        DescriptionField = new javax.swing.JTextField();
-        BalanceField = new javax.swing.JTextField();
-        InterestRateField = new javax.swing.JTextField();
+        accountNumberField = new javax.swing.JTextField();
+        accountTypeField = new javax.swing.JTextField();
+        descriptionField = new javax.swing.JTextField();
+        balanceField = new javax.swing.JTextField();
+        interestRateField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -187,11 +182,11 @@ public class AccountEditView extends javax.swing.JFrame {
                             .addComponent(jLabel4))
                         .addGap(4, 4, 4)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(AccountNumberField)
-                            .addComponent(AccountTypeField)
-                            .addComponent(DescriptionField)
-                            .addComponent(BalanceField)
-                            .addComponent(InterestRateField, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(accountNumberField)
+                            .addComponent(accountTypeField)
+                            .addComponent(descriptionField)
+                            .addComponent(balanceField)
+                            .addComponent(interestRateField, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 71, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -209,23 +204,23 @@ public class AccountEditView extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AccountNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(accountNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AccountTypeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(accountTypeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(DescriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(descriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BalanceField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(balanceField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(InterestRateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(interestRateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -275,17 +270,16 @@ public class AccountEditView extends javax.swing.JFrame {
     }//GEN-LAST:event_saveButtonActionPerformed
 
     // </editor-fold> 
-    
     // <editor-fold defaultstate="collapsed" desc="Generated UI Variables"> 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField AccountNumberField;
-    private javax.swing.JTextField AccountTypeField;
-    private javax.swing.JTextField BalanceField;
-    private javax.swing.JTextField DescriptionField;
-    private javax.swing.JTextField InterestRateField;
+    private javax.swing.JTextField accountNumberField;
+    private javax.swing.JTextField accountTypeField;
     private javax.swing.JButton applyButton;
+    private javax.swing.JTextField balanceField;
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton deleteButton;
+    private javax.swing.JTextField descriptionField;
+    private javax.swing.JTextField interestRateField;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

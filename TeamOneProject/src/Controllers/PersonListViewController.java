@@ -18,53 +18,30 @@ import javax.swing.DefaultListModel;
  * @author Owner
  */
 public class PersonListViewController extends ListViewControllerBase {
-    
-    // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
 
-    /**
-     *
-     */
-    public PersonListView view;
-    
+    // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
     /**
      *
      */
     public DefaultListModel<Person> listModel;
-    
-    /**
-     *
-     */
-    public PersonFactory factory;
-    
+
+    private final PersonFactory factory;
+    private PersonListView view;
+
     // </editor-fold> 
-    
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
-    
     public PersonListViewController() {
         factory = new PersonFactory();
     }
-    
-    // </editor-fold> 
-    
-    // <editor-fold defaultstate="collapsed" desc="Methods"> 
 
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Methods"> 
     public void load() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         loadModel();
-        
+
         view = new PersonListView(this);
     }
-    
-    private void loadModel() {
-        HashMap<String, String> criteria = new HashMap<>();
-        
-        List<Person> result = factory.executeSelect(criteria);
 
-        listModel = new DefaultListModel<>();
-        for (Object item : result) {
-            listModel.addElement((Person) item);
-        }
-    }
-    
     public void executeAdd() {
         PersonEditViewController controller = new PersonEditViewController();
         controller.load(null, listModel);
@@ -74,6 +51,17 @@ public class PersonListViewController extends ListViewControllerBase {
         PersonEditViewController controller = new PersonEditViewController();
         controller.load(item, listModel);
     }
-    
+
+    private void loadModel() {
+        HashMap<String, String> criteria = new HashMap<>();
+
+        List<Person> result = factory.executeSelect(criteria);
+
+        listModel = new DefaultListModel<>();
+        for (Object item : result) {
+            listModel.addElement((Person) item);
+        }
+    }
+
     // </editor-fold>
 }

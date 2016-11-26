@@ -11,8 +11,6 @@ import Database.DatabaseProvisioner;
 import Library.DalFields;
 import Library.User;
 import Library.UserFactory;
-import Themes.DarkTheme;
-import Themes.LightTheme;
 import Views.LogOnView;
 import java.util.HashMap;
 import java.util.List;
@@ -22,36 +20,23 @@ import java.util.List;
  * @author Owner
  */
 public class LogOnViewController {
-    
-    // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
 
-    /**
-     *
-     */
-    
-    public LogOnView view;
-    
-    /**
-     *
-     */
-    public UserFactory factory;
-    
+    // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
+    private final UserFactory factory;
+    private LogOnView view;
+
     // </editor-fold> 
-    
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
-    
     public LogOnViewController() {
         factory = new UserFactory();
     }
-    
-    // </editor-fold> 
-       
-    // <editor-fold defaultstate="collapsed" desc="Methods"> 
 
-    public void load() {        
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Methods"> 
+    public void load() {
         view = new LogOnView(this);
     }
-    
+
     /**
      *
      * @param userName
@@ -61,54 +46,48 @@ public class LogOnViewController {
     public boolean executeLogOn(String userName, String password) {
         HashMap<String, String> criteria = new HashMap<>();
         criteria.put(DalFields.USER_NAME, userName);
-        
+
         // Will return a list of 0 or 1 items
         List<User> result = factory.executeSelect(criteria);
-        
-        if (result.isEmpty())
-        {
+
+        if (result.isEmpty()) {
             return false;
         }
-        
+
         User user = result.get(0);
-        
-        if (user.Password.equals(password)) {
-            if (Utility.hasValue(user.SelectedTheme)) {
-                UserSettings.setSelectedTheme(user.SelectedTheme);
+
+        if (user.password.equals(password)) {
+            if (Utility.hasValue(user.selectedTheme)) {
+                UserSettings.setSelectedTheme(user.selectedTheme);
             }
-            
-            if (user.IsAdministrator)
-            {
+
+            if (user.isAdministrator) {
                 NavigationViewController c = new NavigationViewController();
                 c.load();
-            }
-            else if (!user.IsAdministrator)
-            {
+            } else if (!user.isAdministrator) {
                 AtmViewController c = new AtmViewController();
                 c.load(user);
-            }
-            else
-            {
+            } else {
                 System.out.println("IsAdministrator is NULL.");
             }
-                        
+
             view.dispose();
-            
+
             return true;
         }
-        
+
         return false;
     }
-    
+
     public void executeProvisionDatabase() {
         //TODO: Add confirmation box with warning
         DatabaseProvisioner.provisionDatabase();
     }
-    
+
     public void executeDeleteDatabase() {
         //TODO: Add confirmation box with warning
         DatabaseProvisioner.deleteDatabase();
     }
-    
+
     // </editor-fold> 
 }

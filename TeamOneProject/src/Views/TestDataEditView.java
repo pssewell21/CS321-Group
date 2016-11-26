@@ -15,13 +15,10 @@ import Controllers.TestDataEditViewController;
 public class TestDataEditView extends javax.swing.JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
-    
     private final TestDataEditViewController controller;
-    
-    // </editor-fold> 
-    
-    // <editor-fold defaultstate="collapsed" desc="Constructors"> 
 
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     /**
      *
      * @param controller
@@ -30,40 +27,46 @@ public class TestDataEditView extends javax.swing.JFrame {
         this.controller = controller;
         load();
     }
-    
+
     // </editor-fold> 
-    
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
+    /**
+     *
+     * @param isEnabled
+     */
+    public void setDeleteEnabled(boolean isEnabled) {
+        deleteButton.setEnabled(isEnabled);
+    }
 
     private void load() {
         initComponents();
         setThemeColors();
-        
+
         this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png")).getImage());
-        
-        IdField.setText(controller.model.Id.toString());
-        KeyField.setText(controller.model.LookupKey);
-        ValueField.setText(controller.model.Value);
+
+        idField.setText(controller.model.id.toString());
+        keyField.setText(controller.model.lookupKey);
+        valueField.setText(controller.model.value);
 
         pack();
         setResizable(false);
         setVisible(true);
     }
-    
+
     private void setThemeColors() {
         jPanel1.setBackground(UserSettings.theme.getBackgroundColor());
-        
-        IdField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        KeyField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        ValueField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+
+        idField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        keyField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        valueField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
         applyButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
         saveButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
         cancelButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
         deleteButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        
-        IdField.setForeground(UserSettings.theme.getTextColor());
-        KeyField.setForeground(UserSettings.theme.getTextColor());
-        ValueField.setForeground(UserSettings.theme.getTextColor());
+
+        idField.setForeground(UserSettings.theme.getTextColor());
+        keyField.setForeground(UserSettings.theme.getTextColor());
+        valueField.setForeground(UserSettings.theme.getTextColor());
         applyButton.setForeground(UserSettings.theme.getTextColor());
         saveButton.setForeground(UserSettings.theme.getTextColor());
         cancelButton.setForeground(UserSettings.theme.getTextColor());
@@ -73,17 +76,9 @@ public class TestDataEditView extends javax.swing.JFrame {
         jLabel3.setForeground(UserSettings.theme.getTextColor());
     }
 
-    /**
-     *
-     * @param isEnabled
-     */
-    public void setDeleteEnabled(boolean isEnabled) {
-        deleteButton.setEnabled(isEnabled);
-    }
-
     private void setModelFields() {
-        controller.model.LookupKey = KeyField.getText();
-        controller.model.Value = ValueField.getText();
+        controller.model.lookupKey = keyField.getText();
+        controller.model.value = valueField.getText();
     }
 
     /**
@@ -100,12 +95,12 @@ public class TestDataEditView extends javax.swing.JFrame {
         cancelButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
         applyButton = new javax.swing.JButton();
-        ValueField = new javax.swing.JTextField();
+        valueField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        IdField = new javax.swing.JTextField();
-        KeyField = new javax.swing.JTextField();
+        idField = new javax.swing.JTextField();
+        keyField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -143,7 +138,7 @@ public class TestDataEditView extends javax.swing.JFrame {
 
         jLabel3.setText("ID");
 
-        IdField.setEditable(false);
+        idField.setEditable(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -159,9 +154,9 @@ public class TestDataEditView extends javax.swing.JFrame {
                             .addComponent(jLabel2))
                         .addGap(23, 23, 23)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(ValueField)
-                            .addComponent(KeyField)
-                            .addComponent(IdField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(valueField)
+                            .addComponent(keyField)
+                            .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(applyButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -178,14 +173,14 @@ public class TestDataEditView extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(IdField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(KeyField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(keyField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ValueField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(valueField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -239,20 +234,19 @@ public class TestDataEditView extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     // </editor-fold> 
-    
     // <editor-fold defaultstate="collapsed" desc="Generated UI Variables">   
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField IdField;
-    private javax.swing.JTextField KeyField;
-    private javax.swing.JTextField ValueField;
     private javax.swing.JButton applyButton;
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton deleteButton;
+    private javax.swing.JTextField idField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField keyField;
     private javax.swing.JButton saveButton;
+    private javax.swing.JTextField valueField;
     // End of variables declaration//GEN-END:variables
 
     // </editor-fold> 

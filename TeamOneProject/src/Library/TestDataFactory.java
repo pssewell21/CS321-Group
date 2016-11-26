@@ -27,22 +27,6 @@ public class TestDataFactory extends LibraryFactoryBase {
     }
 
     // </editor-fold> 
-    // <editor-fold defaultstate="collapsed" desc="Methods"> 
-    //TODO: May not be necessary since we are selecting a real object in the list view, it may be better to not select a real object though in which case this method would be useful
-//    public TestData getById(long id) {
-//        HashMap<String, String> criteria = new HashMap<>();
-//
-//        criteria.put(DalFields.ID, Long.toString(id));
-//
-//        List<TestData> result = executeSelect(criteria);
-//
-//        if (result.size() > 0) {
-//            return result.get(0);
-//        } else {
-//            return null;
-//        }
-//    }
-    // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Implementation of LibraryFactoryBase Methods"> 
     @Override
     public List<TestData> executeSelect(HashMap<String, String> criteria) {
@@ -145,7 +129,7 @@ public class TestDataFactory extends LibraryFactoryBase {
                 } else {
                     command += "NULL";
                 }
-                
+
                 command += ")";
             } else {
                 System.out.println("Required field LOOKUP_KEY not set.  Insert failed.");
@@ -173,16 +157,16 @@ public class TestDataFactory extends LibraryFactoryBase {
             String key = criteria.get(DalFields.LOOKUP_KEY);
             String value = criteria.get(DalFields.VALUE);
 
-            if (hasValue(id) 
+            if (hasValue(id)
                     && (hasValue(key))) {
                 command += "UPDATE " + SCHEMA + "." + TABLE_NAME + " SET "
                         + DalFields.LOOKUP_KEY + " = '" + key + "' ";
 
                 if (hasValue(value)) {
                     command += comma + DalFields.VALUE + " = '" + value + "' ";
-                }else {
+                } else {
                     command += comma + DalFields.VALUE + " = NULL ";
-                }                    
+                }
 
                 command += "WHERE " + DalFields.ID + " = " + id;
             } else {

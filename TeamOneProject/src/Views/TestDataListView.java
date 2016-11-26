@@ -18,13 +18,10 @@ import javax.swing.JList;
 public class TestDataListView extends javax.swing.JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
-    
     private final TestDataListViewController controller;
-    
-    // </editor-fold> 
-    
-    // <editor-fold defaultstate="collapsed" desc="Constructors"> 
 
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     /**
      * Creates new form TestDataListView
      *
@@ -34,27 +31,25 @@ public class TestDataListView extends javax.swing.JFrame {
         this.controller = controller;
         load();
     }
-    
-    // </editor-fold> 
-    
-    // <editor-fold defaultstate="collapsed" desc="Methods"> 
 
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Methods"> 
     private void load() {
         initComponents();
         setThemeColors();
-        
+
         this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png")).getImage());
-        
+
         setResizable(false);
         setVisible(true);
     }
-    
+
     private void setThemeColors() {
         jPanel1.setBackground(UserSettings.theme.getBackgroundColor());
-        
+
         jList1.setBackground(UserSettings.theme.getListBackgroundColor());
         newButton.setBackground(UserSettings.theme.getButtonBackgroundColor());
-                
+
         jList1.setForeground(UserSettings.theme.getTextColor());
         newButton.setForeground(UserSettings.theme.getTextColor());
         jLabel1.setForeground(UserSettings.theme.getTextColor());
@@ -159,10 +154,10 @@ public class TestDataListView extends javax.swing.JFrame {
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
         if (evt.getClickCount() == 2) {
             Object source = evt.getSource();
-        
+
             if (source instanceof JList) {
                 JList<TestData> list = (JList<TestData>) source;
-                        
+
                 TestData item = list.getSelectedValue();
                 controller.executeEdit(item);
             }
@@ -173,18 +168,17 @@ public class TestDataListView extends javax.swing.JFrame {
     private void jList1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jList1KeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             Object source = evt.getSource();
-        
+
             if (source instanceof JList) {
                 JList<TestData> list = (JList<TestData>) source;
-                        
+
                 TestData item = list.getSelectedValue();
                 controller.executeEdit(item);
             }
         }
     }//GEN-LAST:event_jList1KeyPressed
-    
+
     // </editor-fold> 
-    
     // <editor-fold defaultstate="collapsed" desc="Generated UI Variables">  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

@@ -18,53 +18,30 @@ import javax.swing.DefaultListModel;
  * @author Owner
  */
 public class AccountListViewController extends ListViewControllerBase {
-    
-    // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
 
-    /**
-     *
-     */
-    public AccountListView view;
-    
+    // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
     /**
      *
      */
     public DefaultListModel<Account> listModel;
-    
-    /**
-     *
-     */
-    public AccountFactory factory;
-    
+
+    private final AccountFactory factory;
+    private AccountListView view;
+
     // </editor-fold> 
-    
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
-    
     public AccountListViewController() {
         factory = new AccountFactory();
     }
-    
-    // </editor-fold> 
-    
-    // <editor-fold defaultstate="collapsed" desc="Methods"> 
 
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Methods"> 
     public void load() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         loadModel();
-        
+
         view = new AccountListView(this);
     }
-    
-    private void loadModel() {
-        HashMap<String, String> criteria = new HashMap<>();
-        
-        List<Account> result = factory.executeSelect(criteria);
 
-        listModel = new DefaultListModel<>();
-        for (Object item : result) {
-            listModel.addElement((Account) item);
-        }
-    }
-    
     public void executeAdd() {
         AccountEditViewController controller = new AccountEditViewController();
         controller.load(null, listModel);
@@ -74,6 +51,17 @@ public class AccountListViewController extends ListViewControllerBase {
         AccountEditViewController controller = new AccountEditViewController();
         controller.load(item, listModel);
     }
-    
+
+    private void loadModel() {
+        HashMap<String, String> criteria = new HashMap<>();
+
+        List<Account> result = factory.executeSelect(criteria);
+
+        listModel = new DefaultListModel<>();
+        for (Object item : result) {
+            listModel.addElement((Account) item);
+        }
+    }
+
     // </editor-fold>
 }

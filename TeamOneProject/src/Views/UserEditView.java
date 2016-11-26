@@ -21,7 +21,6 @@ public class UserEditView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
 
     private final UserEditViewController controller;
-
     private Person selectedPerson;
 
     // </editor-fold> 
@@ -39,37 +38,45 @@ public class UserEditView extends javax.swing.JFrame {
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
+    /**
+     *
+     * @param isEnabled
+     */
+    public void setDeleteEnabled(boolean isEnabled) {
+        deleteButton.setEnabled(isEnabled);
+    }
+
     private void load() {
         initComponents();
         setThemeColors();
-        
+
         this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png")).getImage());
 
-        if (controller.model.PersonId != null) {
+        if (controller.model.personId != null) {
             personComboBox.setSelectedItem(selectedPerson);
         } else {
             personComboBox.setSelectedItem(null);
         }
 
-        userNameField.setText(controller.model.UserName);
+        userNameField.setText(controller.model.userName);
         try {
-            passwordField.setText(AesEncryption.decryptText(controller.model.Password));
-            securityQuestion1Field.setText(AesEncryption.decryptText(controller.model.SecurityQuestion1));
-            securityAnswer1Field.setText(AesEncryption.decryptText(controller.model.SecurityAnswer1));
-            securityQuestion2Field.setText(AesEncryption.decryptText(controller.model.SecurityQuestion2));
-            securityAnswer2Field.setText(AesEncryption.decryptText(controller.model.SecurityAnswer2));
+            passwordField.setText(AesEncryption.decryptText(controller.model.password));
+            securityQuestion1Field.setText(AesEncryption.decryptText(controller.model.securityQuestion1));
+            securityAnswer1Field.setText(AesEncryption.decryptText(controller.model.securityAnswer1));
+            securityQuestion2Field.setText(AesEncryption.decryptText(controller.model.securityQuestion2));
+            securityAnswer2Field.setText(AesEncryption.decryptText(controller.model.securityAnswer2));
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(jPanel1, "Decryption failure.");
         }
-        
-        if (controller.model.IsAdministrator != null) {
-            isAdministratorCheckBox.setSelected(controller.model.IsAdministrator);
+
+        if (controller.model.isAdministrator != null) {
+            isAdministratorCheckBox.setSelected(controller.model.isAdministrator);
         }
-        if (controller.model.IsAccountLocked != null) {
-            isAccountLockedCheckBox.setSelected(controller.model.IsAccountLocked);
+        if (controller.model.isAccountLocked != null) {
+            isAccountLockedCheckBox.setSelected(controller.model.isAccountLocked);
         }
-        if (controller.model.SelectedTheme != null) {
-            selectedThemeComboBox.setSelectedItem(controller.model.SelectedTheme);
+        if (controller.model.selectedTheme != null) {
+            selectedThemeComboBox.setSelectedItem(controller.model.selectedTheme);
         } else {
             selectedThemeComboBox.setSelectedItem(null);
         }
@@ -136,28 +143,20 @@ public class UserEditView extends javax.swing.JFrame {
         });
     }
 
-    /**
-     *
-     * @param isEnabled
-     */
-    public void setDeleteEnabled(boolean isEnabled) {
-        deleteButton.setEnabled(isEnabled);
-    }
-
     private void setModelFields() {
         selectedPerson = (Person) personComboBox.getSelectedItem();
 
         try {
-            controller.model.PersonId = selectedPerson.Id;
-            controller.model.UserName = userNameField.getText();
-            controller.model.Password = AesEncryption.encryptText(new String(passwordField.getPassword()));
-            controller.model.SecurityQuestion1 = AesEncryption.encryptText(securityQuestion1Field.getText());
-            controller.model.SecurityAnswer1 = AesEncryption.encryptText(securityAnswer1Field.getText());
-            controller.model.SecurityQuestion2 = AesEncryption.encryptText(securityQuestion2Field.getText());
-            controller.model.SecurityAnswer2 = AesEncryption.encryptText(securityAnswer2Field.getText());
-            controller.model.IsAdministrator = isAdministratorCheckBox.isSelected();
-            controller.model.IsAccountLocked = isAccountLockedCheckBox.isSelected();
-            controller.model.SelectedTheme = (String) selectedThemeComboBox.getSelectedItem();
+            controller.model.personId = selectedPerson.id;
+            controller.model.userName = userNameField.getText();
+            controller.model.password = AesEncryption.encryptText(new String(passwordField.getPassword()));
+            controller.model.securityQuestion1 = AesEncryption.encryptText(securityQuestion1Field.getText());
+            controller.model.securityAnswer1 = AesEncryption.encryptText(securityAnswer1Field.getText());
+            controller.model.securityQuestion2 = AesEncryption.encryptText(securityQuestion2Field.getText());
+            controller.model.securityAnswer2 = AesEncryption.encryptText(securityAnswer2Field.getText());
+            controller.model.isAdministrator = isAdministratorCheckBox.isSelected();
+            controller.model.isAccountLocked = isAccountLockedCheckBox.isSelected();
+            controller.model.selectedTheme = (String) selectedThemeComboBox.getSelectedItem();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(jPanel1, "Encryption failure.");
         }

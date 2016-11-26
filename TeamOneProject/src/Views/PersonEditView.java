@@ -32,19 +32,27 @@ public class PersonEditView extends javax.swing.JFrame {
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
+    /**
+     *
+     * @param isEnabled
+     */
+    public void setDeleteEnabled(boolean isEnabled) {
+        deleteButton.setEnabled(isEnabled);
+    }
+
     private void load() {
 
         initComponents();
         setThemeColors();
-        
+
         this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png")).getImage());
 
         try {
-            NameField.setText(controller.model.Name);
-            DateOfBirthField.setText(controller.model.DateOfBirth);
-            AddressField.setText(controller.model.Address);
-            PhoneNumberField.setText(controller.model.PhoneNumber);
-            SocialSecurityNumberField.setText(AesEncryption.decryptText(controller.model.SocialSecurityNumber));
+            nameField.setText(controller.model.name);
+            dateOfBirthField.setText(controller.model.dateOfBirth);
+            addressField.setText(controller.model.address);
+            phoneNumberField.setText(controller.model.phoneNumber);
+            socialSecurityNumberField.setText(AesEncryption.decryptText(controller.model.socialSecurityNumber));
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(jPanel1, "Decryption failure.");
         }
@@ -57,21 +65,21 @@ public class PersonEditView extends javax.swing.JFrame {
     private void setThemeColors() {
         jPanel1.setBackground(UserSettings.theme.getBackgroundColor());
 
-        AddressField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        DateOfBirthField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        NameField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        PhoneNumberField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        SocialSecurityNumberField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        addressField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        dateOfBirthField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        nameField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        phoneNumberField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        socialSecurityNumberField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
         applyButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
         saveButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
         cancelButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
         deleteButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
 
-        AddressField.setForeground(UserSettings.theme.getTextColor());
-        DateOfBirthField.setForeground(UserSettings.theme.getTextColor());
-        NameField.setForeground(UserSettings.theme.getTextColor());
-        PhoneNumberField.setForeground(UserSettings.theme.getTextColor());
-        SocialSecurityNumberField.setForeground(UserSettings.theme.getTextColor());
+        addressField.setForeground(UserSettings.theme.getTextColor());
+        dateOfBirthField.setForeground(UserSettings.theme.getTextColor());
+        nameField.setForeground(UserSettings.theme.getTextColor());
+        phoneNumberField.setForeground(UserSettings.theme.getTextColor());
+        socialSecurityNumberField.setForeground(UserSettings.theme.getTextColor());
         applyButton.setForeground(UserSettings.theme.getTextColor());
         saveButton.setForeground(UserSettings.theme.getTextColor());
         cancelButton.setForeground(UserSettings.theme.getTextColor());
@@ -83,21 +91,13 @@ public class PersonEditView extends javax.swing.JFrame {
         jLabel6.setForeground(UserSettings.theme.getTextColor());
     }
 
-    /**
-     *
-     * @param isEnabled
-     */
-    public void setDeleteEnabled(boolean isEnabled) {
-        deleteButton.setEnabled(isEnabled);
-    }
-
     private void setModelFields() {
         try {
-            controller.model.Name = NameField.getText();
-            controller.model.DateOfBirth = DateOfBirthField.getText();
-            controller.model.Address = AddressField.getText();
-            controller.model.PhoneNumber = PhoneNumberField.getText();
-            controller.model.SocialSecurityNumber = AesEncryption.encryptText(SocialSecurityNumberField.getText());
+            controller.model.name = nameField.getText();
+            controller.model.dateOfBirth = dateOfBirthField.getText();
+            controller.model.address = addressField.getText();
+            controller.model.phoneNumber = phoneNumberField.getText();
+            controller.model.socialSecurityNumber = AesEncryption.encryptText(socialSecurityNumberField.getText());
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(jPanel1, "Encryption failure.");
         }
@@ -117,11 +117,11 @@ public class PersonEditView extends javax.swing.JFrame {
         applyButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
-        NameField = new javax.swing.JTextField();
-        DateOfBirthField = new javax.swing.JTextField();
-        AddressField = new javax.swing.JTextField();
-        PhoneNumberField = new javax.swing.JTextField();
-        SocialSecurityNumberField = new javax.swing.JTextField();
+        nameField = new javax.swing.JTextField();
+        dateOfBirthField = new javax.swing.JTextField();
+        addressField = new javax.swing.JTextField();
+        phoneNumberField = new javax.swing.JTextField();
+        socialSecurityNumberField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -192,11 +192,11 @@ public class PersonEditView extends javax.swing.JFrame {
                     .addComponent(jLabel4))
                 .addGap(4, 4, 4)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(NameField)
-                    .addComponent(DateOfBirthField)
-                    .addComponent(AddressField)
-                    .addComponent(PhoneNumberField)
-                    .addComponent(SocialSecurityNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nameField)
+                    .addComponent(dateOfBirthField)
+                    .addComponent(addressField)
+                    .addComponent(phoneNumberField)
+                    .addComponent(socialSecurityNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -204,23 +204,23 @@ public class PersonEditView extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(DateOfBirthField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dateOfBirthField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AddressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(PhoneNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(phoneNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SocialSecurityNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(socialSecurityNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -270,13 +270,10 @@ public class PersonEditView extends javax.swing.JFrame {
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Generated UI Variables"> 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField AddressField;
-    private javax.swing.JTextField DateOfBirthField;
-    private javax.swing.JTextField NameField;
-    private javax.swing.JTextField PhoneNumberField;
-    private javax.swing.JTextField SocialSecurityNumberField;
+    private javax.swing.JTextField addressField;
     private javax.swing.JButton applyButton;
     private javax.swing.JButton cancelButton;
+    private javax.swing.JTextField dateOfBirthField;
     private javax.swing.JButton deleteButton;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -284,7 +281,10 @@ public class PersonEditView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField nameField;
+    private javax.swing.JTextField phoneNumberField;
     private javax.swing.JButton saveButton;
+    private javax.swing.JTextField socialSecurityNumberField;
     // End of variables declaration//GEN-END:variables
 
     // </editor-fold> 

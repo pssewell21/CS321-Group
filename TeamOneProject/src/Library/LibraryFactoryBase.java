@@ -18,33 +18,28 @@ import java.util.List;
 public abstract class LibraryFactoryBase implements ISqlGenerator {
 
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
-    
     protected final String SCHEMA;
     protected final String TABLE_NAME;
-    
-    // </editor-fold> 
 
+    // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
-    
     protected LibraryFactoryBase(String schema, String tableName) {
         SCHEMA = schema;
         TABLE_NAME = tableName;
     }
-    
+
     // </editor-fold> 
-    
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
-    
     /**
      *
      * @param hashMap
      * @return
      */
-    public abstract List<? extends LibraryBase> executeSelect(HashMap<String, String> hashMap);   
+    public abstract List<? extends LibraryBase> executeSelect(HashMap<String, String> hashMap);
 
     public boolean executeInsert(HashMap<String, String> criteria) {
         boolean successful = true;
-        
+
         DataAccessJavaDb.openConnection();
 
         try {
@@ -63,7 +58,7 @@ public abstract class LibraryFactoryBase implements ISqlGenerator {
         } finally {
             DataAccessJavaDb.closeConnection();
         }
-        
+
         return successful;
     }
 
@@ -74,7 +69,7 @@ public abstract class LibraryFactoryBase implements ISqlGenerator {
      */
     public boolean executeUpdate(HashMap<String, String> criteria) {
         boolean successful = true;
-        
+
         DataAccessJavaDb.openConnection();
 
         try {
@@ -93,7 +88,7 @@ public abstract class LibraryFactoryBase implements ISqlGenerator {
         } finally {
             DataAccessJavaDb.closeConnection();
         }
-        
+
         return successful;
     }
 
@@ -104,7 +99,7 @@ public abstract class LibraryFactoryBase implements ISqlGenerator {
      */
     public boolean executeDelete(HashMap<String, String> criteria) {
         boolean successful = true;
-        
+
         DataAccessJavaDb.openConnection();
 
         try {
@@ -123,7 +118,7 @@ public abstract class LibraryFactoryBase implements ISqlGenerator {
         } finally {
             DataAccessJavaDb.closeConnection();
         }
-        
+
         return successful;
     }
 
@@ -143,20 +138,18 @@ public abstract class LibraryFactoryBase implements ISqlGenerator {
     protected void handleException(Exception e) {
         ExceptionHandler.handleException(e);
     }
-    
+
     // </editor-fold> 
-    
     // <editor-fold defaultstate="collapsed" desc="Implementation of ISqlGenerator Methods"> 
-    
     @Override
     public abstract String generateSelectCommand(HashMap<String, String> criteria);
-            
+
     @Override
     public abstract String generateInsertCommand(HashMap<String, String> criteria);
-    
+
     @Override
     public abstract String generateUpdateCommand(HashMap<String, String> criteria);
-    
+
     @Override
     public String generateDeleteCommand(HashMap<String, String> criteria) {
         String command = "";
@@ -175,6 +168,6 @@ public abstract class LibraryFactoryBase implements ISqlGenerator {
 
         return command;
     }
-    
+
     // </editor-fold> 
 }

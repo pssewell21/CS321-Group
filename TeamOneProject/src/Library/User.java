@@ -17,52 +17,52 @@ public class User extends LibraryBase {
     /**
      *
      */
-    public Long PersonId;
+    public Long personId;
 
     /**
      *
      */
-    public String UserName;
+    public String userName;
 
     /**
      *
      */
-    public String Password;
+    public String password;
 
     /**
      *
      */
-    public String SecurityQuestion1;
+    public String securityQuestion1;
 
     /**
      *
      */
-    public String SecurityAnswer1;
+    public String securityAnswer1;
 
     /**
      *
      */
-    public String SecurityQuestion2;
+    public String securityQuestion2;
 
     /**
      *
      */
-    public String SecurityAnswer2;
+    public String securityAnswer2;
 
     /**
      *
      */
-    public Boolean IsAdministrator;
+    public Boolean isAdministrator;
 
     /**
      *
      */
-    public Boolean IsAccountLocked;
+    public Boolean isAccountLocked;
 
     /**
      *
      */
-    public String SelectedTheme;
+    public String selectedTheme;
 
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
@@ -100,25 +100,25 @@ public class User extends LibraryBase {
             Boolean isAccountLocked,
             String selectedTheme) {
         super(id);
-        PersonId = personId;
-        UserName = userName;
-        Password = password;
-        SecurityQuestion1 = securityQuestion1;
-        SecurityAnswer1 = securityAnswer1;
-        SecurityQuestion2 = securityQuestion2;
-        SecurityAnswer2 = securityAnswer2;
-        IsAdministrator = isAdministrator;
-        IsAccountLocked = isAccountLocked;
-        SelectedTheme = selectedTheme;
+        this.personId = personId;
+        this.userName = userName;
+        this.password = password;
+        this.securityQuestion1 = securityQuestion1;
+        this.securityAnswer1 = securityAnswer1;
+        this.securityQuestion2 = securityQuestion2;
+        this.securityAnswer2 = securityAnswer2;
+        this.isAdministrator = isAdministrator;
+        this.isAccountLocked = isAccountLocked;
+        this.selectedTheme = selectedTheme;
     }
 
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
     @Override
     public String toString() {
-        return DalFields.USER_NAME + ": " + UserName + ", "
-                + DalFields.IS_ADMINISTRATOR + ": " + IsAdministrator + ", "
-                + DalFields.IS_ACCOUNT_LOCKED + ": " + IsAccountLocked;
+        return DalFields.USER_NAME + ": " + userName + ", "
+                + DalFields.IS_ADMINISTRATOR + ": " + isAdministrator + ", "
+                + DalFields.IS_ACCOUNT_LOCKED + ": " + isAccountLocked;
     }
 
     /**
@@ -129,17 +129,17 @@ public class User extends LibraryBase {
     public HashMap<String, String> toHashMap() {
         HashMap<String, String> map = new HashMap<>();
 
-        map.put(DalFields.ID, Id.toString());
-        map.put(DalFields.PERSON_ID, PersonId.toString());
-        map.put(DalFields.USER_NAME, UserName);
-        map.put(DalFields.PASSWORD, Password);
-        map.put(DalFields.SECURITY_QUESTION_1, SecurityQuestion1);
-        map.put(DalFields.SECURITY_ANSWER_1, SecurityAnswer1);
-        map.put(DalFields.SECURITY_QUESTION_2, SecurityQuestion2);
-        map.put(DalFields.SECURITY_ANSWER_2, SecurityAnswer2);
-        map.put(DalFields.IS_ADMINISTRATOR, IsAdministrator.toString());
-        map.put(DalFields.IS_ACCOUNT_LOCKED, IsAccountLocked.toString());
-        map.put(DalFields.SELECTED_THEME, SelectedTheme);
+        map.put(DalFields.ID, id.toString());
+        map.put(DalFields.PERSON_ID, personId.toString());
+        map.put(DalFields.USER_NAME, userName);
+        map.put(DalFields.PASSWORD, password);
+        map.put(DalFields.SECURITY_QUESTION_1, securityQuestion1);
+        map.put(DalFields.SECURITY_ANSWER_1, securityAnswer1);
+        map.put(DalFields.SECURITY_QUESTION_2, securityQuestion2);
+        map.put(DalFields.SECURITY_ANSWER_2, securityAnswer2);
+        map.put(DalFields.IS_ADMINISTRATOR, isAdministrator.toString());
+        map.put(DalFields.IS_ACCOUNT_LOCKED, isAccountLocked.toString());
+        map.put(DalFields.SELECTED_THEME, selectedTheme);
 
         return map;
     }

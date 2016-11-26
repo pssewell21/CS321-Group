@@ -13,7 +13,7 @@ import java.sql.Timestamp;
  * @author pssew
  */
 public final class Utility {
-    
+
     private Utility() {
     }
 
@@ -24,18 +24,23 @@ public final class Utility {
 
         return !string.isEmpty();
     }
-    
+
     public static final Timestamp getCurrentTime() {
-        return new Timestamp(System.currentTimeMillis());   
-    }  
-    
-    // http://stackoverflow.com/questions/20281835/how-to-delete-a-folder-with-files-using-java
-    public static void deleteFile(File element) {
-    if (element.isDirectory()) {
-        for (File sub : element.listFiles()) {
-            deleteFile(sub);
-        }
+        return new Timestamp(System.currentTimeMillis());
     }
-    element.delete();
-}
+
+    /**
+     * http://stackoverflow.com/questions/20281835/how-to-delete-a-folder-with-files-using-java
+     *
+     * @param element
+     */
+    public static void deleteFile(File element) {
+        if (element.isDirectory()) {
+            for (File sub : element.listFiles()) {
+                deleteFile(sub);
+            }
+        }
+        
+        element.delete();
+    }
 }

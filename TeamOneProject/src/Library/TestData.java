@@ -14,53 +14,47 @@ import java.util.HashMap;
 public class TestData extends LibraryBase {
 
     // <editor-fold defaultstate="collapsed" desc="Member Variables">   
+    /**
+     *
+     */
+    public String lookupKey;
 
     /**
      *
      */
-    
-    public String LookupKey;
-
-    /**
-     *
-     */
-    public String Value;
+    public String value;
 
     // </editor-fold>
-    
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
-
     /**
      * This constructor is used for creating new objects
      */
-    
     public TestData() {
         super();
     }
 
     /**
      * This constructor is used for mapping existing objects
+     *
      * @param id
      * @param lookupKey
      * @param value
      */
-    public TestData(Long id, 
-            String lookupKey, 
+    public TestData(Long id,
+            String lookupKey,
             String value) {
         super(id);
-        LookupKey = lookupKey;
-        Value = value;
+        this.lookupKey = lookupKey;
+        this.value = value;
     }
-    
-    // </editor-fold>
-    
-    // <editor-fold defaultstate="collapsed" desc="Methods"> 
 
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="Methods"> 
     @Override
     public String toString() {
-        return super.toString() + ", " 
-                + DalFields.LOOKUP_KEY + ": " + LookupKey  + ", "
-                + DalFields.VALUE + ": " + Value;
+        return super.toString() + ", "
+                + DalFields.LOOKUP_KEY + ": " + lookupKey + ", "
+                + DalFields.VALUE + ": " + value;
     }
 
     /**
@@ -70,13 +64,13 @@ public class TestData extends LibraryBase {
     @Override
     public HashMap<String, String> toHashMap() {
         HashMap<String, String> map = new HashMap<>();
-        
-        map.put(DalFields.ID, Id.toString());
-        map.put(DalFields.LOOKUP_KEY, LookupKey);
-        map.put(DalFields.VALUE, Value);
+
+        map.put(DalFields.ID, id.toString());
+        map.put(DalFields.LOOKUP_KEY, lookupKey);
+        map.put(DalFields.VALUE, value);
 
         return map;
     }
-    
+
     // </editor-fold>
 }

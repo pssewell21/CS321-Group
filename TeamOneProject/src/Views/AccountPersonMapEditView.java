@@ -19,13 +19,11 @@ import javax.swing.DefaultListCellRenderer;
  */
 public class AccountPersonMapEditView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
-    
-    private final AccountPersonMapEditViewController controller;
-    
-    // </editor-fold> 
-    
-    // <editor-fold defaultstate="collapsed" desc="Constructors"> 
 
+    private final AccountPersonMapEditViewController controller;
+
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     /**
      *
      * @param controller
@@ -34,24 +32,30 @@ public class AccountPersonMapEditView extends javax.swing.JFrame {
         this.controller = controller;
         load();
     }
-    
+
     // </editor-fold> 
-    
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
+    /**
+     *
+     * @param isEnabled
+     */
+    public void setDeleteEnabled(boolean isEnabled) {
+        deleteButton.setEnabled(isEnabled);
+    }
 
     private void load() {
         initComponents();
         setThemeColors();
-        
+
         this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png")).getImage());
-        
-        if (controller.model.AccountId != null) { 
+
+        if (controller.model.accountId != null) {
             ComboBoxModel<Account> comboBoxModel = accountComboBox.getModel();
-            
+
             for (int i = 0; i < comboBoxModel.getSize(); i++) {
                 Account account = comboBoxModel.getElementAt(i);
-                
-                if (account.Id.equals(controller.model.AccountId)) {
+
+                if (account.id.equals(controller.model.accountId)) {
                     comboBoxModel.setSelectedItem(account);
                 }
             }
@@ -63,17 +67,17 @@ public class AccountPersonMapEditView extends javax.swing.JFrame {
         setResizable(false);
         setVisible(true);
     }
-    
+
     private void setThemeColors() {
         jPanel1.setBackground(UserSettings.theme.getBackgroundColor());
-        
+
         personComboBox.setBackground(UserSettings.theme.getComboBoxBackgroundColor());
         accountComboBox.setBackground(UserSettings.theme.getComboBoxBackgroundColor());
         applyButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
         saveButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
         cancelButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
         deleteButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        
+
         personComboBox.setForeground(UserSettings.theme.getTextColor());
         accountComboBox.setForeground(UserSettings.theme.getTextColor());
         applyButton.setForeground(UserSettings.theme.getTextColor());
@@ -82,39 +86,31 @@ public class AccountPersonMapEditView extends javax.swing.JFrame {
         deleteButton.setForeground(UserSettings.theme.getTextColor());
         jLabel2.setForeground(UserSettings.theme.getTextColor());
         jLabel3.setForeground(UserSettings.theme.getTextColor());
-        
+
         personComboBox.setRenderer(new DefaultListCellRenderer() {
             @Override
             public void paint(Graphics g) {
-            setBackground(UserSettings.theme.getListBackgroundColor());
-            setForeground(UserSettings.theme.getTextColor());
-            super.paint(g);
+                setBackground(UserSettings.theme.getListBackgroundColor());
+                setForeground(UserSettings.theme.getTextColor());
+                super.paint(g);
             }
-        });        
+        });
         accountComboBox.setRenderer(new DefaultListCellRenderer() {
             @Override
             public void paint(Graphics g) {
-            setBackground(UserSettings.theme.getListBackgroundColor());
-            setForeground(UserSettings.theme.getTextColor());
-            super.paint(g);
+                setBackground(UserSettings.theme.getListBackgroundColor());
+                setForeground(UserSettings.theme.getTextColor());
+                super.paint(g);
             }
         });
-    }
-
-    /**
-     *
-     * @param isEnabled
-     */
-    public void setDeleteEnabled(boolean isEnabled) {
-        deleteButton.setEnabled(isEnabled);
     }
 
     private void setModelFields() {
         Person person = (Person) personComboBox.getSelectedItem();
         Account account = (Account) accountComboBox.getSelectedItem();
-                
-        controller.model.PersonId = person.Id;
-        controller.model.AccountId = account.Id;
+
+        controller.model.personId = person.id;
+        controller.model.accountId = account.id;
     }
 
     /**
@@ -261,7 +257,6 @@ public class AccountPersonMapEditView extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     // </editor-fold> 
-    
     // <editor-fold defaultstate="collapsed" desc="Generated UI Variables"> 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<Account> accountComboBox;

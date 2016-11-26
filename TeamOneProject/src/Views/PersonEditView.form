@@ -66,11 +66,11 @@
                   </Group>
                   <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="NameField" alignment="0" max="32767" attributes="0"/>
-                      <Component id="DateOfBirthField" alignment="0" max="32767" attributes="0"/>
-                      <Component id="AddressField" alignment="0" max="32767" attributes="0"/>
-                      <Component id="PhoneNumberField" alignment="0" max="32767" attributes="0"/>
-                      <Component id="SocialSecurityNumberField" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
+                      <Component id="nameField" alignment="0" max="32767" attributes="0"/>
+                      <Component id="dateOfBirthField" alignment="0" max="32767" attributes="0"/>
+                      <Component id="addressField" alignment="0" max="32767" attributes="0"/>
+                      <Component id="phoneNumberField" alignment="0" max="32767" attributes="0"/>
+                      <Component id="socialSecurityNumberField" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="60" max="32767" attributes="0"/>
               </Group>
@@ -81,27 +81,27 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="NameField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nameField" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="DateOfBirthField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="dateOfBirthField" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="AddressField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="addressField" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="PhoneNumberField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="phoneNumberField" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="SocialSecurityNumberField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="socialSecurityNumberField" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="18" max="32767" attributes="0"/>
@@ -149,15 +149,15 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="NameField">
+        <Component class="javax.swing.JTextField" name="nameField">
         </Component>
-        <Component class="javax.swing.JTextField" name="DateOfBirthField">
+        <Component class="javax.swing.JTextField" name="dateOfBirthField">
         </Component>
-        <Component class="javax.swing.JTextField" name="AddressField">
+        <Component class="javax.swing.JTextField" name="addressField">
         </Component>
-        <Component class="javax.swing.JTextField" name="PhoneNumberField">
+        <Component class="javax.swing.JTextField" name="phoneNumberField">
         </Component>
-        <Component class="javax.swing.JTextField" name="SocialSecurityNumberField">
+        <Component class="javax.swing.JTextField" name="socialSecurityNumberField">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>

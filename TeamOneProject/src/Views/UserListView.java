@@ -1,4 +1,4 @@
- /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -18,13 +18,10 @@ import javax.swing.JList;
 public class UserListView extends javax.swing.JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
-    
     private final UserListViewController controller;
-    
-    // </editor-fold> 
-    
-    // <editor-fold defaultstate="collapsed" desc="Constructors"> 
 
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     /**
      * Creates new form TestDataListView
      *
@@ -34,27 +31,25 @@ public class UserListView extends javax.swing.JFrame {
         this.controller = controller;
         load();
     }
-    
+
     // </editor-fold> 
-    
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
-    
     private void load() {
         initComponents();
         setThemeColors();
-        
+
         this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png")).getImage());
-        
+
         setResizable(false);
         setVisible(true);
     }
-    
+
     private void setThemeColors() {
         jPanel1.setBackground(UserSettings.theme.getBackgroundColor());
-        
+
         jList1.setBackground(UserSettings.theme.getListBackgroundColor());
         newButton.setBackground(UserSettings.theme.getButtonBackgroundColor());
-                
+
         jList1.setForeground(UserSettings.theme.getTextColor());
         newButton.setForeground(UserSettings.theme.getTextColor());
         jLabel1.setForeground(UserSettings.theme.getTextColor());
@@ -184,7 +179,6 @@ public class UserListView extends javax.swing.JFrame {
     }//GEN-LAST:event_newButtonActionPerformed
 
     // </editor-fold> 
-    
     // <editor-fold defaultstate="collapsed" desc="Generated UI Variables">  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

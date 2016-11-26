@@ -19,6 +19,10 @@ import javax.swing.DefaultListCellRenderer;
 import javax.swing.JComboBox;
 import javax.swing.JList;
 
+/**
+ *
+ * @author Owner
+ */
 public class AccountPersonMapListView extends javax.swing.JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
@@ -41,7 +45,7 @@ public class AccountPersonMapListView extends javax.swing.JFrame {
     private void load() {
         initComponents();
         setThemeColors();
-        
+
         this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png")).getImage());
 
         personComboBox.setSelectedItem(null);
@@ -67,9 +71,9 @@ public class AccountPersonMapListView extends javax.swing.JFrame {
         personComboBox.setRenderer(new DefaultListCellRenderer() {
             @Override
             public void paint(Graphics g) {
-            setBackground(UserSettings.theme.getListBackgroundColor());
-            setForeground(UserSettings.theme.getTextColor());
-            super.paint(g);
+                setBackground(UserSettings.theme.getListBackgroundColor());
+                setForeground(UserSettings.theme.getTextColor());
+                super.paint(g);
             }
         });
     }
@@ -192,7 +196,7 @@ public class AccountPersonMapListView extends javax.swing.JFrame {
 
                 AccountPersonMap item = list.getSelectedValue();
                 Person person = (Person) personComboBox.getSelectedItem();
-                controller.executeEdit(item, person.Id);
+                controller.executeEdit(item, person.id);
             }
         }
     }//GEN-LAST:event_jList1MouseClicked
@@ -207,14 +211,14 @@ public class AccountPersonMapListView extends javax.swing.JFrame {
 
                 AccountPersonMap item = list.getSelectedValue();
                 Person person = (Person) personComboBox.getSelectedItem();
-                controller.executeEdit(item, person.Id);
+                controller.executeEdit(item, person.id);
             }
         }
     }//GEN-LAST:event_jList1KeyPressed
 
     private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
         Person person = (Person) personComboBox.getSelectedItem();
-        controller.executeAdd(person.Id);
+        controller.executeAdd(person.id);
     }//GEN-LAST:event_newButtonActionPerformed
 
     @SuppressWarnings("unchecked")
@@ -223,7 +227,7 @@ public class AccountPersonMapListView extends javax.swing.JFrame {
         Person person = (Person) comboBox.getSelectedItem();
 
         if (person != null) {
-            controller.loadAccountList(person.Id);
+            controller.loadAccountList(person.id);
             newButton.setEnabled(true);
         } else {
             controller.initializeAccountList();
