@@ -5,8 +5,12 @@
  */
 package Views;
 
+import Common.AesEncryption;
 import Common.UserSettings;
 import Controllers.PersonEditViewController;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,13 +18,11 @@ import Controllers.PersonEditViewController;
  */
 public class PersonEditView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
-    
-    private final PersonEditViewController controller;
-    
-    // </editor-fold> 
-    
-    // <editor-fold defaultstate="collapsed" desc="Constructors"> 
 
+    private final PersonEditViewController controller;
+
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     /**
      *
      * @param controller
@@ -29,29 +31,33 @@ public class PersonEditView extends javax.swing.JFrame {
         this.controller = controller;
         load();
     }
-    
-    // </editor-fold> 
-    
-    // <editor-fold defaultstate="collapsed" desc="Methods"> 
 
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Methods"> 
     private void load() {
+
         initComponents();
         setThemeColors();
-        
-        NameField.setText(controller.model.Name);
-        DateOfBirthField.setText(controller.model.DateOfBirth);
-        AddressField.setText(controller.model.Address);
-        PhoneNumberField.setText(controller.model.PhoneNumber);
-        SocialSecurityNumberField.setText(controller.model.SocialSecurityNumber);
+
+        try {
+            NameField.setText(controller.model.Name);
+            DateOfBirthField.setText(controller.model.DateOfBirth);
+            AddressField.setText(controller.model.Address);
+            PhoneNumberField.setText(controller.model.PhoneNumber);
+            SocialSecurityNumberField.setText(AesEncryption.decryptText(controller.model.SocialSecurityNumber));
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(jPanel1, "Decryption failure.");
+        }
 
         pack();
         setResizable(false);
         setVisible(true);
+
     }
-    
+
     private void setThemeColors() {
         jPanel1.setBackground(UserSettings.theme.getBackgroundColor());
-                
+
         AddressField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
         DateOfBirthField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
         NameField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
@@ -61,7 +67,7 @@ public class PersonEditView extends javax.swing.JFrame {
         saveButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
         cancelButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
         deleteButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        
+
         AddressField.setForeground(UserSettings.theme.getTextColor());
         DateOfBirthField.setForeground(UserSettings.theme.getTextColor());
         NameField.setForeground(UserSettings.theme.getTextColor());
@@ -87,11 +93,15 @@ public class PersonEditView extends javax.swing.JFrame {
     }
 
     private void setModelFields() {
-        controller.model.Name = NameField.getText();
-        controller.model.DateOfBirth = DateOfBirthField.getText();
-        controller.model.Address = AddressField.getText();
-        controller.model.PhoneNumber = PhoneNumberField.getText();
-        controller.model.SocialSecurityNumber = SocialSecurityNumberField.getText();
+        try {
+            controller.model.Name = NameField.getText();
+            controller.model.DateOfBirth = DateOfBirthField.getText();
+            controller.model.Address = AddressField.getText();
+            controller.model.PhoneNumber = PhoneNumberField.getText();
+            controller.model.SocialSecurityNumber = AesEncryption.encryptText(SocialSecurityNumberField.getText());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(jPanel1, "Encryption failure.");
+        }
     }
 
     /**
@@ -259,7 +269,6 @@ public class PersonEditView extends javax.swing.JFrame {
     }//GEN-LAST:event_applyButtonActionPerformed
 
     // </editor-fold> 
-    
     // <editor-fold defaultstate="collapsed" desc="Generated UI Variables"> 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField AddressField;

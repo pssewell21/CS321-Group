@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Common;
+package aesencryptdecrypttool;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -23,7 +23,6 @@ public class AesEncryption {
      * 1. Generate a plain text for encryption 2. Get a secret key (printed in
      * hexadecimal form). In actual use this must by encrypted and kept safe.
      * The same key is required for decryption. 3.
-     *
      * @throws java.lang.Exception
      */
     public void run() throws Exception {
@@ -36,11 +35,11 @@ public class AesEncryption {
         System.out.println("AES Key (Hex Form):" + bytesToHex(secKey.getEncoded()));
         System.out.println("Encrypted Text (Hex Form):" + encryptedText);
         System.out.println("Decrypted Text:" + decryptedText);
-
+        
         plainText = "password";
         encryptedText = encryptText(plainText);
         decryptedText = decryptText(encryptedText);
-
+        
         System.out.println("Original Text:" + plainText);
         System.out.println("AES Key (Hex Form):" + bytesToHex(secKey.getEncoded()));
         System.out.println("Encrypted Text (Hex Form):" + encryptedText);
@@ -54,16 +53,12 @@ public class AesEncryption {
      * @return
      * @throws Exception
      */
-    public static final String encryptText(String plainText) throws Exception {
+    public static final String encryptText(String plainText) throws Exception {   
         // AES defaults to AES/ECB/PKCS5Padding in Java 7
-        if (plainText != null) {
-            Cipher aesCipher = Cipher.getInstance("AES");
-            aesCipher.init(Cipher.ENCRYPT_MODE, getSecretEncryptionKey());
-            byte[] byteCipherText = aesCipher.doFinal(plainText.getBytes());
-            return bytesToHex(byteCipherText);
-        }
-
-        return null;
+        Cipher aesCipher = Cipher.getInstance("AES");
+        aesCipher.init(Cipher.ENCRYPT_MODE, getSecretEncryptionKey());
+        byte[] byteCipherText = aesCipher.doFinal(plainText.getBytes());
+        return bytesToHex(byteCipherText);
     }
 
     /**
@@ -75,16 +70,12 @@ public class AesEncryption {
      */
     public static final String decryptText(String encryptedText) throws Exception {
         // AES defaults to AES/ECB/PKCS5Padding in Java 7
-        if (encryptedText != null) {
-            Cipher aesCipher = Cipher.getInstance("AES");
-            aesCipher.init(Cipher.DECRYPT_MODE, getSecretEncryptionKey());
-            byte[] bytePlainText = aesCipher.doFinal(DatatypeConverter.parseHexBinary(encryptedText));
-            return new String(bytePlainText);
-        }
-
-        return null;
+        Cipher aesCipher = Cipher.getInstance("AES");
+        aesCipher.init(Cipher.DECRYPT_MODE, getSecretEncryptionKey());
+        byte[] bytePlainText = aesCipher.doFinal(DatatypeConverter.parseHexBinary(encryptedText));
+        return new String(bytePlainText);
     }
-
+    
     /**
      * gets the AES encryption key.
      *

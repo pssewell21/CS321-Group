@@ -10,8 +10,6 @@ import Common.UserSettings;
 import Controllers.UserEditViewController;
 import Library.Person;
 import java.awt.Graphics;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JOptionPane;
 
@@ -53,14 +51,15 @@ public class UserEditView extends javax.swing.JFrame {
 
         userNameField.setText(controller.model.UserName);
         try {
-            passwordField.setText(AesEncryption.encryptText(controller.model.Password));
+            passwordField.setText(AesEncryption.decryptText(controller.model.Password));
+            securityQuestion1Field.setText(AesEncryption.decryptText(controller.model.SecurityQuestion1));
+            securityAnswer1Field.setText(AesEncryption.decryptText(controller.model.SecurityAnswer1));
+            securityQuestion2Field.setText(AesEncryption.decryptText(controller.model.SecurityQuestion2));
+            securityAnswer2Field.setText(AesEncryption.decryptText(controller.model.SecurityAnswer2));
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(jPanel1, "Password encryption failure.");
+            JOptionPane.showMessageDialog(jPanel1, "Decryption failure.");
         }
-        securityQuestion1Field.setText(controller.model.SecurityQuestion1);
-        securityAnswer1Field.setText(controller.model.SecurityAnswer1);
-        securityQuestion2Field.setText(controller.model.SecurityQuestion2);
-        securityAnswer2Field.setText(controller.model.SecurityAnswer2);
+        
         if (controller.model.IsAdministrator != null) {
             isAdministratorCheckBox.setSelected(controller.model.IsAdministrator);
         }
@@ -150,15 +149,15 @@ public class UserEditView extends javax.swing.JFrame {
             controller.model.PersonId = selectedPerson.Id;
             controller.model.UserName = userNameField.getText();
             controller.model.Password = AesEncryption.encryptText(new String(passwordField.getPassword()));
-            controller.model.SecurityQuestion1 = securityQuestion1Field.getText();
-            controller.model.SecurityAnswer1 = securityAnswer1Field.getText();
-            controller.model.SecurityQuestion2 = securityQuestion2Field.getText();
-            controller.model.SecurityAnswer2 = securityAnswer2Field.getText();
+            controller.model.SecurityQuestion1 = AesEncryption.encryptText(securityQuestion1Field.getText());
+            controller.model.SecurityAnswer1 = AesEncryption.encryptText(securityAnswer1Field.getText());
+            controller.model.SecurityQuestion2 = AesEncryption.encryptText(securityQuestion2Field.getText());
+            controller.model.SecurityAnswer2 = AesEncryption.encryptText(securityAnswer2Field.getText());
             controller.model.IsAdministrator = isAdministratorCheckBox.isSelected();
             controller.model.IsAccountLocked = isAccountLockedCheckBox.isSelected();
             controller.model.SelectedTheme = (String) selectedThemeComboBox.getSelectedItem();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(jPanel1, "Password encryption failure.");
+            JOptionPane.showMessageDialog(jPanel1, "Encryption failure.");
         }
     }
 
