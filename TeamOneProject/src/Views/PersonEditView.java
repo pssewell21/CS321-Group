@@ -68,35 +68,35 @@ public class PersonEditView extends javax.swing.JFrame {
     }
 
     private void setThemeColors() {
-        jPanel1.setBackground(UserSettings.theme.getBackgroundColor());
+        jPanel1.setBackground(UserSettings.selectedTheme.getBackgroundColor());
 
-        addressField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        dateOfBirthField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        nameField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        phoneNumberField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        socialSecurityNumberField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        applyButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        saveButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        cancelButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        deleteButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        addressField.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
+        dateOfBirthField.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
+        nameField.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
+        phoneNumberField.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
+        socialSecurityNumberField.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
+        applyButton.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
+        saveButton.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
+        cancelButton.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
+        deleteButton.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
 
-        addressField.setForeground(UserSettings.theme.getTextColor());
-        dateOfBirthField.setForeground(UserSettings.theme.getTextColor());
-        nameField.setForeground(UserSettings.theme.getTextColor());
-        phoneNumberField.setForeground(UserSettings.theme.getTextColor());
-        socialSecurityNumberField.setForeground(UserSettings.theme.getTextColor());
-        applyButton.setForeground(UserSettings.theme.getTextColor());
-        saveButton.setForeground(UserSettings.theme.getTextColor());
-        cancelButton.setForeground(UserSettings.theme.getTextColor());
-        deleteButton.setForeground(UserSettings.theme.getTextColor());
-        jLabel1.setForeground(UserSettings.theme.getTextColor());
-        jLabel2.setForeground(UserSettings.theme.getTextColor());
-        jLabel3.setForeground(UserSettings.theme.getTextColor());
-        jLabel4.setForeground(UserSettings.theme.getTextColor());
-        jLabel5.setForeground(UserSettings.theme.getTextColor());
-        jLabel6.setForeground(UserSettings.theme.getTextColor());
-        jLabel7.setForeground(UserSettings.theme.getTextColor());
-        requiredLabel.setForeground(UserSettings.theme.getTextColor());
+        addressField.setForeground(UserSettings.selectedTheme.getTextColor());
+        dateOfBirthField.setForeground(UserSettings.selectedTheme.getTextColor());
+        nameField.setForeground(UserSettings.selectedTheme.getTextColor());
+        phoneNumberField.setForeground(UserSettings.selectedTheme.getTextColor());
+        socialSecurityNumberField.setForeground(UserSettings.selectedTheme.getTextColor());
+        applyButton.setForeground(UserSettings.selectedTheme.getTextColor());
+        saveButton.setForeground(UserSettings.selectedTheme.getTextColor());
+        cancelButton.setForeground(UserSettings.selectedTheme.getTextColor());
+        deleteButton.setForeground(UserSettings.selectedTheme.getTextColor());
+        jLabel1.setForeground(UserSettings.selectedTheme.getTextColor());
+        jLabel2.setForeground(UserSettings.selectedTheme.getTextColor());
+        jLabel3.setForeground(UserSettings.selectedTheme.getTextColor());
+        jLabel4.setForeground(UserSettings.selectedTheme.getTextColor());
+        jLabel5.setForeground(UserSettings.selectedTheme.getTextColor());
+        jLabel6.setForeground(UserSettings.selectedTheme.getTextColor());
+        jLabel7.setForeground(UserSettings.selectedTheme.getTextColor());
+        requiredLabel.setForeground(UserSettings.selectedTheme.getTextColor());
     }
 
     private void setModelFields() throws Exception {

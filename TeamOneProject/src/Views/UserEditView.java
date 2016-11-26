@@ -93,58 +93,58 @@ public class UserEditView extends javax.swing.JFrame {
     }
 
     private void setThemeColors() {
-        jPanel1.setBackground(UserSettings.theme.getBackgroundColor());
+        jPanel1.setBackground(UserSettings.selectedTheme.getBackgroundColor());
 
-        personComboBox.setBackground(UserSettings.theme.getComboBoxBackgroundColor());
-        selectedThemeComboBox.setBackground(UserSettings.theme.getComboBoxBackgroundColor());
-        passwordField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        securityAnswer1Field.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        securityAnswer2Field.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        securityQuestion1Field.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        securityQuestion2Field.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        userNameField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        applyButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        saveButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        cancelButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        deleteButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        personComboBox.setBackground(UserSettings.selectedTheme.getComboBoxBackgroundColor());
+        selectedThemeComboBox.setBackground(UserSettings.selectedTheme.getComboBoxBackgroundColor());
+        passwordField.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
+        securityAnswer1Field.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
+        securityAnswer2Field.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
+        securityQuestion1Field.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
+        securityQuestion2Field.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
+        userNameField.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
+        applyButton.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
+        saveButton.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
+        cancelButton.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
+        deleteButton.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
 
-        personComboBox.setForeground(UserSettings.theme.getTextColor());
-        selectedThemeComboBox.setForeground(UserSettings.theme.getTextColor());
-        passwordField.setForeground(UserSettings.theme.getTextColor());
-        securityAnswer1Field.setForeground(UserSettings.theme.getTextColor());
-        securityAnswer2Field.setForeground(UserSettings.theme.getTextColor());
-        securityQuestion1Field.setForeground(UserSettings.theme.getTextColor());
-        securityQuestion2Field.setForeground(UserSettings.theme.getTextColor());
-        userNameField.setForeground(UserSettings.theme.getTextColor());
-        applyButton.setForeground(UserSettings.theme.getTextColor());
-        saveButton.setForeground(UserSettings.theme.getTextColor());
-        cancelButton.setForeground(UserSettings.theme.getTextColor());
-        deleteButton.setForeground(UserSettings.theme.getTextColor());
-        jLabel2.setForeground(UserSettings.theme.getTextColor());
-        jLabel3.setForeground(UserSettings.theme.getTextColor());
-        jLabel4.setForeground(UserSettings.theme.getTextColor());
-        jLabel5.setForeground(UserSettings.theme.getTextColor());
-        jLabel6.setForeground(UserSettings.theme.getTextColor());
-        jLabel7.setForeground(UserSettings.theme.getTextColor());
-        jLabel8.setForeground(UserSettings.theme.getTextColor());
-        jLabel9.setForeground(UserSettings.theme.getTextColor());
-        jLabel10.setForeground(UserSettings.theme.getTextColor());
-        jLabel11.setForeground(UserSettings.theme.getTextColor());
-        requiredLabel.setForeground(UserSettings.theme.getTextColor());
+        personComboBox.setForeground(UserSettings.selectedTheme.getTextColor());
+        selectedThemeComboBox.setForeground(UserSettings.selectedTheme.getTextColor());
+        passwordField.setForeground(UserSettings.selectedTheme.getTextColor());
+        securityAnswer1Field.setForeground(UserSettings.selectedTheme.getTextColor());
+        securityAnswer2Field.setForeground(UserSettings.selectedTheme.getTextColor());
+        securityQuestion1Field.setForeground(UserSettings.selectedTheme.getTextColor());
+        securityQuestion2Field.setForeground(UserSettings.selectedTheme.getTextColor());
+        userNameField.setForeground(UserSettings.selectedTheme.getTextColor());
+        applyButton.setForeground(UserSettings.selectedTheme.getTextColor());
+        saveButton.setForeground(UserSettings.selectedTheme.getTextColor());
+        cancelButton.setForeground(UserSettings.selectedTheme.getTextColor());
+        deleteButton.setForeground(UserSettings.selectedTheme.getTextColor());
+        jLabel2.setForeground(UserSettings.selectedTheme.getTextColor());
+        jLabel3.setForeground(UserSettings.selectedTheme.getTextColor());
+        jLabel4.setForeground(UserSettings.selectedTheme.getTextColor());
+        jLabel5.setForeground(UserSettings.selectedTheme.getTextColor());
+        jLabel6.setForeground(UserSettings.selectedTheme.getTextColor());
+        jLabel7.setForeground(UserSettings.selectedTheme.getTextColor());
+        jLabel8.setForeground(UserSettings.selectedTheme.getTextColor());
+        jLabel9.setForeground(UserSettings.selectedTheme.getTextColor());
+        jLabel10.setForeground(UserSettings.selectedTheme.getTextColor());
+        jLabel11.setForeground(UserSettings.selectedTheme.getTextColor());
+        requiredLabel.setForeground(UserSettings.selectedTheme.getTextColor());
 
         personComboBox.setRenderer(new DefaultListCellRenderer() {
             @Override
             public void paint(Graphics g) {
-                setBackground(UserSettings.theme.getListBackgroundColor());
-                setForeground(UserSettings.theme.getTextColor());
+                setBackground(UserSettings.selectedTheme.getListBackgroundColor());
+                setForeground(UserSettings.selectedTheme.getTextColor());
                 super.paint(g);
             }
         });
         selectedThemeComboBox.setRenderer(new DefaultListCellRenderer() {
             @Override
             public void paint(Graphics g) {
-                setBackground(UserSettings.theme.getListBackgroundColor());
-                setForeground(UserSettings.theme.getTextColor());
+                setBackground(UserSettings.selectedTheme.getListBackgroundColor());
+                setForeground(UserSettings.selectedTheme.getTextColor());
                 super.paint(g);
             }
         });

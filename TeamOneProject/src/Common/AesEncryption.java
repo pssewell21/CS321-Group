@@ -16,7 +16,7 @@ import javax.xml.bind.DatatypeConverter;
 
 /**
  * Used to encrypt and decrypt data using an AES encryption algorithm.
- * 
+ *
  * This code was originally taken from
  * http://www.quickprogrammingtips.com/java/how-to-encrypt-and-decrypt-data-in-java-using-aes-algorithm.html
  * and adapted for use in this application.
@@ -29,8 +29,8 @@ public class AesEncryption {
      * Encrypts plainText in AES using the secret key.
      *
      * @param plainText
-     * @return 
-     * @throws Exception 
+     * @return Encrypted string or nothing
+     * @throws Exception If the encryption operation fails
      */
     public static final String encryptText(String plainText) throws Exception {
         // AES defaults to AES/ECB/PKCS5Padding in Java 7
@@ -47,9 +47,9 @@ public class AesEncryption {
     /**
      * Decrypts encrypted string using the key used for encryption.
      *
-     * @param encryptedText
-     * @return
-     * @throws Exception
+     * @param encryptedText A string of encrypted text
+     * @return A string containing the decrypted text
+     * @throws Exception If the decryption operation fails
      */
     public static final String decryptText(String encryptedText) throws Exception {
         // AES defaults to AES/ECB/PKCS5Padding in Java 7
@@ -62,14 +62,14 @@ public class AesEncryption {
 
         return null;
     }
-    
+
     private static SecretKey getSecretEncryptionKey() throws Exception {
         byte[] raw = DatatypeConverter.parseHexBinary("1918CE2C428773705B9B43688E4B4FB2");
         SecretKeySpec skeySpec = new SecretKeySpec(raw, "AES");
 
         return skeySpec;
     }
-    
+
     private static String bytesToHex(byte[] hash) {
         return DatatypeConverter.printHexBinary(hash);
     }

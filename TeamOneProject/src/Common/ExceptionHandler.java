@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 
 /**
  * Used to handle exceptions gracefully and provide feedback to the user.
+ *
  * @author Patrick Sewell
  */
 public final class ExceptionHandler {
@@ -22,7 +23,9 @@ public final class ExceptionHandler {
 
     /**
      * Displays exception text to the user in a popup dialog.
-     * @param e
+     *
+     * @param e The exception containing information about why an operation
+     * failed
      */
     public static final void handleException(Exception e) {
         System.out.println(e.toString());

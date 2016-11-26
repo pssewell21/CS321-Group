@@ -61,27 +61,27 @@ public class TestDataEditView extends javax.swing.JFrame {
     }
 
     private void setThemeColors() {
-        jPanel1.setBackground(UserSettings.theme.getBackgroundColor());
+        jPanel1.setBackground(UserSettings.selectedTheme.getBackgroundColor());
 
-        idField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        keyField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        valueField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        applyButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        saveButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        cancelButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        deleteButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        idField.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
+        keyField.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
+        valueField.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
+        applyButton.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
+        saveButton.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
+        cancelButton.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
+        deleteButton.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
 
-        idField.setForeground(UserSettings.theme.getTextColor());
-        keyField.setForeground(UserSettings.theme.getTextColor());
-        valueField.setForeground(UserSettings.theme.getTextColor());
-        applyButton.setForeground(UserSettings.theme.getTextColor());
-        saveButton.setForeground(UserSettings.theme.getTextColor());
-        cancelButton.setForeground(UserSettings.theme.getTextColor());
-        deleteButton.setForeground(UserSettings.theme.getTextColor());
-        jLabel1.setForeground(UserSettings.theme.getTextColor());
-        jLabel2.setForeground(UserSettings.theme.getTextColor());
-        jLabel3.setForeground(UserSettings.theme.getTextColor());
-        requiredLabel.setForeground(UserSettings.theme.getTextColor());
+        idField.setForeground(UserSettings.selectedTheme.getTextColor());
+        keyField.setForeground(UserSettings.selectedTheme.getTextColor());
+        valueField.setForeground(UserSettings.selectedTheme.getTextColor());
+        applyButton.setForeground(UserSettings.selectedTheme.getTextColor());
+        saveButton.setForeground(UserSettings.selectedTheme.getTextColor());
+        cancelButton.setForeground(UserSettings.selectedTheme.getTextColor());
+        deleteButton.setForeground(UserSettings.selectedTheme.getTextColor());
+        jLabel1.setForeground(UserSettings.selectedTheme.getTextColor());
+        jLabel2.setForeground(UserSettings.selectedTheme.getTextColor());
+        jLabel3.setForeground(UserSettings.selectedTheme.getTextColor());
+        requiredLabel.setForeground(UserSettings.selectedTheme.getTextColor());
     }
 
     private void setModelFields() throws Exception {

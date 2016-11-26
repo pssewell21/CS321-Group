@@ -70,33 +70,33 @@ public class AccountEditView extends javax.swing.JFrame {
     }
 
     private void setThemeColors() {
-        jPanel1.setBackground(UserSettings.theme.getBackgroundColor());
+        jPanel1.setBackground(UserSettings.selectedTheme.getBackgroundColor());
 
-        accountNumberField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        accountTypeField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        balanceField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        descriptionField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        interestRateField.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        applyButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        saveButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        cancelButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        deleteButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        accountNumberField.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
+        accountTypeField.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
+        balanceField.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
+        descriptionField.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
+        interestRateField.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
+        applyButton.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
+        saveButton.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
+        cancelButton.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
+        deleteButton.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
 
-        accountNumberField.setForeground(UserSettings.theme.getTextColor());
-        accountTypeField.setForeground(UserSettings.theme.getTextColor());
-        balanceField.setForeground(UserSettings.theme.getTextColor());
-        descriptionField.setForeground(UserSettings.theme.getTextColor());
-        interestRateField.setForeground(UserSettings.theme.getTextColor());
-        applyButton.setForeground(UserSettings.theme.getTextColor());
-        saveButton.setForeground(UserSettings.theme.getTextColor());
-        cancelButton.setForeground(UserSettings.theme.getTextColor());
-        deleteButton.setForeground(UserSettings.theme.getTextColor());
-        jLabel2.setForeground(UserSettings.theme.getTextColor());
-        jLabel3.setForeground(UserSettings.theme.getTextColor());
-        jLabel4.setForeground(UserSettings.theme.getTextColor());
-        jLabel5.setForeground(UserSettings.theme.getTextColor());
-        jLabel6.setForeground(UserSettings.theme.getTextColor());
-        requiredLabel.setForeground(UserSettings.theme.getTextColor());
+        accountNumberField.setForeground(UserSettings.selectedTheme.getTextColor());
+        accountTypeField.setForeground(UserSettings.selectedTheme.getTextColor());
+        balanceField.setForeground(UserSettings.selectedTheme.getTextColor());
+        descriptionField.setForeground(UserSettings.selectedTheme.getTextColor());
+        interestRateField.setForeground(UserSettings.selectedTheme.getTextColor());
+        applyButton.setForeground(UserSettings.selectedTheme.getTextColor());
+        saveButton.setForeground(UserSettings.selectedTheme.getTextColor());
+        cancelButton.setForeground(UserSettings.selectedTheme.getTextColor());
+        deleteButton.setForeground(UserSettings.selectedTheme.getTextColor());
+        jLabel2.setForeground(UserSettings.selectedTheme.getTextColor());
+        jLabel3.setForeground(UserSettings.selectedTheme.getTextColor());
+        jLabel4.setForeground(UserSettings.selectedTheme.getTextColor());
+        jLabel5.setForeground(UserSettings.selectedTheme.getTextColor());
+        jLabel6.setForeground(UserSettings.selectedTheme.getTextColor());
+        requiredLabel.setForeground(UserSettings.selectedTheme.getTextColor());
     }
 
     private void setModelFields() throws Exception {

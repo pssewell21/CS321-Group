@@ -50,14 +50,14 @@ public class PersonListView extends javax.swing.JFrame {
     }
 
     private void setThemeColors() {
-        jPanel1.setBackground(UserSettings.theme.getBackgroundColor());
+        jPanel1.setBackground(UserSettings.selectedTheme.getBackgroundColor());
 
-        jList1.setBackground(UserSettings.theme.getListBackgroundColor());
-        newButton.setBackground(UserSettings.theme.getButtonBackgroundColor());
+        jList1.setBackground(UserSettings.selectedTheme.getListBackgroundColor());
+        newButton.setBackground(UserSettings.selectedTheme.getButtonBackgroundColor());
 
-        jList1.setForeground(UserSettings.theme.getTextColor());
-        newButton.setForeground(UserSettings.theme.getTextColor());
-        jLabel1.setForeground(UserSettings.theme.getTextColor());
+        jList1.setForeground(UserSettings.selectedTheme.getTextColor());
+        newButton.setForeground(UserSettings.selectedTheme.getTextColor());
+        jLabel1.setForeground(UserSettings.selectedTheme.getTextColor());
     }
 
     /**
