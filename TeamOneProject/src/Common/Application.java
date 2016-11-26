@@ -13,7 +13,7 @@ import Controllers.LogOnViewController;
 import javax.swing.UnsupportedLookAndFeelException;
 
 /**
- * 
+ * The class that contains the entry point for the application and starts it
  * @author pssew
  */
 public class Application {
