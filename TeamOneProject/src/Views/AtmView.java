@@ -35,6 +35,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
@@ -81,6 +82,7 @@ public final class AtmView extends JFrame {
     private JTextField transactionHistoryEndDateField;
     private JLabel startDateLabel;
     private JLabel endDateLabel;
+    private JScrollPane transactionHistoryScrollPanel;
     private JList<AccountTransaction> transactionHistoryList;
     private JButton getTransactionHistoryButton;
     private ButtonGroup transactionHistoryRadioButtonGroup;
@@ -671,14 +673,16 @@ public final class AtmView extends JFrame {
     /**
      * This method initializes transactionHistoryList
      *
-     * @return javax.swing.JList
+     * @return javax.swing.JScrollPane
      */
-    private JList getTransactionHistoryList() {
+    private JScrollPane getTransactionHistoryList() {
+        transactionHistoryScrollPanel = new JScrollPane();
         transactionHistoryList = new JList<>();
         transactionHistoryList.setBackground(UserSettings.theme.getListBackgroundColor());
         transactionHistoryList.setForeground(UserSettings.theme.getTextColor());
+        transactionHistoryScrollPanel.setViewportView(transactionHistoryList);
 
-        return transactionHistoryList;
+        return transactionHistoryScrollPanel;
     }
 
     /**
