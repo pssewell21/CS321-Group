@@ -6,7 +6,7 @@
 package Controllers;
 
 import Common.ExceptionHandler;
-import Views.NavigationView;
+import Views.AdminView;
 import java.sql.SQLException;
 
 /**
@@ -16,7 +16,7 @@ import java.sql.SQLException;
 public class NavigationViewController {
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
 
-    private NavigationView view;
+    private AdminView view;
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
@@ -34,7 +34,7 @@ public class NavigationViewController {
      *
      */
     public void load() {
-        view = new NavigationView(this);
+        view = new AdminView(this);
     }
 
     /**

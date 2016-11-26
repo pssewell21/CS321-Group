@@ -44,6 +44,7 @@ public class AccountEditView extends javax.swing.JFrame {
     private void load() {
         initComponents();
         setThemeColors();
+        setTitle("Create an Account");
 
         this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png")).getImage());
 

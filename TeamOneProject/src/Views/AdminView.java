@@ -12,7 +12,7 @@ import Controllers.NavigationViewController;
  *
  * @author Owner
  */
-public class NavigationView extends javax.swing.JFrame {
+public class AdminView extends javax.swing.JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
     private final NavigationViewController controller;
@@ -23,7 +23,7 @@ public class NavigationView extends javax.swing.JFrame {
      *
      * @param controller
      */
-    public NavigationView(NavigationViewController controller) {
+    public AdminView(NavigationViewController controller) {
         this.controller = controller;
         load();
     }
@@ -32,6 +32,7 @@ public class NavigationView extends javax.swing.JFrame {
     private void load() {
         initComponents();
         setThemeColors();
+        setTitle("Administrator Navigation");
 
         this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png")).getImage());
 

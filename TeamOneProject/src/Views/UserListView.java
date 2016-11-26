@@ -37,6 +37,7 @@ public class UserListView extends javax.swing.JFrame {
     private void load() {
         initComponents();
         setThemeColors();
+        setTitle("User Management");
 
         this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png")).getImage());
 

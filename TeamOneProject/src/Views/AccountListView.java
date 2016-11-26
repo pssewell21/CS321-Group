@@ -37,6 +37,7 @@ public class AccountListView extends javax.swing.JFrame {
     private void load() {
         initComponents();
         setThemeColors();
+        setTitle("Account Management");
 
         this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png")).getImage());
 
@@ -80,7 +81,7 @@ public class AccountListView extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Account Manager");
+        jLabel1.setText("Account Management");
 
         jList1.setModel(controller.listModel);
         jList1.addMouseListener(new java.awt.event.MouseAdapter() {

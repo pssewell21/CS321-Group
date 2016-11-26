@@ -33,6 +33,7 @@ public class LogOnView extends javax.swing.JFrame {
     // </editor-fold> 
     private void load() {
         initComponents();
+        setTitle("Log on");
         logOnFailureLabel.setVisible(false);
 
         this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png")).getImage());

@@ -45,6 +45,7 @@ public class AccountPersonMapListView extends javax.swing.JFrame {
     private void load() {
         initComponents();
         setThemeColors();
+        setTitle("Account Link Management");
 
         this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png")).getImage());
 
@@ -98,7 +99,7 @@ public class AccountPersonMapListView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Account Linking Manager");
+        jLabel1.setText("Account Link Management");
 
         jList1.setModel(controller.accountPersonMapListModel);
         jList1.addMouseListener(new java.awt.event.MouseAdapter() {
