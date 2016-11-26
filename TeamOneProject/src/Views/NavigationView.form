@@ -39,13 +39,17 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="170" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="22" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="testDataButton" alignment="0" min="-2" pref="191" max="-2" attributes="0"/>
-                      <Component id="accountManagerButton" alignment="0" min="-2" pref="191" max="-2" attributes="0"/>
-                      <Component id="accountPersonLinkManagerButton" min="-2" max="-2" attributes="0"/>
-                      <Component id="userManagerButton" alignment="0" min="-2" pref="191" max="-2" attributes="0"/>
-                      <Component id="personManagerButton" alignment="0" min="-2" pref="191" max="-2" attributes="0"/>
+                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                          <Component id="testDataButton" alignment="0" min="-2" pref="191" max="-2" attributes="0"/>
+                          <Component id="accountManagerButton" alignment="0" min="-2" pref="191" max="-2" attributes="0"/>
+                          <Component id="userManagerButton" alignment="0" min="-2" pref="191" max="-2" attributes="0"/>
+                          <Component id="personManagerButton" alignment="0" min="-2" pref="191" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="accountPersonLinkManagerButton" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -58,13 +62,21 @@
                   <Component id="testDataButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="personManagerButton" min="-2" pref="32" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="userManagerButton" min="-2" pref="32" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="accountManagerButton" min="-2" pref="32" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="accountPersonLinkManagerButton" min="-2" pref="32" max="-2" attributes="0"/>
-                  <EmptySpace pref="117" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="userManagerButton" min="-2" pref="32" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="accountManagerButton" min="-2" pref="32" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="accountPersonLinkManagerButton" min="-2" pref="32" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace pref="168" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -109,6 +121,13 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="accountPersonLinkManagerButtonActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel1">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Resources/logo.png"/>
+            </Property>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

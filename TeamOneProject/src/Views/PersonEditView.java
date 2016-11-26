@@ -8,8 +8,6 @@ package Views;
 import Common.AesEncryption;
 import Common.UserSettings;
 import Controllers.PersonEditViewController;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -52,7 +50,6 @@ public class PersonEditView extends javax.swing.JFrame {
         pack();
         setResizable(false);
         setVisible(true);
-
     }
 
     private void setThemeColors() {
