@@ -46,19 +46,19 @@ public class AdminView extends javax.swing.JFrame {
     }
 
     private void setThemeColors() {
-        jPanel1.setBackground(UserSettings.theme.getBackgroundColor());
+        jPanel1.setBackground(UserSettings.selectedTheme.getBackgroundColor());
 
-        accountManagerButton.setBackground(UserSettings.theme.getButtonBackgroundColor());
-        accountPersonLinkManagerButton.setBackground(UserSettings.theme.getButtonBackgroundColor());
-        personManagerButton.setBackground(UserSettings.theme.getButtonBackgroundColor());
-        userManagerButton.setBackground(UserSettings.theme.getButtonBackgroundColor());
-        exitButton.setBackground(UserSettings.theme.getButtonBackgroundColor());
+        accountManagerButton.setBackground(UserSettings.selectedTheme.getButtonBackgroundColor());
+        accountPersonLinkManagerButton.setBackground(UserSettings.selectedTheme.getButtonBackgroundColor());
+        personManagerButton.setBackground(UserSettings.selectedTheme.getButtonBackgroundColor());
+        userManagerButton.setBackground(UserSettings.selectedTheme.getButtonBackgroundColor());
+        exitButton.setBackground(UserSettings.selectedTheme.getButtonBackgroundColor());
 
-        accountManagerButton.setForeground(UserSettings.theme.getTextColor());
-        accountPersonLinkManagerButton.setForeground(UserSettings.theme.getTextColor());
-        personManagerButton.setForeground(UserSettings.theme.getTextColor());
-        userManagerButton.setForeground(UserSettings.theme.getTextColor());
-        exitButton.setForeground(UserSettings.theme.getTextColor());
+        accountManagerButton.setForeground(UserSettings.selectedTheme.getTextColor());
+        accountPersonLinkManagerButton.setForeground(UserSettings.selectedTheme.getTextColor());
+        personManagerButton.setForeground(UserSettings.selectedTheme.getTextColor());
+        userManagerButton.setForeground(UserSettings.selectedTheme.getTextColor());
+        exitButton.setForeground(UserSettings.selectedTheme.getTextColor());
     }
 
     /**

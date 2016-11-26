@@ -14,13 +14,14 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  * The class that contains the entry point for the application and starts it.
+ *
  * @author Patrick Sewell
  */
 public class Application {
 
     /**
      * The entry point for the application.
-     * 
+     *
      * @param args the command line arguments
      */
     public static void main(String[] args) {

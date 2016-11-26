@@ -13,8 +13,9 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 /**
- * Got help from
- * http://stackoverflow.com/questions/6714045/how-to-resize-jlabel-imageicon
+ * Used to change the size of ImageIcons. Got from
+ * http://stackoverflow.com/questions/6714045/how-to-resize-jlabel-imageicon and
+ * adapted for use in our application.
  *
  * @author Patrick Sewell
  */
@@ -24,11 +25,12 @@ public final class ImageIconScaler {
     }
 
     /**
+     * Used to change the size of an ImageIcon.
      *
-     * @param imageIcon
-     * @param w
-     * @param h
-     * @return
+     * @param imageIcon The ImageIcon to be scaled
+     * @param w The desired image width
+     * @param h The desired image height
+     * @return The resized ImageIcon
      */
     public static ImageIcon getScaledImage(ImageIcon imageIcon, int w, int h) {
         Image image = imageIcon.getImage();

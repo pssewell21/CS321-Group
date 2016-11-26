@@ -14,29 +14,31 @@ import Themes.ITheme;
 import Themes.LightTheme;
 
 /**
+ * Stores user settings for easy access.
  *
  * @author Patrick Sewell
  */
 public final class UserSettings {
 
     /**
-     *
+     * The selected Theme.
      */
-    public static ITheme theme;
+    public static ITheme selectedTheme;
 
     private UserSettings() {
     }
 
     /**
+     * Sets the selected theme.
      *
-     * @param theme
+     * @param theme The name of the theme to be selected
      */
     public static void setSelectedTheme(String theme) {
         if (theme.equals("Dark Theme")) {
-            UserSettings.theme = new DarkTheme();
+            UserSettings.selectedTheme = new DarkTheme();
         }
         if (theme.equals("Light Theme")) {
-            UserSettings.theme = new LightTheme();
+            UserSettings.selectedTheme = new LightTheme();
         }
     }
 }

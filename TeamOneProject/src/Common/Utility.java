@@ -13,6 +13,7 @@ import java.io.File;
 import java.sql.Timestamp;
 
 /**
+ * Utility methods to perform validation of data and other common operations.
  *
  * @author Patrick Sewell
  */
@@ -22,9 +23,10 @@ public final class Utility {
     }
 
     /**
+     * Checks if the string is not null and is not empty.
      *
-     * @param string
-     * @return
+     * @param string The string to check
+     * @return The value describing if the string has a value
      */
     public static final boolean hasValue(String string) {
         if (string == null) {
@@ -35,29 +37,34 @@ public final class Utility {
     }
 
     /**
+     * Checks if the string is a number.
      *
-     * @param string
-     * @return
+     * @param string The string to check
+     * @return The value describing if the string is a number
      */
     public static boolean isNumeric(String string) {
         return string.matches("-?\\d+(\\.\\d+)?");
     }
-    
+
     /**
+     * Checks if the string is a positive integer.
      *
-     * @param string
-     * @return
+     * @param string The string to check
+     * @return The value describing if the string is a positive integer
      */
     public static boolean isPositiveInteger(String string) {
         return string.matches("\\d+");
     }
 
     /**
-     * Taken from http://stackoverflow.com/questions/11480542/fastest-way-to-tell-if-a-string-is-a-valid-date
+     * Checks if the string is a valid date.
+     *
+     * Taken from
+     * http://stackoverflow.com/questions/11480542/fastest-way-to-tell-if-a-string-is-a-valid-date
      * and adapted for use in our application
      *
-     * @param dateString
-     * @return
+     * @param dateString The string to check
+     * @return The value describing if the string is a valid date
      */
     public static boolean isValidDate(String dateString) {
         if (dateString == null || dateString.length() != "yyyy-MM-dd".length() || dateString.charAt(4) != '-' || dateString.charAt(7) != '-') {
@@ -74,24 +81,29 @@ public final class Utility {
         boolean dayOk = (day >= 1) && (day <= daysInMonth(year, month));
 
         return (yearOk && monthOk && dayOk);
-    } 
-    
+    }
+
     public static boolean isValidSocialSecurityNumber(String ssnString) {
         return ssnString.matches("^\\d{3}-\\d{2}-\\d{4}$");
-    }    
+    }
 
     /**
+     * Gets the current time.
      *
-     * @return
+     * @return The current time
      */
     public static final Timestamp getCurrentTime() {
         return new Timestamp(System.currentTimeMillis());
     }
 
     /**
-     * Taken from http://stackoverflow.com/questions/20281835/how-to-delete-a-folder-with-files-using-java
+     * Deletes files and folders recursively from a specified location.
+     *
+     * Taken from
+     * http://stackoverflow.com/questions/20281835/how-to-delete-a-folder-with-files-using-java
      * and adapted for use in our application
-     * @param element
+     *
+     * @param element The file or folder to delete
      */
     public static void deleteFile(File element) {
         if (element.isDirectory()) {
@@ -99,9 +111,10 @@ public final class Utility {
                 deleteFile(sub);
             }
         }
+
         element.delete();
     }
-    
+
     // Taken from http://stackoverflow.com/questions/11480542/fastest-way-to-tell-if-a-string-is-a-valid-date
     // and adapted for use in our application
     private static int daysInMonth(int year, int month) {
@@ -127,6 +140,7 @@ public final class Utility {
                 // returns 30 even for nonexistant months 
                 daysInMonth = 30;
         }
+
         return daysInMonth;
     }
 }

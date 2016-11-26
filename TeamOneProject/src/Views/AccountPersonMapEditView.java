@@ -75,38 +75,38 @@ public class AccountPersonMapEditView extends javax.swing.JFrame {
     }
 
     private void setThemeColors() {
-        jPanel1.setBackground(UserSettings.theme.getBackgroundColor());
+        jPanel1.setBackground(UserSettings.selectedTheme.getBackgroundColor());
 
-        personComboBox.setBackground(UserSettings.theme.getComboBoxBackgroundColor());
-        accountComboBox.setBackground(UserSettings.theme.getComboBoxBackgroundColor());
-        applyButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        saveButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        cancelButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
-        deleteButton.setBackground(UserSettings.theme.getTextFieldBackgroundColor());
+        personComboBox.setBackground(UserSettings.selectedTheme.getComboBoxBackgroundColor());
+        accountComboBox.setBackground(UserSettings.selectedTheme.getComboBoxBackgroundColor());
+        applyButton.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
+        saveButton.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
+        cancelButton.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
+        deleteButton.setBackground(UserSettings.selectedTheme.getTextFieldBackgroundColor());
 
-        personComboBox.setForeground(UserSettings.theme.getTextColor());
-        accountComboBox.setForeground(UserSettings.theme.getTextColor());
-        applyButton.setForeground(UserSettings.theme.getTextColor());
-        saveButton.setForeground(UserSettings.theme.getTextColor());
-        cancelButton.setForeground(UserSettings.theme.getTextColor());
-        deleteButton.setForeground(UserSettings.theme.getTextColor());
-        jLabel2.setForeground(UserSettings.theme.getTextColor());
-        jLabel3.setForeground(UserSettings.theme.getTextColor());
-        requiredLabel.setForeground(UserSettings.theme.getTextColor());
+        personComboBox.setForeground(UserSettings.selectedTheme.getTextColor());
+        accountComboBox.setForeground(UserSettings.selectedTheme.getTextColor());
+        applyButton.setForeground(UserSettings.selectedTheme.getTextColor());
+        saveButton.setForeground(UserSettings.selectedTheme.getTextColor());
+        cancelButton.setForeground(UserSettings.selectedTheme.getTextColor());
+        deleteButton.setForeground(UserSettings.selectedTheme.getTextColor());
+        jLabel2.setForeground(UserSettings.selectedTheme.getTextColor());
+        jLabel3.setForeground(UserSettings.selectedTheme.getTextColor());
+        requiredLabel.setForeground(UserSettings.selectedTheme.getTextColor());
 
         personComboBox.setRenderer(new DefaultListCellRenderer() {
             @Override
             public void paint(Graphics g) {
-                setBackground(UserSettings.theme.getListBackgroundColor());
-                setForeground(UserSettings.theme.getTextColor());
+                setBackground(UserSettings.selectedTheme.getListBackgroundColor());
+                setForeground(UserSettings.selectedTheme.getTextColor());
                 super.paint(g);
             }
         });
         accountComboBox.setRenderer(new DefaultListCellRenderer() {
             @Override
             public void paint(Graphics g) {
-                setBackground(UserSettings.theme.getListBackgroundColor());
-                setForeground(UserSettings.theme.getTextColor());
+                setBackground(UserSettings.selectedTheme.getListBackgroundColor());
+                setForeground(UserSettings.selectedTheme.getTextColor());
                 super.paint(g);
             }
         });

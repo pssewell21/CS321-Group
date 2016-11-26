@@ -61,23 +61,23 @@ public class AccountPersonMapListView extends javax.swing.JFrame {
     }
 
     private void setThemeColors() {
-        jPanel1.setBackground(UserSettings.theme.getBackgroundColor());
+        jPanel1.setBackground(UserSettings.selectedTheme.getBackgroundColor());
 
-        jList1.setBackground(UserSettings.theme.getListBackgroundColor());
-        newButton.setBackground(UserSettings.theme.getButtonBackgroundColor());
-        personComboBox.setBackground(UserSettings.theme.getComboBoxBackgroundColor());
+        jList1.setBackground(UserSettings.selectedTheme.getListBackgroundColor());
+        newButton.setBackground(UserSettings.selectedTheme.getButtonBackgroundColor());
+        personComboBox.setBackground(UserSettings.selectedTheme.getComboBoxBackgroundColor());
 
-        jList1.setForeground(UserSettings.theme.getTextColor());
-        newButton.setForeground(UserSettings.theme.getTextColor());
-        personComboBox.setForeground(UserSettings.theme.getTextColor());
-        jLabel1.setForeground(UserSettings.theme.getTextColor());
-        jLabel2.setForeground(UserSettings.theme.getTextColor());
+        jList1.setForeground(UserSettings.selectedTheme.getTextColor());
+        newButton.setForeground(UserSettings.selectedTheme.getTextColor());
+        personComboBox.setForeground(UserSettings.selectedTheme.getTextColor());
+        jLabel1.setForeground(UserSettings.selectedTheme.getTextColor());
+        jLabel2.setForeground(UserSettings.selectedTheme.getTextColor());
 
         personComboBox.setRenderer(new DefaultListCellRenderer() {
             @Override
             public void paint(Graphics g) {
-                setBackground(UserSettings.theme.getListBackgroundColor());
-                setForeground(UserSettings.theme.getTextColor());
+                setBackground(UserSettings.selectedTheme.getListBackgroundColor());
+                setForeground(UserSettings.selectedTheme.getTextColor());
                 super.paint(g);
             }
         });
