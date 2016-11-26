@@ -13,7 +13,7 @@ import java.sql.SQLException;
  *
  * @author Owner
  */
-public class NavigationViewController {
+public class AdminViewController {
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
 
     private AdminView view;
@@ -24,7 +24,7 @@ public class NavigationViewController {
     /**
      *
      */
-    public NavigationViewController() {
+    public AdminViewController() {
     }
 
     // </editor-fold> 
@@ -95,6 +95,13 @@ public class NavigationViewController {
         } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
             ExceptionHandler.handleException(e);
         }
+    }
+    
+    /**
+     *
+     */
+    public void executeQuit() {
+        System.exit(0);
     }
 
     // </editor-fold> 

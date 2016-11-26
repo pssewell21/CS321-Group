@@ -125,12 +125,6 @@ public final class AtmView extends JFrame {
         this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png")).getImage());
 
         setBounds(new Rectangle(0, 0, 606, 429));
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            @Override
-            public void windowClosing(java.awt.event.WindowEvent e) {
-                controller.executeQuit();
-            }
-        });
 
         setResizable(false);
         setVisible(true);
@@ -984,13 +978,13 @@ public final class AtmView extends JFrame {
      */
     private JButton getExitButton() {
         exitButton = new JButton();
-        exitButton.setText("Quit ATM");
+        exitButton.setText("Exit ATM");
         exitButton.setPreferredSize(new Dimension(120, 30));
         exitButton.setBackground(UserSettings.theme.getButtonBackgroundColor());
         exitButton.setForeground(UserSettings.theme.getTextColor());
         exitButton.addActionListener((java.awt.event.ActionEvent e) -> {
             int n = JOptionPane.showConfirmDialog(landingPanel,
-                    "Quit ATM?", "Confirm Exit",
+                    "Exit ATM?", "Confirm Exit",
                     JOptionPane.OK_CANCEL_OPTION);
             if (n == JOptionPane.YES_OPTION) {
                 controller.executeQuit();

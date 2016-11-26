@@ -38,72 +38,72 @@ public class NavigationViewControllerTest {
     }
 
     /**
-     * Test of load method, of class NavigationViewController.
+     * Test of load method, of class AdminViewController.
      */
     @Test
     public void testLoad() {
         System.out.println("load");
-        NavigationViewController instance = new NavigationViewController();
+        AdminViewController instance = new AdminViewController();
         instance.load();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of executeNavigateTestDataList method, of class NavigationViewController.
+     * Test of executeNavigateTestDataList method, of class AdminViewController.
      */
     @Test
     public void testExecuteNavigateTestDataList() {
         System.out.println("executeNavigateTestDataList");
-        NavigationViewController instance = new NavigationViewController();
+        AdminViewController instance = new AdminViewController();
         instance.executeNavigateTestDataList();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of executeNavigatePersonList method, of class NavigationViewController.
+     * Test of executeNavigatePersonList method, of class AdminViewController.
      */
     @Test
     public void testExecuteNavigatePersonList() {
         System.out.println("executeNavigatePersonList");
-        NavigationViewController instance = new NavigationViewController();
+        AdminViewController instance = new AdminViewController();
         instance.executeNavigatePersonList();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of executeNavigateUserList method, of class NavigationViewController.
+     * Test of executeNavigateUserList method, of class AdminViewController.
      */
     @Test
     public void testExecuteNavigateUserList() {
         System.out.println("executeNavigateUserList");
-        NavigationViewController instance = new NavigationViewController();
+        AdminViewController instance = new AdminViewController();
         instance.executeNavigateUserList();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of executeNavigateAccountList method, of class NavigationViewController.
+     * Test of executeNavigateAccountList method, of class AdminViewController.
      */
     @Test
     public void testExecuteNavigateAccountList() {
         System.out.println("executeNavigateAccountList");
-        NavigationViewController instance = new NavigationViewController();
+        AdminViewController instance = new AdminViewController();
         instance.executeNavigateAccountList();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of executeNavigateAccountPersonMapList method, of class NavigationViewController.
+     * Test of executeNavigateAccountPersonMapList method, of class AdminViewController.
      */
     @Test
     public void testExecuteNavigateAccountPersonMapList() {
         System.out.println("executeNavigateAccountPersonMapList");
-        NavigationViewController instance = new NavigationViewController();
+        AdminViewController instance = new AdminViewController();
         instance.executeNavigateAccountPersonMapList();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

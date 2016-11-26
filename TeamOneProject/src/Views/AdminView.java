@@ -6,7 +6,8 @@
 package Views;
 
 import Common.UserSettings;
-import Controllers.NavigationViewController;
+import Controllers.AdminViewController;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,7 +16,7 @@ import Controllers.NavigationViewController;
 public class AdminView extends javax.swing.JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
-    private final NavigationViewController controller;
+    private final AdminViewController controller;
 
     // </editor-fold>
     /**
@@ -23,7 +24,7 @@ public class AdminView extends javax.swing.JFrame {
      *
      * @param controller
      */
-    public AdminView(NavigationViewController controller) {
+    public AdminView(AdminViewController controller) {
         this.controller = controller;
         load();
     }
@@ -46,14 +47,14 @@ public class AdminView extends javax.swing.JFrame {
         accountManagerButton.setBackground(UserSettings.theme.getButtonBackgroundColor());
         accountPersonLinkManagerButton.setBackground(UserSettings.theme.getButtonBackgroundColor());
         personManagerButton.setBackground(UserSettings.theme.getButtonBackgroundColor());
-        testDataButton.setBackground(UserSettings.theme.getButtonBackgroundColor());
         userManagerButton.setBackground(UserSettings.theme.getButtonBackgroundColor());
+        exitButton.setBackground(UserSettings.theme.getButtonBackgroundColor());
 
         accountManagerButton.setForeground(UserSettings.theme.getTextColor());
         accountPersonLinkManagerButton.setForeground(UserSettings.theme.getTextColor());
         personManagerButton.setForeground(UserSettings.theme.getTextColor());
-        testDataButton.setForeground(UserSettings.theme.getTextColor());
         userManagerButton.setForeground(UserSettings.theme.getTextColor());
+        exitButton.setForeground(UserSettings.theme.getTextColor());
     }
 
     /**
@@ -66,21 +67,14 @@ public class AdminView extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        testDataButton = new javax.swing.JButton();
         personManagerButton = new javax.swing.JButton();
         userManagerButton = new javax.swing.JButton();
         accountManagerButton = new javax.swing.JButton();
         accountPersonLinkManagerButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        exitButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        testDataButton.setText("Test Data");
-        testDataButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                testDataButtonActionPerformed(evt);
-            }
-        });
 
         personManagerButton.setText("Person Manager");
         personManagerButton.addActionListener(new java.awt.event.ActionListener() {
@@ -112,6 +106,13 @@ public class AdminView extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png"))); // NOI18N
 
+        exitButton.setText("Exit");
+        exitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -120,34 +121,33 @@ public class AdminView extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(testDataButton, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(accountManagerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(userManagerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(personManagerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(accountPersonLinkManagerButton, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(exitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(accountManagerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(userManagerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(personManagerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(accountPersonLinkManagerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(testDataButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(personManagerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(116, 116, 116)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(personManagerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(userManagerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(accountManagerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(accountPersonLinkManagerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jLabel1)))
-                .addContainerGap(168, Short.MAX_VALUE))
+                        .addComponent(accountPersonLinkManagerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
+                .addComponent(exitButton)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -163,10 +163,6 @@ public class AdminView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void testDataButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testDataButtonActionPerformed
-        controller.executeNavigateTestDataList();
-    }//GEN-LAST:event_testDataButtonActionPerformed
 
     private void personManagerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personManagerButtonActionPerformed
         controller.executeNavigatePersonList();
@@ -184,13 +180,22 @@ public class AdminView extends javax.swing.JFrame {
         controller.executeNavigateAccountPersonMapList();
     }//GEN-LAST:event_accountPersonLinkManagerButtonActionPerformed
 
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
+        int n = JOptionPane.showConfirmDialog(jPanel1,
+                    "Exit ATM?", "Confirm Exit",
+                    JOptionPane.OK_CANCEL_OPTION);
+            if (n == JOptionPane.YES_OPTION) {
+                controller.executeQuit();
+            }
+    }//GEN-LAST:event_exitButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton accountManagerButton;
     private javax.swing.JButton accountPersonLinkManagerButton;
+    private javax.swing.JButton exitButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton personManagerButton;
-    private javax.swing.JButton testDataButton;
     private javax.swing.JButton userManagerButton;
     // End of variables declaration//GEN-END:variables
 }

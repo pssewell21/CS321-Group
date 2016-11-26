@@ -70,7 +70,7 @@ public class LogOnViewController {
             }
 
             if (user.isAdministrator) {
-                NavigationViewController c = new NavigationViewController();
+                AdminViewController c = new AdminViewController();
                 c.load();
             } else if (!user.isAdministrator) {
                 AtmViewController c = new AtmViewController();

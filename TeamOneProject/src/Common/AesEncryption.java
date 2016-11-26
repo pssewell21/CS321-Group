@@ -11,6 +11,7 @@ import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
 
 /**
+ * 
  * This code was originally taken from
  * http://www.quickprogrammingtips.com/java/how-to-encrypt-and-decrypt-data-in-java-using-aes-algorithm.html
  * and adapted for use in this application
@@ -18,34 +19,6 @@ import javax.xml.bind.DatatypeConverter;
  * @author Owner
  */
 public class AesEncryption {
-
-    /**
-     * 1. Generate a plain text for encryption 2. Get a secret key (printed in
-     * hexadecimal form). In actual use this must by encrypted and kept safe.
-     * The same key is required for decryption. 3.
-     *
-     * @throws java.lang.Exception
-     */
-    public void run() throws Exception {
-        String plainText = "Hello World";
-        SecretKey secKey = getSecretEncryptionKey();
-        String encryptedText = encryptText(plainText);
-        String decryptedText = decryptText(encryptedText);
-
-        System.out.println("Original Text:" + plainText);
-        System.out.println("AES Key (Hex Form):" + bytesToHex(secKey.getEncoded()));
-        System.out.println("Encrypted Text (Hex Form):" + encryptedText);
-        System.out.println("Decrypted Text:" + decryptedText);
-
-        plainText = "password";
-        encryptedText = encryptText(plainText);
-        decryptedText = decryptText(encryptedText);
-
-        System.out.println("Original Text:" + plainText);
-        System.out.println("AES Key (Hex Form):" + bytesToHex(secKey.getEncoded()));
-        System.out.println("Encrypted Text (Hex Form):" + encryptedText);
-        System.out.println("Decrypted Text:" + decryptedText);
-    }
 
     /**
      * Encrypts plainText in AES using the secret key

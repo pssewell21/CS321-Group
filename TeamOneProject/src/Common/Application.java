@@ -6,12 +6,10 @@
 package Common;
 
 import Controllers.LogOnViewController;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.UnsupportedLookAndFeelException;
 
 /**
- *
+ * 
  * @author pssew
  */
 public class Application {
