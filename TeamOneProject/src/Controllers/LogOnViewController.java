@@ -27,12 +27,20 @@ public class LogOnViewController {
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
+
+    /**
+     *
+     */
     public LogOnViewController() {
         factory = new UserFactory();
     }
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
+
+    /**
+     *
+     */
     public void load() {
         view = new LogOnView(this);
     }
@@ -79,11 +87,17 @@ public class LogOnViewController {
         return false;
     }
 
+    /**
+     *
+     */
     public void executeProvisionDatabase() {
         //TODO: Add confirmation box with warning
         DatabaseProvisioner.provisionDatabase();
     }
 
+    /**
+     *
+     */
     public void executeDeleteDatabase() {
         //TODO: Add confirmation box with warning
         DatabaseProvisioner.deleteDatabase();

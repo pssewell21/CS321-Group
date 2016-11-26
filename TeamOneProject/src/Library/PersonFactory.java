@@ -28,6 +28,12 @@ public class PersonFactory extends LibraryFactoryBase {
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
+
+    /**
+     *
+     * @param id
+     * @return
+     */
     public Person getById(long id) {
         HashMap<String, String> criteria = new HashMap<>();
 

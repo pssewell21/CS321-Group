@@ -15,11 +15,18 @@ import Themes.LightTheme;
  */
 public final class UserSettings {
 
+    /**
+     *
+     */
     public static ITheme theme;
 
     private UserSettings() {
     }
 
+    /**
+     *
+     * @param theme
+     */
     public static void setSelectedTheme(String theme) {
         if (theme.equals("Dark Theme")) {
             UserSettings.theme = new DarkTheme();

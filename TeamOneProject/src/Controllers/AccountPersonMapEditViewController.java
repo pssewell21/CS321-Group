@@ -29,7 +29,15 @@ public class AccountPersonMapEditViewController extends EditViewControllerBase {
      *
      */
     public AccountPersonMap model;
+
+    /**
+     *
+     */
     public DefaultComboBoxModel<Account> accountListModel;
+
+    /**
+     *
+     */
     public DefaultComboBoxModel<Person> personListModel;
 
     private final AccountPersonMapFactory accountPersonMapFactory;

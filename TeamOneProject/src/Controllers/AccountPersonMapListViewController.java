@@ -43,6 +43,10 @@ public class AccountPersonMapListViewController extends ListViewControllerBase {
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
+
+    /**
+     *
+     */
     public AccountPersonMapListViewController() {
         accountPersonMapFactory = new AccountPersonMapFactory();
         personFactory = new PersonFactory();
@@ -50,6 +54,14 @@ public class AccountPersonMapListViewController extends ListViewControllerBase {
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
+
+    /**
+     *
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     * @throws InstantiationException
+     * @throws IllegalAccessException
+     */
     public void load() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         loadPersonList();
         initializeAccountList();
@@ -68,6 +80,10 @@ public class AccountPersonMapListViewController extends ListViewControllerBase {
         }
     }
 
+    /**
+     *
+     * @param personId
+     */
     public void loadAccountList(Long personId) {
         HashMap<String, String> criteria = new HashMap<>();
         criteria.put(DalFields.PERSON_ID, personId.toString());
@@ -80,15 +96,27 @@ public class AccountPersonMapListViewController extends ListViewControllerBase {
         }
     }
 
+    /**
+     *
+     */
     public void initializeAccountList() {
         accountPersonMapListModel = new DefaultListModel<>();
     }
 
+    /**
+     *
+     * @param personId
+     */
     public void executeAdd(Long personId) {
         AccountPersonMapEditViewController controller = new AccountPersonMapEditViewController();
         controller.load(null, accountPersonMapListModel, personId);
     }
 
+    /**
+     *
+     * @param item
+     * @param personId
+     */
     public void executeEdit(AccountPersonMap item, Long personId) {
         AccountPersonMapEditViewController controller = new AccountPersonMapEditViewController();
         controller.load(item, accountPersonMapListModel, personId);

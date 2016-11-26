@@ -18,11 +18,25 @@ import java.util.List;
 public abstract class LibraryFactoryBase implements ISqlGenerator {
 
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
+
+    /**
+     *
+     */
     protected final String SCHEMA;
+
+    /**
+     *
+     */
     protected final String TABLE_NAME;
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
+
+    /**
+     *
+     * @param schema
+     * @param tableName
+     */
     protected LibraryFactoryBase(String schema, String tableName) {
         SCHEMA = schema;
         TABLE_NAME = tableName;
@@ -37,6 +51,11 @@ public abstract class LibraryFactoryBase implements ISqlGenerator {
      */
     public abstract List<? extends LibraryBase> executeSelect(HashMap<String, String> hashMap);
 
+    /**
+     *
+     * @param criteria
+     * @return
+     */
     public boolean executeInsert(HashMap<String, String> criteria) {
         boolean successful = true;
 

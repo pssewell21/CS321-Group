@@ -87,6 +87,9 @@ public final class DataAccessJavaDb {
         }
     }
 
+    /**
+     *
+     */
     public static void deleteDatabase() {
         infile = new File(System.getProperty("user.home") + File.separator
                 + "JavaProjProp");

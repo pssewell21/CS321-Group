@@ -30,23 +30,42 @@ public class PersonListViewController extends ListViewControllerBase {
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
+
+    /**
+     *
+     */
     public PersonListViewController() {
         factory = new PersonFactory();
     }
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
+
+    /**
+     *
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     * @throws InstantiationException
+     * @throws IllegalAccessException
+     */
     public void load() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         loadModel();
 
         view = new PersonListView(this);
     }
 
+    /**
+     *
+     */
     public void executeAdd() {
         PersonEditViewController controller = new PersonEditViewController();
         controller.load(null, listModel);
     }
 
+    /**
+     *
+     * @param item
+     */
     public void executeEdit(Person item) {
         PersonEditViewController controller = new PersonEditViewController();
         controller.load(item, listModel);

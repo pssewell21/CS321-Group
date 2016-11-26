@@ -36,6 +36,9 @@ public class AtmViewController {
      */
     public DefaultComboBoxModel<Account> accountModel;
 
+    /**
+     *
+     */
     public Account selectedAccount;
 
     private final AccountFactory accountFactory;
@@ -46,6 +49,10 @@ public class AtmViewController {
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
+
+    /**
+     *
+     */
     public AtmViewController() {
         this.accountFactory = new AccountFactory();
         this.accountTransactionFactory = new AccountTransactionFactory();
@@ -54,6 +61,11 @@ public class AtmViewController {
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
+
+    /**
+     *
+     * @param user
+     */
     public void load(User user) {
         currentUser = user;
 
@@ -64,20 +76,36 @@ public class AtmViewController {
         view = new AtmView(this);
     }
 
+    /**
+     *
+     */
     public void executeQuit() {
         System.exit(0);
     }
 
+    /**
+     *
+     * @return
+     */
     public BigDecimal executeCheckBalance() {
         selectedAccount = accountFactory.getById(selectedAccount.id);
 
         return selectedAccount.balance;
     }
 
+    /**
+     *
+     * @param amount
+     */
     public void executeDeposit(BigDecimal amount) {
         accountTransactionFactory.addDeposit(currentUser.personId, selectedAccount.id, amount);
     }
 
+    /**
+     *
+     * @param amount
+     * @return
+     */
     public boolean executeWithdrawal(BigDecimal amount) {
         if (selectedAccount.balance.compareTo(amount) > 0) {
             accountTransactionFactory.addWithdrawal(currentUser.personId, selectedAccount.id, amount);
@@ -87,6 +115,11 @@ public class AtmViewController {
         }
     }
 
+    /**
+     *
+     * @param startTime
+     * @param endTime
+     */
     public void executeGetTransactionHistory(Timestamp startTime, Timestamp endTime) {
         List<AccountTransaction> result = accountTransactionFactory.getByAccoundIdAndTimestampRange(selectedAccount.id, startTime, endTime);
 
@@ -96,6 +129,10 @@ public class AtmViewController {
         }
     }
 
+    /**
+     *
+     * @param selectedTheme
+     */
     public void executeSelectTheme(String selectedTheme) {
         currentUser.selectedTheme = selectedTheme;
         userFactory.executeUpdate(currentUser.toHashMap());
@@ -103,6 +140,10 @@ public class AtmViewController {
         UserSettings.setSelectedTheme(selectedTheme);
     }
 
+    /**
+     *
+     * @return
+     */
     public String getSelectedTheme() {
         return currentUser.selectedTheme;
     }

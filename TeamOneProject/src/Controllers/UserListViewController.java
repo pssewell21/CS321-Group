@@ -30,23 +30,42 @@ public class UserListViewController extends ListViewControllerBase {
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
+
+    /**
+     *
+     */
     public UserListViewController() {
         factory = new UserFactory();
     }
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
+
+    /**
+     *
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     * @throws InstantiationException
+     * @throws IllegalAccessException
+     */
     public void load() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         loadModel();
 
         view = new UserListView(this);
     }
 
+    /**
+     *
+     */
     public void executeAdd() {
         UserEditViewController controller = new UserEditViewController();
         controller.load(null, listModel);
     }
 
+    /**
+     *
+     * @param item
+     */
     public void executeEdit(User item) {
         UserEditViewController controller = new UserEditViewController();
         controller.load(item, listModel);

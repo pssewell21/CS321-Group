@@ -20,15 +20,26 @@ public class NavigationViewController {
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
+
+    /**
+     *
+     */
     public NavigationViewController() {
     }
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
+
+    /**
+     *
+     */
     public void load() {
         view = new NavigationView(this);
     }
 
+    /**
+     *
+     */
     public void executeNavigateTestDataList() {
         try {
             TestDataListViewController t = new TestDataListViewController();
@@ -38,6 +49,9 @@ public class NavigationViewController {
         }
     }
 
+    /**
+     *
+     */
     public void executeNavigatePersonList() {
         try {
             PersonListViewController p = new PersonListViewController();
@@ -47,6 +61,9 @@ public class NavigationViewController {
         }
     }
 
+    /**
+     *
+     */
     public void executeNavigateUserList() {
         try {
             UserListViewController t = new UserListViewController();
@@ -56,6 +73,9 @@ public class NavigationViewController {
         }
     }
 
+    /**
+     *
+     */
     public void executeNavigateAccountList() {
         try {
             AccountListViewController t = new AccountListViewController();
@@ -65,6 +85,9 @@ public class NavigationViewController {
         }
     }
 
+    /**
+     *
+     */
     public void executeNavigateAccountPersonMapList() {
         try {
             AccountPersonMapListViewController t = new AccountPersonMapListViewController();

@@ -232,6 +232,9 @@ public final class DatabaseProvisioner {
         }
     }
 
+    /**
+     *
+     */
     public static void deleteDatabase() {
         DataAccessJavaDb.deleteDatabase();
     }

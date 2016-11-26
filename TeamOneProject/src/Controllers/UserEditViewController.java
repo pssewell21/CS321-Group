@@ -26,6 +26,10 @@ public class UserEditViewController extends EditViewControllerBase {
      *
      */
     public User model;
+
+    /**
+     *
+     */
     public DefaultComboBoxModel<Person> personModel;
 
     private final UserFactory userFactory;

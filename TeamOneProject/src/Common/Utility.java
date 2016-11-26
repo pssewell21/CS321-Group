@@ -17,6 +17,11 @@ public final class Utility {
     private Utility() {
     }
 
+    /**
+     *
+     * @param string
+     * @return
+     */
     public static final boolean hasValue(String string) {
         if (string == null) {
             return false;
@@ -25,6 +30,10 @@ public final class Utility {
         return !string.isEmpty();
     }
 
+    /**
+     *
+     * @return
+     */
     public static final Timestamp getCurrentTime() {
         return new Timestamp(System.currentTimeMillis());
     }

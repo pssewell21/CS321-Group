@@ -19,6 +19,13 @@ public final class ImageIconScaler {
     private ImageIconScaler() {
     }
 
+    /**
+     *
+     * @param imageIcon
+     * @param w
+     * @param h
+     * @return
+     */
     public static ImageIcon getScaledImage(ImageIcon imageIcon, int w, int h) {
         Image image = imageIcon.getImage();
         Image newimg = image.getScaledInstance(w, h, java.awt.Image.SCALE_SMOOTH);

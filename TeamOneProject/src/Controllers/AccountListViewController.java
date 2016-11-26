@@ -30,23 +30,42 @@ public class AccountListViewController extends ListViewControllerBase {
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
+
+    /**
+     *
+     */
     public AccountListViewController() {
         factory = new AccountFactory();
     }
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
+
+    /**
+     *
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     * @throws InstantiationException
+     * @throws IllegalAccessException
+     */
     public void load() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         loadModel();
 
         view = new AccountListView(this);
     }
 
+    /**
+     *
+     */
     public void executeAdd() {
         AccountEditViewController controller = new AccountEditViewController();
         controller.load(null, listModel);
     }
 
+    /**
+     *
+     * @param item
+     */
     public void executeEdit(Account item) {
         AccountEditViewController controller = new AccountEditViewController();
         controller.load(item, listModel);

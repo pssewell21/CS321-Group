@@ -27,6 +27,10 @@ public class AccountEditViewController extends EditViewControllerBase {
      *
      */    
     public Account model;
+
+    /**
+     *
+     */
     public DefaultComboBoxModel<Person> personModel;
         
     private final AccountFactory accountFactory;
