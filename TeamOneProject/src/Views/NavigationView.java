@@ -32,6 +32,8 @@ public class NavigationView extends javax.swing.JFrame {
     private void load() {
         initComponents();
         setThemeColors();
+        
+        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png")).getImage());
 
         setResizable(false);
         setVisible(true);

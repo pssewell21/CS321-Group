@@ -42,6 +42,8 @@ public class UserEditView extends javax.swing.JFrame {
     private void load() {
         initComponents();
         setThemeColors();
+        
+        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png")).getImage());
 
         if (controller.model.PersonId != null) {
             personComboBox.setSelectedItem(selectedPerson);

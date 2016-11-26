@@ -7,6 +7,7 @@ package Views;
 
 import Common.AesEncryption;
 import Controllers.LogOnViewController;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
@@ -30,6 +31,8 @@ public class LogOnView extends javax.swing.JFrame {
     private void load() {
         initComponents();
         logOnFailureLabel.setVisible(false);
+        
+        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png")).getImage());
 
         userNameField.setText("admin");
         passwordField.setText("password");

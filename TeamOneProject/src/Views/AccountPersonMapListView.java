@@ -41,6 +41,8 @@ public class AccountPersonMapListView extends javax.swing.JFrame {
     private void load() {
         initComponents();
         setThemeColors();
+        
+        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png")).getImage());
 
         personComboBox.setSelectedItem(null);
         newButton.setEnabled(false);

@@ -43,6 +43,8 @@ public class PersonListView extends javax.swing.JFrame {
         initComponents();
         setThemeColors();
         
+        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png")).getImage());
+        
         setResizable(false);
         setVisible(true);
     }

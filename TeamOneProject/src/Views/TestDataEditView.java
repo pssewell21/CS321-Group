@@ -39,6 +39,8 @@ public class TestDataEditView extends javax.swing.JFrame {
         initComponents();
         setThemeColors();
         
+        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png")).getImage());
+        
         IdField.setText(controller.model.Id.toString());
         KeyField.setText(controller.model.LookupKey);
         ValueField.setText(controller.model.Value);

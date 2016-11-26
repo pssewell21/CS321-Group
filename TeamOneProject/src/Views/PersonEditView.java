@@ -36,6 +36,8 @@ public class PersonEditView extends javax.swing.JFrame {
 
         initComponents();
         setThemeColors();
+        
+        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png")).getImage());
 
         try {
             NameField.setText(controller.model.Name);

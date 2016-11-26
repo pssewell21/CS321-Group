@@ -43,6 +43,8 @@ public class AccountPersonMapEditView extends javax.swing.JFrame {
         initComponents();
         setThemeColors();
         
+        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png")).getImage());
+        
         if (controller.model.AccountId != null) { 
             ComboBoxModel<Account> comboBoxModel = accountComboBox.getModel();
             

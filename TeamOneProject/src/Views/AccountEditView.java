@@ -39,6 +39,8 @@ public class AccountEditView extends javax.swing.JFrame {
         initComponents();
         setThemeColors();
         
+        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png")).getImage());
+        
         if (controller.model.AccountNumber != null) { 
             AccountNumberField.setText(controller.model.AccountNumber.toString());
         }
