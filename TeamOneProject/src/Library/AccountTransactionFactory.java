@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- *
+ * The factory used to allow interaction between the library and the database.
  * @author Patrick Sewell
  */
 public class AccountTransactionFactory extends LibraryFactoryBase {
@@ -32,7 +32,7 @@ public class AccountTransactionFactory extends LibraryFactoryBase {
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     /**
-     *
+     * Initializes the factory object.
      */
     public AccountTransactionFactory() {
         super("APP", "ACCOUNT_TRANSACTION");
@@ -42,10 +42,10 @@ public class AccountTransactionFactory extends LibraryFactoryBase {
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
     /**
-     *
-     * @param personId
-     * @param accountId
-     * @param amount
+     * Creates a transaction record for a deposit.
+     * @param personId The ID of the person making the deposit
+     * @param accountId The ID of the account the deposit is being made in
+     * @param amount The amount of the deposit
      */
     public void addDeposit(Long personId, Long accountId, BigDecimal amount) {
         Account account = accountFactory.getById(accountId);
@@ -67,10 +67,10 @@ public class AccountTransactionFactory extends LibraryFactoryBase {
     }
 
     /**
-     *
-     * @param personId
-     * @param accountId
-     * @param amount
+     * Creates a transaction record for a withdrawal.
+     * @param personId The ID of the person making the withdrawal
+     * @param accountId The ID of the account the withdrawal is being made in
+     * @param amount The amount of the withdrawal
      */
     public void addWithdrawal(Long personId, Long accountId, BigDecimal amount) {
         Account account = accountFactory.getById(accountId);
@@ -97,10 +97,10 @@ public class AccountTransactionFactory extends LibraryFactoryBase {
     }
 
     /**
-     *
-     * @param accountId
-     * @param startTime
-     * @param endTime
+     * Gets transaction records for an account in the specified time period.
+     * @param accountId The ID of the account to get transactions for
+     * @param startTime The start of the period to get transactions fur
+     * @param endTime The end of the period to get transactions fur
      * @return
      */
     public List<AccountTransaction> getByAccoundIdAndTimestampRange(Long accountId, Timestamp startTime, Timestamp endTime) {
@@ -136,13 +136,6 @@ public class AccountTransactionFactory extends LibraryFactoryBase {
         return list;
     }
 
-    /**
-     *
-     * @param accountId
-     * @param startTime
-     * @param endTime
-     * @return
-     */
     private String generateSelectByAccoundIdAndTimestampRangeCommand(Long accountId, Timestamp startTime, Timestamp endTime) {
         String command = "SELECT atr.* FROM ACCOUNT a\n"
                 + "INNER JOIN ACCOUNT_TRANSACTION atr\n"
@@ -240,11 +233,6 @@ public class AccountTransactionFactory extends LibraryFactoryBase {
         return command;
     }
 
-    /**
-     *
-     * @param criteria
-     * @return
-     */
     @Override
     public String generateInsertCommand(HashMap<String, String> criteria) {
         String command = "";
@@ -277,11 +265,6 @@ public class AccountTransactionFactory extends LibraryFactoryBase {
         return command;
     }
 
-    /**
-     *
-     * @param criteria
-     * @return
-     */
     @Override
     public String generateUpdateCommand(HashMap<String, String> criteria) {
         throw new UnsupportedOperationException("Updating account transactions is not supported.");

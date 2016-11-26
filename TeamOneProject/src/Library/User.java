@@ -64,7 +64,7 @@ public class User extends LibraryBase {
     public Boolean isAccountLocked;
 
     /**
-     * The selected Theme for the user account.
+     * The selected theme for the user account.
      */
     public String selectedTheme;
 
@@ -88,9 +88,9 @@ public class User extends LibraryBase {
      * @param securityAnswer1 The first security answer
      * @param securityQuestion2 The second security question
      * @param securityAnswer2 The second security answer
-     * @param isAdministrator is administrator
-     * @param isAccountLocked is account locked
-     * @param selectedTheme The selected Theme
+     * @param isAdministrator The is administrator flag
+     * @param isAccountLocked The is account locked flag
+     * @param selectedTheme The selected theme
      */
     public User(Long id,
             Long personId,

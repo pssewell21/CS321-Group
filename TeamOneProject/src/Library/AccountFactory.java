@@ -18,14 +18,14 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- *
+ * The factory used to allow interaction between the library and the database.
  * @author Patrick Sewell
  */
 public class AccountFactory extends LibraryFactoryBase {
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
 
     /**
-     *
+     * Initializes the factory object.
      */
     public AccountFactory() {
         super("APP", "ACCOUNT");
@@ -34,13 +34,13 @@ public class AccountFactory extends LibraryFactoryBase {
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
     /**
-     *
-     * @param accountId
-     * @return
+     * Gets an Account object by the value ID field.
+     * @param id The ID of the Account record to get
+     * @return The single Account record or nothing
      */
-    public Account getById(Long accountId) {
+    public Account getById(Long id) {
         HashMap<String, String> criteria = new HashMap<>(0);
-        criteria.put(DalFields.ID, accountId.toString());
+        criteria.put(DalFields.ID, id.toString());
 
         //Returns a list containing 0 or 1 items
         List<Account> result = executeSelect(criteria);
@@ -52,9 +52,9 @@ public class AccountFactory extends LibraryFactoryBase {
     }
 
     /**
-     *
-     * @param userId
-     * @return
+     * Gets an list of Account objects by the User ID linked to them.
+     * @param userId The ID of the User to get Account records by
+     * @return The single account or nothing
      */
     public List<Account> getByUserId(Long userId) {
         List<Account> list = new ArrayList<>();
@@ -92,11 +92,6 @@ public class AccountFactory extends LibraryFactoryBase {
         return list;
     }
 
-    /**
-     *
-     * @param userId
-     * @return
-     */
     private String generateSelectByUserIdCommand(Long userId) {
         String command = "SELECT a.* FROM ATM_USER u\n"
                 + "INNER JOIN ACCOUNT_PERSON_MAP apm\n"
@@ -196,11 +191,6 @@ public class AccountFactory extends LibraryFactoryBase {
         return command;
     }
 
-    /**
-     *
-     * @param criteria
-     * @return
-     */
     @Override
     public String generateInsertCommand(HashMap<String, String> criteria) {
         String command = "";
@@ -246,11 +236,6 @@ public class AccountFactory extends LibraryFactoryBase {
         return command;
     }
 
-    /**
-     *
-     * @param criteria
-     * @return
-     */
     @Override
     public String generateUpdateCommand(HashMap<String, String> criteria) {
         String command = "";

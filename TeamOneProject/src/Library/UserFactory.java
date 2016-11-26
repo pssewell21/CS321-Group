@@ -17,14 +17,14 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- *
+ * The factory used to allow interaction between the library and the database.
  * @author Patrick Sewell
  */
 public class UserFactory extends LibraryFactoryBase {
 
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     /**
-     *
+     * Initializes the factory object.
      */
     public UserFactory() {
         super("APP", "ATM_USER");
@@ -128,11 +128,6 @@ public class UserFactory extends LibraryFactoryBase {
         return command;
     }
 
-    /**
-     *
-     * @param criteria
-     * @return
-     */
     @Override
     public String generateInsertCommand(HashMap<String, String> criteria) {
         String command = "";
@@ -183,11 +178,6 @@ public class UserFactory extends LibraryFactoryBase {
         return command;
     }
 
-    /**
-     *
-     * @param criteria
-     * @return
-     */
     @Override
     public String generateUpdateCommand(HashMap<String, String> criteria) {
         String command = "";
