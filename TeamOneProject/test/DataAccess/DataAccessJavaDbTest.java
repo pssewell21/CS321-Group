@@ -117,13 +117,13 @@ public class DataAccessJavaDbTest {
     }
 
     /**
-     * Test of execute method, of class DataAccessJavaDb.
+     * Test of executeBatch method, of class DataAccessJavaDb.
      */
     @Test
     public void testExecute() {
         System.out.println("execute");
         String batchCommand = "";
-        DataAccessJavaDb.execute(batchCommand);
+        DataAccessJavaDb.executeBatch(batchCommand);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

@@ -14,6 +14,7 @@ import Common.ExceptionHandler;
 import java.sql.SQLException;
 
 /**
+ * Used to create and delete the database for the application.
  *
  * @author Patrick Sewell
  */
@@ -219,7 +220,8 @@ public final class DatabaseProvisioner {
 
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
     /**
-     *
+     * Provisions the database be destroying and recreating the table structures
+     * and inserting minimum data.
      */
     public static void provisionDatabase() {
         DataAccessJavaDb.openConnection();
@@ -237,7 +239,7 @@ public final class DatabaseProvisioner {
     }
 
     /**
-     *
+     * Deletes the database files from the file system.
      */
     public static void deleteDatabase() {
         DataAccessJavaDb.deleteDatabase();
@@ -248,7 +250,7 @@ public final class DatabaseProvisioner {
         System.out.println("Update command being executed:");
 
         System.out.println(DROP_TABLES_SCRIPT);
-        DataAccessJavaDb.execute(DROP_TABLES_SCRIPT);
+        DataAccessJavaDb.executeBatch(DROP_TABLES_SCRIPT);
     }
 
     //This method must be called after the database connection has been opened
@@ -274,6 +276,7 @@ public final class DatabaseProvisioner {
         DataAccessJavaDb.executeUpdate(ADD_TEST_DATA_TABLE_SCRIPT);
     }
 
+    //This method must be called after the database connection has been opened and tables have been created
     private static void addDefaultData() {
         System.out.println("Insert and Update commands being executed:");
 

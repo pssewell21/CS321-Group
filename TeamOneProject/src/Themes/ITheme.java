@@ -12,56 +12,58 @@ package Themes;
 import java.awt.Color;
 
 /**
+ * Contract to define what methods must be defined in a Theme class
  *
  * @author Patrick Sewell
  */
 public interface ITheme {
 
     /**
+     * Gets the background color
      *
-     * @return
+     * @return The background Color
      */
     public abstract Color getBackgroundColor();
 
     /**
+     * Gets the list background color
      *
-     * @return
+     * @return The list background Color
      */
     public abstract Color getListBackgroundColor();
 
     /**
+     * Gets the combo box background color
      *
-     * @return
+     * @return The combo box background Color
      */
     public abstract Color getComboBoxBackgroundColor();
 
     /**
+     * Gets the button background color
      *
-     * @return
+     * @return The button background Color
      */
     public abstract Color getButtonBackgroundColor();
 
     /**
+     * Gets the text field background color
      *
-     * @return
+     * @return The text field background Color
      */
     public abstract Color getTextFieldBackgroundColor();
 
     /**
+     * Gets the text color
      *
-     * @return
-     */
-    public abstract Color getCheckBoxBackgroundColor();
-
-    /**
-     *
-     * @return
+     * @return The text Color
      */
     public abstract Color getTextColor();
 
     /**
+     * Gets the disabled text color
      *
-     * @return
+     * @return The disabled text Color
      */
     public abstract Color getDisabledTextColor();
 }

@@ -19,6 +19,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
+ * Handles opening and closing connections, and performing operations on the
+ * embedded JavaDB database.
  *
  * @author Patrick Sewell
  */
@@ -26,7 +28,6 @@ public final class DataAccessJavaDb {
 
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
     private static final String DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
-    //private static final String JDBC_URL = "jdbc:derby://localhost:1527/atmdb";
 
     private static Connection connection;
     private static Statement statement;
@@ -40,7 +41,10 @@ public final class DataAccessJavaDb {
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Connection Management Methods"> 
     /**
+     * Opens the connection to an existing database or creates one.
      *
+     * Adapted for use from example code by Dr. Dan Rochowiak found in class
+     * materials.
      */
     public static void openConnection() {
         infile = new File(System.getProperty("user.home") + File.separator
@@ -73,7 +77,7 @@ public final class DataAccessJavaDb {
     }
 
     /**
-     *
+     * Closes the connection to a database.
      */
     public static void closeConnection() {
         try {
@@ -89,7 +93,7 @@ public final class DataAccessJavaDb {
     }
 
     /**
-     *
+     * Deletes the database files stored in a well known location.
      */
     public static void deleteDatabase() {
         infile = new File(System.getProperty("user.home") + File.separator
@@ -101,9 +105,10 @@ public final class DataAccessJavaDb {
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="SQL Execution Methods"> 
     /**
+     * Executes SELECT SQL commands on the database.
      *
-     * @param command
-     * @return
+     * @param command The SQL command to be executed
+     * @return The ResultSet returned by the SQL command
      */
     public static ResultSet executeSelect(String command) {
         ResultSet resultSet = null;
@@ -124,9 +129,10 @@ public final class DataAccessJavaDb {
     }
 
     /**
+     * Executes INSERT SQL commands on the database.
      *
-     * @param command
-     * @return
+     * @param command The SQL command to be executed
+     * @return A value indicating if the operation was successful
      */
     public static boolean executeInsert(String command) {
         boolean successful = true;
@@ -149,8 +155,9 @@ public final class DataAccessJavaDb {
     }
 
     /**
+     * Executes INSERT SQL commands on the database.
      *
-     * @param command
+     * @param command The SQL command to be executed
      */
     public static void executeUpdate(String command) {
         try {
@@ -163,9 +170,10 @@ public final class DataAccessJavaDb {
     }
 
     /**
+     * Executes DELETE SQL commands on the database.
      *
-     * @param command
-     * @return 
+     * @param command The SQL command to be executed
+     * @return A value indicating if the operation was successful
      */
     public static boolean executeDelete(String command) {
         try {
@@ -176,15 +184,16 @@ public final class DataAccessJavaDb {
             ExceptionHandler.handleException(e);
             return false;
         }
-        
+
         return true;
     }
 
     /**
+     * Executes SQL batch commands on the database.
      *
-     * @param batchCommand
+     * @param batchCommand The SQL command to be executed
      */
-    public static void execute(String batchCommand) {
+    public static void executeBatch(String batchCommand) {
         String[] commands = batchCommand.split(";\n");
 
         try {
