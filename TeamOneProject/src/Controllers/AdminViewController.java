@@ -14,6 +14,7 @@ import Views.AdminView;
 import java.sql.SQLException;
 
 /**
+ * The controller that handles interaction between the view and library.
  *
  * @author Patrick Sewell
  */
@@ -24,37 +25,23 @@ public class AdminViewController {
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
-
     /**
-     *
+     * Initializes the controller.
      */
     public AdminViewController() {
     }
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
-
     /**
-     *
+     * Loads the AdminView.
      */
     public void load() {
         view = new AdminView(this);
     }
 
     /**
-     *
-     */
-    public void executeNavigateTestDataList() {
-        try {
-            TestDataListViewController t = new TestDataListViewController();
-            t.load();
-        } catch (SQLException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
-            ExceptionHandler.handleException(e);
-        }
-    }
-
-    /**
-     *
+     * Loads the Person list view.
      */
     public void executeNavigatePersonList() {
         try {
@@ -66,7 +53,7 @@ public class AdminViewController {
     }
 
     /**
-     *
+     * Loads the User list view.
      */
     public void executeNavigateUserList() {
         try {
@@ -78,7 +65,7 @@ public class AdminViewController {
     }
 
     /**
-     *
+     * Loads the Account list view.
      */
     public void executeNavigateAccountList() {
         try {
@@ -90,7 +77,7 @@ public class AdminViewController {
     }
 
     /**
-     *
+     * Loads the AccountPersonMap list view.
      */
     public void executeNavigateAccountPersonMapList() {
         try {
@@ -100,9 +87,9 @@ public class AdminViewController {
             ExceptionHandler.handleException(e);
         }
     }
-    
+
     /**
-     *
+     * Exits the application.
      */
     public void executeQuit() {
         System.exit(0);

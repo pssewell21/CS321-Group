@@ -18,14 +18,14 @@ import java.util.List;
 import javax.swing.DefaultListModel;
 
 /**
- *
+ * The controller that handles interaction between the view and library.
  * @author Patrick Sewell
  */
 public class AccountListViewController extends ListViewControllerBase {
 
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
     /**
-     * The listModel that hols objects displayed in the  listView.
+     * The listModel that holds objects displayed in the listView.
      */
     public DefaultListModel<Account> listModel;
 
@@ -36,7 +36,7 @@ public class AccountListViewController extends ListViewControllerBase {
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
 
     /**
-     *
+     * Initializes the controller.
      */
     public AccountListViewController() {
         factory = new AccountFactory();
@@ -46,20 +46,20 @@ public class AccountListViewController extends ListViewControllerBase {
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
 
     /**
-     *
-     * @throws SQLException
-     * @throws ClassNotFoundException
-     * @throws InstantiationException
-     * @throws IllegalAccessException
+     * Sets the listModel, and opens the view.
+     * @throws SQLException If an SQL error occurs
+     * @throws ClassNotFoundException If a Class cannot be found
+     * @throws InstantiationException If an object cannot be instantiated
+     * @throws IllegalAccessException If access cannot be given
      */
     public void load() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         loadModel();
 
         view = new AccountListView(this);
     }
-
+    
     /**
-     *
+     * Opens the edit view to create a new object.
      */
     public void executeAdd() {
         AccountEditViewController controller = new AccountEditViewController();
@@ -67,8 +67,9 @@ public class AccountListViewController extends ListViewControllerBase {
     }
 
     /**
+     * Opens the edit view to modify an existing object.
      *
-     * @param item
+     * @param item The object to be modified
      */
     public void executeEdit(Account item) {
         AccountEditViewController controller = new AccountEditViewController();

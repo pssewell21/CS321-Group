@@ -10,8 +10,10 @@
 package Controllers;
 
 /**
+ * The class that defines the contract to be fulfilled by list view controllers.
  *
  * @author Patrick Sewell
  */
 public abstract class ListViewControllerBase {
+    // Nothing common to all list viw controllers to put here yet.
 }

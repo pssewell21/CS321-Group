@@ -10,38 +10,34 @@
 package Controllers;
 
 /**
+ * The class that defines the contract to be fulfilled by edit view controllers.
  *
  * @author Patrick Sewell
  */
 public abstract class EditViewControllerBase {
 
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
-
-    /**
-     *
-     */
     protected boolean isNew;
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
-
     /**
-     *
+     * Saves the object and closes the view.
      */
     public abstract void executeSave();
 
     /**
-     *
+     * Saves changes to the object and does not close the view.
      */
     public abstract void executeApply();
 
     /**
-     *
+     * Closes the view without saving any changes.
      */
     public abstract void executeCancel();
 
     /**
-     *
+     * Deletes the object.
      */
     public abstract void executeDelete();
 

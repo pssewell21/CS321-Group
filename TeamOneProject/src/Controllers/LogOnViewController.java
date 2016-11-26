@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
+ * The controller that handles interaction between the view and library.
  *
  * @author Patrick Sewell
  */
@@ -31,9 +32,8 @@ public class LogOnViewController {
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
-
     /**
-     *
+     * Initializes the controller.
      */
     public LogOnViewController() {
         factory = new UserFactory();
@@ -41,19 +41,21 @@ public class LogOnViewController {
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
-
     /**
-     *
+     * Opens the LogOn view.
      */
     public void load() {
         view = new LogOnView(this);
     }
 
     /**
+     * Attempts to authenticate using the entered credentials and navigates to
+     * the appropriate view.
      *
-     * @param userName
-     * @param password
-     * @return
+     * @param userName The userName entered
+     * @param password The password entered
+     * @return The value indicating if authentication was successful with the
+     * entered credentials.
      */
     public boolean executeLogOn(String userName, String password) {
         HashMap<String, String> criteria = new HashMap<>();
@@ -92,7 +94,7 @@ public class LogOnViewController {
     }
 
     /**
-     *
+     * Creates or recreates the database for the system.
      */
     public void executeProvisionDatabase() {
         //TODO: Add confirmation box with warning
@@ -100,7 +102,7 @@ public class LogOnViewController {
     }
 
     /**
-     *
+     * Deletes the database files from the file system.
      */
     public void executeDeleteDatabase() {
         //TODO: Add confirmation box with warning

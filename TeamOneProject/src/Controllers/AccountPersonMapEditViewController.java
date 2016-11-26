@@ -23,6 +23,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 
 /**
+ * The controller that handles interaction between the view and library.
  *
  * @author Patrick Sewell
  */
@@ -30,17 +31,17 @@ public class AccountPersonMapEditViewController extends EditViewControllerBase {
 
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
     /**
-     *
+     * The object to be created or edited.
      */
     public AccountPersonMap model;
 
     /**
-     *
+     * The list of Accounts to be selected from in the view
      */
     public DefaultComboBoxModel<Account> accountListModel;
 
     /**
-     *
+     * The list of Persons to be selected from in the view
      */
     public DefaultComboBoxModel<Person> personListModel;
 
@@ -53,7 +54,7 @@ public class AccountPersonMapEditViewController extends EditViewControllerBase {
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     /**
-     *
+     * Initializes the controller.
      */
     public AccountPersonMapEditViewController() {
         accountPersonMapFactory = new AccountPersonMapFactory();
@@ -64,10 +65,11 @@ public class AccountPersonMapEditViewController extends EditViewControllerBase {
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
     /**
+     * Sets the model, and listModels, and opens the view.
      *
-     * @param model
-     * @param listModel
-     * @param personId
+     * @param model The object to be edited
+     * @param listModel The list of objects from the list view
+     * @param personId The ID of the Person object the record will be for
      */
     public void load(AccountPersonMap model, DefaultListModel<AccountPersonMap> listModel, Long personId) {
         if (model != null) {
@@ -88,34 +90,22 @@ public class AccountPersonMapEditViewController extends EditViewControllerBase {
         view.setDeleteEnabled(!isNew);
     }
 
-    /**
-     *
-     */
     @Override
     public void executeSave() {
         doSave();
         view.dispose();
     }
 
-    /**
-     *
-     */
     @Override
     public void executeApply() {
         doSave();
     }
 
-    /**
-     *
-     */
     @Override
     public void executeCancel() {
         view.dispose();
     }
 
-    /**
-     *
-     */
     @Override
     public void executeDelete() {
         //TODO: Add confirmation prompt

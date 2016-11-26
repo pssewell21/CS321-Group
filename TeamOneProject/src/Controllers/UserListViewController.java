@@ -18,6 +18,7 @@ import java.util.List;
 import javax.swing.DefaultListModel;
 
 /**
+ * The controller that handles interaction between the view and library.
  *
  * @author Patrick Sewell
  */
@@ -25,7 +26,7 @@ public class UserListViewController extends ListViewControllerBase {
 
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
     /**
-     *
+     * The listModel that holds objects displayed in the listView.
      */
     public DefaultListModel<User> listModel;
 
@@ -34,9 +35,8 @@ public class UserListViewController extends ListViewControllerBase {
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
-
     /**
-     *
+     * Initializes the controller.
      */
     public UserListViewController() {
         factory = new UserFactory();
@@ -44,13 +44,13 @@ public class UserListViewController extends ListViewControllerBase {
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
-
     /**
+     * Sets the listModel, and opens the view.
      *
-     * @throws SQLException
-     * @throws ClassNotFoundException
-     * @throws InstantiationException
-     * @throws IllegalAccessException
+     * @throws SQLException If an SQL error occurs
+     * @throws ClassNotFoundException If a Class cannot be found
+     * @throws InstantiationException If an object cannot be instantiated
+     * @throws IllegalAccessException If access cannot be given
      */
     public void load() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         loadModel();
@@ -59,7 +59,7 @@ public class UserListViewController extends ListViewControllerBase {
     }
 
     /**
-     *
+     * Opens the edit view to create a new object.
      */
     public void executeAdd() {
         UserEditViewController controller = new UserEditViewController();
@@ -67,8 +67,9 @@ public class UserListViewController extends ListViewControllerBase {
     }
 
     /**
+     * Opens the edit view to modify an existing object.
      *
-     * @param item
+     * @param item The object to be modified
      */
     public void executeEdit(User item) {
         UserEditViewController controller = new UserEditViewController();

@@ -21,7 +21,7 @@ import org.junit.runners.Suite;
  * @author afro2
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({Controllers.PersonListViewControllerTest.class, Controllers.AtmViewControllerTest.class, Controllers.PersonEditViewControllerTest.class, Controllers.AccountPersonMapListViewControllerTest.class, Controllers.AccountPersonMapEditViewControllerTest.class, Controllers.LogOnViewControllerTest.class, Controllers.AccountListViewControllerTest.class, Controllers.UserEditViewControllerTest.class, Controllers.TestDataEditViewControllerTest.class, Controllers.ListViewControllerBaseTest.class, Controllers.AdminViewControllerTest.class, Controllers.EditViewControllerBaseTest.class, Controllers.UserListViewControllerTest.class, Controllers.AccountEditViewControllerTest.class, Controllers.TestDataListViewControllerTest.class})
+@Suite.SuiteClasses({Controllers.PersonListViewControllerTest.class, Controllers.AtmViewControllerTest.class, Controllers.PersonEditViewControllerTest.class, Controllers.AccountPersonMapListViewControllerTest.class, Controllers.AccountPersonMapEditViewControllerTest.class, Controllers.LogOnViewControllerTest.class, Controllers.AccountListViewControllerTest.class, Controllers.UserEditViewControllerTest.class, Controllers.ListViewControllerBaseTest.class, Controllers.AdminViewControllerTest.class, Controllers.EditViewControllerBaseTest.class, Controllers.UserListViewControllerTest.class, Controllers.AccountEditViewControllerTest.class})
 public class ControllersSuite {
 
     @BeforeClass

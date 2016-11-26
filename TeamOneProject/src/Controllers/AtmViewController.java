@@ -24,6 +24,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 
 /**
+ * The controller that handles interaction between the view and library.
  *
  * @author Patrick Sewell
  */
@@ -31,17 +32,18 @@ public class AtmViewController {
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
 
     /**
-     *
+     * The listModel that holds objects displayed in the Transaction History
+     * tab.
      */
     public DefaultListModel<AccountTransaction> transactionListModel;
 
     /**
-     *
+     * The list of Accounts to be selected from in the view.
      */
     public DefaultComboBoxModel<Account> accountModel;
 
     /**
-     *
+     * The selected Account object.
      */
     public Account selectedAccount;
 
@@ -53,9 +55,8 @@ public class AtmViewController {
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
-
     /**
-     *
+     * Initializes the controller.
      */
     public AtmViewController() {
         this.accountFactory = new AccountFactory();
@@ -65,10 +66,10 @@ public class AtmViewController {
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
-
     /**
+     * Loads the AtmView.
      *
-     * @param user
+     * @param user The User that is currently logged in to the application
      */
     public void load(User user) {
         currentUser = user;
@@ -81,15 +82,16 @@ public class AtmViewController {
     }
 
     /**
-     *
+     * Exits the application.
      */
     public void executeQuit() {
         System.exit(0);
     }
 
     /**
+     * Gets the current balance for the currently selected Account.
      *
-     * @return
+     * @return The current balance for the currently selected Account
      */
     public BigDecimal executeCheckBalance() {
         selectedAccount = accountFactory.getById(selectedAccount.id);
@@ -98,16 +100,18 @@ public class AtmViewController {
     }
 
     /**
+     * Adds funds to the currently selected Account.
      *
-     * @param amount
+     * @param amount The amount to add to the Account balance
      */
     public void executeDeposit(BigDecimal amount) {
         accountTransactionFactory.addDeposit(currentUser.personId, selectedAccount.id, amount);
     }
 
     /**
+     * Withdraws funds from the currently selected Account.
      *
-     * @param amount
+     * @param amount The amount to withdraw from the Account balance
      * @return
      */
     public boolean executeWithdrawal(BigDecimal amount) {
@@ -120,9 +124,11 @@ public class AtmViewController {
     }
 
     /**
+     * Get the transaction history for the specified time period for the
+     * selected Account.
      *
-     * @param startTime
-     * @param endTime
+     * @param startTime The beginning of the time period to get records from
+     * @param endTime The end of the time period to get records from
      */
     public void executeGetTransactionHistory(Timestamp startTime, Timestamp endTime) {
         List<AccountTransaction> result = accountTransactionFactory.getByAccoundIdAndTimestampRange(selectedAccount.id, startTime, endTime);
@@ -134,8 +140,9 @@ public class AtmViewController {
     }
 
     /**
+     * Changes the logged in Users selected Theme.
      *
-     * @param selectedTheme
+     * @param selectedTheme The name of the new Theme to select
      */
     public void executeSelectTheme(String selectedTheme) {
         currentUser.selectedTheme = selectedTheme;
@@ -145,8 +152,9 @@ public class AtmViewController {
     }
 
     /**
+     * Gets the name of the selected Theme for the currently logged in User.
      *
-     * @return
+     * @return The selected Theme name
      */
     public String getSelectedTheme() {
         return currentUser.selectedTheme;

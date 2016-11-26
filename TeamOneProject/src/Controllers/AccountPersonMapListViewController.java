@@ -22,6 +22,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 
 /**
+ * The controller that handles interaction between the view and library.
  *
  * @author Patrick Sewell
  */
@@ -29,15 +30,12 @@ public class AccountPersonMapListViewController extends ListViewControllerBase {
 
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
     /**
-     *
-     */
-    /**
-     *
+     * The listModel that holds objects displayed in the listView.
      */
     public DefaultListModel<AccountPersonMap> accountPersonMapListModel;
 
     /**
-     *
+     * The list of Persons to be selected from in the view
      */
     public DefaultComboBoxModel<Person> personListModel;
 
@@ -47,9 +45,8 @@ public class AccountPersonMapListViewController extends ListViewControllerBase {
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
-
     /**
-     *
+     * Initializes the controller.
      */
     public AccountPersonMapListViewController() {
         accountPersonMapFactory = new AccountPersonMapFactory();
@@ -58,13 +55,13 @@ public class AccountPersonMapListViewController extends ListViewControllerBase {
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Methods"> 
-
     /**
+     * Sets the listModel, and opens the view.
      *
-     * @throws SQLException
-     * @throws ClassNotFoundException
-     * @throws InstantiationException
-     * @throws IllegalAccessException
+     * @throws SQLException If an SQL error occurs
+     * @throws ClassNotFoundException If a Class cannot be found
+     * @throws InstantiationException If an object cannot be instantiated
+     * @throws IllegalAccessException If access cannot be given
      */
     public void load() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         loadPersonList();
@@ -85,8 +82,9 @@ public class AccountPersonMapListViewController extends ListViewControllerBase {
     }
 
     /**
+     * Loads the list of Account objects link to a Person.
      *
-     * @param personId
+     * @param personId The ID of the Person the accounts are linked to
      */
     public void loadAccountList(Long personId) {
         HashMap<String, String> criteria = new HashMap<>();
@@ -101,15 +99,17 @@ public class AccountPersonMapListViewController extends ListViewControllerBase {
     }
 
     /**
-     *
+     * Creates an empty listModel which AccountPeronMap objects will be added
+     * to.
      */
     public void initializeAccountList() {
         accountPersonMapListModel = new DefaultListModel<>();
     }
 
     /**
+     * Opens the edit view to create a new object.
      *
-     * @param personId
+     * @param personId The ID of the Person
      */
     public void executeAdd(Long personId) {
         AccountPersonMapEditViewController controller = new AccountPersonMapEditViewController();
@@ -117,9 +117,10 @@ public class AccountPersonMapListViewController extends ListViewControllerBase {
     }
 
     /**
+     * Opens the edit view to modify an existing object.
      *
-     * @param item
-     * @param personId
+     * @param item The object to be modified
+     * @param personId The ID of the Person to link to Accounts
      */
     public void executeEdit(AccountPersonMap item, Long personId) {
         AccountPersonMapEditViewController controller = new AccountPersonMapEditViewController();
