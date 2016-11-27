@@ -112,7 +112,7 @@ public class AtmViewController {
      * Withdraws funds from the currently selected Account.
      *
      * @param amount The amount to withdraw from the Account balance
-     * @return
+     * @return The value indicating whether the withdrawal was successful
      */
     public boolean executeWithdrawal(BigDecimal amount) {
         if (selectedAccount.balance.compareTo(amount) > 0) {

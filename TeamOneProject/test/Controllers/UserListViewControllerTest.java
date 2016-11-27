@@ -23,27 +23,43 @@ import static org.junit.Assert.*;
  */
 public class UserListViewControllerTest {
     
+    /**
+     *
+     */
     public UserListViewControllerTest() {
     }
     
+    /**
+     *
+     */
     @BeforeClass
     public static void setUpClass() {
     }
     
+    /**
+     *
+     */
     @AfterClass
     public static void tearDownClass() {
     }
     
+    /**
+     *
+     */
     @Before
     public void setUp() {
     }
     
+    /**
+     *
+     */
     @After
     public void tearDown() {
     }
 
     /**
      * Test of load method, of class UserListViewController.
+     * @throws java.lang.Exception
      */
     @Test
     public void testLoad() throws Exception {

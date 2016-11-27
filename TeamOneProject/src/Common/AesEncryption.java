@@ -28,7 +28,7 @@ public class AesEncryption {
     /**
      * Encrypts plainText in AES using the secret key.
      *
-     * @param plainText
+     * @param plainText A string of plain text
      * @return Encrypted string or nothing
      * @throws Exception If the encryption operation fails
      */

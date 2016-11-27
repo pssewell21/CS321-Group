@@ -36,11 +36,6 @@ public abstract class LibraryFactoryBase implements ISqlGenerator {
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
 
-    /**
-     *
-     * @param schema
-     * @param tableName
-     */
     protected LibraryFactoryBase(String schema, String tableName) {
         SCHEMA = schema;
         TABLE_NAME = tableName;
@@ -145,19 +140,10 @@ public abstract class LibraryFactoryBase implements ISqlGenerator {
         return successful;
     }
 
-    /**
-     *
-     * @param string
-     * @return
-     */
     protected boolean hasValue(String string) {
         return Utility.hasValue(string);
     }
 
-    /**
-     *
-     * @param e
-     */
     protected void handleException(Exception e) {
         ExceptionHandler.handleException(e);
     }

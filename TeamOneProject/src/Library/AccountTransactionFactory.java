@@ -101,7 +101,7 @@ public class AccountTransactionFactory extends LibraryFactoryBase {
      * @param accountId The ID of the account to get transactions for
      * @param startTime The start of the period to get transactions fur
      * @param endTime The end of the period to get transactions fur
-     * @return
+     * @return The list of AccountTransaction objects
      */
     public List<AccountTransaction> getByAccoundIdAndTimestampRange(Long accountId, Timestamp startTime, Timestamp endTime) {
         List<AccountTransaction> list = new ArrayList<>();

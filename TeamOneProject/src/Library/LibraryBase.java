@@ -27,15 +27,15 @@ public abstract class LibraryBase {
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
     /**
-     *
+     * Initializes the ID field for the object.
      */
     protected LibraryBase() {
         id = ID.newId();
     }
-
+    
     /**
-     *
-     * @param id
+     * Initializes the ID field for the object.
+     * @param id The value of the ID field
      */
     protected LibraryBase(Long id) {
         this.id = id;

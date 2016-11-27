@@ -24,18 +24,34 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({Controllers.PersonListViewControllerTest.class, Controllers.AtmViewControllerTest.class, Controllers.PersonEditViewControllerTest.class, Controllers.AccountPersonMapListViewControllerTest.class, Controllers.AccountPersonMapEditViewControllerTest.class, Controllers.LogOnViewControllerTest.class, Controllers.AccountListViewControllerTest.class, Controllers.UserEditViewControllerTest.class, Controllers.ListViewControllerBaseTest.class, Controllers.AdminViewControllerTest.class, Controllers.EditViewControllerBaseTest.class, Controllers.UserListViewControllerTest.class, Controllers.AccountEditViewControllerTest.class})
 public class ControllersSuite {
 
+    /**
+     *
+     * @throws Exception
+     */
     @BeforeClass
     public static void setUpClass() throws Exception {
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @AfterClass
     public static void tearDownClass() throws Exception {
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Before
     public void setUp() throws Exception {
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @After
     public void tearDown() throws Exception {
     }

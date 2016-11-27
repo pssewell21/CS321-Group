@@ -155,7 +155,7 @@ public final class DataAccessJavaDb {
     }
 
     /**
-     * Executes INSERT SQL commands on the database.
+     * Executes UPDATE SQL commands on the database.
      *
      * @param command The SQL command to be executed
      */
