@@ -17,6 +17,9 @@ package Controllers;
 public abstract class EditViewControllerBase {
 
     // <editor-fold defaultstate="collapsed" desc="Member Variables"> 
+    /**
+     * The value that describes if the record is new.
+     */
     protected boolean isNew;
 
     // </editor-fold> 

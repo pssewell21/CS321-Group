@@ -12,7 +12,7 @@ package Common;
 import java.util.Random;
 
 /**
- * Handles the creation of ID's .
+ * Handles the creation of ID's.
  *
  * @author Patrick Sewell
  */

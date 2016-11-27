@@ -35,7 +35,7 @@ public class AccountPersonMapListViewController extends ListViewControllerBase {
     public DefaultListModel<AccountPersonMap> accountPersonMapListModel;
 
     /**
-     * The list of Persons to be selected from in the view
+     * The list of Persons to be selected from in the view.
      */
     public DefaultComboBoxModel<Person> personListModel;
 

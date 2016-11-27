@@ -82,7 +82,12 @@ public final class Utility {
 
         return (yearOk && monthOk && dayOk);
     }
-
+    
+    /**
+     * Checks if the string is a valid social security number.
+     * @param ssnString the string to check
+     * @return The value that describes if the string is a valid social security number.
+     */
     public static boolean isValidSocialSecurityNumber(String ssnString) {
         return ssnString.matches("^\\d{3}-\\d{2}-\\d{4}$");
     }

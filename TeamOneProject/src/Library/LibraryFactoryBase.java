@@ -35,7 +35,12 @@ public abstract class LibraryFactoryBase implements ISqlGenerator {
 
     // </editor-fold> 
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
-
+    
+    /**
+     * Initializes the LibraryFactoryBase fields.
+     * @param schema The schema name
+     * @param tableName The table name
+     */
     protected LibraryFactoryBase(String schema, String tableName) {
         SCHEMA = schema;
         TABLE_NAME = tableName;
@@ -140,10 +145,19 @@ public abstract class LibraryFactoryBase implements ISqlGenerator {
         return successful;
     }
 
+    /**
+     * Checks if the string has a value.
+     * @param string The string to check
+     * @return The value indicating whether the string has a value
+     */
     protected boolean hasValue(String string) {
         return Utility.hasValue(string);
     }
 
+    /**
+     * Gracefully handles exception by showing a message dialog box to the user.
+     * @param e The exception being handled
+     */
     protected void handleException(Exception e) {
         ExceptionHandler.handleException(e);
     }

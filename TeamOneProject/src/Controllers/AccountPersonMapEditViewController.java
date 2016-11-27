@@ -36,12 +36,12 @@ public class AccountPersonMapEditViewController extends EditViewControllerBase {
     public AccountPersonMap model;
 
     /**
-     * The list of Accounts to be selected from in the view
+     * The list of Accounts to be selected from in the view.
      */
     public DefaultComboBoxModel<Account> accountListModel;
 
     /**
-     * The list of Persons to be selected from in the view
+     * The list of Persons to be selected from in the view.
      */
     public DefaultComboBoxModel<Person> personListModel;
 
