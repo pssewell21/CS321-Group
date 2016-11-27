@@ -52,7 +52,7 @@ public class AccountEditView extends javax.swing.JFrame {
         setThemeColors();
         setTitle("Create an Account");
 
-        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png")).getImage());
+        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/icon.png")).getImage());
 
         if (controller.model.accountNumber != null) {
             accountNumberField.setText(controller.model.accountNumber.toString());

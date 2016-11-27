@@ -126,7 +126,7 @@ public final class AtmView extends JFrame {
         setContentPane(getJContentPane());
         setTitle("ATM Demo");
 
-        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png")).getImage());
+        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/icon.png")).getImage());
 
         setBounds(new Rectangle(0, 0, 606, 429));
 

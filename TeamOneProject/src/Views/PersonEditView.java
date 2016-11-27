@@ -50,7 +50,7 @@ public class PersonEditView extends javax.swing.JFrame {
         setThemeColors();
         setTitle("Create a Person");
 
-        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png")).getImage());
+        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/icon.png")).getImage());
 
         try {
             nameField.setText(controller.model.name);

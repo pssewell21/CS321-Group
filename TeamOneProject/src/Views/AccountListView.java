@@ -43,7 +43,7 @@ public class AccountListView extends javax.swing.JFrame {
         setThemeColors();
         setTitle("Account Management");
 
-        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png")).getImage());
+        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/icon.png")).getImage());
 
         setResizable(false);
         setVisible(true);

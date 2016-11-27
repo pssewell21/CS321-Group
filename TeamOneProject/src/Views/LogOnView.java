@@ -40,7 +40,7 @@ public class LogOnView extends javax.swing.JFrame {
         setTitle("Log on");
         logOnFailureLabel.setVisible(false);
 
-        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png")).getImage());
+        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/icon.png")).getImage());
 
         userNameField.setText("admin");
         passwordField.setText("password");

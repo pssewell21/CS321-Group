@@ -18,6 +18,8 @@ import java.util.HashMap;
 public class AccountPersonMap extends LibraryBase {
 
     // <editor-fold defaultstate="collapsed" desc="Member Variables">   
+    //TODO: Make the constructors package private so that we can force the 
+    //      factories to create these objects like real factories would
     /**
      * The ID of the account for the account person link.
      */

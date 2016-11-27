@@ -52,7 +52,7 @@ public class AccountPersonMapListView extends javax.swing.JFrame {
         setThemeColors();
         setTitle("Account Link Management");
 
-        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png")).getImage());
+        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/icon.png")).getImage());
 
         personComboBox.setSelectedItem(null);
         newButton.setEnabled(false);

@@ -69,18 +69,6 @@ public class AdminViewControllerTest {
     }
 
     /**
-     * Test of executeNavigateTestDataList method, of class AdminViewController.
-     */
-    @Test
-    public void testExecuteNavigateTestDataList() {
-        System.out.println("executeNavigateTestDataList");
-        AdminViewController instance = new AdminViewController();
-        instance.executeNavigateTestDataList();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of executeNavigatePersonList method, of class AdminViewController.
      */
     @Test

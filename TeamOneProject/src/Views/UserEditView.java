@@ -60,7 +60,7 @@ public class UserEditView extends javax.swing.JFrame {
         setThemeColors();
         setTitle("Create a User");
 
-        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png")).getImage());
+        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/icon.png")).getImage());
 
         if (controller.model.personId != null) {
             personComboBox.setSelectedItem(selectedPerson);

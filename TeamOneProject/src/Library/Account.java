@@ -46,6 +46,8 @@ public class Account extends LibraryBase {
 
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Constructors"> 
+    //TODO: Make the constructors package private so that we can force the 
+    //      factories to create these objects like real factories would
     /**
      * This constructor is used for creating new objects.
      */

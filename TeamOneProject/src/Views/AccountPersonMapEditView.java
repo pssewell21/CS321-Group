@@ -53,7 +53,7 @@ public class AccountPersonMapEditView extends javax.swing.JFrame {
         setThemeColors();
         setTitle("Create an Account Link");
 
-        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo.png")).getImage());
+        this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/icon.png")).getImage());
 
         if (controller.model.accountId != null) {
             ComboBoxModel<Account> comboBoxModel = accountComboBox.getModel();
