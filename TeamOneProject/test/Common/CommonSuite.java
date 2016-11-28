@@ -21,7 +21,7 @@ import org.junit.runners.Suite;
  * @author Owner
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({Common.IDTest.class, Common.ExceptionHandlerTest.class, Common.UtilityTest.class, Common.AesEncryptionTest.class, Common.UserSettingsTest.class, Common.ImageIconScalerTest.class, Common.ApplicationTest.class})
+@Suite.SuiteClasses({Common.IDTest.class, Common.ExceptionHandlerTest.class, Common.UtilityTest.class, Common.AesEncryptionTest.class, Common.UserSettingsTest.class, Common.ImageIconScalerTest.class})
 public class CommonSuite {
 
     @BeforeClass
