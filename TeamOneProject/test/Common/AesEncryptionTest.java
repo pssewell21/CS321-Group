@@ -47,12 +47,13 @@ public class AesEncryptionTest {
     @Test
     public void testEncryptText() throws Exception {
         System.out.println("encryptText");
-        String plainText = "";
-        String expResult = "";
+        String plainText = "Encrypt this text.";
+        String expResult = "9F9940D90D968F1EE7CD5AF06395CF71F5C435EAB2D6BE2FBCDFE5B8DA99FEFD";
         String result = AesEncryption.encryptText(plainText);
+        System.out.println(expResult +  " = " + result);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -61,12 +62,13 @@ public class AesEncryptionTest {
     @Test
     public void testDecryptText() throws Exception {
         System.out.println("decryptText");
-        String encryptedText = "";
-        String expResult = "";
+        String encryptedText = "5086D5E0231C9EA311828F6F489683FAF5C435EAB2D6BE2FBCDFE5B8DA99FEFD";
+        String expResult = "Decrypt this text.";
         String result = AesEncryption.decryptText(encryptedText);
+        System.out.println(expResult + " = " + result);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
     
 }
