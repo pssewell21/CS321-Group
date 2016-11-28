@@ -21,22 +21,22 @@ import static org.junit.Assert.*;
  * @author Owner
  */
 public class ExceptionHandlerTest {
-    
+
     public ExceptionHandlerTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -47,10 +47,23 @@ public class ExceptionHandlerTest {
     @Test
     public void testHandleException() {
         System.out.println("handleException");
-        Exception e = null;
-        ExceptionHandler.handleException(e);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Exception e = new Exception("Test Exception");
+        ExceptionHandlerWithoutUiFeedback.handleException(e);
+        assertTrue(e.toString().equals(ExceptionHandlerWithoutUiFeedback.exceptionString));
     }
-    
+
+    public static class ExceptionHandlerWithoutUiFeedback extends ExceptionHandler {
+
+    public static String exceptionString;
+
+    private ExceptionHandlerWithoutUiFeedback()
+    {
+    }
+
+    public static void handleException(Exception e) {
+        exceptionString = e.toString();
+    }
 }
+}
+
+

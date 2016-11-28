@@ -16,18 +16,21 @@ import javax.swing.JOptionPane;
  *
  * @author Patrick Sewell
  */
-public final class ExceptionHandler {
+public class ExceptionHandler {
 
-    private ExceptionHandler() {
+    /**
+     * Initializes the ExceptionHandler.
+     */
+    protected ExceptionHandler() {
     }
 
     /**
-     * Displays exception text to the user in a popup dialog.
+     * Displays exception text to the user in a pop up dialog.
      *
      * @param e The exception containing information about why an operation
      * failed
      */
-    public static final void handleException(Exception e) {
+    public static void handleException(Exception e) {
         System.out.println(e.toString());
         JOptionPane.showMessageDialog(null, e.toString(), "Exception Message", JOptionPane.INFORMATION_MESSAGE);
     }
