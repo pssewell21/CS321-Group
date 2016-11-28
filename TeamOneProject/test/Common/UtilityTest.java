@@ -349,10 +349,34 @@ public class UtilityTest {
         boolean result = Utility.deleteFile(element);
         assertEquals(expResult, result);
         
-        File element = ;
-        boolean expResult = false;
-        boolean result = Utility.deleteFile(element);
+        // Create file path object
+        File infile = new File(System.getProperty("user.home") + File.separator
+                    + "JavaProjProp" + File.separator + "Test");
+        
+        // Test deletion when path does not exist
+        element = infile;
+        expResult = false;
+        result = Utility.deleteFile(element);
+        assertEquals(expResult, result);
+        
+        // Make the file path
+        infile.mkdirs();
+        
+        // Test deletion when path does exist
+        element = infile;
+        expResult = true;
+        result = Utility.deleteFile(element);
+        assertEquals(expResult, result);
+        
+        // Create subdirectory file path object
+        File subInfile = new File(System.getProperty("user.home") + File.separator
+                    + "JavaProjProp" + File.separator + "Test" + File.separator + "Sub");
+        subInfile.mkdirs();
+        
+        // Test deletion when path does exist and has subdirectories
+        element = infile;
+        expResult = true;
+        result = Utility.deleteFile(element);
         assertEquals(expResult, result);
     }
-    
 }
