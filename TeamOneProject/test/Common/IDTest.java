@@ -47,11 +47,19 @@ public class IDTest {
     @Test
     public void testNewId() {
         System.out.println("newId");
-        Long expResult = null;
         Long result = ID.newId();
-        assertEquals(expResult, result);
+        boolean resultBoolean;
+        boolean expResult = true;
+        if (result == null) {
+            resultBoolean = false;
+        }
+        else{
+            resultBoolean = true;
+        }
+        assertEquals(expResult, resultBoolean);
+        
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
     
 }
