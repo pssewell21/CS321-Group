@@ -21,22 +21,22 @@ import static org.junit.Assert.*;
  * @author Owner
  */
 public class IDTest {
-    
+
     public IDTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -50,13 +50,7 @@ public class IDTest {
         Long result = ID.newId();
         boolean resultBoolean;
         boolean expResult = true;
-        if (result == null) {
-            resultBoolean = false;
-        }
-        else{
-            resultBoolean = true;
-        }
-        assertEquals(expResult, resultBoolean);
+        
+        assertTrue(result != null);
     }
-    
 }

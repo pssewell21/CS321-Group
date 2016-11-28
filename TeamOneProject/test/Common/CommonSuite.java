@@ -39,5 +39,4 @@ public class CommonSuite {
     @After
     public void tearDown() throws Exception {
     }
-    
 }

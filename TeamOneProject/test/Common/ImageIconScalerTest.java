@@ -22,22 +22,22 @@ import static org.junit.Assert.*;
  * @author Owner
  */
 public class ImageIconScalerTest {
-    
+
     public ImageIconScalerTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -52,7 +52,7 @@ public class ImageIconScalerTest {
         int w = 66;
         int h = 66;
         ImageIcon result = ImageIconScaler.getScaledImage(imageIcon, w, h);
-        
+
         assertTrue(result.getIconWidth() == w && imageIcon.getIconWidth() != w);
         assertTrue(result.getIconHeight() == h && imageIcon.getIconHeight() != h);
     }

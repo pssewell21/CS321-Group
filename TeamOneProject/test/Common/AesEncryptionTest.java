@@ -21,28 +21,29 @@ import static org.junit.Assert.*;
  * @author Owner
  */
 public class AesEncryptionTest {
-    
+
     public AesEncryptionTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
 
     /**
      * Test of encryptText method, of class AesEncryption.
+     *
      * @throws java.lang.Exception If Encryption fails
      */
     @Test
@@ -51,7 +52,7 @@ public class AesEncryptionTest {
         String plainText = "Encrypt this text.";
         String expResult = "9F9940D90D968F1EE7CD5AF06395CF71F5C435EAB2D6BE2FBCDFE5B8DA99FEFD";
         String result = AesEncryption.encryptText(plainText);
-        System.out.println(expResult +  " = " + result);
+        System.out.println(expResult + " = " + result);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
@@ -59,6 +60,7 @@ public class AesEncryptionTest {
 
     /**
      * Test of decryptText method, of class AesEncryption.
+     *
      * @throws java.lang.Exception If Decryption fails
      */
     @Test
@@ -70,5 +72,4 @@ public class AesEncryptionTest {
         System.out.println(expResult + " = " + result);
         assertEquals(expResult, result);
     }
-    
 }

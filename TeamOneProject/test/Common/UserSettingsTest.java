@@ -9,8 +9,6 @@
  */
 package Common;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -23,22 +21,22 @@ import static org.junit.Assert.*;
  * @author Owner
  */
 public class UserSettingsTest {
-    
+
     public UserSettingsTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -51,13 +49,13 @@ public class UserSettingsTest {
         System.out.println("setSelectedTheme");
         String theme = "Dark Theme";
         UserSettings.setSelectedTheme(theme);
-        
+
         Class clazz = UserSettings.selectedTheme.getClass();
         assertTrue(clazz.getName().equals("Themes.DarkTheme"));
-        
+
         theme = "Light Theme";
         UserSettings.setSelectedTheme(theme);
-        
+
         clazz = UserSettings.selectedTheme.getClass();
         assertTrue(clazz.getName().equals("Themes.LightTheme"));
     }
