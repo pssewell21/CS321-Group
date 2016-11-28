@@ -43,6 +43,7 @@ public class AesEncryptionTest {
 
     /**
      * Test of encryptText method, of class AesEncryption.
+     * @throws java.lang.Exception If Encryption fails
      */
     @Test
     public void testEncryptText() throws Exception {
@@ -58,6 +59,7 @@ public class AesEncryptionTest {
 
     /**
      * Test of decryptText method, of class AesEncryption.
+     * @throws java.lang.Exception If Decryption fails
      */
     @Test
     public void testDecryptText() throws Exception {
