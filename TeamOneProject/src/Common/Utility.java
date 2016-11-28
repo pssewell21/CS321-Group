@@ -43,6 +43,10 @@ public final class Utility {
      * @return The value describing if the string is a number
      */
     public static boolean isNumeric(String string) {
+        if (string == null) {
+            return false;
+        }
+        
         return string.matches("-?\\d+(\\.\\d+)?");
     }
 
@@ -53,6 +57,10 @@ public final class Utility {
      * @return The value describing if the string is a positive integer
      */
     public static boolean isPositiveInteger(String string) {
+        if (string == null) {
+            return false;
+        }
+        
         return string.matches("\\d+");
     }
 
@@ -89,6 +97,10 @@ public final class Utility {
      * @return The value that describes if the string is a valid social security number.
      */
     public static boolean isValidSocialSecurityNumber(String ssnString) {
+        if (ssnString == null) {
+            return false;
+        }
+        
         return ssnString.matches("^\\d{3}-\\d{2}-\\d{4}$");
     }
 

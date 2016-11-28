@@ -53,17 +53,13 @@ public class ExceptionHandlerTest {
     }
 
     public static class ExceptionHandlerWithoutUiFeedback extends ExceptionHandler {
+        public static String exceptionString;
 
-    public static String exceptionString;
+        private ExceptionHandlerWithoutUiFeedback() {
+        }
 
-    private ExceptionHandlerWithoutUiFeedback()
-    {
-    }
-
-    public static void handleException(Exception e) {
-        exceptionString = e.toString();
+        public static void handleException(Exception e) {
+            exceptionString = e.toString();
+        }
     }
 }
-}
-
-

@@ -49,12 +49,20 @@ public class UtilityTest {
     @Test
     public void testHasValue() {
         System.out.println("hasValue");
-        String string = "";
+        String string = null;
         boolean expResult = false;
         boolean result = Utility.hasValue(string);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        string = "";
+        expResult = false;
+        result = Utility.hasValue(string);
+        assertEquals(expResult, result);
+        
+        string = "Value";
+        expResult = true;
+        result = Utility.hasValue(string);
+        assertEquals(expResult, result);
     }
 
     /**
@@ -63,12 +71,60 @@ public class UtilityTest {
     @Test
     public void testIsNumeric() {
         System.out.println("isNumeric");
-        String string = "";
+        String string = null;
         boolean expResult = false;
         boolean result = Utility.isNumeric(string);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        string = "";
+        expResult = false;
+        result = Utility.isNumeric(string);
+        assertEquals(expResult, result);
+        
+        string = "AlphabetCharacters";
+        expResult = false;
+        result = Utility.isNumeric(string);
+        assertEquals(expResult, result);
+        
+        string = "Alphabet Characters With Space";
+        expResult = false;
+        result = Utility.isNumeric(string);
+        assertEquals(expResult, result);
+        
+        string = "M1x3d numb3rs and letters";
+        expResult = false;
+        result = Utility.isNumeric(string);
+        assertEquals(expResult, result);
+        
+        string = "333 33";
+        expResult = false;
+        result = Utility.isNumeric(string);
+        assertEquals(expResult, result);
+        
+        string = "333.33.33";
+        expResult = false;
+        result = Utility.isNumeric(string);
+        assertEquals(expResult, result);
+        
+        string = "333.33";
+        expResult = true;
+        result = Utility.isNumeric(string);
+        assertEquals(expResult, result);
+        
+        string = "333";
+        expResult = true;
+        result = Utility.isNumeric(string);
+        assertEquals(expResult, result);
+        
+        string = "-333.33";
+        expResult = true;
+        result = Utility.isNumeric(string);
+        assertEquals(expResult, result);
+        
+        string = "-333";
+        expResult = true;
+        result = Utility.isNumeric(string);
+        assertEquals(expResult, result);
     }
 
     /**
@@ -119,11 +175,11 @@ public class UtilityTest {
     @Test
     public void testGetCurrentTime() {
         System.out.println("getCurrentTime");
-        Timestamp expResult = null;
+        Timestamp expResult = new Timestamp(System.currentTimeMillis());
         Timestamp result = Utility.getCurrentTime();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        // Pass if the difference between the results is less than 100 ms
+        assertTrue(result.getTime() - expResult.getTime() < 100);
     }
 
     /**
