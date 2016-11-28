@@ -34,6 +34,9 @@ public final class UserSettings {
      * @param theme The name of the theme to be selected
      */
     public static void setSelectedTheme(String theme) {
+        if (theme == null) {
+            return;
+        }
         if (theme.equals("Dark Theme")) {
             UserSettings.selectedTheme = new DarkTheme();
         }

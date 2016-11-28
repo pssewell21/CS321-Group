@@ -9,6 +9,8 @@
  */
 package Common;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -47,10 +49,16 @@ public class UserSettingsTest {
     @Test
     public void testSetSelectedTheme() {
         System.out.println("setSelectedTheme");
-        String theme = "";
+        String theme = "Dark Theme";
         UserSettings.setSelectedTheme(theme);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        Class clazz = UserSettings.selectedTheme.getClass();
+        assertTrue(clazz.getName().equals("Themes.DarkTheme"));
+        
+        theme = "Light Theme";
+        UserSettings.setSelectedTheme(theme);
+        
+        clazz = UserSettings.selectedTheme.getClass();
+        assertTrue(clazz.getName().equals("Themes.LightTheme"));
     }
-    
 }
