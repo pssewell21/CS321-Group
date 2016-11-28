@@ -124,6 +124,10 @@ public final class Utility {
      * @return The value indicating the the deletion was successful
      */
     public static boolean deleteFile(File element) {
+        if (element == null) {
+            return false;
+        }
+        
         if (element.isDirectory()) {
             for (File sub : element.listFiles()) {
                 deleteFile(sub);

@@ -133,12 +133,60 @@ public class UtilityTest {
     @Test
     public void testIsPositiveInteger() {
         System.out.println("isPositiveInteger");
-        String string = "";
+        String string = null;
         boolean expResult = false;
         boolean result = Utility.isPositiveInteger(string);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        string = "";
+        expResult = false;
+        result = Utility.isPositiveInteger(string);
+        assertEquals(expResult, result);
+        
+        string = "AlphabetCharacters";
+        expResult = false;
+        result = Utility.isPositiveInteger(string);
+        assertEquals(expResult, result);
+        
+        string = "Alphabet Characters With Space";
+        expResult = false;
+        result = Utility.isPositiveInteger(string);
+        assertEquals(expResult, result);
+        
+        string = "M1x3d numb3rs and letters";
+        expResult = false;
+        result = Utility.isPositiveInteger(string);
+        assertEquals(expResult, result);
+        
+        string = "333 33";
+        expResult = false;
+        result = Utility.isPositiveInteger(string);
+        assertEquals(expResult, result);
+        
+        string = "333.33.33";
+        expResult = false;
+        result = Utility.isPositiveInteger(string);
+        assertEquals(expResult, result);
+        
+        string = "333.33";
+        expResult = false;
+        result = Utility.isPositiveInteger(string);
+        assertEquals(expResult, result);
+        
+        string = "333";
+        expResult = true;
+        result = Utility.isPositiveInteger(string);
+        assertEquals(expResult, result);
+        
+        string = "-333.33";
+        expResult = false;
+        result = Utility.isPositiveInteger(string);
+        assertEquals(expResult, result);
+        
+        string = "-333";
+        expResult = false;
+        result = Utility.isPositiveInteger(string);
+        assertEquals(expResult, result);
     }
 
     /**
@@ -147,12 +195,87 @@ public class UtilityTest {
     @Test
     public void testIsValidDate() {
         System.out.println("isValidDate");
-        String dateString = "";
+        String dateString = null;
         boolean expResult = false;
         boolean result = Utility.isValidDate(dateString);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        dateString = "";
+        expResult = false;
+        result = Utility.isValidDate(dateString);
+        assertEquals(expResult, result);
+        
+        dateString = "AlphabetCharacters";
+        expResult = false;
+        result = Utility.isValidDate(dateString);
+        assertEquals(expResult, result);
+        
+        dateString = "333.33";
+        expResult = false;
+        result = Utility.isValidDate(dateString);
+        assertEquals(expResult, result);
+        
+        dateString = "333";
+        expResult = false;
+        result = Utility.isValidDate(dateString);
+        assertEquals(expResult, result);
+        
+        dateString = "01/01/2000";
+        expResult = false;
+        result = Utility.isValidDate(dateString);
+        assertEquals(expResult, result);
+        
+        dateString = "1/1/2000";
+        expResult = false;
+        result = Utility.isValidDate(dateString);
+        assertEquals(expResult, result);
+        
+        dateString = "2000-1-1";
+        expResult = false;
+        result = Utility.isValidDate(dateString);
+        assertEquals(expResult, result);
+        
+        dateString = "2000-01-31";
+        expResult = true;
+        result = Utility.isValidDate(dateString);
+        assertEquals(expResult, result);
+        
+        dateString = "2000-01-32";
+        expResult = false;
+        result = Utility.isValidDate(dateString);
+        assertEquals(expResult, result);
+        
+        //Test non-leap-year
+        dateString = "2015-02-29";
+        expResult = false;
+        result = Utility.isValidDate(dateString);
+        assertEquals(expResult, result);
+        
+        //Test leap-year
+        dateString = "2016-02-29";
+        expResult = true;
+        result = Utility.isValidDate(dateString);
+        assertEquals(expResult, result);
+        
+        dateString = "2000-03-30";
+        expResult = true;
+        result = Utility.isValidDate(dateString);
+        assertEquals(expResult, result);
+        
+        dateString = "2000-03-31";
+        expResult = true;
+        result = Utility.isValidDate(dateString);
+        assertEquals(expResult, result);
+        
+        dateString = "2000-04-30";
+        expResult = true;
+        result = Utility.isValidDate(dateString);
+        assertEquals(expResult, result);
+        
+        dateString = "2000-04-31";
+        expResult = false;
+        result = Utility.isValidDate(dateString);
+        assertEquals(expResult, result);
     }
 
     /**
@@ -161,12 +284,45 @@ public class UtilityTest {
     @Test
     public void testIsValidSocialSecurityNumber() {
         System.out.println("isValidSocialSecurityNumber");
-        String ssnString = "";
+        String ssnString = null;
         boolean expResult = false;
         boolean result = Utility.isValidSocialSecurityNumber(ssnString);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        ssnString = "";
+        expResult = false;
+        result = Utility.isValidSocialSecurityNumber(ssnString);
+        assertEquals(expResult, result);
+        
+        ssnString = "aaaaaaaaa";
+        expResult = false;
+        result = Utility.isValidSocialSecurityNumber(ssnString);
+        assertEquals(expResult, result);
+        
+        ssnString = "aaa-aa-aaaa";
+        expResult = false;
+        result = Utility.isValidSocialSecurityNumber(ssnString);
+        assertEquals(expResult, result);
+        
+        ssnString = "111-11-111a";
+        expResult = false;
+        result = Utility.isValidSocialSecurityNumber(ssnString);
+        assertEquals(expResult, result);
+        
+        ssnString = "111111111";
+        expResult = false;
+        result = Utility.isValidSocialSecurityNumber(ssnString);
+        assertEquals(expResult, result);
+        
+        ssnString = "111-11--111";
+        expResult = false;
+        result = Utility.isValidSocialSecurityNumber(ssnString);
+        assertEquals(expResult, result);
+        
+        ssnString = "111-11-1111";
+        expResult = true;
+        result = Utility.isValidSocialSecurityNumber(ssnString);
+        assertEquals(expResult, result);
     }
 
     /**
@@ -192,8 +348,11 @@ public class UtilityTest {
         boolean expResult = false;
         boolean result = Utility.deleteFile(element);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        File element = ;
+        boolean expResult = false;
+        boolean result = Utility.deleteFile(element);
+        assertEquals(expResult, result);
     }
     
 }
