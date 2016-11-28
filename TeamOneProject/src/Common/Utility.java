@@ -109,15 +109,16 @@ public final class Utility {
      * and adapted for use in our application
      *
      * @param element The file or folder to delete
+     * @return The value indicating the the deletion was successful
      */
-    public static void deleteFile(File element) {
+    public static boolean deleteFile(File element) {
         if (element.isDirectory()) {
             for (File sub : element.listFiles()) {
                 deleteFile(sub);
             }
         }
 
-        element.delete();
+        return element.delete();
     }
 
     // Taken from http://stackoverflow.com/questions/11480542/fastest-way-to-tell-if-a-string-is-a-valid-date
