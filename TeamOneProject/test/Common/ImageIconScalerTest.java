@@ -48,14 +48,12 @@ public class ImageIconScalerTest {
     @Test
     public void testGetScaledImage() {
         System.out.println("getScaledImage");
-        ImageIcon imageIcon = null;
-        int w = 0;
-        int h = 0;
-        ImageIcon expResult = null;
+        ImageIcon imageIcon = new ImageIcon(getClass().getResource("/Resources/logo.png"));
+        int w = 66;
+        int h = 66;
         ImageIcon result = ImageIconScaler.getScaledImage(imageIcon, w, h);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        assertTrue(result.getIconWidth() == w && imageIcon.getIconWidth() != w);
+        assertTrue(result.getIconHeight() == h && imageIcon.getIconHeight() != h);
     }
-    
 }
