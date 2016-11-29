@@ -48,7 +48,7 @@ public final class DataAccessJavaDb {
      */
     public static void openConnection() {
         infile = new File(System.getProperty("user.home") + File.separator
-                + "JavaProjProp" + File.separator + "databases" + File.separator + "atmdb");
+                + "Java Projects" + File.separator + "databases" + File.separator + "atmdb");
 
         boolean dbExists = infile.exists();
 
@@ -62,7 +62,7 @@ public final class DataAccessJavaDb {
             }
         } else {
             infile = new File(System.getProperty("user.home") + File.separator
-                    + "JavaProjProp" + File.separator + "databases");
+                    + "Java Projects" + File.separator + "databases");
             boolean dirMade = infile.mkdirs();
             if (dirMade) {
                 try {
@@ -97,7 +97,7 @@ public final class DataAccessJavaDb {
      */
     public static void deleteDatabase() {
         infile = new File(System.getProperty("user.home") + File.separator
-                + "JavaProjProp");
+                + "Java Projects");
 
         Utility.deleteFile(infile);
     }
