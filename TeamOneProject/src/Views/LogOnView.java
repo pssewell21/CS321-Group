@@ -42,9 +42,6 @@ public class LogOnView extends javax.swing.JFrame {
 
         this.setIconImage(new javax.swing.ImageIcon(getClass().getResource("/Resources/icon.png")).getImage());
 
-        userNameField.setText("admin");
-        passwordField.setText("password");
-
         setResizable(false);
         setVisible(true);
     }
