@@ -295,7 +295,7 @@ public class UserEditView extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Person ID*:");
+        jLabel2.setText("Person*:");
 
         jLabel3.setText("User Name*:");
 

@@ -1,11 +1,11 @@
 ----------------------------------------------------------------
-Sun Nov 27 21:09:53 CST 2016:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): instance a816c00e-0158-a8e9-03bb-00000da72a80 
-on database directory C:\Users\Owner\JavaProjProp\databases\atmdb with class loader sun.misc.Launcher$AppClassLoader@610455d6 
+Mon Nov 28 18:46:05 CST 2016:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): instance a816c00e-0158-ad8b-b7a1-000006092020 
+on database directory C:\Users\pssew\JavaProjProp\databases\atmdb with class loader sun.misc.Launcher$AppClassLoader@610455d6 
 Loaded from file:/C:/Program%20Files/Java/jdk1.8.0_102/db/lib/derby.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.8.0_102-b14
-user.dir=C:\Users\Owner\Documents\GitHub\CS321-Group\TeamOneProject
+user.dir=C:\Users\pssew\OneDrive\Documents\GitHub\CS321-Group\TeamOneProject
 os.name=Windows 10
 os.arch=amd64
 os.version=10.0

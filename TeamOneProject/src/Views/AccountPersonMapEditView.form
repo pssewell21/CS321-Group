@@ -144,12 +144,12 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Account ID*:"/>
+            <Property name="text" type="java.lang.String" value="Account*:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Person ID*:"/>
+            <Property name="text" type="java.lang.String" value="Person*:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="personComboBox">

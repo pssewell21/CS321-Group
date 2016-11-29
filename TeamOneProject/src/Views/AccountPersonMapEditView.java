@@ -179,9 +179,9 @@ public class AccountPersonMapEditView extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Account ID*:");
+        jLabel2.setText("Account*:");
 
-        jLabel3.setText("Person ID*:");
+        jLabel3.setText("Person*:");
 
         personComboBox.setModel(controller.personListModel);
         personComboBox.setEnabled(false);
