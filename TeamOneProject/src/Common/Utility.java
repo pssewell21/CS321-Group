@@ -42,12 +42,12 @@ public final class Utility {
      * @param string The string to check
      * @return The value describing if the string is a number
      */
-    public static boolean isNumeric(String string) {
+    public static boolean isPositiveNumber(String string) {
         if (string == null) {
             return false;
         }
         
-        return string.matches("-?\\d+(\\.\\d+)?");
+        return string.matches("\\d+(\\.\\d+)?");
     }
 
     /**

@@ -464,7 +464,7 @@ public final class AtmView extends JFrame {
             }
 
             private void actionPerformed() {
-                if (Utility.isNumeric(depositAmountField.getText())) {
+                if (Utility.isPositiveNumber(depositAmountField.getText())) {
                     depositButton.setEnabled(true);
                 } else {
                     depositButton.setEnabled(false);
@@ -523,7 +523,7 @@ public final class AtmView extends JFrame {
             }
 
             private void actionPerformed() {
-                if (Utility.isNumeric(withdrawalAmountField.getText())) {
+                if (Utility.isPositiveNumber(withdrawalAmountField.getText())) {
                     withdrawButton.setEnabled(true);
                 } else {
                     withdrawButton.setEnabled(false);

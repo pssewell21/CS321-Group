@@ -66,64 +66,64 @@ public class UtilityTest {
     }
 
     /**
-     * Test of isNumeric method, of class Utility.
+     * Test of isPositiveNumber method, of class Utility.
      */
     @Test
     public void testIsNumeric() {
         System.out.println("isNumeric");
         String string = null;
         boolean expResult = false;
-        boolean result = Utility.isNumeric(string);
+        boolean result = Utility.isPositiveNumber(string);
         assertEquals(expResult, result);
 
         string = "";
         expResult = false;
-        result = Utility.isNumeric(string);
+        result = Utility.isPositiveNumber(string);
         assertEquals(expResult, result);
 
         string = "AlphabetCharacters";
         expResult = false;
-        result = Utility.isNumeric(string);
+        result = Utility.isPositiveNumber(string);
         assertEquals(expResult, result);
 
         string = "Alphabet Characters With Space";
         expResult = false;
-        result = Utility.isNumeric(string);
+        result = Utility.isPositiveNumber(string);
         assertEquals(expResult, result);
 
         string = "M1x3d numb3rs and letters";
         expResult = false;
-        result = Utility.isNumeric(string);
+        result = Utility.isPositiveNumber(string);
         assertEquals(expResult, result);
 
         string = "333 33";
         expResult = false;
-        result = Utility.isNumeric(string);
+        result = Utility.isPositiveNumber(string);
         assertEquals(expResult, result);
 
         string = "333.33.33";
         expResult = false;
-        result = Utility.isNumeric(string);
+        result = Utility.isPositiveNumber(string);
         assertEquals(expResult, result);
 
         string = "333.33";
         expResult = true;
-        result = Utility.isNumeric(string);
+        result = Utility.isPositiveNumber(string);
         assertEquals(expResult, result);
 
         string = "333";
         expResult = true;
-        result = Utility.isNumeric(string);
+        result = Utility.isPositiveNumber(string);
         assertEquals(expResult, result);
 
         string = "-333.33";
-        expResult = true;
-        result = Utility.isNumeric(string);
+        expResult = false;
+        result = Utility.isPositiveNumber(string);
         assertEquals(expResult, result);
 
         string = "-333";
-        expResult = true;
-        result = Utility.isNumeric(string);
+        expResult = false;
+        result = Utility.isPositiveNumber(string);
         assertEquals(expResult, result);
     }
 

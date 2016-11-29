@@ -116,14 +116,14 @@ public class AccountEditView extends javax.swing.JFrame {
 
         controller.model.description = descriptionField.getText();
 
-        if (Utility.isNumeric(balanceField.getText())) {
+        if (Utility.isPositiveNumber(balanceField.getText())) {
             controller.model.balance = new BigDecimal(balanceField.getText());
         } else {
             throw new Exception("Invalid Balance");
         }
 
         if (Utility.hasValue(interestRateField.getText())) {
-            if (Utility.isNumeric(interestRateField.getText())) {
+            if (Utility.isPositiveNumber(interestRateField.getText())) {
                 controller.model.interestRate = new BigDecimal(interestRateField.getText());
             } else {
                 throw new Exception("Invalid Interest Rate");
